@@ -1,0 +1,7 @@
+.dockerignore
+Dockerfile
+Makefile
+.devcontainer/
+.pre-commit-config.yaml
+.loadstate/
+.huntstate/

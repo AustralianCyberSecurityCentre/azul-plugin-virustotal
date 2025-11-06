@@ -1,0 +1,4 @@
+- all_malicious_pdfs:
+    syntax: gjson
+    rule: 'type|@eq:"PDF",positives|@gt:10'
+    daily_quota: 10

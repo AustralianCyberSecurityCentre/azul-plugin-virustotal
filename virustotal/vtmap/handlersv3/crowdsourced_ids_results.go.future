@@ -1,0 +1,22 @@
+package handlersv3
+
+import (
+	bh "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3"
+)
+
+var vtToAzFeatCrowdsourcedIdsResults = []bh.VtPathToAzFeature{
+	bh.NewVtPathToAzFeat("alert_context.dest_ip", bh.VtTypeString, "alert_context_dest_ip", bh.AzFTString, "crowdsourcedIdsResults - destiny IP.", bh.AddListOfDictHandling("alert_context", "hostname"))),
+	bh.NewVtPathToAzFeat("alert_context.dest_port", bh.VtTypeInteger, "alert_context_dest_port", bh.AzFTInteger, "crowdsourcedIdsResults - destination port.", bh.AddListOfDictHandling("alert_context", "hostname"))),
+	bh.NewVtPathToAzFeat("alert_context.hostname", bh.VtTypeString, "alert_context_hostname", bh.AzFTString, "crowdsourcedIdsResults - in case the alert is related to an HTTP event, destination hostname.", bh.AddListOfDictHandling("alert_context", "hostname"))),
+	bh.NewVtPathToAzFeat("alert_context.protocol", bh.VtTypeString, "alert_context_protocol", bh.AzFTString, "crowdsourcedIdsResults - communication protocol.", bh.AddListOfDictHandling("alert_context", "hostname"))),
+	bh.NewVtPathToAzFeat("alert_context.src_ip", bh.VtTypeString, "alert_context_src_ip", bh.AzFTString, "crowdsourcedIdsResults - source IP.", bh.AddListOfDictHandling("alert_context", "hostname"))),
+	bh.NewVtPathToAzFeat("alert_context.src_port", bh.VtTypeInteger, "alert_context_src_port", bh.AzFTInteger, "crowdsourcedIdsResults - source port.", bh.AddListOfDictHandling("alert_context", "hostname"))),
+	bh.NewVtPathToAzFeat("alert_context.url", bh.VtTypeString, "alert_context_url", bh.AzFTString, "crowdsourcedIdsResults - in case the alert is related to an HTTP event, destination URL.", bh.AddListOfDictHandling("alert_context", "hostname"))),
+	bh.NewVtPathToAzFeat("alert_severity", bh.VtTypeString, "alert_severity", bh.AzFTString, "crowdsourcedIdsResults - one of high, medium, low or info."),
+	bh.NewVtPathToAzFeat("rule_category", bh.VtTypeString, "rule_category", bh.AzFTString, "crowdsourcedIdsResults - alert category description."),
+	bh.NewVtPathToAzFeat("rule_id", bh.VtTypeString, "rule_id", bh.AzFTString, "crowdsourcedIdsResults - Suricata/Snort rule SID."),
+	bh.NewVtPathToAzFeat("rule_msg", bh.VtTypeString, "rule_msg", bh.AzFTString, "crowdsourcedIdsResults - alert description."),
+	bh.NewVtPathToAzFeat("rule_source", bh.VtTypeString, "rule_source", bh.AzFTString, "crowdsourcedIdsResults - rule source, determined by SID range."),
+}
+
+var CrowdsourcedIdsResults = bh.NewHandlerV3(vtToAzFeatCrowdsourcedIdsResults, "crowdsourced_ids_results")

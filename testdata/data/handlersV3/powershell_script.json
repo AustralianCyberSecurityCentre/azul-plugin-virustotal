@@ -1,0 +1,1965 @@
+{
+  "data": {
+    "id": "020876e69dac4b2cb5b75a616dbdac8b913f3cc06fbabd8f8dd3277691ba48b6",
+    "type": "file",
+    "links": {
+      "self": "https://www.virustotal.com/api/v3/files/020876e69dac4b2cb5b75a616dbdac8b913f3cc06fbabd8f8dd3277691ba48b6"
+    },
+    "attributes": {
+      "threat_severity": {
+        "version": 5,
+        "threat_severity_level": "SEVERITY_MEDIUM",
+        "threat_severity_data": {
+          "popular_threat_category": "hacktool",
+          "num_gav_detections": 1
+        },
+        "last_analysis_date": "1721417074",
+        "level_description": "Severity MEDIUM because it was considered trojan."
+      },
+      "downloadable": true,
+      "last_analysis_stats": {
+        "malicious": 6,
+        "suspicious": 0,
+        "undetected": 59,
+        "harmless": 0,
+        "timeout": 0,
+        "confirmed-timeout": 0,
+        "failure": 0,
+        "type-unsupported": 14
+      },
+      "powershell_info": {
+        "functions": [
+          "ConvertTo-Icon",
+          "Copy-Files",
+          "Copy-ToUSB",
+          "Get-LocalizedYesNo",
+          "Get-Oscdimg",
+          "Get-TabXaml",
+          "Get-WPFObjectName",
+          "Get-WinUtilCheckBoxes",
+          "Get-WinUtilInstallerProcess",
+          "Get-WinUtilToggleStatus",
+          "Get-WinUtilVariables",
+          "Get-WinUtilWingetLatest",
+          "Get-WinUtilWingetPrerequisites",
+          "Install-WinUtilChoco",
+          "Install-WinUtilProgramChoco",
+          "Install-WinUtilProgramWinget",
+          "Install-WinUtilWinget",
+          "Invoke-ScratchDialog",
+          "Invoke-WPFButton",
+          "Invoke-WPFCloseButton",
+          "Invoke-WPFControlPanel",
+          "Invoke-WPFFeatureInstall",
+          "Invoke-WPFFixesNetwork",
+          "Invoke-WPFFixesUpdate",
+          "Invoke-WPFFixesWinget",
+          "Invoke-WPFFormVariables",
+          "Invoke-WinUtilBingSearch",
+          "Invoke-WinUtilCurrentSystem",
+          "Invoke-WinUtilDarkMode",
+          "Invoke-WinUtilFeatureInstall",
+          "Invoke-WinUtilGPU",
+          "Invoke-WinUtilHiddenFiles",
+          "Invoke-WinUtilMouseAcceleration",
+          "Invoke-WinUtilNumLock",
+          "Invoke-WinUtilScript",
+          "Invoke-WinUtilShowExt",
+          "Invoke-WinUtilSnapFlyout",
+          "Invoke-WinUtilSnapSuggestion",
+          "Invoke-WinUtilSnapWindow",
+          "Invoke-WinUtilSponsors",
+          "Invoke-WinUtilStickyKeys",
+          "Invoke-WinUtilTaskView",
+          "Invoke-WinUtilTaskbarAlignment",
+          "Invoke-WinUtilTaskbarSearch",
+          "Invoke-WinUtilTaskbarWidgets",
+          "Invoke-WinUtilTweaks",
+          "Invoke-WinUtilVerboseLogon",
+          "New-CheckInstall",
+          "New-FirstRun",
+          "New-Unattend",
+          "Remove-Features",
+          "Remove-FileOrDirectory",
+          "Remove-Packages",
+          "Remove-ProvisionedPackages",
+          "Remove-WinUtilAPPX",
+          "Set-WinUtilDNS",
+          "Set-WinUtilRegistry",
+          "Set-WinUtilScheduledTask",
+          "Set-WinUtilService",
+          "Set-WinUtilUITheme",
+          "Show-CustomDialog",
+          "Test-CompatibleImage",
+          "Test-WinUtilPackageManager",
+          "Update-WinUtilProgramWinget"
+        ],
+        "cmdlets": [
+          "add-type",
+          "clear-host",
+          "compare-object",
+          "convertfrom-json",
+          "convertfrom-string",
+          "convertto-json",
+          "copy-item",
+          "foreach-object",
+          "get-bitstransfer",
+          "get-childitem",
+          "get-ciminstance",
+          "get-command",
+          "get-content",
+          "get-credential",
+          "get-date",
+          "get-filehash",
+          "get-item",
+          "get-itemproperty",
+          "get-location",
+          "get-member",
+          "get-process",
+          "get-random",
+          "get-service",
+          "install-module",
+          "invoke-command",
+          "invoke-expression",
+          "invoke-restmethod",
+          "invoke-webrequest",
+          "join-path",
+          "measure-command",
+          "new-item",
+          "new-object",
+          "new-psdrive",
+          "out-file",
+          "out-host",
+          "out-null",
+          "out-string",
+          "remove-item",
+          "remove-itemproperty",
+          "rename-item",
+          "select-object",
+          "select-string",
+          "set-content",
+          "set-executionpolicy",
+          "set-itemproperty",
+          "set-location",
+          "set-service",
+          "sort-object",
+          "split-path",
+          "start-process",
+          "start-service",
+          "start-sleep",
+          "start-transcript",
+          "stop-service",
+          "stop-transcript",
+          "test-path",
+          "wait-process",
+          "write-debug",
+          "write-error",
+          "write-host",
+          "write-output",
+          "write-progress",
+          "write-verbose",
+          "write-warning"
+        ],
+        "dotnet_calls": [
+          "IO.Path",
+          "Security.Principal.WindowsIdentity",
+          "System.Collections.ArrayList",
+          "System.Convert",
+          "System.Drawing.Bitmap",
+          "System.Drawing.Icon",
+          "System.Environment",
+          "System.Exception",
+          "System.GC",
+          "System.IO.Directory",
+          "System.IO.File",
+          "System.IO.FileNotFoundException",
+          "System.IO.MemoryStream",
+          "System.IntPtr",
+          "System.Management.Automation.ApplicationFailedException",
+          "System.Management.Automation.CommandNotFoundException",
+          "System.Management.Automation.ItemNotFoundException",
+          "System.Management.Automation.MethodInvocationException",
+          "System.Management.Automation.Runspaces.InitialSessionState",
+          "System.Management.Automation.RuntimeException",
+          "System.Management.Automation.SwitchParameter",
+          "System.Object",
+          "System.Reflection.Assembly",
+          "System.Security.SecurityException",
+          "System.ServiceProcess.ServiceNotFoundException",
+          "System.UnauthorizedAccessException",
+          "System.Version",
+          "System.Windows.Controls.CheckBox",
+          "System.Windows.Forms.Screen",
+          "System.Windows.MessageBox",
+          "System.Windows.MessageBoxButton",
+          "System.Windows.MessageBoxImage",
+          "Windows.Controls.Grid",
+          "Windows.Controls.Orientation",
+          "Windows.GridLength",
+          "Windows.GridUnitType",
+          "Windows.HorizontalAlignment",
+          "Windows.Markup.XamlReader",
+          "Windows.Media.Brushes",
+          "Windows.Media.ColorConverter",
+          "Windows.Media.Geometry",
+          "Windows.ResizeMode",
+          "Windows.TextDecorations",
+          "Windows.TextWrapping",
+          "Windows.VerticalAlignment",
+          "Windows.WindowStartupLocation",
+          "Windows.WindowState",
+          "Windows.WindowStyle"
+        ],
+        "ps_variables": [
+          "$?",
+          "$args",
+          "$debugpreference",
+          "$host",
+          "$lastexitcode",
+          "$null",
+          "$progresspreference",
+          "$psitem",
+          "$psscriptroot",
+          "$sender"
+        ],
+        "cmdlets_alias": ["Type", "r", "type", "where"]
+      },
+      "exiftool": {
+        "MIMEType": "text/plain",
+        "FileType": "TXT",
+        "WordCount": "61226",
+        "LineCount": "15621",
+        "MIMEEncoding": "us-ascii",
+        "FileTypeExtension": "txt",
+        "Newlines": "Windows CRLF"
+      },
+      "crowdsourced_yara_results": [
+        {
+          "ruleset_id": "0122a7f913",
+          "ruleset_name": "Windows_API_Function",
+          "rule_name": "Windows_API_Function",
+          "match_date": 1722330395,
+          "description": "This signature detects the presence of a number of Windows API functionality often seen within embedded executables. When this signature alerts on an executable, it is not an indication of malicious behavior. However, if seen firing in other file types, deeper investigation may be warranted.",
+          "author": "InQuest Labs",
+          "source": "https://github.com/InQuest/yara-rules-vt"
+        },
+        {
+          "ruleset_id": "00c3b8eb5d",
+          "ruleset_name": "indicator_suspicious",
+          "rule_name": "INDICATOR_SUSPICIOUS_PWSH_B64Encoded_Concatenated_FileEXEC",
+          "match_date": 1722330395,
+          "description": "Detects PowerShell scripts containing patterns of base64 encoded files, concatenation and execution",
+          "author": "ditekSHen",
+          "source": "https://github.com/ditekshen/detection"
+        }
+      ],
+      "md5": "6a6761c9563359c6b446c03b946367b5",
+      "tlsh": "T160050933D5440DB28BB24325AEA76946FF5143BF53205C46B9BD800D1FF2A5E02B7B6A",
+      "last_analysis_results": {
+        "Bkav": {
+          "method": "blacklist",
+          "engine_name": "Bkav",
+          "engine_version": "2.0.0.1",
+          "engine_update": "20240730",
+          "category": "malicious",
+          "result": "W32.Common.0A120A06"
+        },
+        "Lionic": {
+          "method": "blacklist",
+          "engine_name": "Lionic",
+          "engine_version": "8.16",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "tehtris": {
+          "method": "blacklist",
+          "engine_name": "tehtris",
+          "engine_version": null,
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "DrWeb": {
+          "method": "blacklist",
+          "engine_name": "DrWeb",
+          "engine_version": "7.0.65.5230",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "MicroWorld-eScan": {
+          "method": "blacklist",
+          "engine_name": "MicroWorld-eScan",
+          "engine_version": "14.0.409.0",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "ClamAV": {
+          "method": "blacklist",
+          "engine_name": "ClamAV",
+          "engine_version": "1.3.1.0",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "CMC": {
+          "method": "blacklist",
+          "engine_name": "CMC",
+          "engine_version": "2.4.2022.1",
+          "engine_update": "20240728",
+          "category": "undetected",
+          "result": null
+        },
+        "CAT-QuickHeal": {
+          "method": "blacklist",
+          "engine_name": "CAT-QuickHeal",
+          "engine_version": "22.00",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "Skyhigh": {
+          "method": "blacklist",
+          "engine_name": "Skyhigh",
+          "engine_version": "v2021.2.0+4045",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "McAfee": {
+          "method": "blacklist",
+          "engine_name": "McAfee",
+          "engine_version": "6.0.6.653",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "Malwarebytes": {
+          "method": "blacklist",
+          "engine_name": "Malwarebytes",
+          "engine_version": "4.5.5.54",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Zillya": {
+          "method": "blacklist",
+          "engine_name": "Zillya",
+          "engine_version": "2.0.0.5163",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "Sangfor": {
+          "method": "blacklist",
+          "engine_name": "Sangfor",
+          "engine_version": "2.25.10.0",
+          "engine_update": "20240711",
+          "category": "undetected",
+          "result": null
+        },
+        "K7AntiVirus": {
+          "method": "blacklist",
+          "engine_name": "K7AntiVirus",
+          "engine_version": "12.179.52756",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "K7GW": {
+          "method": "blacklist",
+          "engine_name": "K7GW",
+          "engine_version": "12.178.52748",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "Cybereason": {
+          "method": "blacklist",
+          "engine_name": "Cybereason",
+          "engine_version": null,
+          "engine_update": "20180308",
+          "category": "undetected",
+          "result": null
+        },
+        "Arcabit": {
+          "method": "blacklist",
+          "engine_name": "Arcabit",
+          "engine_version": "2022.0.0.18",
+          "engine_update": "20240717",
+          "category": "undetected",
+          "result": null
+        },
+        "BitDefenderTheta": {
+          "method": "blacklist",
+          "engine_name": "BitDefenderTheta",
+          "engine_version": "7.2.37796.0",
+          "engine_update": "20240719",
+          "category": "undetected",
+          "result": null
+        },
+        "VirIT": {
+          "method": "blacklist",
+          "engine_name": "VirIT",
+          "engine_version": "9.5.755",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "Symantec": {
+          "method": "blacklist",
+          "engine_name": "Symantec",
+          "engine_version": "1.22.0.0",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "ESET-NOD32": {
+          "method": "blacklist",
+          "engine_name": "ESET-NOD32",
+          "engine_version": "29640",
+          "engine_update": "20240730",
+          "category": "malicious",
+          "result": "PowerShell/HackTool.Agent.BX potentially unsafe"
+        },
+        "TrendMicro-HouseCall": {
+          "method": "blacklist",
+          "engine_name": "TrendMicro-HouseCall",
+          "engine_version": "10.0.0.1040",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Avast": {
+          "method": "blacklist",
+          "engine_name": "Avast",
+          "engine_version": "23.9.8494.0",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Cynet": {
+          "method": "blacklist",
+          "engine_name": "Cynet",
+          "engine_version": "4.0.1.1",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Kaspersky": {
+          "method": "blacklist",
+          "engine_name": "Kaspersky",
+          "engine_version": "22.0.1.28",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "BitDefender": {
+          "method": "blacklist",
+          "engine_name": "BitDefender",
+          "engine_version": "7.2",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "NANO-Antivirus": {
+          "method": "blacklist",
+          "engine_name": "NANO-Antivirus",
+          "engine_version": "1.0.146.25796",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "SUPERAntiSpyware": {
+          "method": "blacklist",
+          "engine_name": "SUPERAntiSpyware",
+          "engine_version": "5.6.0.1032",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Tencent": {
+          "method": "blacklist",
+          "engine_name": "Tencent",
+          "engine_version": "1.0.0.1",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Emsisoft": {
+          "method": "blacklist",
+          "engine_name": "Emsisoft",
+          "engine_version": "2024.1.0.53752",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "F-Secure": {
+          "method": "blacklist",
+          "engine_name": "F-Secure",
+          "engine_version": "18.10.1547.307",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Baidu": {
+          "method": "blacklist",
+          "engine_name": "Baidu",
+          "engine_version": "1.0.0.2",
+          "engine_update": "20190318",
+          "category": "undetected",
+          "result": null
+        },
+        "VIPRE": {
+          "method": "blacklist",
+          "engine_name": "VIPRE",
+          "engine_version": "6.0.0.35",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "TrendMicro": {
+          "method": "blacklist",
+          "engine_name": "TrendMicro",
+          "engine_version": "11.0.0.1006",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "FireEye": {
+          "method": "blacklist",
+          "engine_name": "FireEye",
+          "engine_version": "35.47.0.0",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Sophos": {
+          "method": "blacklist",
+          "engine_name": "Sophos",
+          "engine_version": "2.5.5.0",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "huorong": {
+          "method": "blacklist",
+          "engine_name": "huorong",
+          "engine_version": "8b26eb4:8b26eb4:4bbdba7:4bbdba7",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "Jiangmin": {
+          "method": "blacklist",
+          "engine_name": "Jiangmin",
+          "engine_version": "16.0.100",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "Varist": {
+          "method": "blacklist",
+          "engine_name": "Varist",
+          "engine_version": "6.5.1.2",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Avira": {
+          "method": "blacklist",
+          "engine_name": "Avira",
+          "engine_version": "8.3.3.20",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "MAX": {
+          "method": "blacklist",
+          "engine_name": "MAX",
+          "engine_version": "2023.1.4.1",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Antiy-AVL": {
+          "method": "blacklist",
+          "engine_name": "Antiy-AVL",
+          "engine_version": "3.0",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Kingsoft": {
+          "method": "blacklist",
+          "engine_name": "Kingsoft",
+          "engine_version": "None",
+          "engine_update": "20240725",
+          "category": "undetected",
+          "result": null
+        },
+        "Gridinsoft": {
+          "method": "blacklist",
+          "engine_name": "Gridinsoft",
+          "engine_version": "1.0.183.174",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Xcitium": {
+          "method": "blacklist",
+          "engine_name": "Xcitium",
+          "engine_version": "36915",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Microsoft": {
+          "method": "blacklist",
+          "engine_name": "Microsoft",
+          "engine_version": "1.1.24060.5",
+          "engine_update": "20240730",
+          "category": "malicious",
+          "result": "Trojan:Win32/Casdet!rfn"
+        },
+        "ViRobot": {
+          "method": "blacklist",
+          "engine_name": "ViRobot",
+          "engine_version": "2014.3.20.0",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "ZoneAlarm": {
+          "method": "blacklist",
+          "engine_name": "ZoneAlarm",
+          "engine_version": "1.0",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "GData": {
+          "method": "blacklist",
+          "engine_name": "GData",
+          "engine_version": "A:25.38583B:27.36903",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Google": {
+          "method": "blacklist",
+          "engine_name": "Google",
+          "engine_version": "1722328243",
+          "engine_update": "20240730",
+          "category": "malicious",
+          "result": "Detected"
+        },
+        "AhnLab-V3": {
+          "method": "blacklist",
+          "engine_name": "AhnLab-V3",
+          "engine_version": "3.26.0.10499",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Acronis": {
+          "method": "blacklist",
+          "engine_name": "Acronis",
+          "engine_version": "1.2.0.121",
+          "engine_update": "20240328",
+          "category": "undetected",
+          "result": null
+        },
+        "VBA32": {
+          "method": "blacklist",
+          "engine_name": "VBA32",
+          "engine_version": "5.0.0",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "ALYac": {
+          "method": "blacklist",
+          "engine_name": "ALYac",
+          "engine_version": "2.0.0.10",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "TACHYON": {
+          "method": "blacklist",
+          "engine_name": "TACHYON",
+          "engine_version": "2024-07-30.02",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Zoner": {
+          "method": "blacklist",
+          "engine_name": "Zoner",
+          "engine_version": "2.2.2.0",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Rising": {
+          "method": "blacklist",
+          "engine_name": "Rising",
+          "engine_version": "25.0.0.27",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Yandex": {
+          "method": "blacklist",
+          "engine_name": "Yandex",
+          "engine_version": "5.5.2.24",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Ikarus": {
+          "method": "blacklist",
+          "engine_name": "Ikarus",
+          "engine_version": "6.3.12.0",
+          "engine_update": "20240730",
+          "category": "malicious",
+          "result": "PUA.PowerShell.Hacktool"
+        },
+        "MaxSecure": {
+          "method": "blacklist",
+          "engine_name": "MaxSecure",
+          "engine_version": "1.0.0.1",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Fortinet": {
+          "method": "blacklist",
+          "engine_name": "Fortinet",
+          "engine_version": "None",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "AVG": {
+          "method": "blacklist",
+          "engine_name": "AVG",
+          "engine_version": "23.9.8494.0",
+          "engine_update": "20240730",
+          "category": "undetected",
+          "result": null
+        },
+        "Panda": {
+          "method": "blacklist",
+          "engine_name": "Panda",
+          "engine_version": "4.6.4.2",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "CrowdStrike": {
+          "method": "blacklist",
+          "engine_name": "CrowdStrike",
+          "engine_version": "1.0",
+          "engine_update": "20230417",
+          "category": "undetected",
+          "result": null
+        },
+        "alibabacloud": {
+          "method": "blacklist",
+          "engine_name": "alibabacloud",
+          "engine_version": "2.1.0",
+          "engine_update": "20240722",
+          "category": "malicious",
+          "result": "HackTool:Win/Agent.BD"
+        },
+        "Avast-Mobile": {
+          "method": "blacklist",
+          "engine_name": "Avast-Mobile",
+          "engine_version": "240730-02",
+          "engine_update": "20240730",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "SymantecMobileInsight": {
+          "method": "blacklist",
+          "engine_name": "SymantecMobileInsight",
+          "engine_version": "2.0",
+          "engine_update": "20240103",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "BitDefenderFalx": {
+          "method": "blacklist",
+          "engine_name": "BitDefenderFalx",
+          "engine_version": "2.0.936",
+          "engine_update": "20240128",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "McAfeeD": {
+          "method": "blacklist",
+          "engine_name": "McAfeeD",
+          "engine_version": "1.2.0.7977",
+          "engine_update": "20240730",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "DeepInstinct": {
+          "method": "blacklist",
+          "engine_name": "DeepInstinct",
+          "engine_version": "5.0.0.8",
+          "engine_update": "20240728",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "APEX": {
+          "method": "blacklist",
+          "engine_name": "APEX",
+          "engine_version": "6.557",
+          "engine_update": "20240728",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "Paloalto": {
+          "method": "blacklist",
+          "engine_name": "Paloalto",
+          "engine_version": "0.9.0.1003",
+          "engine_update": "20240730",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "Trapmine": {
+          "method": "blacklist",
+          "engine_name": "Trapmine",
+          "engine_version": "4.0.16.173",
+          "engine_update": "20240712",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "Alibaba": {
+          "method": "blacklist",
+          "engine_name": "Alibaba",
+          "engine_version": "0.3.0.5",
+          "engine_update": "20190527",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "Webroot": {
+          "method": "blacklist",
+          "engine_name": "Webroot",
+          "engine_version": "1.0.0.403",
+          "engine_update": "20240730",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "Cylance": {
+          "method": "blacklist",
+          "engine_name": "Cylance",
+          "engine_version": "3.0.0.0",
+          "engine_update": "20240725",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "SentinelOne": {
+          "method": "blacklist",
+          "engine_name": "SentinelOne",
+          "engine_version": "24.2.1.1",
+          "engine_update": "20240417",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "Trustlook": {
+          "method": "blacklist",
+          "engine_name": "Trustlook",
+          "engine_version": "1.0",
+          "engine_update": "20240730",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "Elastic": {
+          "method": "blacklist",
+          "engine_name": "Elastic",
+          "engine_version": "4.0.157",
+          "engine_update": "20240703",
+          "category": "type-unsupported",
+          "result": null
+        }
+      },
+      "magic": "ASCII text, with CRLF line terminators",
+      "vhash": "02b1ec3f74d678c0c41b2f737ae875c0",
+      "size": 804561,
+      "popular_threat_classification": {
+        "popular_threat_category": [
+          {
+            "value": "hacktool",
+            "count": 3
+          }
+        ],
+        "popular_threat_name": [
+          {
+            "value": "powershell",
+            "count": 2
+          }
+        ],
+        "suggested_threat_label": "hacktool.powershell"
+      },
+      "sha256": "020876e69dac4b2cb5b75a616dbdac8b913f3cc06fbabd8f8dd3277691ba48b6",
+      "trid": [
+        {
+          "file_format_legacy": "file seems to be plain text/ASCII",
+          "probability": 0
+        }
+      ],
+      "names": [
+        "winutil   CHRIS TITUS.ps1",
+        "winutil-main/winutil.ps1",
+        "d5163751-ba0e-4922-9c11-a4245883b062",
+        "winutil (1).ps1",
+        "winutil.ps1",
+        "winutil-24.07.17/winutil.ps1",
+        "C:\\Users\\user\\AppData\\Local\\Temp\\hokcyw0n.i2q\\winutil-24.07.17\\winutil.ps1",
+        "C:\\Users\\user\\Downloads\\Unconfirmed 757573.crdownload (copy)",
+        "C:\\Users\\user\\AppData\\Local\\Temp\\hmnbxa3t.ogd\\winutil-main\\winutil.ps1",
+        "C:\\Users\\user\\AppData\\Local\\Temp\\jt0vckbj.tpe\\winutil-main\\winutil.ps1",
+        "C:\\Users\\AliLab\\Downloads\\winutil.ps1",
+        "C:\\Users\\user\\AppData\\Local\\Temp\\5roklydo.lcu\\winutil-main\\winutil.ps1",
+        "C:\\Users\\user\\AppData\\Local\\Temp\\c4qjp2k1.1w1\\winutil-main\\winutil.ps1",
+        "C:\\Users\\user\\AppData\\Local\\Temp\\5dqzo5jn.tnf\\winutil-main\\winutil.ps1"
+      ],
+      "total_votes": {
+        "harmless": 0,
+        "malicious": 1
+      },
+      "unique_sources": 74,
+      "meaningful_name": "winutil   CHRIS TITUS.ps1",
+      "type_extension": "ps1",
+      "times_submitted": 83,
+      "available_tools": [],
+      "type_description": "Powershell",
+      "magika": "POWERSHELL",
+      "sigma_analysis_results": [
+        {
+          "rule_level": "high",
+          "rule_id": "0328ed59c29ebeee509b67ed087523a3cbfc646542f343aa12f9b1bbd64324fe",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Powershell Token Obfuscation - Powershell",
+          "rule_description": "Detects TOKEN OBFUSCATION technique from Invoke-Obfuscation",
+          "rule_author": "frack113",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "                         />\r\n                            <Button Name=\"WPFGetIso\" Margin=\"2\" Padding=\"15\">\r\n                                <Button.Content>\r\n                                    <TextBlock Background=\"Transparent\" Foreground=\"{ButtonForegroundColor}\">\r\n                                        Select Windows <Underline>I</Underline>SO\r\n                                    </TextBlock>\r\n                                </Button.Content>\r\n                            </Button>\r\n         [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "MessageNumber": "43",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "          <CheckBox Name=\"WPFMicrowinKeepProvisionedPackages\" Content=\"Keep Provisioned Packages\" Margin=\"-10,5,0,0\" ToolTip=\"Do not remove Microsoft Provisioned packages from the ISO.\"/>\r\n                            <CheckBox Name=\"WPFMicrowinKeepAppxPackages\" Content=\"Keep Appx Packages\" Margin=\"-10,5,0,0\" ToolTip=\"Do not remove Microsoft Appx packages from the ISO.\"/>\r\n                            <CheckBox Name=\"WPFMicrowinKeepDefender\" Content=\"Keep Defender\" Margin=\"-10,5,0,0\" IsChecked=\"Tr [TRUNCATED]",
+                "MessageTotal": "55",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "EventID": "4104",
+                "MessageNumber": "54"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "XamlReader]::Load( $reader )\r\n} catch [System.Management.Automation.MethodInvocationException] {\r\n    Write-Warning \"We ran into a problem with the XAML code.  Check the syntax for this control...\"\r\n    Write-Host $error[0].Exception.Message -ForegroundColor Red\r\n\r\n    If ($error[0].Exception.Message -like \"*button*\") {\r\n        write-warning \"Ensure your &lt;button in the `$inputXML does NOT have a Click=ButtonClick property.  PS can't handle this`n`n`n`n\"\r\n    }\r\n} catch {\r\n    Write-Host \"Una [TRUNCATED]",
+                "Path": "C:\\Users\\george\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "fa2bf401-bf0f-48d0-9657-60e77443c77b",
+                "MessageTotal": "43",
+                "MessageNumber": "43",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "le Fill=\"{MainForegroundColor}\" Height=\"2\" HorizontalAlignment=\"Stretch\" Margin=\"0,10,0,10\"/>\r\n                            <CheckBox Name=\"MicrowinInjectDrivers\" Content=\"Inject drivers (I KNOW WHAT I''M DOING)\" Margin=\"-10,5,0,0\" IsChecked=\"False\" ToolTip=\"Path to unpacked drivers all sys and inf files for devices that need drivers\"/>\r\n                            <TextBox Name=\"MicrowinDriverLocation\" Background=\"Transparent\" BorderThickness=\"1\" BorderBrush=\"{MainForegroundColor}\"\r\n             [TRUNCATED]",
+                "MessageTotal": "60",
+                "ScriptBlockId": "ebc57e32-b2e0-4d8e-a9f5-ad1085f9e59f",
+                "Path": "C:\\Users\\Bruno\\Desktop\\sample.ps1",
+                "MessageNumber": "58",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "\" Margin=\"0,10,0,10\"/>\r\n                            <Button Name=\"WPFMicrowin\" Content=\"Start the process\" Margin=\"2\" Padding=\"15\"/>\r\n                        </StackPanel>\r\n                        <StackPanel HorizontalAlignment=\"Left\" SnapsToDevicePixels=\"True\" Margin=\"1\" Visibility=\"Collapsed\">\r\n                            <TextBlock Name=\"MicrowinIsoDrive\" VerticalAlignment=\"Center\"  Margin=\"1\" Padding=\"1\" TextWrapping=\"WrapWithOverflow\" Foreground=\"{ComboBoxForegroundColor}\"/>\r\n              [TRUNCATED]",
+                "MessageTotal": "60",
+                "ScriptBlockId": "485479ed-34d2-46f3-9e93-71e661886677",
+                "Path": "C:\\Users\\Bruno\\Desktop\\script.ps1",
+                "MessageNumber": "59",
+                "EventID": "4104"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "high",
+          "rule_id": "76e8bb8877ab40bd84b14fc93daffe9ff7ebe9440ce09916b5c63a302d62c918",
+          "rule_source": "Joe Security Rule Set (GitHub)",
+          "rule_title": "Dot net compiler compiles file from suspicious location",
+          "rule_description": "Dot net compiler compiles file from suspicious location",
+          "rule_author": "Joe Security",
+          "match_context": [
+            {
+              "values": {
+                "Product": "Microsoft\\xae .NET Framework",
+                "CurrentDirectory": "C:\\Users\\george\\Desktop\\",
+                "OriginalFileName": "csc.exe",
+                "Hashes": "SHA1=93CF877F5627E55EC076A656E935042FAC39950E,MD5=23EE3D381CFE3B9F6229483E2CE2F9E1,SHA256=4240A12E0B246C9D69AF1F697488FE7DA1B497DF20F4A6F95135B4D5FE180A57,IMPHASH=EE1E569AD02AA1F7AECA80AC0601D80D",
+                "Description": "Visual C# Command Line Compiler",
+                "FileVersion": "4.8.3761.0 built by: NET48REL1",
+                "ParentCommandLine": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -noLogo -ExecutionPolicy unrestricted -file \"C:\\Users\\george\\Desktop\\winutil.ps1\"",
+                "CommandLine": "\"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe\" /noconfig /fullpaths @\"C:\\Users\\george\\AppData\\Local\\Temp\\urszt53m\\urszt53m.cmdline\"",
+                "EventID": "1",
+                "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "IntegrityLevel": "High",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                "Company": "Microsoft Corporation"
+              }
+            },
+            {
+              "values": {
+                "CommandLine": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe /noconfig /fullpaths @C:\\Users\\<USER>\\AppData\\Local\\Temp\\al3kpbre\\al3kpbre.cmdline",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                "EventID": "1"
+              }
+            },
+            {
+              "values": {
+                "Hashes": "MD5=F65B029562077B648A6A5F6A1AA76A66,SHA256=4A6D0864E19C0368A47217C129B075DDDF61A6A262388F9D21045D82F3423ED7,IMPHASH=EE1E569AD02AA1F7AECA80AC0601D80D",
+                "CurrentDirectory": "C:\\Users\\Bruno\\Desktop\\",
+                "OriginalFileName": "csc.exe",
+                "Product": "Microsoft\\xae .NET Framework",
+                "Description": "Visual C# Command Line Compiler",
+                "FileVersion": "4.8.4084.0 built by: NET48REL1",
+                "ParentCommandLine": "\"C:\\Windows\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy bypass -File \"C:\\Users\\Bruno\\Desktop\\sample.ps1\"",
+                "CommandLine": "\"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe\" /noconfig /fullpaths @\"C:\\Users\\Bruno\\AppData\\Local\\Temp\\cfym5qxk\\cfym5qxk.cmdline\"",
+                "EventID": "1",
+                "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "IntegrityLevel": "High",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                "Company": "Microsoft Corporation"
+              }
+            },
+            {
+              "values": {
+                "Hashes": "MD5=F65B029562077B648A6A5F6A1AA76A66,SHA256=4A6D0864E19C0368A47217C129B075DDDF61A6A262388F9D21045D82F3423ED7,IMPHASH=EE1E569AD02AA1F7AECA80AC0601D80D",
+                "CurrentDirectory": "C:\\Users\\Bruno\\Desktop\\",
+                "OriginalFileName": "csc.exe",
+                "Product": "Microsoft\\xae .NET Framework",
+                "Description": "Visual C# Command Line Compiler",
+                "EventID": "1",
+                "ParentCommandLine": "\"C:\\Windows\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy bypass -File \"C:\\Users\\Bruno\\Desktop\\script.ps1\"",
+                "CommandLine": "\"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe\" /noconfig /fullpaths @\"C:\\Users\\Bruno\\AppData\\Local\\Temp\\xnrtkmwg\\xnrtkmwg.cmdline\"",
+                "FileVersion": "4.8.4084.0 built by: NET48REL1",
+                "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "IntegrityLevel": "High",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                "Company": "Microsoft Corporation"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "high",
+          "rule_id": "bbb841b3f1cb3bdb122737ca0755cb93d982ecca4651de2822af469b59071f87",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Malicious PowerShell Commandlets - ScriptBlock",
+          "rule_description": "Detects Commandlet names from well-known PowerShell exploitation frameworks",
+          "rule_author": "Sean Metcalf, Florian Roth, Bartlomiej Czyz @bczyz1, oscd.community, Nasreddine Bencherchali, Tim Shelton, Mustafa Kaan Demir, Georg Lauenstein, Max Altgelt, Tobias Michalski, Austin Songer",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "ription\": \"FxSound is a cutting-edge audio enhancement software that elevates your listening experience across all media.\",\r\n    \"link\": \"https://www.fxsound.com/\",\r\n    \"winget\": \"FxSoundLLC.FxSound\"\r\n  },\r\n  \"WPFInstallfzf\": {\r\n    \"category\": \"Utilities\",\r\n    \"choco\": \"fzf\",\r\n    \"content\": \"Fzf\",\r\n    \"description\": \"A command-line fuzzy finder\",\r\n    \"link\": \"https://github.com/junegunn/fzf/\",\r\n    \"winget\": \"junegunn.fzf\"\r\n  },\r\n  \"WPFInstallgeforcenow\": {\r\n    \"category\": \"Games\",\r\n    \" [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "EventID": "4104",
+                "MessageNumber": "16"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": ",\r\n    \"description\": \"Free and open-source software that allows users to set animated desktop wallpapers and screensavers.\",\r\n    \"link\": \"https://www.rocksdanister.com/lively/\",\r\n    \"winget\": \"rocksdanister.LivelyWallpaper\"\r\n  },\r\n  \"WPFInstalllocalsend\": {\r\n    \"category\": \"Utilities\",\r\n    \"choco\": \"localsend.install\",\r\n    \"content\": \"LocalSend\",\r\n    \"description\": \"An open source cross-platform alternative to AirDrop.\",\r\n    \"link\": \"https://localsend.org/\",\r\n    \"winget\": \"LocalSend.Loc [TRUNCATED]",
+                "MessageTotal": "44",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "EventID": "4104",
+                "MessageNumber": "17"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "                          <StackPanel Orientation=\"Horizontal\">\r\n                                <CheckBox Name=\"WPFInstalldevtoys\" Content=\"DevToys\" ToolTip=\"DevToys is a collection of development-related utilities and tools for Windows. It includes tools for file management, code formatting, and productivity enhancements for developers.\" Margin=\"0,0,2,0\"/>\r\n                                <TextBlock Name=\"WPFInstalldevtoysLink\" Style=\"{StaticResource HoverTextBlockStyle}\" Text=\"(?)\" ToolTip=\"h [TRUNCATED]",
+                "MessageTotal": "44",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "EventID": "4104",
+                "MessageNumber": "38"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "ackPanel>\r\n                            <StackPanel Orientation=\"Horizontal\">\r\n                                <CheckBox Name=\"WPFInstalllocalsend\" Content=\"LocalSend\" ToolTip=\"An open source cross-platform alternative to AirDrop.\" Margin=\"0,0,2,0\"/>\r\n                                <TextBlock Name=\"WPFInstalllocalsendLink\" Style=\"{StaticResource HoverTextBlockStyle}\" Text=\"(?)\" ToolTip=\"https://localsend.org/\"/>\r\n                            </StackPanel>\r\n                        </StackPanel>\r\n  [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "MessageNumber": "39",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "\r\n  \"WPFInstallgitextensions\": {\r\n    \"category\": \"Development\",\r\n    \"choco\": \"git;gitextensions\",\r\n    \"content\": \"Git Extensions\",\r\n    \"description\": \"Git Extensions is a graphical user interface for Git, providing additional features for easier source code management.\",\r\n    \"link\": \"https://gitextensions.github.io/\",\r\n    \"winget\": \"GitExtensionsTeam.GitExtensions\"\r\n  },\r\n  \"WPFInstallgithubcli\": {\r\n    \"category\": \"Development\",\r\n    \"choco\": \"git;gh\",\r\n    \"content\": \"GitHub CLI\",\r\n    \" [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "MessageTotal": "55",
+                "EventID": "4104",
+                "MessageNumber": "20"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "124bf07ac70743e91b5698e3731aae0330fc182aa58036390f2a0457a90b5341",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Suspicious PowerShell Download - Powershell Script",
+          "rule_description": "Detects suspicious PowerShell download command",
+          "rule_author": "Florian Roth (Nextron Systems)",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "izontal\"\" Margin=\"\"0,5,0,0\"\">\" + \"`r`n\"\r\n                        $blockXml += $precal_indent + \"<Label Content=\"\"$($appInfo.Content)\"\" HorizontalAlignment=\"\"Left\"\"\" + \" \" +\r\n                                        \"VerticalAlignment=\"\"Center\"\" FontSize=\"\"{FontSize}\"\"/>\" + \"`r`n\"\r\n                        $blockXml += $precal_indent +\r\n                                        \"<ComboBox Name=\"\"$($appInfo.Name)\"\"  Height=\"\"32\"\" Width=\"\"186\"\" HorizontalAlignment=\"\"Left\"\"\" + \" \" +\r\n                    [TRUNCATED]",
+                "MessageTotal": "44",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "MessageNumber": "2",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced').ShowTaskViewButton\r\n        if($TaskView -eq 0){\r\n            return $false\r\n        }\r\n        else{\r\n            return $true\r\n        }\r\n    }\r\n\r\n    if ($ToggleSwitch -eq \"WPFToggleHiddenFiles\") {\r\n        $HiddenFiles = (Get-ItemProperty -path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced').Hidden\r\n        if($HiddenFiles -eq 0){\r\n            return $false\r\n        }\r\n        else{\r\n            return $true\r [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "MessageTotal": "55",
+                "MessageNumber": "3",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "      $blockXml += $precal_indent +\r\n                                        \"<ComboBox Name=\"\"$($appInfo.Name)\"\"  Height=\"\"32\"\" Width=\"\"186\"\" HorizontalAlignment=\"\"Left\"\"\" + \" \" +\r\n                                        \"VerticalAlignment=\"\"Center\"\" Margin=\"\"5,5\"\" FontSize=\"\"{FontSize}\"\">\" + \"`r`n\"\r\n\r\n                        $addfirst=\"IsSelected=\"\"True\"\"\"\r\n                        foreach ($comboitem in ($appInfo.ComboItems -split \" \")) {\r\n                            $blockXml += $precal_inden [TRUNCATED]",
+                "MessageTotal": "43",
+                "ScriptBlockId": "fa2bf401-bf0f-48d0-9657-60e77443c77b",
+                "Path": "C:\\Users\\george\\Desktop\\winutil.ps1",
+                "EventID": "4104",
+                "MessageNumber": "2"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "ath 'HKCU:\\Control Panel\\Desktop').WindowArrangementActive\r\n        if($hidesnap -eq 0){\r\n            return $false\r\n        }\r\n        else{\r\n            return $true\r\n        }\r\n    }\r\n    if($ToggleSwitch -eq \"WPFToggleSnapFlyout\"){\r\n        $hidesnap = (Get-ItemProperty -path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced').EnableSnapAssistFlyout\r\n        if($hidesnap -eq 0){\r\n            return $false\r\n        }\r\n        else{\r\n            return $true\r\n        }\r\n    }\r [TRUNCATED]",
+                "MessageTotal": "60",
+                "ScriptBlockId": "ebc57e32-b2e0-4d8e-a9f5-ad1085f9e59f",
+                "Path": "C:\\Users\\Bruno\\Desktop\\sample.ps1",
+                "MessageNumber": "3",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "        }\r\n    }\r\n    if($ToggleSwitch -eq \"WPFToggleShowExt\"){\r\n        $hideextvalue = (Get-ItemProperty -path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced').HideFileExt\r\n        if($hideextvalue -eq 0){\r\n            return $true\r\n        }\r\n        else{\r\n            return $false\r\n        }\r\n    }\r\n    if($ToggleSwitch -eq \"WPFToggleSnapWindow\"){\r\n        $hidesnap = (Get-ItemProperty -path 'HKCU:\\Control Panel\\Desktop').WindowArrangementActive\r\n        if($hidesnap -eq [TRUNCATED]",
+                "MessageTotal": "60",
+                "ScriptBlockId": "485479ed-34d2-46f3-9e93-71e661886677",
+                "Path": "C:\\Users\\Bruno\\Desktop\\script.ps1",
+                "EventID": "4104",
+                "MessageNumber": "3"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "33e7351552f382831af6bf73d86054bced055e64df091f572c94e9fc9e9a2a97",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Suspicious WSMAN Provider Image Loads",
+          "rule_description": "Detects signs of potential use of the WSMAN provider from uncommon processes locally and remote execution.",
+          "rule_author": "Roberto Rodriguez (Cyb3rWard0g), OTR (Open Threat Research)",
+          "match_context": [
+            {
+              "values": {
+                "ImageLoaded": "C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\Microsoft.We0722664#\\9e6d0a240ae868163a9c0bf5bdf3d0fe\\Microsoft.WSMan.Management.ni.dll"
+              }
+            },
+            {
+              "values": {
+                "ImageLoaded": "C:\\Windows\\system32\\WsmSvc.dll"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "4e243e6a618f306cfd754df3b30132c4fa518c4ad26b6d755244064cd3110b0f",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Extracting Information with PowerShell",
+          "rule_description": "Adversaries may search local file systems and remote file shares for files containing insecurely stored credentials.\nThese can be files created by users to store their own credentials, shared credential stores for a group of individuals,\nconfiguration files containing passwords for a system or service, or source code/binary files containing embedded passwords.\n",
+          "rule_author": "frack113",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "eset is imported from a file, defaults to false\r\n\r\n    .PARAMETER checkbox\r\n        The checkbox to set the options to, defaults to 'WPFTweaks'\r\n\r\n    #>\r\n\r\n    param(\r\n        $preset,\r\n        [bool]$imported = $false\r\n    )\r\n\r\n    if($imported -eq $true){\r\n        $CheckBoxesToCheck = $preset\r\n    }\r\n    Else{\r\n        $CheckBoxesToCheck = $sync.configs.preset.$preset\r\n    }\r\n\r\n    $CheckBoxes = $sync.GetEnumerator() | Where-Object { $_.Value -is [System.Windows.Controls.CheckBox] -and $_.Nam [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "EventID": "4104",
+                "MessageNumber": "12"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "ressPreference='SilentlyContinue'\r\n\r\n        Invoke-WebRequest -Uri $url -OutFile \"$env:TEMP\\AdobeCreativeCloudCleanerTool.exe\" -UseBasicParsing -ErrorAction SilentlyContinue -Verbose\r\n\r\n        # Revert back the ProgressPreference variable to the default value since we got the file desired\r\n        $ProgressPreference='Continue'\r\n\r\n        Start-Process -FilePath \"$env:TEMP\\AdobeCreativeCloudCleanerTool.exe\" -Wait -ErrorAction SilentlyContinue -Verbose\r\n    } catch {\r\n        Write-Error $_.Exc [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "MessageTotal": "55",
+                "MessageNumber": "15",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "letBinding()]\r\n    Param (\r\n        $ScriptBlock,\r\n        $ArgumentList,\r\n        $DebugPreference\r\n    )\r\n\r\n    # Create a PowerShell instance\r\n    $script:powershell = [powershell]::Create()\r\n\r\n    # Add Scriptblock and Arguments to runspace\r\n    $script:powershell.AddScript($ScriptBlock)\r\n    $script:powershell.AddArgument($ArgumentList)\r\n    $script:powershell.AddArgument($DebugPreference)  # Pass DebugPreference to the script block\r\n    $script:powershell.RunspacePool = $sync.runspace\r\n\r\n  [TRUNCATED]",
+                "MessageTotal": "43",
+                "ScriptBlockId": "fa2bf401-bf0f-48d0-9657-60e77443c77b",
+                "Path": "C:\\Users\\george\\Desktop\\winutil.ps1",
+                "EventID": "4104",
+                "MessageNumber": "12"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "ool {\r\n    <#\r\n    .SYNOPSIS\r\n        It removes or fixes problem files and resolves permission issues in registry keys.\r\n    .DESCRIPTION\r\n        The Creative Cloud Cleaner tool is a utility for experienced users to clean up corrupted installations.\r\n    #>\r\n\r\n    [string]$url=\"https://swupmf.adobe.com/webfeed/CleanerTool/win/AdobeCreativeCloudCleanerTool.exe\"\r\n\r\n    Write-Host \"The Adobe Creative Cloud Cleaner tool is hosted at\"\r\n    Write-Host \"$url\"\r\n\r\n    try {\r\n        # Don't show the pr [TRUNCATED]",
+                "MessageTotal": "60",
+                "ScriptBlockId": "ebc57e32-b2e0-4d8e-a9f5-ad1085f9e59f",
+                "Path": "C:\\Users\\Bruno\\Desktop\\sample.ps1",
+                "MessageNumber": "16",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "erformance plan is already installed.\"\r\n            } else {\r\n                Write-Host \"Installing Ultimate Performance plan...\"\r\n                powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61\r\n                Write-Host \"> Ultimate Performance plan installed.\"\r\n            }\r\n\r\n            # Set the Ultimate Performance plan as active\r\n            $ultimatePlanGUID = (powercfg -list | Select-String -Pattern \"Ultimate Performance\").Line.Split()[3]\r\n            powercfg -setacti [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\sample.ps1",
+                "ScriptBlockId": "ebc57e32-b2e0-4d8e-a9f5-ad1085f9e59f",
+                "MessageTotal": "60",
+                "MessageNumber": "17",
+                "EventID": "4104"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "5e2ea8c055dd73ea66238735323d0318c2a6c114047137146357b85f764b1101",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Suspicious PowerShell WindowStyle Option",
+          "rule_description": "Adversaries may use hidden windows to conceal malicious activity from the plain sight of users.\nIn some cases, windows that would typically be displayed when an application carries out an operation can be hidden\n",
+          "rule_author": "frack113, Tim Shelton (fp AWS)",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "$scratchDir)\\Windows\\SystemApps\" -mask \"*Windows.Search*\" -Directory\r\n\t\tRemove-FileOrDirectory -pathToDelete \"$($scratchDir)\\Windows\\SystemApps\" -mask \"*narratorquickstart*\" -Directory\r\n\t\tRemove-FileOrDirectory -pathToDelete \"$($scratchDir)\\Windows\\SystemApps\" -mask \"*Xbox*\" -Directory\r\n\t\tRemove-FileOrDirectory -pathToDelete \"$($scratchDir)\\Windows\\SystemApps\" -mask \"*ParentalControls*\" -Directory\r\n\t\tWrite-Host \"Removal complete!\"\r\n\r\n\t\tWrite-Host \"Create unattend.xml\"\r\n\t\tNew-Unattend\r\n\t\tWrite-Ho [TRUNCATED]",
+                "MessageTotal": "44",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "MessageNumber": "11",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "DWord\"\r\n      },\r\n      {\r\n        \"Path\": \"HKCU:\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\Advanced\\\\People\",\r\n        \"OriginalValue\": \"1\",\r\n        \"Name\": \"PeopleBand\",\r\n        \"Value\": \"0\",\r\n        \"Type\": \"DWord\"\r\n      },\r\n      {\r\n        \"Path\": \"HKCU:\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\Advanced\",\r\n        \"OriginalValue\": \"1\",\r\n        \"Name\": \"LaunchTo\",\r\n        \"Value\": \"1\",\r\n        \"Type\": \"DWord\"\r\n      },\r\n      {\r\n        \"Path\": \"HKLM:\\\\S [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "EventID": "4104",
+                "MessageNumber": "25"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "\t\t\t# Remove registry values first...\r\n\t\t\t\treg delete \"HKLM\\zSOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Microsoft Edge\" /va /f > $null 2>&1\r\n\t\t\t\treg delete \"HKLM\\zSOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Microsoft Edge Update\" /va /f > $null 2>&1\r\n\t\t\t\treg delete \"HKLM\\zSOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Microsoft EdgeWebView\" /va /f > $null 2>&1\r\n\t\t\t\t# ...then the registry keys\r\n\t\t\t\treg delete \"HKLM\\zSOFTWARE\\WOW6432Node\\Mic [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "MessageTotal": "55",
+                "EventID": "4104",
+                "MessageNumber": "14"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "ystem32\\OOBE\\BYPASSNRO\"\r\n\r\n\t\tWrite-Host \"Loading registry\"\r\n\t\treg load HKLM\\zCOMPONENTS \"$($scratchDir)\\Windows\\System32\\config\\COMPONENTS\"\r\n\t\treg load HKLM\\zDEFAULT \"$($scratchDir)\\Windows\\System32\\config\\default\"\r\n\t\treg load HKLM\\zNTUSER \"$($scratchDir)\\Users\\Default\\ntuser.dat\"\r\n\t\treg load HKLM\\zSOFTWARE \"$($scratchDir)\\Windows\\System32\\config\\SOFTWARE\"\r\n\t\treg load HKLM\\zSYSTEM \"$($scratchDir)\\Windows\\System32\\config\\SYSTEM\"\r\n\r\n\t\tWrite-Host \"Disabling Teams\"\r\n\t\treg add \"HKLM\\zSOFTWARE\\Microso [TRUNCATED]",
+                "Path": "C:\\Users\\george\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "fa2bf401-bf0f-48d0-9657-60e77443c77b",
+                "MessageTotal": "43",
+                "MessageNumber": "11",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "keys\r\n\t\t\t\treg delete \"HKLM\\zSOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Microsoft Edge\" /f > $null 2>&1\r\n\t\t\t\treg delete \"HKLM\\zSOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Microsoft Edge Update\" /f > $null 2>&1\r\n\t\t\t\treg delete \"HKLM\\zSOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Microsoft EdgeWebView\" /f > $null 2>&1\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\treg add \"HKLM\\zSOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Search\" /v \"SearchboxTaskbarMode\" /t REG_DWORD /d 0 [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\sample.ps1",
+                "ScriptBlockId": "ebc57e32-b2e0-4d8e-a9f5-ad1085f9e59f",
+                "MessageTotal": "60",
+                "MessageNumber": "15",
+                "EventID": "4104"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "60d527fe5a592cbe8e98428d1412743b909d5625ec8bc91d20e8b6ee8b36db20",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Powershell Create Scheduled Task",
+          "rule_description": "Adversaries may abuse the Windows Task Scheduler to perform task scheduling for initial or recurring execution of malicious code",
+          "rule_author": "frack113",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": " Windows and Linux with built-in codecs that can play virtually all video and audio formats.\",\r\n    \"link\": \"https://www.smplayer.info\",\r\n    \"winget\": \"SMPlayer.SMPlayer\"\r\n  },\r\n  \"WPFInstallglazewm\": {\r\n    \"category\": \"Utilities\",\r\n    \"choco\": \"na\",\r\n    \"content\": \"GlazeWM\",\r\n    \"description\": \"GlazeWM is a tiling window manager for Windows inspired by i3 and Polybar\",\r\n    \"link\": \"https://github.com/glzr-io/glazewm\",\r\n    \"winget\": \"glzr-io.glazewm\"\r\n  },\r\n  \"WPFInstallfancontrol\": {\r\n   [TRUNCATED]",
+                "MessageTotal": "44",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "EventID": "4104",
+                "MessageNumber": "21"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "],\r\n    \"UndoScript\": [\r\n      \"$path = \\\"HKCU:\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\Advanced\\\\TaskbarDeveloperSettings\\\"\r\n      $name = \\\"TaskbarEndTask\\\"\r\n      $value = 0\r\n\r\n      # Ensure the registry key exists\r\n      if (-not (Test-Path $path)) {\r\n        New-Item -Path $path -Force | Out-Null\r\n      }\r\n\r\n      # Set the property, creating it if it doesn''t exist\r\n      New-ItemProperty -Path $path -Name $name -PropertyType DWord -Value $value -Force | Out-Null\"\r\n    ]\r [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "MessageNumber": "26",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "-name explorer -force\r\n      \"\r\n    ]\r\n  },\r\n  \"WPFFeatureDisableSearchSuggestions\": {\r\n    \"Content\": \"Disable Search Box Web Suggestions in Registry(explorer restart)\",\r\n    \"Description\": \"Disables web suggestions when searching using Windows Search.\",\r\n    \"category\": \"Features\",\r\n    \"panel\": \"1\",\r\n    \"Order\": \"a016_\",\r\n    \"feature\": [],\r\n    \"InvokeScript\": [\r\n      \"\r\n      If (!(Test-Path ''HKCU:\\\\SOFTWARE\\\\Policies\\\\Microsoft\\\\Windows\\\\Explorer'')) {\r\n            New-Item -Path ''HKCU [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "MessageTotal": "55",
+                "EventID": "4104",
+                "MessageNumber": "27"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "r\": \"a030_\",\r\n    \"InvokeScript\": [\r\n      \"\r\n      $OneDrivePath = $($env:OneDrive)\r\n      Write-Host \\\"Removing OneDrive\\\"\r\n      $regPath = \\\"HKCU:\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Uninstall\\\\OneDriveSetup.exe\\\"\r\n      if (Test-Path $regPath){\r\n          $OneDriveUninstallString = Get-ItemPropertyValue \\\"$regPath\\\" -Name \\\"UninstallString\\\"\r\n          $OneDriveExe, $OneDriveArgs = $OneDriveUninstallString.Split(\\\" \\\")\r\n          Start-Process -FilePath $OneDriveExe -ArgumentList [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "MessageTotal": "55",
+                "MessageNumber": "33",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "Description\": \"Enables daily registry backup, previously disabled by Microsoft in Windows 10 1803.\",\r\n    \"category\": \"Features\",\r\n    \"panel\": \"1\",\r\n    \"Order\": \"a017_\",\r\n    \"feature\": [],\r\n    \"InvokeScript\": [\r\n      \"\r\n      New-ItemProperty -Path ''HKLM:\\\\SYSTEM\\\\CurrentControlSet\\\\Control\\\\Session Manager\\\\Configuration Manager'' -Name ''EnablePeriodicBackup'' -Type DWord -Value 1 -Force\r\n      New-ItemProperty -Path ''HKLM:\\\\SYSTEM\\\\CurrentControlSet\\\\Control\\\\Session Manager\\\\Configura [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\sample.ps1",
+                "ScriptBlockId": "ebc57e32-b2e0-4d8e-a9f5-ad1085f9e59f",
+                "MessageTotal": "60",
+                "EventID": "4104",
+                "MessageNumber": "29"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "6291f85314c7d9966be831c56d3cdfb30f42c84f599273e73dac5c95e1122abf",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Usage Of Web Request Commands And Cmdlets - ScriptBlock",
+          "rule_description": "Detects the use of various web request commands with commandline tools and Windows PowerShell cmdlets (including aliases) via PowerShell scriptblock logs",
+          "rule_author": "James Pemberton / @4A616D6573",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "################################################################################################################\r\n###                                                                                                          ###\r\n### WARNING: This file is automatically generated DO NOT modify this file directly as it will be overwritten ###\r\n###                                                                                                          ###\r\n############################################ [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "MessageNumber": "1",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "izontal\"\" Margin=\"\"0,5,0,0\"\">\" + \"`r`n\"\r\n                        $blockXml += $precal_indent + \"<Label Content=\"\"$($appInfo.Content)\"\" HorizontalAlignment=\"\"Left\"\"\" + \" \" +\r\n                                        \"VerticalAlignment=\"\"Center\"\" FontSize=\"\"{FontSize}\"\"/>\" + \"`r`n\"\r\n                        $blockXml += $precal_indent +\r\n                                        \"<ComboBox Name=\"\"$($appInfo.Name)\"\"  Height=\"\"32\"\" Width=\"\"186\"\" HorizontalAlignment=\"\"Left\"\"\" + \" \" +\r\n                    [TRUNCATED]",
+                "MessageTotal": "44",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "EventID": "4104",
+                "MessageNumber": "2"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "ech\"\r\n        $headers = @{\r\n            \"User-Agent\" = \"Chrome/58.0.3029.110\"\r\n        }\r\n\r\n        # Fetch the webpage content\r\n        try {\r\n            $html = Invoke-RestMethod -Uri $url -Headers $headers\r\n        } catch {\r\n            Write-Output $_.Exception.Message\r\n            exit\r\n        }\r\n\r\n        # Use regex to extract the content between \"Current sponsors\" and \"Past sponsors\"\r\n        $currentSponsorsPattern = '(?s)(?<=Current sponsors).*?(?=Past sponsors)'\r\n        $currentS [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "EventID": "4104",
+                "MessageNumber": "6"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "d theme\r\n        $selectedTheme = $themes.$themeName\r\n\r\n        if ($selectedTheme) {\r\n            # Loop through all key-value pairs in the selected theme\r\n            foreach ($property in $selectedTheme.PSObject.Properties) {\r\n                $key = $property.Name\r\n                $value = $property.Value\r\n                # Add curly braces around the key\r\n                $formattedKey = \"{$key}\"\r\n                # Replace the key with the value in the input XML\r\n                $inputXML = $ [TRUNCATED]",
+                "MessageTotal": "44",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "EventID": "4104",
+                "MessageNumber": "7"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "$scratchDir)\\Windows\\SystemApps\" -mask \"*Windows.Search*\" -Directory\r\n\t\tRemove-FileOrDirectory -pathToDelete \"$($scratchDir)\\Windows\\SystemApps\" -mask \"*narratorquickstart*\" -Directory\r\n\t\tRemove-FileOrDirectory -pathToDelete \"$($scratchDir)\\Windows\\SystemApps\" -mask \"*Xbox*\" -Directory\r\n\t\tRemove-FileOrDirectory -pathToDelete \"$($scratchDir)\\Windows\\SystemApps\" -mask \"*ParentalControls*\" -Directory\r\n\t\tWrite-Host \"Removal complete!\"\r\n\r\n\t\tWrite-Host \"Create unattend.xml\"\r\n\t\tNew-Unattend\r\n\t\tWrite-Ho [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "EventID": "4104",
+                "MessageNumber": "11"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "7ce2e69836f6ffe690530adb579824031c46a1bee75e6f8dc9ec028fe59c5681",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Powershell Directory Enumeration",
+          "rule_description": "Detects technique used by MAZE ransomware to enumerate directories using Powershell",
+          "rule_author": "frack113",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "g Provisioned $($appx.PackageName)\"\r\n\t\t    Write-Progress -Activity \"Removing Provisioned Apps\" -Status $status -PercentComplete ($counter++/$appxProvisionedPackages.Count*100)\r\n\t\t\ttry {\r\n\t\t\t\tRemove-AppxProvisionedPackage -Path $scratchDir -PackageName $appx.PackageName -ErrorAction SilentlyContinue\r\n\t\t\t}\r\n\t\t\tcatch {\r\n\t\t\t\tWrite-Host \"Application $($appx.PackageName) could not be removed\"\r\n\t\t\t\tcontinue\r\n\t\t\t}\r\n\t    }\r\n\t    Write-Progress -Activity \"Removing Provisioned Apps\" -Status \"Ready\" -Compl [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "EventID": "4104",
+                "MessageNumber": "4"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "foreach($itemToDelete in $itemsToDelete)\r\n\t{\r\n\t\t$status = \"Deleting $($itemToDelete)\"\r\n\t\tWrite-Progress -Activity \"Removing Items\" -Status $status -PercentComplete ($counter++/$itemsToDelete.Count*100)\r\n\r\n\t\tif (Test-Path -Path \"$($itemToDelete)\" -PathType Container)\r\n\t\t{\r\n\t\t\t$status = \"Deleting directory: $($itemToDelete)\"\r\n\r\n\t\t\ttakeown /r /d $yesNo[0] /a /f \"$($itemToDelete)\"\r\n\t\t\ticacls \"$($itemToDelete)\" /q /c /t /reset\r\n\t\t\ticacls $itemToDelete /setowner \"*S-1-5-32-544\"\r\n\t\t\ticacls $itemToDelet [TRUNCATED]",
+                "MessageTotal": "55",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "EventID": "4104",
+                "MessageNumber": "5"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "t the total size of the file\r\n\t\t\t$totalSize = (Get-Item $fileToCopy).length\r\n\r\n\t\t\tCopy-Item -Path $fileToCopy -Destination $destinationPath -Verbose -Force -Recurse -Container -PassThru |\r\n\t\t\t\tForEach-Object {\r\n\t\t\t\t\t# Calculate the percentage completed\r\n\t\t\t\t\t$completed = ($_.BytesTransferred / $totalSize) * 100\r\n\r\n\t\t\t\t\t# Display the progress bar\r\n\t\t\t\t\tWrite-Progress -Activity \"Copying File\" -Status \"Progress\" -PercentComplete $completed -CurrentOperation (\"{0:N2} MB / {1:N2} MB\" -f ($_.BytesTran [TRUNCATED]",
+                "Path": "C:\\Users\\george\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "fa2bf401-bf0f-48d0-9657-60e77443c77b",
+                "MessageTotal": "43",
+                "MessageNumber": "4",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": " path exists\r\n\t\tif (Test-Path -Path $RegistryPath)\r\n\t\t{\r\n\t\t\t$registryValue = Get-ItemProperty -Path $RegistryPath -Name $ValueName -ErrorAction SilentlyContinue\r\n\r\n\t\t\t# Check if the registry value exists\r\n\t\t\tif ($registryValue)\r\n\t\t\t{\r\n\t\t\t\t# Remove the registry value\r\n\t\t\t\tRemove-ItemProperty -Path $RegistryPath -Name $ValueName -Force\r\n\t\t\t\tWrite-Host \"Registry value '$ValueName' removed from '$RegistryPath'.\"\r\n\t\t\t}\r\n\t\t\telse\r\n\t\t\t{\r\n\t\t\t\tWrite-Host \"Registry value '$ValueName' not found in '$Registr [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\sample.ps1",
+                "ScriptBlockId": "ebc57e32-b2e0-4d8e-a9f5-ad1085f9e59f",
+                "MessageTotal": "60",
+                "EventID": "4104",
+                "MessageNumber": "6"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "\\LogAuditUser.txt\" (\r\n\t\techo C:\\Windows\\LogAuditUser.txt exists\r\n\t) else (\r\n\t\techo C:\\Windows\\LogAuditUser.txt does not exist\r\n\t)\r\n\tif exist \"C:\\Windows\\LogOobeSystem.txt\" (\r\n\t\techo C:\\Windows\\LogOobeSystem.txt exists\r\n\t) else (\r\n\t\techo C:\\Windows\\LogOobeSystem.txt does not exist\r\n\t)\r\n\tif exist \"c:\\windows\\csup.txt\" (\r\n\t\techo c:\\windows\\csup.txt exists\r\n\t) else (\r\n\t\techo c:\\windows\\csup.txt does not exist\r\n\t)\r\n\tif exist \"c:\\windows\\LogFirstRun.txt\" (\r\n\t\techo c:\\windows\\LogFirstRun.txt exists\r\n\t) [TRUNCATED]",
+                "MessageTotal": "60",
+                "ScriptBlockId": "485479ed-34d2-46f3-9e93-71e661886677",
+                "Path": "C:\\Users\\Bruno\\Desktop\\script.ps1",
+                "MessageNumber": "6",
+                "EventID": "4104"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "b39586c79bf4d0d43c937efa6129ebb6f0b2cf03b7038a3a8234f84c147600f7",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Dynamic .NET Compilation Via Csc.EXE",
+          "rule_description": "Detects execution of \"csc.exe\" to compile .NET code. Attackers often leverage this to compile code on the fly and use it in other stages.",
+          "rule_author": "Florian Roth (Nextron Systems), X__Junior (Nextron Systems)",
+          "match_context": [
+            {
+              "values": {
+                "Product": "Microsoft\\xae .NET Framework",
+                "CurrentDirectory": "C:\\Users\\george\\Desktop\\",
+                "OriginalFileName": "csc.exe",
+                "Hashes": "SHA1=93CF877F5627E55EC076A656E935042FAC39950E,MD5=23EE3D381CFE3B9F6229483E2CE2F9E1,SHA256=4240A12E0B246C9D69AF1F697488FE7DA1B497DF20F4A6F95135B4D5FE180A57,IMPHASH=EE1E569AD02AA1F7AECA80AC0601D80D",
+                "Description": "Visual C# Command Line Compiler",
+                "FileVersion": "4.8.3761.0 built by: NET48REL1",
+                "ParentCommandLine": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -noLogo -ExecutionPolicy unrestricted -file \"C:\\Users\\george\\Desktop\\winutil.ps1\"",
+                "CommandLine": "\"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe\" /noconfig /fullpaths @\"C:\\Users\\george\\AppData\\Local\\Temp\\urszt53m\\urszt53m.cmdline\"",
+                "EventID": "1",
+                "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "IntegrityLevel": "High",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                "Company": "Microsoft Corporation"
+              }
+            },
+            {
+              "values": {
+                "CommandLine": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe /noconfig /fullpaths @C:\\Users\\<USER>\\AppData\\Local\\Temp\\al3kpbre\\al3kpbre.cmdline",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                "EventID": "1"
+              }
+            },
+            {
+              "values": {
+                "Hashes": "MD5=F65B029562077B648A6A5F6A1AA76A66,SHA256=4A6D0864E19C0368A47217C129B075DDDF61A6A262388F9D21045D82F3423ED7,IMPHASH=EE1E569AD02AA1F7AECA80AC0601D80D",
+                "CurrentDirectory": "C:\\Users\\Bruno\\Desktop\\",
+                "OriginalFileName": "csc.exe",
+                "Product": "Microsoft\\xae .NET Framework",
+                "Description": "Visual C# Command Line Compiler",
+                "FileVersion": "4.8.4084.0 built by: NET48REL1",
+                "ParentCommandLine": "\"C:\\Windows\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy bypass -File \"C:\\Users\\Bruno\\Desktop\\sample.ps1\"",
+                "CommandLine": "\"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe\" /noconfig /fullpaths @\"C:\\Users\\Bruno\\AppData\\Local\\Temp\\cfym5qxk\\cfym5qxk.cmdline\"",
+                "EventID": "1",
+                "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "IntegrityLevel": "High",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                "Company": "Microsoft Corporation"
+              }
+            },
+            {
+              "values": {
+                "Product": "Microsoft\\xae .NET Framework",
+                "CurrentDirectory": "C:\\Users\\Bruno\\Desktop\\",
+                "OriginalFileName": "csc.exe",
+                "Hashes": "MD5=F65B029562077B648A6A5F6A1AA76A66,SHA256=4A6D0864E19C0368A47217C129B075DDDF61A6A262388F9D21045D82F3423ED7,IMPHASH=EE1E569AD02AA1F7AECA80AC0601D80D",
+                "Description": "Visual C# Command Line Compiler",
+                "FileVersion": "4.8.4084.0 built by: NET48REL1",
+                "ParentCommandLine": "\"C:\\Windows\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy bypass -File \"C:\\Users\\Bruno\\Desktop\\script.ps1\"",
+                "CommandLine": "\"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe\" /noconfig /fullpaths @\"C:\\Users\\Bruno\\AppData\\Local\\Temp\\xnrtkmwg\\xnrtkmwg.cmdline\"",
+                "EventID": "1",
+                "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "IntegrityLevel": "High",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                "Company": "Microsoft Corporation"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "beee5a67cef9cbdfd4d0e1db0dc60dff160df233b0948d9988a2ca819a41727c",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Automated Collection Command PowerShell",
+          "rule_description": "Once established within a system or network, an adversary may use automated techniques for collecting internal data.",
+          "rule_author": "frack113",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "g Provisioned $($appx.PackageName)\"\r\n\t\t    Write-Progress -Activity \"Removing Provisioned Apps\" -Status $status -PercentComplete ($counter++/$appxProvisionedPackages.Count*100)\r\n\t\t\ttry {\r\n\t\t\t\tRemove-AppxProvisionedPackage -Path $scratchDir -PackageName $appx.PackageName -ErrorAction SilentlyContinue\r\n\t\t\t}\r\n\t\t\tcatch {\r\n\t\t\t\tWrite-Host \"Application $($appx.PackageName) could not be removed\"\r\n\t\t\t\tcontinue\r\n\t\t\t}\r\n\t    }\r\n\t    Write-Progress -Activity \"Removing Provisioned Apps\" -Status \"Ready\" -Compl [TRUNCATED]",
+                "MessageTotal": "44",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "MessageNumber": "4",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "No applicable update found\"\r\n                    continue\r\n                }\r\n                Write-Host \"Attempt with User prompt\"\r\n                $userChoice = [System.Windows.MessageBox]::Show(\"Do you want to attempt $($Program.winget) installation with specific user credentials? Select 'Yes' to proceed or 'No' to skip.\", \"User Credential Prompt\", [System.Windows.MessageBoxButton]::YesNo)\r\n                if ($userChoice -eq 'Yes') {\r\n                    $getcreds = Get-Credential\r\n          [TRUNCATED]",
+                "MessageTotal": "55",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "EventID": "4104",
+                "MessageNumber": "4"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "t the total size of the file\r\n\t\t\t$totalSize = (Get-Item $fileToCopy).length\r\n\r\n\t\t\tCopy-Item -Path $fileToCopy -Destination $destinationPath -Verbose -Force -Recurse -Container -PassThru |\r\n\t\t\t\tForEach-Object {\r\n\t\t\t\t\t# Calculate the percentage completed\r\n\t\t\t\t\t$completed = ($_.BytesTransferred / $totalSize) * 100\r\n\r\n\t\t\t\t\t# Display the progress bar\r\n\t\t\t\t\tWrite-Progress -Activity \"Copying File\" -Status \"Progress\" -PercentComplete $completed -CurrentOperation (\"{0:N2} MB / {1:N2} MB\" -f ($_.BytesTran [TRUNCATED]",
+                "Path": "C:\\Users\\george\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "fa2bf401-bf0f-48d0-9657-60e77443c77b",
+                "MessageTotal": "43",
+                "MessageNumber": "4",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "lse\r\n\r\n#>\r\n\t$appxProvisionedPackages = Get-AppxProvisionedPackage -Path \"$($scratchDir)\" | Where-Object\t{\r\n\t\t\t$_.PackageName -NotLike \"*AppInstaller*\" -AND\r\n\t\t\t$_.PackageName -NotLike \"*Store*\" -and\r\n\t\t\t$_.PackageName -NotLike \"*dism*\" -and\r\n\t\t\t$_.PackageName -NotLike \"*Foundation*\" -and\r\n\t\t\t$_.PackageName -NotLike \"*FodMetadata*\" -and\r\n\t\t\t$_.PackageName -NotLike \"*LanguageFeatures*\" -and\r\n\t\t\t$_.PackageName -NotLike \"*Notepad*\" -and\r\n\t\t\t$_.PackageName -NotLike \"*Printing*\" -and\r\n\t\t\t$_.PackageNam [TRUNCATED]",
+                "MessageTotal": "60",
+                "ScriptBlockId": "ebc57e32-b2e0-4d8e-a9f5-ad1085f9e59f",
+                "Path": "C:\\Users\\Bruno\\Desktop\\sample.ps1",
+                "EventID": "4104",
+                "MessageNumber": "5"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": " Apps\" -Status $status -PercentComplete ($counter++/$pkglist.Count*100)\r\n\t\t\tRemove-WindowsPackage -Path \"$scratchDir\" -PackageName $pkg -NoRestart -ErrorAction SilentlyContinue\r\n\t\t}\r\n\t\tcatch {\r\n\t\t\t# This can happen if the package that is being removed is a permanent one, like FodMetadata\r\n\t\t\tWrite-Host \"Could not remove OS package $($pkg)\"\r\n\t\t\tcontinue\r\n\t\t}\r\n\t}\r\n\tWrite-Progress -Activity \"Removing Apps\" -Status \"Ready\" -Completed\r\n}\r\n\r\nfunction Remove-ProvisionedPackages([switch] $keepSecurity = [TRUNCATED]",
+                "MessageTotal": "60",
+                "ScriptBlockId": "485479ed-34d2-46f3-9e93-71e661886677",
+                "Path": "C:\\Users\\Bruno\\Desktop\\script.ps1",
+                "EventID": "4104",
+                "MessageNumber": "5"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "ce0c4f663ae2b2d04af92c5309f25b12035419b2fc2b6b9c161ab8c7830e3e52",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Suspicious Start-Process PassThru",
+          "rule_description": "Powershell use PassThru option to start in background",
+          "rule_author": "frack113",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "ng\"\r\n    )\r\n\r\n    $x = 0\r\n    $count = $ProgramsToInstall.Count\r\n\r\n    # This check isn't really necessary, as there's a couple of checks before this Private Function gets called, but just to make sure ;)\r\n    if($count -le 0) {\r\n        throw \"Private Function 'Install-WinUtilProgramChoco' expected Parameter 'ProgramsToInstall' to be of size 1 or greater, instead got $count,`nPlease double check your code and re-compile WinUtil.\"\r\n    }\r\n\r\n    Write-Progress -Activity \"$manage Applications\" -St [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "MessageNumber": "3",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "g Provisioned $($appx.PackageName)\"\r\n\t\t    Write-Progress -Activity \"Removing Provisioned Apps\" -Status $status -PercentComplete ($counter++/$appxProvisionedPackages.Count*100)\r\n\t\t\ttry {\r\n\t\t\t\tRemove-AppxProvisionedPackage -Path $scratchDir -PackageName $appx.PackageName -ErrorAction SilentlyContinue\r\n\t\t\t}\r\n\t\t\tcatch {\r\n\t\t\t\tWrite-Host \"Application $($appx.PackageName) could not be removed\"\r\n\t\t\t\tcontinue\r\n\t\t\t}\r\n\t    }\r\n\t    Write-Progress -Activity \"Removing Provisioned Apps\" -Status \"Ready\" -Compl [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "EventID": "4104",
+                "MessageNumber": "4"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "oreach ($dll in $DLLs) {\r\n        Write-Progress -Id 5 -ParentId 0 -Activity \"Reregistering DLLs\" -Status \"Registering $dll...\" -PercentComplete ($i / $DLLs.Count * 100)\r\n        $i++\r\n        Start-Process -NoNewWindow -FilePath \"regsvr32.exe\" -ArgumentList \"/s\", $dll\r\n    }\r\n    Set-Location $oldLocation\r\n    Write-Progress -Id 5 -ParentId 0 -Activity \"Reregistering DLLs\" -Status \"Completed\" -PercentComplete 100\r\n\r\n\r\n    # Remove the WSUS client settings\r\n    if (Test-Path \"HKLM:\\SOFTWARE\\Micr [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "MessageNumber": "9",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced').ShowTaskViewButton\r\n        if($TaskView -eq 0){\r\n            return $false\r\n        }\r\n        else{\r\n            return $true\r\n        }\r\n    }\r\n\r\n    if ($ToggleSwitch -eq \"WPFToggleHiddenFiles\") {\r\n        $HiddenFiles = (Get-ItemProperty -path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced').Hidden\r\n        if($HiddenFiles -eq 0){\r\n            return $false\r\n        }\r\n        else{\r\n            return $true\r [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "MessageTotal": "55",
+                "MessageNumber": "3",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "No applicable update found\"\r\n                    continue\r\n                }\r\n                Write-Host \"Attempt with User prompt\"\r\n                $userChoice = [System.Windows.MessageBox]::Show(\"Do you want to attempt $($Program.winget) installation with specific user credentials? Select 'Yes' to proceed or 'No' to skip.\", \"User Credential Prompt\", [System.Windows.MessageBoxButton]::YesNo)\r\n                if ($userChoice -eq 'Yes') {\r\n                    $getcreds = Get-Credential\r\n          [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "MessageTotal": "55",
+                "EventID": "4104",
+                "MessageNumber": "4"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "ece68c3b6fda1fe5c7d8707c5dd9099cf564ed0e7e7b480e97278c475f10e5a7",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Powershell Execute Batch Script",
+          "rule_description": "Adversaries may abuse the Windows command shell for execution.\nThe Windows command shell ([cmd](https://attack.mitre.org/software/S0106)) is the primary command prompt on Windows systems.\nThe Windows command prompt can be used to control almost any aspect of a system, with various permission levels required for different subsets of commands.\nBatch files (ex: .bat or .cmd) also provide the shell with a list of sequential commands to run, as well as normal scripting operations such as conditionals and loops.\nCommon uses of batch files include long or repetitive tasks, or the need to run the same set of commands on multiple system\n",
+          "rule_author": "frack113",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "g Provisioned $($appx.PackageName)\"\r\n\t\t    Write-Progress -Activity \"Removing Provisioned Apps\" -Status $status -PercentComplete ($counter++/$appxProvisionedPackages.Count*100)\r\n\t\t\ttry {\r\n\t\t\t\tRemove-AppxProvisionedPackage -Path $scratchDir -PackageName $appx.PackageName -ErrorAction SilentlyContinue\r\n\t\t\t}\r\n\t\t\tcatch {\r\n\t\t\t\tWrite-Host \"Application $($appx.PackageName) could not be removed\"\r\n\t\t\t\tcontinue\r\n\t\t\t}\r\n\t    }\r\n\t    Write-Progress -Activity \"Removing Provisioned Apps\" -Status \"Ready\" -Compl [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "EventID": "4104",
+                "MessageNumber": "4"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "$scratchDir)\\Windows\\SystemApps\" -mask \"*Windows.Search*\" -Directory\r\n\t\tRemove-FileOrDirectory -pathToDelete \"$($scratchDir)\\Windows\\SystemApps\" -mask \"*narratorquickstart*\" -Directory\r\n\t\tRemove-FileOrDirectory -pathToDelete \"$($scratchDir)\\Windows\\SystemApps\" -mask \"*Xbox*\" -Directory\r\n\t\tRemove-FileOrDirectory -pathToDelete \"$($scratchDir)\\Windows\\SystemApps\" -mask \"*ParentalControls*\" -Directory\r\n\t\tWrite-Host \"Removal complete!\"\r\n\r\n\t\tWrite-Host \"Create unattend.xml\"\r\n\t\tNew-Unattend\r\n\t\tWrite-Ho [TRUNCATED]",
+                "MessageTotal": "44",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "MessageNumber": "11",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "],\r\n    \"UndoScript\": [\r\n      \"$path = \\\"HKCU:\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\Advanced\\\\TaskbarDeveloperSettings\\\"\r\n      $name = \\\"TaskbarEndTask\\\"\r\n      $value = 0\r\n\r\n      # Ensure the registry key exists\r\n      if (-not (Test-Path $path)) {\r\n        New-Item -Path $path -Force | Out-Null\r\n      }\r\n\r\n      # Set the property, creating it if it doesn''t exist\r\n      New-ItemProperty -Path $path -Name $name -PropertyType DWord -Value $value -Force | Out-Null\"\r\n    ]\r [TRUNCATED]",
+                "MessageTotal": "44",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "MessageNumber": "26",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "Travel\",\r\n      \"Microsoft.MinecraftUWP\",\r\n      \"Microsoft.GamingServices\",\r\n      \"Microsoft.GetHelp\",\r\n      \"Microsoft.Getstarted\",\r\n      \"Microsoft.Messaging\",\r\n      \"Microsoft.Microsoft3DViewer\",\r\n      \"Microsoft.MicrosoftSolitaireCollection\",\r\n      \"Microsoft.NetworkSpeedTest\",\r\n      \"Microsoft.News\",\r\n      \"Microsoft.Office.Lens\",\r\n      \"Microsoft.Office.Sway\",\r\n      \"Microsoft.Office.OneNote\",\r\n      \"Microsoft.OneConnect\",\r\n      \"Microsoft.People\",\r\n      \"Microsoft.Print3D\",\r [TRUNCATED]",
+                "MessageTotal": "55",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "EventID": "4104",
+                "MessageNumber": "32"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "t the total size of the file\r\n\t\t\t$totalSize = (Get-Item $fileToCopy).length\r\n\r\n\t\t\tCopy-Item -Path $fileToCopy -Destination $destinationPath -Verbose -Force -Recurse -Container -PassThru |\r\n\t\t\t\tForEach-Object {\r\n\t\t\t\t\t# Calculate the percentage completed\r\n\t\t\t\t\t$completed = ($_.BytesTransferred / $totalSize) * 100\r\n\r\n\t\t\t\t\t# Display the progress bar\r\n\t\t\t\t\tWrite-Progress -Activity \"Copying File\" -Status \"Progress\" -PercentComplete $completed -CurrentOperation (\"{0:N2} MB / {1:N2} MB\" -f ($_.BytesTran [TRUNCATED]",
+                "MessageTotal": "43",
+                "ScriptBlockId": "fa2bf401-bf0f-48d0-9657-60e77443c77b",
+                "Path": "C:\\Users\\george\\Desktop\\winutil.ps1",
+                "MessageNumber": "4",
+                "EventID": "4104"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "low",
+          "rule_id": "764276dba9654bf07d000fa390ae98de360ac172927cf3ef64f2db6c5b9be3b2",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Dynamic CSharp Compile Artefact",
+          "rule_description": "When C# is compiled dynamically, a .cmdline file will be created as a part of the process.\nCertain processes are not typically observed compiling C# code, but can do so without touching disk.\nThis can be used to unpack a payload for execution\n",
+          "rule_author": "frack113",
+          "match_context": [
+            {
+              "values": {
+                "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "EventID": "11",
+                "TargetFilename": "C:\\Users\\george\\AppData\\Local\\Temp\\urszt53m\\urszt53m.cmdline"
+              }
+            },
+            {
+              "values": {
+                "TargetFilename": "C:\\Users\\<USER>\\AppData\\Local\\Temp\\al3kpbre\\al3kpbre.cmdline"
+              }
+            },
+            {
+              "values": {
+                "Image": "C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "EventID": "11",
+                "TargetFilename": "C:\\Users\\Bruno\\AppData\\Local\\Temp\\cfym5qxk\\cfym5qxk.cmdline"
+              }
+            },
+            {
+              "values": {
+                "Image": "C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "TargetFilename": "C:\\Users\\Bruno\\AppData\\Local\\Temp\\xnrtkmwg\\xnrtkmwg.cmdline",
+                "EventID": "11"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "low",
+          "rule_id": "8aa937de88282ab672836441edf50f760451a9112887ad0867753ab1b9fc5a4f",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Suspicious Mount-DiskImage",
+          "rule_description": "Adversaries may abuse container files such as disk image (.iso, .vhd) file formats to deliver malicious payloads that may not be tagged with MOTW.",
+          "rule_author": "frack113",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "lOrEmpty($filePath))\r\n    {\r\n        Write-Host \"No ISO is chosen\"\r\n        $sync.BusyMessage.Visibility=\"Hidden\"\r\n        return\r\n    }\r\n\r\n    Write-Host \"File path $($filePath)\"\r\n    if (-not (Test-Path -Path $filePath -PathType Leaf))\r\n    {\r\n        $msg = \"File you've chosen doesn't exist\"\r\n        [System.Windows.MessageBox]::Show($msg, \"Winutil\", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Error)\r\n        return\r\n    }\r\n\r\n    # Detect the file size of the ISO  [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\winutil.ps1",
+                "ScriptBlockId": "7eba4a48-85fe-495d-8a33-132b7d98c450",
+                "MessageTotal": "55",
+                "MessageNumber": "12",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "Id 8 -ParentId 0 -Activity \"Deleting BITS jobs\" -Status \"Deleting BITS jobs...\" -PercentComplete 0\r\n    Get-BitsTransfer | Remove-BitsTransfer\r\n    Write-Progress -Id 8 -ParentId 0 -Activity \"Deleting BITS jobs\" -Status \"Completed\" -PercentComplete 100\r\n\r\n\r\n    # Change the startup type of the Windows Update Services and start them\r\n    Write-Progress -Id 0 -Activity \"Repairing Windows Update\" -Status \"Starting Windows Update Services...\" -PercentComplete 90\r\n    Write-Progress -Id 9 -ParentId 0 [TRUNCATED]",
+                "MessageTotal": "43",
+                "ScriptBlockId": "fa2bf401-bf0f-48d0-9657-60e77443c77b",
+                "Path": "C:\\Users\\george\\Desktop\\winutil.ps1",
+                "MessageNumber": "9",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": " if ([string]::IsNullOrEmpty($filePath))\r\n    {\r\n        Write-Host \"No ISO is chosen\"\r\n        $sync.BusyMessage.Visibility=\"Hidden\"\r\n        return\r\n    }\r\n\r\n    Write-Host \"File path $($filePath)\"\r\n    if (-not (Test-Path -Path $filePath -PathType Leaf))\r\n    {\r\n        $msg = \"File you've chosen doesn't exist\"\r\n        [System.Windows.MessageBox]::Show($msg, \"Winutil\", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Error)\r\n        return\r\n    }\r\n\r\n    # Detect the f [TRUNCATED]",
+                "Path": "C:\\Users\\Bruno\\Desktop\\script.ps1",
+                "ScriptBlockId": "485479ed-34d2-46f3-9e93-71e661886677",
+                "MessageTotal": "60",
+                "MessageNumber": "13",
+                "EventID": "4104"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "low",
+          "rule_id": "b0d225f3239543a37159ba2855ee1e7972c6bff3c83ce7aed9056599f6ee6314",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Suspicious Process Discovery With Get-Process",
+          "rule_description": "Get the processes that are running on the local computer.",
+          "rule_author": "frack113",
+          "match_context": [
+            {
+              "values": {
+                "ScriptBlockText": "izontal\"\" Margin=\"\"0,5,0,0\"\">\" + \"`r`n\"\r\n                        $blockXml += $precal_indent + \"<Label Content=\"\"$($appInfo.Content)\"\" HorizontalAlignment=\"\"Left\"\"\" + \" \" +\r\n                                        \"VerticalAlignment=\"\"Center\"\" FontSize=\"\"{FontSize}\"\"/>\" + \"`r`n\"\r\n                        $blockXml += $precal_indent +\r\n                                        \"<ComboBox Name=\"\"$($appInfo.Name)\"\"  Height=\"\"32\"\" Width=\"\"186\"\" HorizontalAlignment=\"\"Left\"\"\" + \" \" +\r\n                    [TRUNCATED]",
+                "MessageTotal": "44",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "MessageNumber": "2",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "g Provisioned $($appx.PackageName)\"\r\n\t\t    Write-Progress -Activity \"Removing Provisioned Apps\" -Status $status -PercentComplete ($counter++/$appxProvisionedPackages.Count*100)\r\n\t\t\ttry {\r\n\t\t\t\tRemove-AppxProvisionedPackage -Path $scratchDir -PackageName $appx.PackageName -ErrorAction SilentlyContinue\r\n\t\t\t}\r\n\t\t\tcatch {\r\n\t\t\t\tWrite-Host \"Application $($appx.PackageName) could not be removed\"\r\n\t\t\t\tcontinue\r\n\t\t\t}\r\n\t    }\r\n\t    Write-Progress -Activity \"Removing Provisioned Apps\" -Status \"Ready\" -Compl [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "EventID": "4104",
+                "MessageNumber": "4"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "-Object { $_.PSChildName -like \\\"{*}\\\" }\r\n\r\n        # Loop through each subkey\r\n        foreach ($subKey in $subKeys) {\r\n            # Get the full registry path\r\n            $fullPath = Join-Path -Path $rootPath -ChildPath $subKey.PSChildName\r\n            try {\r\n                Set-ItemProperty -Path $fullPath -Name Mode -Value 0\r\n                Write-Host \\\"Acrobat Updates have been disabled.\\\"\r\n            } catch {\r\n                Write-Host \\\"Registry Key for changing Acrobat Updates does [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "EventID": "4104",
+                "MessageNumber": "27"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "][Window]\r\n    } catch {\r\nAdd-Type @\"\r\n        using System;\r\n        using System.Runtime.InteropServices;\r\n        public class Window {\r\n            [DllImport(\"user32.dll\")]\r\n            public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);\r\n\r\n            [DllImport(\"user32.dll\")]\r\n            [return: MarshalAs(UnmanagedType.Bool)]\r\n            public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);\r\n\r\n            [DllImport(\"user32.dll [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "97c1f3ec-f724-4faf-ad0c-070f69bab5c9",
+                "MessageTotal": "44",
+                "MessageNumber": "44",
+                "EventID": "4104"
+              }
+            },
+            {
+              "values": {
+                "ScriptBlockText": "{\r\n\r\n    try {\r\n        [void][Window]\r\n    } catch {\r\nAdd-Type @\"\r\n        using System;\r\n        using System.Runtime.InteropServices;\r\n        public class Window {\r\n            [DllImport(\"user32.dll\")]\r\n            public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);\r\n\r\n            [DllImport(\"user32.dll\")]\r\n            [return: MarshalAs(UnmanagedType.Bool)]\r\n            public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);\r\n\r\n      [TRUNCATED]",
+                "Path": "C:\\Users\\azure\\Downloads\\winutil.ps1",
+                "ScriptBlockId": "f54c3b61-dd52-4ca9-a60f-28eb9e920852",
+                "MessageTotal": "1",
+                "MessageNumber": "1",
+                "EventID": "4104"
+              }
+            }
+          ]
+        }
+      ],
+      "reputation": -9,
+      "sandbox_verdicts": {
+        "Zenbox": {
+          "category": "malicious",
+          "malware_classification": ["MALWARE", "EVADER"],
+          "sandbox_name": "Zenbox",
+          "confidence": 68
+        },
+        "C2AE": {
+          "category": "malicious",
+          "malware_classification": ["MALWARE"],
+          "sandbox_name": "C2AE",
+          "malware_names": [
+            "Powershell_Downloader",
+            "Powershell_Agent",
+            "XLS_Downloader"
+          ],
+          "confidence": 50
+        }
+      },
+      "ssdeep": "6144:qtnWFe9QSKs4zwO4FF8QtW4KuhcH2rtX/IBXkXR7ReQbYtwDb3ShcIoPCmiA2C:qTTcHZ27YQ2o7x",
+      "last_modification_date": 1722404458,
+      "sigma_analysis_stats": {
+        "critical": 0,
+        "high": 3,
+        "medium": 11,
+        "low": 3
+      },
+      "sigma_analysis_summary": {
+        "Sigma Integrated Rule Set (GitHub)": {
+          "critical": 0,
+          "high": 1,
+          "medium": 11,
+          "low": 3
+        },
+        "Joe Security Rule Set (GitHub)": {
+          "critical": 0,
+          "high": 1,
+          "medium": 0,
+          "low": 0
+        }
+      },
+      "last_submission_date": 1722404458,
+      "type_tags": ["source", "powershell", "ps", "ps1"],
+      "first_submission_date": 1721229102,
+      "sha1": "0e657eb608e840632e45db7925cf205bf3afac31",
+      "tags": [
+        "powershell",
+        "checks-cpu-name",
+        "detect-debug-environment",
+        "long-sleeps",
+        "exe-pattern",
+        "url-pattern",
+        "checks-network-adapters"
+      ],
+      "type_tag": "powershell",
+      "last_analysis_date": 1722330394,
+      "crowdsourced_ai_results": [
+        {
+          "analysis": "The code snippet is a PowerShell script designed for managing Windows applications, features, and system tweaks. \n\nThe script defines numerous functions, including:\n\n- Parameter Handling:  Sets up parameters for debugging, configuration file loading, and execution.\n- System Checks: Verifies if the script is running as administrator, checks for Winget and Choco installations, and determines the Windows version.\n- Application Management: Includes functions for installing and uninstalling applications using Winget and Choco.\n- Tweak Management: Functions to manage registry keys, scheduled tasks, and services, including enabling/disabling features and applying presets.\n- Windows Update Management: Functions for resetting Windows Update to default or recommended settings and disabling updates.\n- UI Functions: Functions for handling the graphical user interface (GUI), including tab navigation, button clicks, and user input.\n- MicroWin Processing:  Functions to mount, unpack, and modify Windows ISO images.\n- File/Directory Operations:  Functions for copying, deleting, and renaming files and directories.\n- Utility Functions: Functions for converting bitmap to icons, getting localized Yes/No values, and other utilities.\n\nThe script loads its configuration data from JSON files, storing it in the `$sync.configs` hashtable. It leverages the Winget package manager, the Chocolatey package manager, and DISM to manage applications and features.  The GUI is created using Windows Presentation Foundation (WPF), with the XAML code embedded within the script.",
+          "category": "code_insight",
+          "source": "palm",
+          "id": "020876e69dac4b2cb5b75a616dbdac8b913f3cc06fbabd8f8dd3277691ba48b6-file-palm"
+        }
+      ]
+    }
+  }
+}

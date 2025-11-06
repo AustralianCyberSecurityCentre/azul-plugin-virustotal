@@ -1,0 +1,41 @@
+package handlersv3
+
+import (
+	"testing"
+
+	events "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/testdata"
+	bh "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3"
+	"github.com/stretchr/testify/require"
+)
+
+var test_crowdsourcedYaraResults_response = testdata.GetFileReportGjson("data/handlersV3/android_apk.json")
+var test_crowdsourcedYaraResults_not_present_response = testdata.GetFileReportGjson("data/handlersV3/worddoc.json")
+
+/*Test the description is the appropriate length and sample some descriptions.*/
+func TestDescriptionCrowdsourcedYaraResults(t *testing.T) {
+	description := CrowdsourcedYaraResults.Description
+	require.Equal(t, -1, len(description))
+}
+
+/*Test a file known to have a crowdsourcedYaraResults features.*/
+func TestGetCrowdsourcedYaraResults(t *testing.T) {
+	result, err := CrowdsourcedYaraResults.GetFeatures(test_crowdsourcedYaraResults_response)
+	require.Equal(t, -1, len(result))
+	require.Contains(t, result, events.BinaryEntityFeature{Name: "file_type_counts", Value: "PNG", Type: bh.AzFTString, Label: "28"})
+	require.Nil(t, err)
+}
+
+/*Test a file known to have no crowdsourcedYaraResults features.*/
+func TestFailToGetCrowdsourcedYaraResults(t *testing.T) {
+	result, err := CrowdsourcedYaraResults.GetFeatures(test_crowdsourcedYaraResults_not_present_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}
+
+/*CrowdsourcedYaraResults has no info so it should be none.*/
+func TestGetInfoCrowdsourcedYaraResults(t *testing.T) {
+	result, err := CrowdsourcedYaraResults.GetInfo(test_crowdsourcedYaraResults_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}

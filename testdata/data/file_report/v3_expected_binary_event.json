@@ -1,0 +1,1125 @@
+{
+  "model_version": 3,
+  "timestamp": "2024-01-01T01:00:00Z",
+  "author": {
+    "name": "VirustotalFileLookup",
+    "version": "2.2.0",
+    "category": "plugin"
+  },
+  "source": {
+    "name": "mysource",
+    "path": [
+      {
+        "author": {
+          "name": "Myplugin",
+          "version": "2.1.0",
+          "category": "plugin"
+        },
+        "action": "sourced",
+        "sha256": "0848437c2a0842ea269586b5d26f18ac3df24cf48970ccdc1a49bdb23b78dd85",
+        "timestamp": "2022-09-12T23:36:47Z",
+        "file_format_legacy": "HTML",
+        "file_format": "code/html/component",
+        "size": 16512
+      },
+      {
+        "author": {
+          "name": "VirustotalFileLookup",
+          "version": "2.2.0",
+          "category": "plugin"
+        },
+        "action": "mapped",
+        "sha256": "c99dba3ba7a50f2c04b182ba871c3f7c6ca4061542990d6e191e506404393908",
+        "timestamp": "2022-09-12T23:36:47Z",
+        "file_format_legacy": "HTML",
+        "file_format": "code/html/component",
+        "size": 16512
+      }
+    ],
+    "timestamp": "2022-09-12T23:36:47Z"
+  },
+  "entity": {
+    "sha256": "c99dba3ba7a50f2c04b182ba871c3f7c6ca4061542990d6e191e506404393908",
+    "sha1": "b1dab6357db7ce83ecd16d987fbabe3dd0d5cfec",
+    "md5": "1dc20cdd6c68a86b61c4e273eafde1a4",
+    "ssdeep": "786432:zk8VYyo0tf9mS1ZKKgOPPPgQkPLhuw92KvVdo3Z+/poHN/ozpCvS3HwwoQWq:I8VYaGSPKuPgJPLhu90VS3RHN/o8vS3t",
+    "tlsh": "T1FFA73386E758E42FD97B50718E7A173116A1AD818393A7173B20F21C2DBB7889F19FC4",
+    "size": 47254681,
+    "mime": "application/zip",
+    "magic": "Zip archive data, at least v0.0 to extract, compression method=deflate",
+    "file_format_legacy": "APK",
+    "file_format": "unknown",
+    "file_extension": "apk",
+    "features": [
+      {
+        "name": "tlsh",
+        "value": "T1FFA73386E758E42FD97B50718E7A173116A1AD818393A7173B20F21C2DBB7889F19FC4",
+        "type": "string"
+      },
+      {
+        "name": "magic",
+        "value": "Zip archive data, at least v0.0 to extract, compression method=deflate",
+        "type": "string"
+      },
+      {
+        "name": "ssdeep",
+        "value": "786432:zk8VYyo0tf9mS1ZKKgOPPPgQkPLhuw92KvVdo3Z+/poHN/ozpCvS3HwwoQWq:I8VYaGSPKuPgJPLhu90VS3RHN/o8vS3t",
+        "type": "string"
+      },
+      { "name": "file_type_vt", "value": "android", "type": "string" },
+      { "name": "tags", "value": "checks-gps", "type": "string" },
+      { "name": "tags", "value": "reflection", "type": "string" },
+      { "name": "tags", "value": "telephony", "type": "string" },
+      { "name": "tags", "value": "runtime-modules", "type": "string" },
+      { "name": "tags", "value": "checks-cpu-name", "type": "string" },
+      { "name": "tags", "value": "detect-debug-environment", "type": "string" },
+      { "name": "tags", "value": "obfuscated", "type": "string" },
+      { "name": "tags", "value": "sudo", "type": "string" },
+      { "name": "tags", "value": "android", "type": "string" },
+      { "name": "tags", "value": "apk", "type": "string" },
+      {
+        "name": "av_verdict",
+        "value": "failure",
+        "type": "string",
+        "label": "1"
+      },
+      {
+        "name": "av_verdict",
+        "value": "timeout",
+        "type": "string",
+        "label": "1"
+      },
+      {
+        "name": "av_verdict",
+        "value": "type-unsupported",
+        "type": "string",
+        "label": "10"
+      },
+      {
+        "name": "av_verdict",
+        "value": "undetected",
+        "type": "string",
+        "label": "67"
+      },
+      { "name": "extensions", "value": "x", "type": "string", "label": "1" },
+      { "name": "extensions", "value": "js", "type": "string", "label": "1" },
+      { "name": "extensions", "value": "bin", "type": "string", "label": "1" },
+      { "name": "extensions", "value": "g", "type": "string", "label": "1" },
+      { "name": "extensions", "value": "l", "type": "string", "label": "1" },
+      { "name": "extensions", "value": "a", "type": "string", "label": "1" },
+      { "name": "extensions", "value": "ttf", "type": "string", "label": "1" },
+      { "name": "extensions", "value": "png", "type": "string", "label": "28" },
+      {
+        "name": "extensions",
+        "value": "xml",
+        "type": "string",
+        "label": "806"
+      },
+      { "name": "extensions", "value": "txt", "type": "string", "label": "2" },
+      { "name": "extensions", "value": "gz", "type": "string", "label": "1" },
+      { "name": "extensions", "value": "dex", "type": "string", "label": "2" },
+      {
+        "name": "file_type_counts",
+        "value": "PNG",
+        "type": "string",
+        "label": "28"
+      },
+      {
+        "name": "file_type_counts",
+        "value": "XML",
+        "type": "string",
+        "label": "806"
+      },
+      {
+        "name": "file_type_counts",
+        "value": "unknown",
+        "type": "string",
+        "label": "162"
+      },
+      {
+        "name": "file_type_counts",
+        "value": "JavaScript",
+        "type": "string",
+        "label": "1"
+      },
+      {
+        "name": "file_type_counts",
+        "value": "Java Bytecode",
+        "type": "string",
+        "label": "1"
+      },
+      {
+        "name": "file_type_counts",
+        "value": "JSON",
+        "type": "string",
+        "label": "2"
+      },
+      {
+        "name": "highest_datetime",
+        "value": "1981-01-01T01:01:02Z",
+        "type": "datetime"
+      },
+      {
+        "name": "lowest_datetime",
+        "value": "1981-01-01T01:01:02Z",
+        "type": "datetime"
+      },
+      { "name": "num_children", "value": "1665", "type": "integer" },
+      { "name": "type", "value": "APK", "type": "string" },
+      { "name": "uncompressed_size", "value": "47768573", "type": "integer" },
+      { "name": "file_type", "value": "ZIP", "type": "string" },
+      { "name": "extension", "value": "zip", "type": "string" },
+      { "name": "mime", "value": "application/zip", "type": "string" },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.splash.ActSplash",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.helper.DeepLinkHelper",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.capture.ActMonCapture",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.common.ActCommonActionBarWebView",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.common.ActCommonWebView",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.common.ActTouchImageView",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.gigmon.ActGigmonChatRoom",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.gigmon.ActGigmonLogin",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.gigmon.helper.GigmonFcmLinkHelper",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.login.ActLogin",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.login.ActLoginExecution",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.main.ActMain",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.map.ActInterestCorpMap",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.map.ActWorkplaceMap",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.new_user.ActNewUser",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.search.ActCodeSearchPicker",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.search.ActCodeSearchPopup",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.search.ActDetailSearch",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.search.ActKeywordSearch",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.search.ActKeywordSearchTypeB",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.setting.ActAppAlarmSetting",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.setting.ActAppInfo",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.setting.ActCallSetting",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.albamon.app.ui.setting.ActSetting",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.braze.push.NotificationTrampolineActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.braze.ui.BrazeWebViewActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.braze.ui.activities.BrazeFeedActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.braze.ui.activities.ContentCardsActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.facebook.CustomTabActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.facebook.CustomTabMainActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.facebook.FacebookActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.google.android.gms.auth.api.signin.internal.SignInHubActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.google.android.gms.common.api.GoogleApiActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.google.android.gms.oss.licenses.OssLicensesActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.google.android.gms.oss.licenses.OssLicensesMenuActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.google.android.play.core.common.PlayCoreDialogWrapperActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.kakao.sdk.auth.AuthCodeHandlerActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.kakao.sdk.auth.TalkAuthCodeActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.naver.maps.map.app.LegalNoticeActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.naver.maps.map.app.LegendActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.naver.maps.map.app.OpenSourceLicenseActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.navercorp.nid.oauth.NidOAuthBridgeActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.navercorp.nid.oauth.activity.NidOAuthCustomTabActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.zhihu.matisse.internal.ui.AlbumPreviewActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.zhihu.matisse.internal.ui.SelectedPreviewActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.zhihu.matisse.ui.CaptureDelegateActivity",
+        "type": "string"
+      },
+      {
+        "name": "apk_activities",
+        "value": "com.zhihu.matisse.ui.MatisseActivity",
+        "type": "string"
+      },
+      { "name": "androguard_version", "value": "4.1.2", "type": "string" },
+      { "name": "android_application", "value": "1", "type": "integer" },
+      {
+        "name": "android_application_error",
+        "value": "false",
+        "type": "string"
+      },
+      { "name": "android_application_info", "value": "APK", "type": "string" },
+      { "name": "android_version_code", "value": "227", "type": "string" },
+      { "name": "android_version_name", "value": "5.1.3", "type": "string" },
+      {
+        "name": "apk_libraries",
+        "value": "androidx.window.extensions",
+        "type": "string"
+      },
+      {
+        "name": "apk_libraries",
+        "value": "androidx.window.sidecar",
+        "type": "string"
+      },
+      {
+        "name": "apk_main_activity",
+        "value": "com.albamon.app.ui.splash.ActSplash",
+        "type": "string"
+      },
+      { "name": "apk_sdk_min", "value": "24", "type": "string" },
+      {
+        "name": "apk_package_name",
+        "value": "com.albamon.app",
+        "type": "string"
+      },
+      {
+        "name": "apk_providers",
+        "value": "androidx.core.content.FileProvider",
+        "type": "string"
+      },
+      {
+        "name": "apk_providers",
+        "value": "androidx.startup.InitializationProvider",
+        "type": "string"
+      },
+      {
+        "name": "apk_providers",
+        "value": "com.facebook.internal.FacebookInitProvider",
+        "type": "string"
+      },
+      {
+        "name": "apk_providers",
+        "value": "com.google.firebase.provider.FirebaseInitProvider",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "androidx.work.impl.background.systemalarm.RescheduleReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "androidx.work.impl.diagnostics.DiagnosticsReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "com.albamon.app.receiver.CallSMSReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "com.albamon.app.ui.gigmon.receiver.GigmonFcmBroadcastReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "com.braze.push.BrazePushReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "com.facebook.AuthenticationTokenManager$CurrentAuthenticationTokenChangedBroadcastReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "com.facebook.CurrentAccessTokenExpirationBroadcastReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "com.google.android.gms.measurement.AppMeasurementReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_receivers",
+        "value": "com.google.firebase.iid.FirebaseInstanceIdReceiver",
+        "type": "string"
+      },
+      {
+        "name": "apk_risk_indicator_apk",
+        "value": "DEX",
+        "type": "string",
+        "label": "2"
+      },
+      {
+        "name": "apk_risk_indicator_perm",
+        "value": "NORMAL",
+        "type": "string",
+        "label": "7"
+      },
+      {
+        "name": "apk_risk_indicator_perm",
+        "value": "INTERNET",
+        "type": "string",
+        "label": "1"
+      },
+      {
+        "name": "apk_risk_indicator_perm",
+        "value": "GPS",
+        "type": "string",
+        "label": "2"
+      },
+      {
+        "name": "apk_risk_indicator_perm",
+        "value": "INSTANT",
+        "type": "string",
+        "label": "5"
+      },
+      {
+        "name": "apk_risk_indicator_perm",
+        "value": "PRIVACY",
+        "type": "string",
+        "label": "3"
+      },
+      {
+        "name": "apk_risk_indicator_perm",
+        "value": "DANGEROUS",
+        "type": "string",
+        "label": "6"
+      },
+      {
+        "name": "apk_services",
+        "value": "androidx.room.MultiInstanceInvalidationService",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "androidx.work.impl.background.systemalarm.SystemAlarmService",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "androidx.work.impl.background.systemjob.SystemJobService",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "androidx.work.impl.foreground.SystemForegroundService",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "com.albamon.app.fcm.FirebaseInstanceIDService",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "com.albamon.app.service.CallSMSService",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "com.google.android.datatransport.runtime.backends.TransportBackendDiscovery",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "com.google.android.gms.auth.api.signin.RevocationBoundService",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "com.google.android.gms.measurement.AppMeasurementJobService",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "com.google.android.gms.measurement.AppMeasurementService",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "com.google.firebase.components.ComponentDiscoveryService",
+        "type": "string"
+      },
+      {
+        "name": "apk_services",
+        "value": "com.google.firebase.messaging.FirebaseMessagingService",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "http://ns.adobe.com/xap/1.0/",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "http://ns.adobe.com/xap/1.0/\u0000",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "http://pm.albamon.com/",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "http://schemas.android.com/apk/res-auto",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "http://schemas.android.com/apk/res/android",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "http://schemas.microsoft.com/DRM/2007/03/protocols/AcquireLicense",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "http://www.w3.org/ns/ttml#parameter",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%s/%s",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%s/%s/%s",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sadrevenue.%s/api/v2/generic/v6.9.0/android?app_id=",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sapp.%s",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sars.%s/api/v2/android/validate_subscription?app_id=",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sattr.%s/api/v",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sconversions.%s/api/v",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sdlsdk.%s/v1.0/android/",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sgcdsdk.%s/install_data/v4.0/",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%simpression.%s",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sinapps.%s/api/v",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%slaunches.%s/api/v",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%smonitorsdk.%s/remote-debug?app_id=",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sonelink.%s/shortlink-sdk/v2",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sregister.%s/api/v",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%ssdk-services.%s/validate-android-signature",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sstats.%s/stats",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%svalidate.%s/api/v",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://%sviap.%s/api/v1/android/validate_purchase?app_id=",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://.facebook.com",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://accounts.google.com/o/oauth2/revoke?token=",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://albamonmj.page.link/?link=https://jk_app.albamon.com/?popup_type=0\u0026popup_url=",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://aomedia.org/emsg/ID3",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://api-code.albamon.com",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://app-measurement.com/a",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://bff-company.albamon.com",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://bff-general.albamon.com",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://bff-personal.albamon.com",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://cdn-settings.%s/android/v1/%s/settings",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://cdn-testsettings.%s/android/v1/%s/settings",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://console.firebase.google.com",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://dapi.kakao.com/",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://developer.apple.com/streaming/emsg-id3",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://facebook.com",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://facebook.com/device?user_code=%1$s\u0026qr=1",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://firebaseremoteconfig.googleapis.com/v1/projects/%s/namespaces/%s:fetch",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://google.com/search?",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://graph-video.%s",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://graph.%s",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://m.albamon.com/",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://m.albamon.com/total-search",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://m.albamon.com/virtual/apppush/braze",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://m.albamon.com/virtual/apppush/mpush",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://m.albamon.com/virtual/deeplink",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://m.map.naver.com/route.nhn?ey=",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://mpush.jobkorea.co.kr/",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://pagead2.googlesyndication.com/pagead/gen_204?id=gmob-apps",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://play.google.com/store/apps/details?id=",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://sdk.iad-01.braze.com/api/v3/",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://sondheim.braze.com/api/v3/",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://www.google-analytics.com/collect",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://www.google.com",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://www.googleadservices.com/pagead/conversion/app/deeplink?id_type=adid\u0026sdk_version=%s\u0026rdid=%s\u0026bundleid=%s\u0026retry=%s",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://www.googleapis.com/auth/games",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://www.googleapis.com/auth/games_lite",
+        "type": "string"
+      },
+      {
+        "name": "apk_strings_information",
+        "value": "https://x",
+        "type": "string"
+      },
+      { "name": "apk_sdk_target", "value": "33", "type": "string" },
+      { "name": "apk_vt_android_info", "value": "2", "type": "float" },
+      {
+        "name": "apk_cert_fingerprint",
+        "value": "cdded321606d4563fc90fe6d62fca0a7029303e2",
+        "type": "string"
+      },
+      {
+        "name": "apk_cert_issuer",
+        "value": "C=ko,CN=albamon,DN=C:ko, CN:albamon, L:Seoul, O:Albamon,L=Seoul,O=Albamo",
+        "type": "string"
+      },
+      {
+        "name": "apk_cert_subject",
+        "value": "C=ko,CN=albamon,DN=C:ko, CN:albamon, L:Seoul, O:Albamon,L=Seoul,O=Albamo",
+        "type": "string"
+      },
+      {
+        "name": "apk_cert_valid_from",
+        "value": "2011-03-14T07:00:31Z",
+        "type": "datetime"
+      },
+      {
+        "name": "apk_cert_valid_to",
+        "value": "2061-03-01T07:00:31Z",
+        "type": "datetime"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.CHANGE_NETWORK_STATE",
+        "type": "string",
+        "label": "normal"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.ACCESS_WIFI_STATE",
+        "type": "string",
+        "label": "normal"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.READ_MEDIA_VIDEO",
+        "type": "string",
+        "label": "dangerous"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.WRITE_EXTERNAL_STORAGE",
+        "type": "string",
+        "label": "dangerous"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.POST_NOTIFICATIONS",
+        "type": "string",
+        "label": "dangerous|instant"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.READ_EXTERNAL_STORAGE",
+        "type": "string",
+        "label": "dangerous"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.READ_MEDIA_IMAGES",
+        "type": "string",
+        "label": "dangerous"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "com.google.android.gms.permission.AD_ID",
+        "type": "string",
+        "label": "normal"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.ACCESS_FINE_LOCATION",
+        "type": "string",
+        "label": "dangerous|instant"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.FOREGROUND_SERVICE",
+        "type": "string",
+        "label": "normal|instant"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.CAMERA",
+        "type": "string",
+        "label": "dangerous|instant"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE",
+        "type": "string",
+        "label": "normal"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.RECEIVE_BOOT_COMPLETED",
+        "type": "string",
+        "label": "normal"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.VIBRATE",
+        "type": "string",
+        "label": "normal|instant"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY",
+        "type": "string",
+        "label": "normal"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.WAKE_LOCK",
+        "type": "string",
+        "label": "normal|instant"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.ACCESS_COARSE_LOCATION",
+        "type": "string",
+        "label": "dangerous|instant"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.INTERNET",
+        "type": "string",
+        "label": "normal|instant"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "com.google.android.c2dm.permission.RECEIVE",
+        "type": "string",
+        "label": "normal"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.ACCESS_NETWORK_STATE",
+        "type": "string",
+        "label": "normal|instant"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "android.permission.READ_MEDIA_AUDIO",
+        "type": "string",
+        "label": "dangerous"
+      },
+      {
+        "name": "apk_permissions",
+        "value": "com.albamon.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+        "type": "string",
+        "label": "signature"
+      }
+    ],
+    "info": {}
+  },
+  "action": "mapped",
+  "flags": {}
+}

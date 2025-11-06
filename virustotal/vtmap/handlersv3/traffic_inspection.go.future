@@ -1,0 +1,21 @@
+package handlersv3
+
+import (
+	bh "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3"
+)
+
+// FUTURE - this works but it creates way too many features.
+var vtToAzFeatTrafficInspection = []bh.VtPathToAzFeature{
+	bh.NewVtPathToAzFeat("http.binary_hash", bh.VtTypeString, "binary_hash", bh.AzFTString, "trafficInspection - downloaded content SHA256.", bh.AddListOfDictHandling("http", "binary_hash")),
+	bh.NewVtPathToAzFeat("http.binary_magic", bh.VtTypeString, "binary_magic", bh.AzFTString, "trafficInspection - downloaded content file type.", bh.AddListOfDictHandling("http", "binary_hash")),
+	bh.NewVtPathToAzFeat("http.datetime", bh.VtTypeString, "datetime", bh.AzFTString, "trafficInspection - download date in %Y-%m-%d %H:%M:%S.%f format.", bh.AddListOfDictHandling("http", "binary_hash")),
+	bh.NewVtPathToAzFeat("http.interesting_magic", bh.VtTypeInteger, "interesting_magic", bh.AzFTInteger, "trafficInspection - ", bh.AddListOfDictHandling("http", "binary_hash")),
+	bh.NewVtPathToAzFeat("http.method", bh.VtTypeString, "method", bh.AzFTString, "trafficInspection - HTTP request method.", bh.AddListOfDictHandling("http", "binary_hash")),
+	bh.NewVtPathToAzFeat("http.remote_host", bh.VtTypeString, "remote_host", bh.AzFTString, "trafficInspection - request destination, including IP and port.", bh.AddListOfDictHandling("http", "binary_hash")),
+	bh.NewVtPathToAzFeat("http.response_code", bh.VtTypeString, "response_code", bh.AzFTString, "trafficInspection - HTTP response code.", bh.AddListOfDictHandling("http", "binary_hash")),
+	bh.NewVtPathToAzFeat("http.response_size", bh.VtTypeInteger, "response_size", bh.AzFTInteger, "trafficInspection - in bytes.", bh.AddListOfDictHandling("http", "binary_hash")),
+	bh.NewVtPathToAzFeat("http.url", bh.VtTypeString, "url", bh.AzFTString, "trafficInspection - request URL.", bh.AddListOfDictHandling("http", "binary_hash")),
+	bh.NewVtPathToAzFeat("http.user-agent", bh.VtTypeString, "user-agent", bh.AzFTString, "trafficInspection - client user agent.", bh.AddListOfDictHandling("http", "binary_hash")),
+}
+
+var TrafficInspection = bh.NewHandlerV3(vtToAzFeatTrafficInspection, "traffic_inspection")

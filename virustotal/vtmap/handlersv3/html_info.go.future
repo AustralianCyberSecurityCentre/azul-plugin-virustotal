@@ -1,0 +1,27 @@
+// Future handle this if it's useful
+// package handlersv3
+
+// import (
+// 	bh "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3"
+// )
+
+// var vtToAzFeatHtmlInfo = []bh.VtPathToAzFeature{
+//     bh.NewVtPathToAzFeat("hrefs", bh.VtTypeListOfStrings, "hrefs", bh.AzFTString, "htmlInfo - all href attributes found in all tags."),
+//     // bh.NewVtPathToAzFeat("iframes", bh.VtTypeListOfDict, "iframes", bh.dont-map, "htmlInfo - list containing all iframe tags. Every item contains:"),
+//     // bh.NewVtPathToAzFeat("iframes.attributes", bh.VtTypeDict, "iframes_attributes", bh.dont-map, "htmlInfo - the tag's attributes."),
+//     // bh.NewVtPathToAzFeat("meta", bh.special, "meta", bh.special, "htmlInfo - contains all meta` tags. Every item contains:"),
+//     // bh.NewVtPathToAzFeat("meta.content", bh.VtTypeListOfStrings, "meta_content", bh.AzFTString, "htmlInfo - content of all meta tags having that name."),
+//     // bh.NewVtPathToAzFeat("meta.name", bh.VtTypeString, "meta_name", bh.AzFTString, "htmlInfo - name of that meta tag."),
+//     // bh.NewVtPathToAzFeat("scripts", bh.VtTypeListOfDict, "scripts", bh.dont-map, "htmlInfo - list containing all script tags. Every item contains:"),
+//     bh.NewVtPathToAzFeat("scripts.attributes", bh.VtTypeDict, "scripts_attributes", bh.dont-map, "htmlInfo - the tag's attributes."),
+//     bh.NewVtPathToAzFeat("scripts.sha256", bh.VtTypeString, "scripts_sha256", bh.AzFTString, "htmlInfo - in case the script is embedded within the script, this attribute contains its sha256 checksum."),
+//     bh.NewVtPathToAzFeat("title", bh.VtTypeString, "title", bh.AzFTString, "htmlInfo - website's title."),
+//     // Note - listOfDict handler probably can't handle this because it's a nested listOfDict
+//     bh.NewVtPathToAzFeat("trackers", bh.VtTypeListOfDict, "trackers", bh.dont-map, "htmlInfo - found trackers in the document. Every item contains:"),
+//     bh.NewVtPathToAzFeat("trackers.name", bh.VtTypeString, "trackers_name", bh.AzFTString, "htmlInfo - tracker name."),
+//     bh.NewVtPathToAzFeat("trackers.trackers", bh.VtTypeListOfDict, "trackers_trackers", bh.dont-map, "htmlInfo - found trackers. Every item contains:"),
+//     bh.NewVtPathToAzFeat("trackers.trackers.tracker_id", bh.VtTypeString, "trackers_trackers_tracker_id", bh.AzFTString, "htmlInfo - tracker campaign/client ID."),
+//     bh.NewVtPathToAzFeat("trackers.trackers.url", bh.VtTypeString, "trackers_trackers_url", bh.AzFTString, "htmlInfo - script URL."),
+// }
+
+// var htmlInfo = bh.NewHandlerV3(vtToAzFeatHtmlInfo)

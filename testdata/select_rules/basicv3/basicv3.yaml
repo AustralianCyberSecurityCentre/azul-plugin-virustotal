@@ -1,0 +1,5 @@
+- any_av_timeout:
+    syntax: gjson
+    rule: "attributes.last_analysis_stats.timeout|@gt:5"
+    reference: https://www.symantec.com/blogs/election-security/apt28-espionage-military-government
+    daily_quota: 10

@@ -1,0 +1,1223 @@
+{
+  "data": {
+    "id": "4eae23e60e21119933e885f14c6af7bffd146169124449ac0dae4163fae9310a",
+    "type": "file",
+    "links": {
+      "self": "https://www.virustotal.com/api/v3/files/4eae23e60e21119933e885f14c6af7bffd146169124449ac0dae4163fae9310a"
+    },
+    "attributes": {
+      "threat_severity": {
+        "threat_severity_level": "SEVERITY_NONE",
+        "threat_severity_data": {
+          "num_av_detections": 4
+        },
+        "last_analysis_date": "1698959580",
+        "version": 3,
+        "level_description": "Severity NONE because the file has no Google antivirus detections and no bad network activity"
+      },
+      "sha1": "cbe1160ce1a59117e8a13072ed990c09a2ec3898",
+      "dot_net_guids": {
+        "typelib_id": "6104579d-2ee7-414d-b467-aa4a1e2d440a",
+        "mvid": "4b61e161-aeca-41eb-afba-df3fe97d0d63"
+      },
+      "creation_date": 1491583800,
+      "total_votes": {
+        "harmless": 0,
+        "malicious": 0
+      },
+      "first_seen_itw_date": 1471419547,
+      "exiftool": {
+        "LegalTrademarks": "chocolatey - Chocolatey Software, Inc.",
+        "SubsystemVersion": "4.0",
+        "Comments": "chocolatey",
+        "InitializedDataSize": "118272",
+        "ImageVersion": "0.0",
+        "ProductName": "chocolatey",
+        "FileVersionNumber": "0.10.5.0",
+        "UninitializedDataSize": "0",
+        "LanguageCode": "Neutral",
+        "FileFlagsMask": "0x003f",
+        "ImageFileCharacteristics": "Executable, 32-bit",
+        "CharacterSet": "Unicode",
+        "LinkerVersion": "11.0",
+        "EntryPoint": "0x639e",
+        "OriginalFileName": "clist.exe",
+        "MIMEType": "application/octet-stream",
+        "LegalCopyright": "Copyright © 2017 Chocolatey Software, Inc.. Copyright © 2011 - 2017, RealDimensions Software, LLC - All Rights Reserved.",
+        "FileVersion": "0.10.5.0",
+        "TimeStamp": "2017:04:07 16:50:00+00:00",
+        "FileType": "Win32 EXE",
+        "PEType": "PE32",
+        "InternalName": "clist.exe",
+        "ProductVersion": "0.10.5 - shim 0.8.1",
+        "FileDescription": "chocolatey - shim",
+        "OSVersion": "4.0",
+        "FileOS": "Win32",
+        "Subsystem": "Windows command line",
+        "MachineType": "Intel 386 or later, and compatibles",
+        "CompanyName": "Chocolatey Software, Inc.",
+        "CodeSize": "17408",
+        "FileSubtype": "0",
+        "ProductVersionNumber": "0.10.5.0",
+        "FileTypeExtension": "exe",
+        "ObjectFileType": "Executable application",
+        "AssemblyVersion": "0.10.5.0"
+      },
+      "dot_net_assembly": {
+        "entry_point_token": 100663302,
+        "metadata_header_rva": 11808,
+        "external_modules": ["Kernel32"],
+        "assembly_data": {
+          "majorversion": 0,
+          "minorversion": 10,
+          "hashalgid": 32772,
+          "flags_text": "afPA_None",
+          "buildnumber": 5,
+          "flags": 0,
+          "revisionnumber": 0,
+          "name": "clist"
+        },
+        "tables_rows_map_log": "48688786854444544565",
+        "strongname_va": 0,
+        "external_assemblies": {
+          "mscorlib": {
+            "version": "4.0.0.0"
+          },
+          "System": {
+            "version": "4.0.0.0"
+          },
+          "System.Core": {
+            "version": "4.0.0.0"
+          }
+        },
+        "entry_point_rva": 0,
+        "tables_rows_map": "135b03103b02405374a00005000101201610001003000007040",
+        "assembly_name": "clist.exe",
+        "assembly_flags": 1,
+        "tables_present": 20,
+        "assembly_flags_txt": "COMIMAGE_FLAGS_ILONLY",
+        "streams": {
+          "#GUID": {
+            "chi2": 272,
+            "md5": "2d2a9397e4ef6e9e5429374cea2b0fc0",
+            "entropy": 3.875,
+            "size": 16
+          },
+          "#Blob": {
+            "chi2": 8732.2646484375,
+            "md5": "f774ffa0ab6e06034e85fc41728c62bf",
+            "entropy": 5.58175802230835,
+            "size": 1048
+          },
+          "#US": {
+            "chi2": 344297.75,
+            "md5": "c990358e65353aeb3b216a7637d2b5b8",
+            "entropy": 3.480625629425049,
+            "size": 5296
+          },
+          "#~": {
+            "chi2": 132251.296875,
+            "md5": "55c70d73b06bf3675f2d185c7c2cb314",
+            "entropy": 4.811691761016846,
+            "size": 3088
+          },
+          "#Strings": {
+            "chi2": 37772.65625,
+            "md5": "a0ef404da7b2751db7de8c97e53b40de",
+            "entropy": 5.086137294769287,
+            "size": 4052
+          }
+        },
+        "clr_version": "v4.0.30319",
+        "clr_meta_version": "1.1",
+        "unmanaged_methods": {
+          "Kernel32": ["SetConsoleCtrlHandler"]
+        },
+        "tables_present_map": "a091da21d57",
+        "resources_va": 0,
+        "type_definition_list": [
+          {
+            "namespace": "System.Reflection",
+            "type_definitions": [
+              "AssemblyTitleAttribute",
+              "AssemblyDescriptionAttribute",
+              "AssemblyConfigurationAttribute",
+              "AssemblyCompanyAttribute",
+              "AssemblyProductAttribute",
+              "AssemblyCopyrightAttribute",
+              "AssemblyTrademarkAttribute",
+              "AssemblyCultureAttribute",
+              "AssemblyVersionAttribute",
+              "AssemblyFileVersionAttribute",
+              "AssemblyInformationalVersionAttribute",
+              "Assembly"
+            ]
+          },
+          {
+            "namespace": "System.Diagnostics",
+            "type_definitions": [
+              "Process",
+              "ProcessStartInfo",
+              "ProcessWindowStyle"
+            ]
+          },
+          {
+            "namespace": "System.Collections",
+            "type_definitions": ["IEnumerator"]
+          },
+          {
+            "namespace": "System.IO",
+            "type_definitions": ["File", "Path"]
+          },
+          {
+            "namespace": "System",
+            "type_definitions": [
+              "Object",
+              "MulticastDelegate",
+              "Enum",
+              "IAsyncResult",
+              "AsyncCallback",
+              "Func`1",
+              "ParamArrayAttribute",
+              "Environment",
+              "OperatingSystem",
+              "Version",
+              "IDisposable",
+              "Func`2",
+              "String",
+              "Boolean",
+              "Int32",
+              "StringComparison",
+              "StringSplitOptions",
+              "Char",
+              "Console",
+              "Delegate"
+            ]
+          },
+          {
+            "namespace": "System.Runtime.InteropServices",
+            "type_definitions": [
+              "ComVisibleAttribute",
+              "GuidAttribute",
+              "DllImportAttribute"
+            ]
+          },
+          {
+            "namespace": "System.Runtime.CompilerServices",
+            "type_definitions": [
+              "CompilationRelaxationsAttribute",
+              "RuntimeCompatibilityAttribute",
+              "ExtensionAttribute",
+              "CompilerGeneratedAttribute"
+            ]
+          },
+          {
+            "namespace": "System.ComponentModel",
+            "type_definitions": ["Win32Exception"]
+          },
+          {
+            "namespace": "System.Runtime.Versioning",
+            "type_definitions": ["TargetFrameworkAttribute"]
+          },
+          {
+            "namespace": "System.Collections.Generic",
+            "type_definitions": [
+              "IEnumerable`1",
+              "List`1",
+              "IEnumerator`1",
+              "ICollection`1",
+              "IList`1"
+            ]
+          },
+          {
+            "namespace": "System.Linq",
+            "type_definitions": ["Enumerable"]
+          }
+        ],
+        "unmanaged_method_list": [
+          {
+            "name": "Kernel32",
+            "methods": ["SetConsoleCtrlHandler"]
+          }
+        ]
+      },
+      "downloadable": true,
+      "packers": {
+        "PEiD": ".NET executable"
+      },
+      "sha256": "4eae23e60e21119933e885f14c6af7bffd146169124449ac0dae4163fae9310a",
+      "magic": "PE32 executable for MS Windows (console) Intel 80386 32-bit Mono/.Net assembly",
+      "meaningful_name": "clist.exe",
+      "last_analysis_results": {
+        "Bkav": {
+          "method": "blacklist",
+          "engine_name": "Bkav",
+          "engine_version": "1.3.0.9899",
+          "engine_update": "20230206",
+          "category": "malicious",
+          "result": "W32.AIDetectNet.01"
+        },
+        "Lionic": {
+          "method": "blacklist",
+          "engine_name": "Lionic",
+          "engine_version": "7.5",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "AVG": {
+          "method": "blacklist",
+          "engine_name": "AVG",
+          "engine_version": "22.11.7701.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Elastic": {
+          "method": "blacklist",
+          "engine_name": "Elastic",
+          "engine_version": "4.0.77",
+          "engine_update": "20230203",
+          "category": "undetected",
+          "result": null
+        },
+        "MicroWorld-eScan": {
+          "method": "blacklist",
+          "engine_name": "MicroWorld-eScan",
+          "engine_version": "14.0.409.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "FireEye": {
+          "method": "blacklist",
+          "engine_name": "FireEye",
+          "engine_version": "35.24.1.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "CAT-QuickHeal": {
+          "method": "blacklist",
+          "engine_name": "CAT-QuickHeal",
+          "engine_version": "22.00",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "ALYac": {
+          "method": "blacklist",
+          "engine_name": "ALYac",
+          "engine_version": "1.1.3.1",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Malwarebytes": {
+          "method": "blacklist",
+          "engine_name": "Malwarebytes",
+          "engine_version": "4.4.4.52",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Zillya": {
+          "method": "blacklist",
+          "engine_name": "Zillya",
+          "engine_version": "2.0.0.4808",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Sangfor": {
+          "method": "blacklist",
+          "engine_name": "Sangfor",
+          "engine_version": "2.23.0.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "K7AntiVirus": {
+          "method": "blacklist",
+          "engine_name": "K7AntiVirus",
+          "engine_version": "12.67.46756",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "BitDefender": {
+          "method": "blacklist",
+          "engine_name": "BitDefender",
+          "engine_version": "7.2",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "K7GW": {
+          "method": "blacklist",
+          "engine_name": "K7GW",
+          "engine_version": "12.66.46733",
+          "engine_update": "20230205",
+          "category": "undetected",
+          "result": null
+        },
+        "Cybereason": {
+          "method": "blacklist",
+          "engine_name": "Cybereason",
+          "engine_version": "1.2.449",
+          "engine_update": "20210330",
+          "category": "undetected",
+          "result": null
+        },
+        "Arcabit": {
+          "method": "blacklist",
+          "engine_name": "Arcabit",
+          "engine_version": "2022.0.0.18",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "BitDefenderTheta": {
+          "method": "blacklist",
+          "engine_name": "BitDefenderTheta",
+          "engine_version": "7.2.37796.0",
+          "engine_update": "20230130",
+          "category": "undetected",
+          "result": null
+        },
+        "VirIT": {
+          "method": "blacklist",
+          "engine_name": "VirIT",
+          "engine_version": "9.5.381",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Cyren": {
+          "method": "blacklist",
+          "engine_name": "Cyren",
+          "engine_version": "6.5.1.2",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Symantec": {
+          "method": "blacklist",
+          "engine_name": "Symantec",
+          "engine_version": "1.19.0.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "tehtris": {
+          "method": "blacklist",
+          "engine_name": "tehtris",
+          "engine_version": "v0.1.4",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "ESET-NOD32": {
+          "method": "blacklist",
+          "engine_name": "ESET-NOD32",
+          "engine_version": "26705",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Cynet": {
+          "method": "blacklist",
+          "engine_name": "Cynet",
+          "engine_version": "4.0.0.27",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "APEX": {
+          "method": "blacklist",
+          "engine_name": "APEX",
+          "engine_version": "6.384",
+          "engine_update": "20230204",
+          "category": "undetected",
+          "result": null
+        },
+        "Paloalto": {
+          "method": "blacklist",
+          "engine_name": "Paloalto",
+          "engine_version": "0.9.0.1003",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "ClamAV": {
+          "method": "blacklist",
+          "engine_name": "ClamAV",
+          "engine_version": "1.0.0.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Kaspersky": {
+          "method": "blacklist",
+          "engine_name": "Kaspersky",
+          "engine_version": "21.0.1.45",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Alibaba": {
+          "method": "blacklist",
+          "engine_name": "Alibaba",
+          "engine_version": "0.3.0.5",
+          "engine_update": "20190527",
+          "category": "undetected",
+          "result": null
+        },
+        "NANO-Antivirus": {
+          "method": "blacklist",
+          "engine_name": "NANO-Antivirus",
+          "engine_version": "1.0.146.25735",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "SUPERAntiSpyware": {
+          "method": "blacklist",
+          "engine_name": "SUPERAntiSpyware",
+          "engine_version": "5.6.0.1032",
+          "engine_update": "20230205",
+          "category": "undetected",
+          "result": null
+        },
+        "Rising": {
+          "method": "blacklist",
+          "engine_name": "Rising",
+          "engine_version": "25.0.0.27",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Sophos": {
+          "method": "blacklist",
+          "engine_name": "Sophos",
+          "engine_version": "2.1.2.0",
+          "engine_update": "20230205",
+          "category": "undetected",
+          "result": null
+        },
+        "Baidu": {
+          "method": "blacklist",
+          "engine_name": "Baidu",
+          "engine_version": "1.0.0.2",
+          "engine_update": "20190318",
+          "category": "undetected",
+          "result": null
+        },
+        "F-Secure": {
+          "method": "blacklist",
+          "engine_name": "F-Secure",
+          "engine_version": "18.10.1137.128",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "DrWeb": {
+          "method": "blacklist",
+          "engine_name": "DrWeb",
+          "engine_version": "7.0.59.12300",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "VIPRE": {
+          "method": "blacklist",
+          "engine_name": "VIPRE",
+          "engine_version": "6.0.0.35",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "TrendMicro": {
+          "method": "blacklist",
+          "engine_name": "TrendMicro",
+          "engine_version": "11.0.0.1006",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "McAfee-GW-Edition": {
+          "method": "blacklist",
+          "engine_name": "McAfee-GW-Edition",
+          "engine_version": "v2019.1.2+3728",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Trapmine": {
+          "method": "blacklist",
+          "engine_name": "Trapmine",
+          "engine_version": "4.0.10.141",
+          "engine_update": "20230103",
+          "category": "malicious",
+          "result": "malicious.moderate.ml.score"
+        },
+        "CMC": {
+          "method": "blacklist",
+          "engine_name": "CMC",
+          "engine_version": "2.4.2022.1",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Emsisoft": {
+          "method": "blacklist",
+          "engine_name": "Emsisoft",
+          "engine_version": "2022.6.0.32461",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Ikarus": {
+          "method": "blacklist",
+          "engine_name": "Ikarus",
+          "engine_version": "6.0.33.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Jiangmin": {
+          "method": "blacklist",
+          "engine_name": "Jiangmin",
+          "engine_version": "16.0.100",
+          "engine_update": "20230205",
+          "category": "undetected",
+          "result": null
+        },
+        "Webroot": {
+          "method": "blacklist",
+          "engine_name": "Webroot",
+          "engine_version": "1.0.0.403",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Avira": {
+          "method": "blacklist",
+          "engine_name": "Avira",
+          "engine_version": "8.3.3.16",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "MAX": {
+          "method": "blacklist",
+          "engine_name": "MAX",
+          "engine_version": "2023.1.4.1",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Antiy-AVL": {
+          "method": "blacklist",
+          "engine_name": "Antiy-AVL",
+          "engine_version": "3.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Kingsoft": {
+          "method": "blacklist",
+          "engine_name": "Kingsoft",
+          "engine_version": "2017.9.26.565",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Gridinsoft": {
+          "method": "blacklist",
+          "engine_name": "Gridinsoft",
+          "engine_version": "1.0.108.174",
+          "engine_update": "20230206",
+          "category": "malicious",
+          "result": "Ransom.Win32.Sabsik.dd!n"
+        },
+        "Xcitium": {
+          "method": "blacklist",
+          "engine_name": "Xcitium",
+          "engine_version": "35390",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Microsoft": {
+          "method": "blacklist",
+          "engine_name": "Microsoft",
+          "engine_version": "1.1.19900.2",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "ViRobot": {
+          "method": "blacklist",
+          "engine_name": "ViRobot",
+          "engine_version": "2014.3.20.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "ZoneAlarm": {
+          "method": "blacklist",
+          "engine_name": "ZoneAlarm",
+          "engine_version": "1.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "GData": {
+          "method": "blacklist",
+          "engine_name": "GData",
+          "engine_version": "A:25.35197B:27.30542",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Google": {
+          "method": "blacklist",
+          "engine_name": "Google",
+          "engine_version": "1675699295",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "AhnLab-V3": {
+          "method": "blacklist",
+          "engine_name": "AhnLab-V3",
+          "engine_version": "3.23.1.10344",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Acronis": {
+          "method": "blacklist",
+          "engine_name": "Acronis",
+          "engine_version": "1.2.0.113",
+          "engine_update": "20221114",
+          "category": "undetected",
+          "result": null
+        },
+        "McAfee": {
+          "method": "blacklist",
+          "engine_name": "McAfee",
+          "engine_version": "6.0.6.653",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "TACHYON": {
+          "method": "blacklist",
+          "engine_name": "TACHYON",
+          "engine_version": "2023-02-06.02",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "VBA32": {
+          "method": "blacklist",
+          "engine_name": "VBA32",
+          "engine_version": "5.0.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Panda": {
+          "method": "blacklist",
+          "engine_name": "Panda",
+          "engine_version": "4.6.4.2",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "TrendMicro-HouseCall": {
+          "method": "blacklist",
+          "engine_name": "TrendMicro-HouseCall",
+          "engine_version": "10.0.0.1040",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Tencent": {
+          "method": "blacklist",
+          "engine_name": "Tencent",
+          "engine_version": "1.0.0.1",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Yandex": {
+          "method": "blacklist",
+          "engine_name": "Yandex",
+          "engine_version": "5.5.2.24",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "SentinelOne": {
+          "method": "blacklist",
+          "engine_name": "SentinelOne",
+          "engine_version": "23.1.0.5",
+          "engine_update": "20230111",
+          "category": "undetected",
+          "result": null
+        },
+        "MaxSecure": {
+          "method": "blacklist",
+          "engine_name": "MaxSecure",
+          "engine_version": "1.0.0.1",
+          "engine_update": "20230204",
+          "category": "malicious",
+          "result": "Trojan.Malware.300983.susgen"
+        },
+        "Fortinet": {
+          "method": "blacklist",
+          "engine_name": "Fortinet",
+          "engine_version": "6.4.258.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Zoner": {
+          "method": "blacklist",
+          "engine_name": "Zoner",
+          "engine_version": "2.2.2.0",
+          "engine_update": "20230205",
+          "category": "undetected",
+          "result": null
+        },
+        "Avast": {
+          "method": "blacklist",
+          "engine_name": "Avast",
+          "engine_version": "22.11.7701.0",
+          "engine_update": "20230206",
+          "category": "undetected",
+          "result": null
+        },
+        "Cylance": {
+          "method": "blacklist",
+          "engine_name": "Cylance",
+          "engine_version": "2.3.1.101",
+          "engine_update": "20230206",
+          "category": "timeout",
+          "result": null
+        },
+        "Trustlook": {
+          "method": "blacklist",
+          "engine_name": "Trustlook",
+          "engine_version": "1.0",
+          "engine_update": "20230206",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "SymantecMobileInsight": {
+          "method": "blacklist",
+          "engine_name": "SymantecMobileInsight",
+          "engine_version": "2.0",
+          "engine_update": "20230119",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "BitDefenderFalx": {
+          "method": "blacklist",
+          "engine_name": "BitDefenderFalx",
+          "engine_version": "2.0.936",
+          "engine_update": "20230203",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "Avast-Mobile": {
+          "method": "blacklist",
+          "engine_name": "Avast-Mobile",
+          "engine_version": "230206-00",
+          "engine_update": "20230206",
+          "category": "type-unsupported",
+          "result": null
+        }
+      },
+      "signature_info": {
+        "product": "chocolatey",
+        "description": "chocolatey - shim",
+        "file version": "0.10.5.0",
+        "original name": "clist.exe",
+        "comments": "chocolatey",
+        "copyright": "Copyright © 2017 Chocolatey Software, Inc.. Copyright © 2011 - 2017, RealDimensions Software, LLC - All Rights Reserved.",
+        "internal name": "clist.exe"
+      },
+      "first_submission_date": 1502841089,
+      "available_tools": [],
+      "last_analysis_date": 1675704494,
+      "sigma_analysis_summary": {
+        "Sigma Integrated Rule Set (GitHub)": {
+          "high": 0,
+          "medium": 0,
+          "critical": 0,
+          "low": 2
+        }
+      },
+      "md5": "24599e1a44d180a90b892f310be34cf0",
+      "pe_info": {
+        "timestamp": 1491583800,
+        "imphash": "f34d5f2d4577ed6d9ceec516c1f5a744",
+        "machine_type": 332,
+        "entry_point": 25502,
+        "resource_details": [
+          {
+            "lang": "NEUTRAL",
+            "chi2": 13611.51,
+            "filetype": "unknown",
+            "entropy": 5.991714954376221,
+            "sha256": "23b4569d400ea838f98ebd180d5e0de06b97d160d1fe935c4fa6e21598d116e5",
+            "type": "RT_ICON"
+          },
+          {
+            "lang": "NEUTRAL",
+            "chi2": 99020.74,
+            "filetype": "unknown",
+            "entropy": 5.186304569244385,
+            "sha256": "f852600ceec04601167cf9862af09bc6da99a70ec77b8296af3144e46a50ad4a",
+            "type": "RT_ICON"
+          },
+          {
+            "lang": "NEUTRAL",
+            "chi2": 309015,
+            "filetype": "unknown",
+            "entropy": 4.694134712219238,
+            "sha256": "8313bbccae14f31bb7e6cf1c065924ec7af11a6a93fb707ed420b84cc194eef4",
+            "type": "RT_ICON"
+          },
+          {
+            "lang": "NEUTRAL",
+            "chi2": 607002,
+            "filetype": "unknown",
+            "entropy": 4.388380527496338,
+            "sha256": "faa6d3bb08e3d1c03c9aa1bd853c7506ac3c09f360c845e68df94b2794bd196e",
+            "type": "RT_ICON"
+          },
+          {
+            "lang": "NEUTRAL",
+            "chi2": 2964177.5,
+            "filetype": "unknown",
+            "entropy": 3.8822853565216064,
+            "sha256": "9d097f3ff47576f896d0e21a822fe779ecfef4f4eaa222d535b8a7841f6d0272",
+            "type": "RT_ICON"
+          },
+          {
+            "lang": "NEUTRAL",
+            "chi2": 3096.2,
+            "filetype": "PNG",
+            "entropy": 7.9039201736450195,
+            "sha256": "123c624c31c6febad7536b37ed2f4f72de0b1d233324e0bd9ed12145bb3aaae1",
+            "type": "RT_ICON"
+          },
+          {
+            "lang": "NEUTRAL",
+            "chi2": 6947.15,
+            "filetype": "ICO",
+            "entropy": 2.802095413208008,
+            "sha256": "0a33506f4a2bc468b4b4f98bdd51b849a9dc5af43e106da6019d25d1f4586b1c",
+            "type": "RT_GROUP_ICON"
+          },
+          {
+            "lang": "NEUTRAL",
+            "chi2": 91945.12,
+            "filetype": "unknown",
+            "entropy": 3.4127447605133057,
+            "sha256": "e7727414b9529194b3831ec80e09776901eeb54fc13ad88ca6fbecd3f3cf4811",
+            "type": "RT_VERSION"
+          },
+          {
+            "lang": "NEUTRAL",
+            "chi2": 11683.65,
+            "filetype": "unknown",
+            "entropy": 5.263767719268799,
+            "sha256": "21c95300f8ba13b395d5d20f561d00f423c6c014299a64e7973055ba57fbfbf4",
+            "type": "RT_MANIFEST"
+          }
+        ],
+        "resource_langs": {
+          "NEUTRAL": 9
+        },
+        "resource_types": {
+          "RT_ICON": 6,
+          "RT_MANIFEST": 1,
+          "RT_VERSION": 1,
+          "RT_GROUP_ICON": 1
+        },
+        "sections": [
+          {
+            "name": ".text",
+            "chi2": 487056.47,
+            "virtual_address": 8192,
+            "flags": "rx",
+            "raw_size": 17408,
+            "entropy": 5.26,
+            "virtual_size": 17316,
+            "md5": "a4a6c8950c6bee4bae542780d1fa647a"
+          },
+          {
+            "name": ".rsrc",
+            "chi2": 3585591.5,
+            "virtual_address": 32768,
+            "flags": "r",
+            "raw_size": 117760,
+            "entropy": 4.99,
+            "virtual_size": 117616,
+            "md5": "4b5318632ef757d109ae131d1328bda0"
+          },
+          {
+            "name": ".reloc",
+            "chi2": 128522,
+            "virtual_address": 155648,
+            "flags": "r",
+            "raw_size": 512,
+            "entropy": 0.08,
+            "virtual_size": 12,
+            "md5": "c860bbfe82718f34dd5fc0c711b4c2e5"
+          }
+        ],
+        "import_list": [
+          {
+            "library_name": "mscoree.dll",
+            "imported_functions": ["_CorExeMain"]
+          }
+        ]
+      },
+      "type_tags": ["executable", "windows", "win32", "pe", "peexe"],
+      "unique_sources": 4,
+      "vhash": "21503655551b0b1db00224",
+      "sandbox_verdicts": {
+        "Zenbox": {
+          "category": "harmless",
+          "confidence": 2,
+          "sandbox_name": "Zenbox",
+          "malware_classification": ["CLEAN"]
+        }
+      },
+      "sigma_analysis_stats": {
+        "high": 0,
+        "medium": 0,
+        "critical": 0,
+        "low": 2
+      },
+      "type_extension": "exe",
+      "capabilities_tags": [],
+      "sigma_analysis_results": [
+        {
+          "match_context": [
+            {
+              "values": {
+                "EventID": "5038",
+                "param1": "\\Device\\HarddiskVolume4\\Program Files (x86)\\sandbox\\driver\\sandbox-driver.sys"
+              }
+            }
+          ],
+          "rule_level": "low",
+          "rule_description": "Code integrity failures may indicate tampered executables.",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Failed Code Integrity Checks",
+          "rule_id": "134564d292d785dff102940b8a1ee06dba2d462c5fb852124b3771a49d7885f1",
+          "rule_author": "Thomas Patzke"
+        },
+        {
+          "match_context": [
+            {
+              "values": {
+                "EventID": "4104",
+                "ScriptBlockText": "ue = Get-RandomCharacters -length 15 -characters 'ABCDEFGHKLMNOPRSTUVWXYZabcdefghklmnoprstuvwxyz123456789 '\r\n\r\n\t\t\t$newClass.Properties.Add($pr.Name, $value, $pr.Type)\r\n\t\t\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"Key\", $true)\r\n\t\t} elseif($pr.Name -eq \"Model\")\r\n\t\t{\r\n\t\t\t$value = Get-RandomCharacters -length 8 -characters 'ABCDEFGHKLMNOPRSTUVWXYZabcdefghklmnoprstuvwxyz123456789 '\r\n\t\t\t$newClass.Properties.Add($pr.Name, $value, $pr.Type)\r\n\t\t} elseif($pr.Name -eq \"Domain\")\r\n\t\t{\r\n\t\t\t$value = Get-RandomCharacters -length 5 -characters 'ABCDEFGHKLMNOPRSTUVWXYZabcdefghklmnoprstuvwxyz123456789'\r\n\t\t\t$newClass.Properties.Add($pr.Name, $value, $pr.Type)\r\n\t\t} elseif($pr.Name -eq \"OEMStringArray\")\r\n\t\t{\r\n\t\t\t$value = Get-RandomCharacters -length 10 -characters 'ABCDEFGHKLMNOPRSTUVWXYZabcdefghklmnoprstuvwxyz123456789'\r\n\t\t\t$newClass.Properties.Add($pr.Name, @($value), $pr.Type)\r\n\t\t} else\r\n\t\t{\r\n\t\t\t$newClass.Properties.Add($pr.Name, $pr.Value, $pr.Type)\r\n\t\t}\r\n\t}\r\n}\r\n\r\n$newClass.Put()\r\nSet-WmiInstance -Path \\\\.\\root\\cimv2:Win32_ComputerSystem \r\n\r\n#Joebox\r\n\r\n#Creating Win32_PnPEntity fake class\r\n$newClass = New-Object System.Management.ManagementClass(\"root\\cimv2\", [String]::Empty, $null); \r\n$newClass[\"__CLASS\"] = \"Win32_PnPEntity\";\r\n$newClass.Qualifiers.Add(\"Static\", $true);\r\n\r\n$objWMi = get-wmiobject -computername localhost -Namespace root\\CIMV2 -Query \"Select * from Win32_PnPEntity\"\r\n\r\nforeach ($pr in $objWmi[0].Properties)\r\n{\r\n\t$newClass.Properties.Add($pr.Name, $pr.Type, $false)\t\r\n\tif($pr.Name -eq \"DeviceID\")\r\n\t{\r\n\t\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"Key\", $true)\r\n\t}\r\n\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"read\", $true)\r\n}\r\n\r\n$newClass.Put()\r\n\r\nforeach ($obj in $objWmi)\r\n{\t\r\n\t$args = @{}\r\n\tforeach ($pr in $obj.Properties)\r\n\t{\t\r\n\t\tif(($pr.Name -eq \"DeviceId\" -or $pr.Name -eq \"Caption\" -or $pr.Name -eq \"Name\" -or $pr.Name -eq \"PNPDeviceID\"  -or $pr.Name -eq \"Service\") -and ($pr.Value -match 'VEN_80EE' -or $pr.Value -match 'VEN_15AD' -or $pr.Value -match 'VBOX' -or $pr.Value -match 'VBox' -or $pr.Value -match 'VMWARE' -or $pr.Value -match '82801FB' -or $pr.Value -match '82441FX' -or $pr.Value -match '82371SB' -or $pr.Value -match 'OpenHCD'))\r\n\t\t{\r\n\t\t\t$value = Get-RandomCharacters -length 8 -characters 'ABCDEFGHKLMNOPRSTUVWXYZ123456789_'\r\n\t\t\t$value = $pr.Value.replace(\"VEN_80EE\", $value).replace(\"VEN_15AD\", $value).replace(\"VBOX\", $value).replace(\"VBox\", $value).replace(\"VMWARE\", $value).replace(\"82801FB\", $value).replace(\"82441FX\", $value).replace(\"82371SB\", $value).replace(\"OpenHCD\", $value)\r\n\t\t\t\r\n\t\t\t# 82801FB 82441FX 82371SB OpenHCD\r\n\t\t\t\t\r\n\t\t\t$args.add($pr.Name, $value)\r\n\t\t\t\r\n\t\t} else\r\n\t\t{\r\n\t\t\t$args.add($pr.Name, $pr.Value)\r\n\t\t}\r\n\t}\r\n\t\r\n\tSet-WmiInstance -Path \\\\.\\root\\cimv2:Win32_PnPEntity -Arguments $args\r\n}\r\n\r\n#Joebox\r\n\r\n#Creating Win32_DiskDrive fake class\r\n$newClass = New-Object System.Management.ManagementClass(\"root\\cimv2\", [String]::Empty, $null); \r\n$newClass[\"__CLASS\"] = \"Win32_DiskDrive\";\r\n$newClass.Qualifiers.Add(\"Static\", $true);\r\n\r\n$objWMi = get-wmiobject -computername localhost -Namespace root\\CIMV2 -Query \"Select * from Win32_DiskDrive\"\r\n\r\nif(-Not ($objWMi -is [array]))\r\n{\r\n\t$objWMi = @($objWMi)\r\n}\r\n\r\nforeach ($pr in $objWmi[0].Properties)\r\n{\r\n\t$newClass.Properties.Add($pr.Name, $pr.Type, $false)\t\r\n\tif($pr.Name -eq \"DeviceID\")\r\n\t{\r\n\t\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"Key\", $true)\r\n\t}\r\n\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"read\", $true)\r\n}\r\n\r\n$newClass.Put()\r\n\r\nforeach ($obj in $objWmi)\r\n{\t\r\n\t$args = @{}\r\n\tforeach ($pr in $obj.Properties)\r\n\t{\t\r\n\t\tif(($pr.Name -eq \"DeviceId\" -or $pr.Name -eq \"Caption\" -or $pr.Name -eq \"Model\" -or $pr.Name -eq \"PNPDeviceID\") -and ($pr.Value -match 'VBOX' -or $pr.Value -match 'VBox' -or $pr.Value -match 'VMWARE' -or $pr.Value -match 'VMware'))\r\n\t\t{\r\n\t\t\t$value = Get-RandomCharacters -length 8 -characters 'ABCDEFGHKLMNOPRSTUVWXYZ123456789_'\r\n\t\t\t$value = $pr.Value.replace(\"VBOX\", $value).replace(\"VBox\", $value).replace(\"VMWARE\", $value).replace(\"VMware Virtual disk\", $value).replace(\"VMware\", $value).replace(\"HARDDISK\", \"WDC\").replace(\"VIRTUAL_DISK\", $value)\r\n\t\t\t\t\r\n\t\t\t$args.add($pr.Name, $value)\r\n\t\t\r\n\t\t# Change disk size\r\n\t\t} elseif($pr.Name -eq \"Size\" -and $pr.Value -lt 200000000000)\r\n\t\t{\r\n\t\t\t$args.add($pr.Name, 412300001200)\r\n\t\t} elseif(-Not($pr.Name -eq \"Capabilities\"))\r\n\t\t{\r\n\t\t\t$args.add($pr.Name, $pr.Value)\r\n\t\t}\r\n\t}\r\n\t\r\n\tSet-WmiInstance -Path \\\\.\\root\\cimv2:Win32_DiskDrive -Arguments $args\r\n}\r\n\r\n#Joebox\r\n\r\n#Creating Win32_VideoController fake class\r\n$newClass = New-Object System.Management.ManagementClass(\"root\\cimv2\", [String]::Empty, $null); \r\n$newClass[\"__CLASS\"] = \"Win32_VideoController\";\r\n$newClass.Qualifiers.Add(\"Static\", $true);\r\n\r\n$objWMi = get-wmiobject -computername localhost -Namespace root\\CIMV2 -Query \"Select * from Win32_VideoController\"\r\n\r\nif(-Not ($objWMi -is [array]))\r\n{\r\n\t$objWMi = @($objWMi)\r\n}\r\n\r\nforeach ($pr in $objWmi[0].Properties)\r\n{\r\n\t$newClass.Properties.Add($pr.Name, $pr.Type, $false)\t\r\n\tif($pr.Name -eq \"DeviceID\")\r\n\t{\r\n\t\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"Key\", $true)\r\n\t}\r\n\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"read\", $true)\r\n}\r\n\r\n$newClass.Put()\r\n\r\nforeach ($obj in $objWmi)\r\n{\t\r\n\t$args = @{}\r\n\tforeach ($pr in $obj.Properties)\r\n\t{\t\r\n\t\tif(($pr.Name -eq \"Caption\" -or $pr.Name -eq \"Name\" -or $pr.Name -eq \"PNPDeviceID\" -or $pr.Name -eq \"AdapterCompatibility\" -or $pr.Name -eq \"Description\" -or $pr.Name -eq \"InfSection\" -or $pr.Name -eq \"VideoProcessor\") -and ($pr.Value -match 'VBOX' -or $pr.Value -match 'VBox' -or $pr.Value -match 'VMWARE' -or $pr.Value -match 'VirtualBox' -or $pr.Value -match 'VMware' -or $pr.Value -match 'Oracle Corporation' -or $pr.Value -match 'Microsoft Basic Display Adapter'))\r\n\t\t{\r\n\t\t\t$value = Get-RandomCharacters -length 8 -characters 'ABCDEFGHKLMNOPRSTUVWXYZ123456789_'\r\n\t\t\t$value = $pr.Value.replace(\"VBOX\", $value).replace(\"VBox\", $value).replace(\"VMWARE\", $value).replace(\"VMware\", $value).replace(\"VirtualBox\", $value).replace(\"Oracle Corporation\", $value).replace(\"Microsoft Basic Display Adapter\", $value)\r\n\t\t\t\t\r\n\t\t\t$args.add($pr.Name, $value)\r\n\t\t\r\n\r\n\t\t} elseif($pr.Name -eq \"DriverVersion\")\r\n\t\t{\r\n\t\t\t$value = Get-RandomCharacters -length 8 -characters '1234567890.'\r\n\t\t\t$args.add($pr.Name, $value)\r\n\t\t} elseif($pr.Name -eq \"AdapterRAM\" -and $pr.Value -lt 1000000000)\r\n\t\t{\r\n\t\t\t$args.add($pr.Name, 1073741824)\r\n\t\t} else\r\n\t\t{\r\n\t\t\t$args.add($pr.Name, $pr.Value)\r\n\t\t}\r\n\t}\r\n\t\r\n\tSet-WmiInstance -Path \\\\.\\root\\cimv2:Win32_VideoController -Arguments $args\r\n}\r\n\r\n#Joebox\r\n\r\n#Creating Win32_BaseBoard fake class\r\n$newClass = New-Object System.Management.ManagementClass(\"root\\cimv2\", [String]::Empty, $null); \r\n$newClass[\"__CLASS\"] = \"Win32_BaseBoard\";\r\n$newClass.Qualifiers.Add(\"Static\", $true)\r\n\r\n$objWMi = get-wmiobject -computername localhost -Namespace root\\CIMV2 -Query \"Select * from Win32_BaseBoard\"\r\n\r\nforeach ($obj in $objWmi)\r\n{\r\n\tforeach ($pr in $obj.Properties)\r\n\t{\r\n\t\tif($pr.Name -eq \"Name\")\r\n\t\t{\t$value = Get-RandomCharacters -length 10 -characters 'ABCDEFGHKLMNOPRSTUVWXYZ123456789'\r\n\r\n\t\t\t$newClass.Properties.Add($pr.Name, $value, $pr.Type)\r\n\t\t\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"Key\", $true)\r\n\t\t} elseif($pr.Name -eq \"Product\" -or $pr.Name -eq \"Manufacturer\")\r\n\t\t{\r\n\t\t\t$value = Get-RandomCharacters -length 10 -characters 'ABCDEFGHKLMNOPRSTUVWXYZ123456789'\r\n\t\t\t$newClass.Properties.Add($pr.Name, $value, $pr.Type)\r\n\t\t} else\r\n\t\t{\r\n\t\t\t$newClass.Properties.Add($pr.Name, $pr.Value, $pr.Type)\r\n\t\t}\r\n\t}\r\n}\r\n\r\n$newClass.Put()\r\nSet-WmiInstance -Path \\\\.\\root\\cimv2:Win32_BaseBoard\r\n\r\n\r\n#Creating Win32_ComputerSystemProduct fake class\r\n$newClass = New-Object System.Management.ManagementClass(\"root\\cimv2\", [String]::Empty, $null); \r\n$newClass[\"__CLASS\"] = \"Win32_ComputerSystemProduct\";\r\n$newClass.Qualifiers.Add(\"Static\", $true)\r\n\r\n$objWMi = get-wmiobject -computername localhost -Namespace root\\CIMV2 -Query \"Select * from Win32_ComputerSystemProduct\"\r\n\r\nforeach ($obj in $objWmi)\r\n{\r\n\tforeach ($pr in $obj.Properties)\r\n\t{\r\n\t\tif($pr.Name -eq \"Name\")\r\n\t\t{\t\r\n\t\t\t$newClass.Properties.Add($pr.Name, $pr.$value, $pr.Type)\r\n\t\t\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"Key\", $true)\r\n\t\t} elseif($pr.Name -eq \"IdentifyingNumber\")\r\n\t\t{\r\n\t\t\t$value = Get-RandomCharacters -length 6 -characters 'ABCDEFGHKLMNOPRSTUVWXYZ123456789'\r\n\t\t\t$newClass.Properties.Add($pr.Name, $value, $pr.Type)\r\n\t\t} else\r\n\t\t{\r\n\t\t\t$newClass.Properties.Add($pr.Name, $pr.Value, $pr.Type)\r\n\t\t}\r\n\t}\r\n}\r\n\r\n$newClass.Put()\r\nSet-WmiInstance -Path \\\\.\\root\\cimv2:Win32_ComputerSystemProduct\r\n\r\n\r\n\r\n#Creating Win32_LogicalDisk fake class\r\n$newClass = New-Object System.Management.ManagementClass(\"root\\cimv2\", [String]::Empty, $null); \r\n$newClass[\"__CLASS\"] = \"Win32_LogicalDisk\";\r\n$newClass.Qualifiers.Add(\"Static\", $true);\r\n\r\n$objWMi = get-wmiobject -computername localhost -Namespace root\\CIMV2 -Query \"Select * from Win32_LogicalDisk WHERE DriveType = 3\"\r\n\r\nif(-Not ($objWMi -is [array]))\r\n{\r\n\t$objWMi = @($objWMi)\r\n}\r\n\r\nforeach ($pr in $objWmi[0].Properties)\r\n{\r\n\t$newClass.Properties.Add($pr.Name, $pr.Type, $false)\t\r\n\tif($pr.Name -eq \"DeviceID\")\r\n\t{\r\n\t\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"Key\", $true)\r\n\t}\r\n\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"read\", $true)\r\n}\r\n\r\n$newClass.Put()\r\n\r\nforeach ($obj in $objWmi)\r\n{\t\r\n\t$args = @{}\r\n\tforeach ($pr in $obj.Properties)\r\n\t{\t\r\n\t\tif($pr.Name -eq \"Size\")\r\n\t\t{\r\n\t\t\t$args.add($pr.Name, \"223496729601\")\r\n\t\t} else\r\n\t\t{\r\n\t\t\t$args.add($pr.Name, $pr.Value)\r\n\t\t}\r\n\t}\r\n\t\r\n\tSet-WmiInstance -Path \\\\.\\root\\cimv2:Win32_LogicalDisk -Arguments $args\r\n}\r\n\r\n\r\n#Creating Win32_ComputerSystemProduct fake class\r\n$newClass = New-Object System.Management.ManagementClass(\"root\\cimv2\", [String]::Empty, $null); \r\n$newClass[\"__CLASS\"] = \"Win32_OperatingSystem\";\r\n$newClass.Qualifiers.Add(\"Static\", $true)\r\n\r\n$objWMi = get-wmiobject -computername localhost -Namespace root\\CIMV2 -Query \"Select * from Win32_OperatingSystem\"\r\n\r\n\r\nforeach ($obj in $objWmi)\r\n{\r\n\tforeach ($pr in $obj.Properties)\r\n\t{\r\n\t\tif($pr.Name -eq \"CreationClassName\")\r\n\t\t{\t\r\n\t\t\t$newClass.Properties.Add($pr.Name, $pr.$value, $pr.Type)\r\n\t\t\t$newClass.Properties[$pr.Name].Qualifiers.Add(\"Key\", $true)\r\n\t\t} elseif($pr.Name -eq \"LastBootUpTime\")\r\n\t\t{\r\n\t\t\t$d = [System.Management.ManagementDateTimeConverter]::ToDateTime($pr.Value)\r\n\t\t\t$d = $d.addDays(-10)\r\n\t\t\t$d = [System.Management.ManagementDateTimeConverter]::ToDmtfDateTime($d)\r\n\t\t\t\r\n\t\t\t$newClass.Properties.Add($pr.Name, $d, $pr.Type)\r\n\t\t\t\r\n\t\t} else\r\n\t\t{\r\n\t\t\t$newClass.Properties.Add($pr.Name, $pr.Value, $pr.Type)\r\n\t\t}\r\n\t}\r\n}\r\n\r\n$newClass.Put()\r\nSet-WmiInstance -Path \\\\.\\root\\cimv2:Win32_OperatingSystem\r\n\r\n\r\nfunction Delete() {\r\n    $Invocation = (Get-Variable MyInvocation -Scope 1).Value\r\n    $Path =  $Invocation.MyCommand.Path \r\n    Write-Host $Path\r\n    Remove-Item $Path -force\r\n} \r\n     \r\nDelete \r\n",
+                "ScriptBlockId": "6300c5c9-f9fa-4a21-b997-519edeaf878a",
+                "MessageNumber": "\u0002",
+                "Path": "C:\\Program Files (x86)\\Joebox\\unpack\\wmievasions.ps1",
+                "MessageTotal": "\u0002"
+              }
+            }
+          ],
+          "rule_level": "low",
+          "rule_description": "Powershell Remove-Item  with -Path to delete a file or a folder with \"-Recurse\"",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Use Remove-Item to Delete File",
+          "rule_id": "d9b2eb00753c3049fbb4ed4f7d88f29b65a0c50bec45ff4723b95bb637f8f83d",
+          "rule_author": "frack113"
+        }
+      ],
+      "last_submission_date": 1675704494,
+      "times_submitted": 16,
+      "reputation": 0,
+      "tags": [
+        "peexe",
+        "runtime-modules",
+        "assembly",
+        "direct-cpu-clock-access",
+        "detect-debug-environment"
+      ],
+      "trid": [
+        {
+          "file_format_legacy": "Generic CIL Executable (.NET, Mono, etc.)",
+          "probability": 67.7
+        },
+        {
+          "file_format_legacy": "Win64 Executable (generic)",
+          "probability": 9.7
+        },
+        {
+          "file_format_legacy": "Win32 Dynamic Link Library (generic)",
+          "probability": 6
+        },
+        {
+          "file_format_legacy": "Win16 NE executable (generic)",
+          "probability": 4.6
+        },
+        {
+          "file_format_legacy": "Win32 Executable (generic)",
+          "probability": 4.1
+        }
+      ],
+      "size": 136192,
+      "ssdeep": "3072:WE9O3NAhGCLOwstyhZFChcssc56FUrgxvbSD4UQrO2:J9qNYShcHUa",
+      "names": [
+        "clist.exe",
+        "C:\\Users\\user\\Desktop\\redirects\\clist.exe",
+        "C:\\Users\\user\\AppData\\Local\\Temp\\redirects\\clist.exe",
+        "C:\\Users\\user\\AppData\\Local\\chocoportable\\redirects\\clist.exe",
+        "C:\\chocoportable\\redirects\\clist.exe",
+        "OP_f9ad234d620ad2b9f0ebc88c1b9ca8e940e696893057619d79889034ea67fe86",
+        "FS_fb982449c4d6825aaefca34f8db3f8ee3876e337ac8e9b48315ec621696bb83b",
+        "%TEMP%\\TT_%SAMPLENAME%",
+        "%TEMP%\\QJ_%SAMPLENAME%",
+        "%TEMP%\\HH_%SAMPLENAME%",
+        "%TEMP%\\NJ_%SAMPLENAME%",
+        "%TEMP%\\XL_%SAMPLENAME%",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\YT_f9ad234d620ad2b9f0ebc88c1b9ca8e940e696893057619d79889034ea67fe86.exe",
+        "4eae23e60e21119933e885f14c6af7bffd146169124449ac0dae4163fae9310a-dropped.bin",
+        "HY_5e0dbfaad2c7a51f8e4daa3969fe09850aa2faa599af302a383bfcfcbd2dda0e",
+        "NW_3dbf1193cf1609d814f09a24621d913da97380e36ada39246542d9f5454ed594",
+        "ME_2df5a8e59d8d9868999c510848f7f89e7b1ad825dad789110aa0b8d203d7d21d",
+        "HN_3262aec0100af1bf94deba385765daddc5874ef403bf2fc7c22691a3b3506ba7",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\RH_6226a83f868c6cd63a0db24a9c047a7ad759db3d1bfc2eca10c47a8f4784cb06.exe",
+        "ST_15c27d759e4a9d9296b692dd6e7a75679a1d627c4c5156055496c63721e78cd9",
+        "%TEMP%\\TW_%SAMPLENAME%",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\CF_043b92adba119e6c5933f2b27a450f30ea5a5c6beceb266e5dd35fa8a98dbacb.exe",
+        "%TEMP%\\WS_%SAMPLENAME%",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\MB_04baa054788ba432ba2b73760ca67fdb5f2bab026ed20bdebace7bb83d290663.exe",
+        "%TEMP%\\clist.exe",
+        "C:\\Users\\user\\AppData\\Local\\Temp\\UR_file.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\SA_ccd23c977f6e8d87d8e17913d63f8f63f8b3b81911041cb8157b6e9bb975240a.exe",
+        "%TEMP%\\CV_%SAMPLENAME%",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\ES_01b6bfca37aa799d619f08461aeb958fdc797ea931983b6c854d7356354d2068.exe",
+        "XI_b8bf76575a4d9cbada29d394068937d23da4eae7642bfc91cb694b18373dbfe1",
+        "%TEMP%\\MB_%SAMPLENAME%",
+        "%TEMP%\\XH_%SAMPLENAME%",
+        "%SAMPLEPATH%.exe",
+        "%TEMP%\\EY_%SAMPLENAME%",
+        "QM_33db020eb996aa49020e7a203c019abce291c1b28b1f0f08fe7b4ccc953ca0e7",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\JH_33db020eb996aa49020e7a203c019abce291c1b28b1f0f08fe7b4ccc953ca0e7.exe",
+        "9e9b6396287af6b95f7081a17077a86368afbde5ddaca4189c097950ff4b6cc0",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\3582-490\\0bf99e5821873438a7515748c18ca3d3.exe",
+        "%TEMP%\\NI_%SAMPLENAME%",
+        "AI_3a6ef74107406a5e91c61977efe98e43eba996c9c18f86b4c6e73ab27f56b9e9",
+        "C:\\Users\\user\\AppData\\Local\\Temp\\PB_executable.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\PV_3a6ef74107406a5e91c61977efe98e43eba996c9c18f86b4c6e73ab27f56b9e9.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\JH_9caf6b4b38d615a348ed658a1b9e4ea0240a2b094f03e248aef6f0f7709720b0.exe",
+        "%TEMP%\\YD_%SAMPLENAME%",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\JE_c0e0d687b4309ce79ff52a5ac7148b81700f77f7b1dcf04632514d87e0426490.exe",
+        "OA_777f32316e8c6ec6bafb330e094aa3f640e457f294fe958d14d0f698291f9d79",
+        "C:\\Users\\user\\AppData\\Local\\Temp\\CB_software.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\UM_e88e10ee052edcbad706dceeb5db02e5f2d71cf85d2a1cafd33db1a0b9a8921d.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\UJ_777f32316e8c6ec6bafb330e094aa3f640e457f294fe958d14d0f698291f9d79.exe",
+        "%TEMP%\\redirects\\clist.exe",
+        "<CURRENT_DIR>\\redirects\\clist.exe",
+        "%TEMP%\\VG_%SAMPLENAME%",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\KP_1317bd164040f9822c22d45bd7186ee6f0916fe098fb61f1bdc0dc4365ff10a4.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\RQ_5f0deceda82d3208ccb77d9bc0aab5ae7a55a61624b3b4e6b93c4e09de971333.exe",
+        "%TEMP%\\9U3jXkCypgRLPdx.exe",
+        "%TEMP%\\oesgXg9uboDQ1dn.exe",
+        "C:\\Users\\user\\Desktop\\program.exe.exe",
+        "C:\\Users\\<USER>\\Downloads\\b7375ad7403ad2f3146b43d44922d84d4687670e77160a6fd2799ce86d9c8863.exe.exe",
+        "C:\\Users\\RDhJ0CNFevzX\\Desktop\\redirects\\clist.exe",
+        "c:\\users\\xxx\\appdata\\local\\temp\\redirects\\clist.exe",
+        "c:\\users\\administrator\\appdata\\local\\temp\\redirects\\clist.exe",
+        "%TEMP%\\w73ZdmuW2qplQCm.exe",
+        "c:\\Documents and Settings\\%USERNAME%\\Application Data\\74628.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\redirects\\clist.exe",
+        "G:\\2018\\samples\\mzothers\\2\\virussign.com_24599e1a44d180a90b892f310be34cf0.vir",
+        "c:\\Users\\kEecfMwgj\\Desktop\\redirects\\clist.viv",
+        "C:\\Users\\kEecfMwgj\\Desktop\\redirects\\clist.exe",
+        "/tmp/cache/extracted_files/cbe1160ce1a59117e8a13072ed990c09a2ec3898.bin",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\3582-490\\134cdfda926be95bc95812654831b8e5.virus.exe",
+        "c:\\opt\\chocolatey\\redirects\\clist.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\5UfIjvkk20oBm5P.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\dvziJgxAGeZaRFU.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\koF9dhaQp6ZAdQy.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\lMGtMJGQGOeBUYe.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\2LNtFEzsWCRKNJX.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\A9WNJUoqdFOSQui.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\jS1syexGYuPhXOx.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\5LbzKwFTlbiAXgl.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\7uOeJwagK2MxGRf.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\ZtsGuKA3lgcIaxD.exe",
+        "pAk9lmyaMBvixos.exe",
+        "%TEMP%\\ifppDMTdDJIJvXp.exe",
+        "%TEMP%\\1u1yt0f7fugnJVl.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\DMGBFw7ACFkdK2l.exe",
+        "%TEMP%\\tlYw6uV1q0IQBiU.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\cFifa9ZRi8qtx9z.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\42Dy3ZDplNCYHfM.exe",
+        "C:\\Documents and Settings\\Administrator\\Local Settings\\Temp\\redirects\\clist.exe",
+        "C:\\Users\\Administrator\\AppData\\Local\\Temp\\redirects\\clist.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\orhfVtGr5asIdHr.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\P8LcKKLAU4fcnnz.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\A73DPZEvVsIGXjd.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\GdWPUPGjhs8ivSA.exe",
+        "%TEMP%\\0qxkjd6jid04qkg.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\vkQYBrzLnFaJilx.exe",
+        "Qu6FkoaOudhjqIp.exe",
+        "%TEMP%\\7xmxkh2rzu2sfmo.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\NCjPdKvdVnvTxk9.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\7uwL0ZcNjerGjOq.exe",
+        "C:\\Users\\<USER>\\AppData\\Local\\Temp\\Q4XD6kNVOrFmOhr.exe"
+      ],
+      "type_description": "Win32 EXE",
+      "type_tag": "peexe",
+      "last_modification_date": 1721784926,
+      "main_icon": {
+        "raw_md5": "2b9b04f835bde0a8b2bc3cdf5f844cd8",
+        "dhash": "cef6eec2c6e6ba23"
+      },
+      "authentihash": "bcdc99c677a4501980ca7fa37b483dde8bae12e73236806e54c09f3bbf8e529c",
+      "tlsh": "T182D352DD2EC8A464D095ADF206DE17D44DAD1E977C20518D2C8332ABE834E3DDBE2B25",
+      "detectiteasy": {
+        "filetype": "PE32",
+        "values": [
+          {
+            "version": "v4.0.30319",
+            "type": "Library",
+            "name": ".NET"
+          },
+          {
+            "info": "Console32,console",
+            "version": "11.0",
+            "type": "Linker",
+            "name": "Microsoft Linker"
+          }
+        ]
+      },
+      "last_analysis_stats": {
+        "malicious": 4,
+        "suspicious": 0,
+        "undetected": 65,
+        "harmless": 0,
+        "timeout": 1,
+        "confirmed-timeout": 0,
+        "failure": 0,
+        "type-unsupported": 4
+      }
+    }
+  }
+}

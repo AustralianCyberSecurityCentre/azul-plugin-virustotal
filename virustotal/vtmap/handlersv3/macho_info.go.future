@@ -1,0 +1,35 @@
+package handlersv3
+
+import (
+	bh "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3"
+)
+
+var vtToAzFeatMachoInfo = []bh.VtPathToAzFeature{
+	// bh.NewVtPathToAzFeat("commands", bh.VtTypeListOfDict, "commands", bh.dont-map, "machoInfo - list of load commands. Every entry contains the following fields:"),
+	bh.NewVtPathToAzFeat("commands.type", bh.VtTypeString, "commands_type", bh.AzFTString, "machoInfo - command type."), // Special
+	// bh.NewVtPathToAzFeat("info", bh.VtTypeDict, "info", bh.dont-map, "machoInfo - some basic file attributes about the file."),
+	bh.NewVtPathToAzFeat("info.sha256", bh.VtTypeString, "info_sha256", bh.AzFTString, "machoInfo - ."),
+	bh.NewVtPathToAzFeat("info.filename", bh.VtTypeString, "info_filename", bh.AzFTString, "machoInfo - ."),
+	// bh.NewVtPathToAzFeat("headers", bh.VtTypeDict, "headers", bh.dont-map, "machoInfo - some descriptive metadata about the file."),
+	bh.NewVtPathToAzFeat("headers.cpu_subtype", bh.VtTypeString, "headers_cpu_subtype", bh.AzFTString, "machoInfo - processor subtype (i.e. 'I386_ALL')."),
+	bh.NewVtPathToAzFeat("headers.cpu_type", bh.VtTypeString, "headers_cpu_type", bh.AzFTString, "machoInfo - general type of processor (i.e. 'i386')."),
+	bh.NewVtPathToAzFeat("headers.file_type", bh.VtTypeString, "headers_file_type", bh.AzFTString, "machoInfo - file type (i.e. 'dynamically bound shared library')."),
+	bh.NewVtPathToAzFeat("headers.flags", bh.VtTypeListOfStrings, "headers_flags", bh.AzFTString, "machoInfo - file flags (i.e. 'DYLDLINK', 'NOUNDEFS')."),
+	bh.NewVtPathToAzFeat("headers.magic", bh.VtTypeString, "headers_magic", bh.AzFTString, "machoInfo - magic identifier of this app in hex format."),
+	bh.NewVtPathToAzFeat("headers.num_cmds", bh.VtTypeInteger, "headers_num_cmds", bh.AzFTInteger, "machoInfo - number of commands."),
+	bh.NewVtPathToAzFeat("headers.size_cmds", bh.VtTypeInteger, "headers_size_cmds", bh.AzFTInteger, "machoInfo - commands size."),
+	bh.NewVtPathToAzFeat("libs", bh.VtTypeListOfStrings, "libs", bh.AzFTString, "machoInfo - libraries used by the file."),
+	// Note - nested listofdict will require a special handler.
+	// bh.NewVtPathToAzFeat("segments", bh.VtTypeListOfDict, "segments", bh.dont-map, "machoInfo - list of segments of the file. Every entry contains the following fields:"),
+	bh.NewVtPathToAzFeat("segments.fileoff", bh.VtTypeString, "segments_fileoff", bh.AzFTString, "machoInfo - segment phisical address in hex format."),
+	bh.NewVtPathToAzFeat("segments.filesize", bh.VtTypeString, "segments_filesize", bh.AzFTString, "machoInfo - segment size in hex format."),
+	bh.NewVtPathToAzFeat("segments.name", bh.VtTypeString, "segments_name", bh.AzFTString, "machoInfo - segment name."),
+	// bh.NewVtPathToAzFeat("segments.sections", bh.VtTypeListOfDict, "segments_sections", bh.dont-map, "machoInfo - sections of the segment. Every entry contains the following fields:"),
+	bh.NewVtPathToAzFeat("segments.sections.flags", bh.VtTypeListOfStrings, "segments_sections_flags", bh.AzFTString, "machoInfo - section flags (i.e. 'S_8BYTE_LITERALS')."),
+	bh.NewVtPathToAzFeat("segments.sections.name", bh.VtTypeString, "segments_sections_name", bh.AzFTString, "machoInfo - section name."),
+	bh.NewVtPathToAzFeat("segments.sections.type", bh.VtTypeString, "segments_sections_type", bh.AzFTString, "machoInfo - section type."),
+	bh.NewVtPathToAzFeat("segments.vmaddr", bh.VtTypeString, "segments_vmaddr", bh.AzFTString, "machoInfo - virtual address in hex format."),
+	bh.NewVtPathToAzFeat("segments.vmsize", bh.VtTypeString, "segments_vmsize", bh.AzFTString, "machoInfo - virtual address size in hex format."),
+}
+
+var MachoInfo = bh.NewHandlerV3(vtToAzFeatMachoInfo, "macho_info")

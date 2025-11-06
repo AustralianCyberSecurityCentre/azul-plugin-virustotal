@@ -1,0 +1,17 @@
+package handlersv3
+
+import (
+	bh "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3"
+)
+
+var vtToAzFeatCrowdsourcedYaraResults = []bh.VtPathToAzFeature{
+	bh.NewVtPathToAzFeat("author", bh.VtTypeString, "author", bh.AzFTString, "crowdsourcedYaraResults - rule author."),
+	bh.NewVtPathToAzFeat("description", bh.VtTypeString, "yararule_description", bh.AzFTString, "crowdsourcedYaraResults - matched rule description."),
+	// bh.NewVtPathToAzFeat("match_in_subfile", bh.VtTypeBool, "match_in_subfile", bh.AzFTString, "crowdsourcedYaraResults - whether the match was in a subfile or not."),
+	bh.NewVtPathToAzFeat("rule_name", bh.VtTypeString, "yararule", bh.AzFTString, "crowdsourcedYaraResults - matched rule name."),
+	bh.NewVtPathToAzFeat("ruleset_id", bh.VtTypeString, "ruleset_id", bh.AzFTString, "crowdsourcedYaraResults - VirusTotal's ruleset ID. You can use this ID to fetch the ruleset info in the /api/v3/yara_rulesets/{id} endpoint."),
+	bh.NewVtPathToAzFeat("ruleset_name", bh.VtTypeString, "ruleset_name", bh.AzFTString, "crowdsourcedYaraResults - matched rule's ruleset name."),
+	bh.NewVtPathToAzFeat("source", bh.VtTypeString, "source", bh.AzFTString, "crowdsourcedYaraResults - ruleset source."),
+}
+
+var CrowdsourcedYaraResults = bh.NewHandlerV3(vtToAzFeatCrowdsourcedYaraResults, "crowdsourced_yara_results")

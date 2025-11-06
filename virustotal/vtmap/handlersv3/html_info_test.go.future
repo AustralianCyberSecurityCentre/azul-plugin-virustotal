@@ -1,0 +1,41 @@
+package handlersv3
+
+import (
+	"testing"
+
+	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/testdata"
+	"github.com/stretchr/testify/require"
+)
+
+var test_htmlInfo_response = testdata.GetFileReportGjson("data/handlersV3/.json")
+var test_htmlInfo_not_present_response = testdata.GetFileReportGjson("data/handlersV3/worddoc.json")
+
+/*Test the description is the appropriate length and sample some descriptions.*/
+func TestDescriptionHtmlInfo(t *testing.T) {
+	description := HtmlInfo.Description
+	require.Equal(t, -1, len(description))
+}
+
+/*Test a file known to have a htmlInfo features.*/
+func TestGetHtmlInfo(t *testing.T) {
+	result, err := HtmlInfo.GetFeatures(test_htmlInfo_response)
+	require.Equal(t, -1, len(result))
+	// require.Equal(t, "unknown", result[0].Name)
+	// require.Equal(t, bh.AzFTString, result[0].Type)
+	// require.Equal(t, "rand", result[0].Value)
+	require.Nil(t, err)
+}
+
+/*Test a file known to have no htmlInfo features.*/
+func TestFailToGetHtmlInfo(t *testing.T) {
+	result, err := HtmlInfo.GetFeatures(test_htmlInfo_not_present_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}
+
+/*HtmlInfo has no info so it should be none.*/
+func TestGetInfoHtmlInfo(t *testing.T) {
+	result, err := HtmlInfo.GetInfo(test_htmlInfo_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}

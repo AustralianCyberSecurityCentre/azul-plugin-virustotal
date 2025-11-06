@@ -1,0 +1,41 @@
+package handlersv3
+
+import (
+	"testing"
+
+	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/testdata"
+	"github.com/stretchr/testify/require"
+)
+
+var test_dmgInfo_response = testdata.GetFileReportGjson("data/handlersV3/.json")
+var test_dmgInfo_not_present_response = testdata.GetFileReportGjson("data/handlersV3/worddoc.json")
+
+/*Test the description is the appropriate length and sample some descriptions.*/
+func TestDescriptionDmgInfo(t *testing.T) {
+	description := DmgInfo.Description
+	require.Equal(t, -1, len(description))
+}
+
+/*Test a file known to have a dmgInfo features.*/
+func TestGetDmgInfo(t *testing.T) {
+	result, err := DmgInfo.GetFeatures(test_dmgInfo_response)
+	require.Equal(t, -1, len(result))
+	// require.Equal(t, "unknown", result[0].Name)
+	// require.Equal(t, bh.AzFTString, result[0].Type)
+	// require.Equal(t, "rand", result[0].Value)
+	require.Nil(t, err)
+}
+
+/*Test a file known to have no dmgInfo features.*/
+func TestFailToGetDmgInfo(t *testing.T) {
+	result, err := DmgInfo.GetFeatures(test_dmgInfo_not_present_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}
+
+/*DmgInfo has no info so it should be none.*/
+func TestGetInfoDmgInfo(t *testing.T) {
+	result, err := DmgInfo.GetInfo(test_dmgInfo_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}

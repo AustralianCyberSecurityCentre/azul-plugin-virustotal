@@ -1,0 +1,250 @@
+{
+  "author": {
+    "name": "TestAuthor",
+    "version": "2.0.0",
+    "category": "plugin"
+  },
+  "action": "mapped",
+  "model_version": 3,
+  "timestamp": "2024-01-01T01:00:00Z",
+  "source": {
+    "name": "virustotal",
+    "references": {
+      "interface": "api",
+      "submitter_country": "US",
+      "submitter_id": "a96f7a0a"
+    },
+    "path": [
+      {
+        "author": {
+          "name": "TestAuthor",
+          "version": "2.0.0",
+          "category": "plugin"
+        },
+        "action": "mapped",
+        "sha256": "bebdfd8216bce5c81ebfdcdf496e69d00e3a922faa70110fed80d2e4287a07f8",
+        "size": 25317852,
+        "file_format_legacy": "android",
+        "file_format": "android/apk",
+        "timestamp": "2024-07-01T03:19:22Z"
+      }
+    ],
+    "timestamp": "2024-07-01T03:19:22Z"
+  },
+  "entity": {
+    "size": 25317852,
+    "sha256": "bebdfd8216bce5c81ebfdcdf496e69d00e3a922faa70110fed80d2e4287a07f8",
+    "sha1": "7bf012b3042f4065a0071c08fc45e1af0addeafa",
+    "md5": "56daa605606d14f73f59590db0fb5ad9",
+    "ssdeep": "393216:2qPC+mDx0A5YXA3r8ucDNWhxoKe517BwByloVbZUJ17BPrHudq80kBRjpG5NdNo:xE3rgNIDe517BnlYZ817BidqFkBT",
+    "tlsh": "T197473353FB69941FE47AA53A086901B4D5264F09C243B31B74AC3738777BA880F86BF5",
+    "mime": "application/zip",
+    "magic": "Zip archive data, at least v0.0 to extract, compression method=store",
+    "file_format_legacy": "android",
+    "file_format": "android/apk",
+    "file_extension": "apk",
+    "info": {},
+    "features": [
+      {
+        "name": "av_verdict",
+        "value": "failure",
+        "type": "string",
+        "label": "1"
+      },
+      {
+        "name": "av_verdict",
+        "value": "timeout",
+        "type": "string",
+        "label": "15"
+      },
+      {
+        "name": "av_verdict",
+        "value": "type-unsupported",
+        "type": "string",
+        "label": "10"
+      },
+      {
+        "name": "av_verdict",
+        "value": "undetected",
+        "type": "string",
+        "label": "52"
+      },
+      {
+        "name": "extension",
+        "value": "zip",
+        "type": "string"
+      },
+      {
+        "name": "extensions",
+        "value": "dex",
+        "type": "string",
+        "label": "1"
+      },
+      {
+        "name": "extensions",
+        "value": "jsc",
+        "type": "string",
+        "label": "2"
+      },
+      {
+        "name": "extensions",
+        "value": "mp3",
+        "type": "string",
+        "label": "1"
+      },
+      {
+        "name": "extensions",
+        "value": "png",
+        "type": "string",
+        "label": "29"
+      },
+      {
+        "name": "extensions",
+        "value": "so",
+        "type": "string",
+        "label": "1"
+      },
+      {
+        "name": "file_type",
+        "value": "ZIP",
+        "type": "string"
+      },
+      {
+        "name": "file_type_counts",
+        "value": "DEX",
+        "type": "string",
+        "label": "1"
+      },
+      {
+        "name": "file_type_counts",
+        "value": "ELF",
+        "type": "string",
+        "label": "1"
+      },
+      {
+        "name": "file_type_counts",
+        "value": "JSON",
+        "type": "string",
+        "label": "3"
+      },
+      {
+        "name": "file_type_counts",
+        "value": "PNG",
+        "type": "string",
+        "label": "29"
+      },
+      {
+        "name": "file_type_counts",
+        "value": "unknown",
+        "type": "string",
+        "label": "966"
+      },
+      {
+        "name": "file_type_vt",
+        "value": "android",
+        "type": "string"
+      },
+      {
+        "name": "highest_datetime",
+        "value": "1981-01-01T01:01:02Z",
+        "type": "datetime"
+      },
+      {
+        "name": "lowest_datetime",
+        "value": "1981-01-01T01:01:02Z",
+        "type": "datetime"
+      },
+      {
+        "name": "magic",
+        "value": "Zip archive data, at least v0.0 to extract, compression method=store",
+        "type": "string"
+      },
+      {
+        "name": "mime",
+        "value": "application/zip",
+        "type": "string"
+      },
+      {
+        "name": "num_children",
+        "value": "1830",
+        "type": "integer"
+      },
+      {
+        "name": "rule_match_crowd_sourced",
+        "value": "low",
+        "type": "string",
+        "label": "4"
+      },
+      {
+        "name": "ssdeep",
+        "value": "393216:2qPC+mDx0A5YXA3r8ucDNWhxoKe517BwByloVbZUJ17BPrHudq80kBRjpG5NdNo:xE3rgNIDe517BnlYZ817BidqFkBT",
+        "type": "string"
+      },
+      {
+        "name": "tags",
+        "value": "android",
+        "type": "string"
+      },
+      {
+        "name": "tags",
+        "value": "apk",
+        "type": "string"
+      },
+      {
+        "name": "tags",
+        "value": "checks-cpu-name",
+        "type": "string"
+      },
+      {
+        "name": "tags",
+        "value": "checks-gps",
+        "type": "string"
+      },
+      {
+        "name": "tags",
+        "value": "checks-network-adapters",
+        "type": "string"
+      },
+      {
+        "name": "tags",
+        "value": "contains-elf",
+        "type": "string"
+      },
+      {
+        "name": "tags",
+        "value": "obfuscated",
+        "type": "string"
+      },
+      {
+        "name": "tags",
+        "value": "reflection",
+        "type": "string"
+      },
+      {
+        "name": "tags",
+        "value": "runtime-modules",
+        "type": "string"
+      },
+      {
+        "name": "tags",
+        "value": "telephony",
+        "type": "string"
+      },
+      {
+        "name": "tlsh",
+        "value": "T197473353FB69941FE47AA53A086901B4D5264F09C243B31B74AC3738777BA880F86BF5",
+        "type": "string"
+      },
+      {
+        "name": "type",
+        "value": "APK",
+        "type": "string"
+      },
+      {
+        "name": "uncompressed_size",
+        "value": "32217115",
+        "type": "integer"
+      }
+    ]
+  }
+}

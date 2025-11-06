@@ -1,0 +1,41 @@
+package handlersv3
+
+import (
+	"testing"
+
+	events "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/testdata"
+	bh "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3"
+	"github.com/stretchr/testify/require"
+)
+
+var test_crowdsourcedIdsResults_response = testdata.GetFileReportGjson("data/handlersV3/android_apk.json")
+var test_crowdsourcedIdsResults_not_present_response = testdata.GetFileReportGjson("data/handlersV3/worddoc.json")
+
+/*Test the description is the appropriate length and sample some descriptions.*/
+func TestDescriptionCrowdsourcedIdsResults(t *testing.T) {
+	description := CrowdsourcedIdsResults.Description
+	require.Equal(t, -1, len(description))
+}
+
+/*Test a file known to have a crowdsourcedIdsResults features.*/
+func TestGetCrowdsourcedIdsResults(t *testing.T) {
+	result, err := CrowdsourcedIdsResults.GetFeatures(test_crowdsourcedIdsResults_response)
+	require.Equal(t, -1, len(result))
+	require.Contains(t, result, events.BinaryEntityFeature{Name: "file_type_counts", Value: "PNG", Type: bh.AzFTString, Label: "28"})
+	require.Nil(t, err)
+}
+
+/*Test a file known to have no crowdsourcedIdsResults features.*/
+func TestFailToGetCrowdsourcedIdsResults(t *testing.T) {
+	result, err := CrowdsourcedIdsResults.GetFeatures(test_crowdsourcedIdsResults_not_present_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}
+
+/*CrowdsourcedIdsResults has no info so it should be none.*/
+func TestGetInfoCrowdsourcedIdsResults(t *testing.T) {
+	result, err := CrowdsourcedIdsResults.GetInfo(test_crowdsourcedIdsResults_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}

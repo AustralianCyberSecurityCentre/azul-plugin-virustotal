@@ -1,0 +1,2776 @@
+{
+  "data": {
+    "id": "6b60666d6ace3a450d54fe7b915c46632172ca0d4127d87873f0c111560e66cb",
+    "type": "file",
+    "links": {
+      "self": "https://www.virustotal.com/api/v3/files/6b60666d6ace3a450d54fe7b915c46632172ca0d4127d87873f0c111560e66cb"
+    },
+    "attributes": {
+      "pe_info": {
+        "timestamp": 1688741522,
+        "imphash": "f34d5f2d4577ed6d9ceec516c1f5a744",
+        "machine_type": 332,
+        "entry_point": 3116926,
+        "resource_details": [
+          {
+            "lang": "NEUTRAL",
+            "chi2": 62024.01,
+            "filetype": "unknown",
+            "entropy": 3.0981404781341553,
+            "sha256": "87fdba8abd8673c402b7c0f97b24d8b8dd0cd5e682cad6533735e0cd8fbcdae5",
+            "type": "RT_VERSION"
+          },
+          {
+            "lang": "NEUTRAL",
+            "chi2": 42181.72,
+            "filetype": "unknown",
+            "entropy": 4.997933387756348,
+            "sha256": "2057e25c4220536d2c688830e45085e2b8b51af1f3037668d32b64037c0b5f3b",
+            "type": "RT_MANIFEST"
+          }
+        ],
+        "resource_langs": {
+          "NEUTRAL": 2
+        },
+        "resource_types": {
+          "RT_MANIFEST": 1,
+          "RT_VERSION": 1
+        },
+        "sections": [
+          {
+            "name": ".text",
+            "chi2": 1624250.88,
+            "virtual_address": 8192,
+            "entropy": 7.87,
+            "raw_size": 3108864,
+            "flags": "rx",
+            "virtual_size": 3108740,
+            "md5": "cf1a1904b9e167285b2d0502ec2244e3"
+          },
+          {
+            "name": ".rsrc",
+            "chi2": 60492.75,
+            "virtual_address": 3121152,
+            "entropy": 4.98,
+            "raw_size": 4096,
+            "flags": "r",
+            "virtual_size": 3972,
+            "md5": "42b3951f4ad287e1d8936cf8b58ac2e1"
+          },
+          {
+            "name": ".reloc",
+            "chi2": 128016,
+            "virtual_address": 3129344,
+            "entropy": 0.1,
+            "raw_size": 512,
+            "flags": "r",
+            "virtual_size": 12,
+            "md5": "02743939ad37cedda66f1624b96ad23b"
+          }
+        ],
+        "import_list": [
+          {
+            "library_name": "mscoree.dll",
+            "imported_functions": ["_CorExeMain"]
+          }
+        ]
+      },
+      "sigma_analysis_results": [
+        {
+          "rule_level": "medium",
+          "rule_id": "5be9da0a90b142239a3ff2819edf2283938855da3b4c80d63d8e6db63c2c4fe7",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Hidden Executable In NTFS Alternate Data Stream",
+          "rule_description": "Detects the creation of an ADS (Alternate Data Stream) that contains an executable by looking at a non-empty Imphash",
+          "rule_author": "Florian Roth (Nextron Systems), @0xrawsec",
+          "match_context": [
+            {
+              "values": {
+                "EventID": "15",
+                "Image": "C:\\Users\\george\\Desktop\\Nursultan Alpha (prem).exe",
+                "TargetFilename": "C:\\Users\\george\\AppData\\Roaming\\universalwordpress\\flowerdb.exe",
+                "Hash": "SHA1=FFE1DD532E08911537D01F51F21C1CE181F4AC71,MD5=E2A52F78FC1DC2EB561FD5D77892D642,SHA256=6B60666D6ACE3A450D54FE7B915C46632172CA0D4127D87873F0C111560E66CB,IMPHASH=F34D5F2D4577ED6D9CEEC516C1F5A744"
+              }
+            }
+          ]
+        },
+        {
+          "rule_level": "medium",
+          "rule_id": "683818f24875a562c0b792edd4183d333b6b0b284ca8a88cc47fb2c9ae5b1473",
+          "rule_source": "Sigma Integrated Rule Set (GitHub)",
+          "rule_title": "Unsigned DLL Loaded by Windows Utility",
+          "rule_description": "Detects windows utilities loading an unsigned or untrusted DLL.\nAdversaries often abuse those programs to proxy execution of malicious code.\n",
+          "rule_author": "Swachchhanda Shrawan Poudel",
+          "match_context": [
+            {
+              "values": {
+                "Hashes": "SHA1=BBC2DC7B0308BA1344381713844EA8A3F39B2B09,MD5=4DAD481A042B4117BA6DE62205E53772,SHA256=ADE55BD3F10315FDE4831A2F4DFC3238024CD34E9E0AD057C2AB383AB226AE93,IMPHASH=00000000000000000000000000000000",
+                "Product": "Microsoft\\xae .NET Framework",
+                "OriginalFileName": "mscorlib.dll",
+                "ImageLoaded": "C:\\Windows\\assembly\\NativeImages_v4.0.30319_32\\mscorlib\\75b341f10c9579cbe1059d18f6f3b27b\\mscorlib.ni.dll",
+                "Description": "Microsoft Common Language Runtime Class Library",
+                "SignatureStatus": "Unavailable",
+                "EventID": "7",
+                "FileVersion": "4.8.4110.0 built by: NET48REL1LAST_B",
+                "Signed": "false",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\InstallUtil.exe",
+                "Company": "Microsoft Corporation"
+              }
+            },
+            {
+              "values": {
+                "Product": "Microsoft\\xae .NET Framework",
+                "Hashes": "SHA1=F90278EB428E6B3F1E52D44DC8731872EA56BC79,MD5=DDF01FD27553EE828540F478C7C8A52E,SHA256=A35DC80F9CEC29E3138DD10EEBF03555F76CD5A25B4D5CBB37C2F947E41CA76D,IMPHASH=00000000000000000000000000000000",
+                "SignatureStatus": "Unavailable",
+                "ImageLoaded": "C:\\Windows\\assembly\\NativeImages_v4.0.30319_32\\System\\2bef38851483abae82f1172c1aaa604c\\System.ni.dll",
+                "Description": ".NET Framework",
+                "OriginalFileName": "System.dll",
+                "EventID": "7",
+                "FileVersion": "4.8.4110.0 built by: NET48REL1LAST_B",
+                "Signed": "false",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\InstallUtil.exe",
+                "Company": "Microsoft Corporation"
+              }
+            },
+            {
+              "values": {
+                "Hashes": "SHA1=2E0A8D546F2C02F2CCC2FA41849EF42E4A234EBA,MD5=3A2D023987334329312FD3AA0E6762A4,SHA256=C3991529369280CE194D3DD420AA46E529321B19332B5F492D0701056852B32A,IMPHASH=B6BE9FCB17537880453C0CCB884CFFAF",
+                "SignatureStatus": "Unavailable",
+                "Signed": "false",
+                "ImageLoaded": "C:\\Users\\george\\AppData\\Local\\Temp\\JSAMSIProvider32.dll",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\InstallUtil.exe",
+                "EventID": "7"
+              }
+            },
+            {
+              "values": {
+                "Hashes": "SHA1=9F38E16862681C80613961631EC364468754D296,MD5=7284E0A1398BC6FB7E316CB1090D8BCE,SHA256=76B0303148D2B424D1346FC69E81EADF760A20C0B9A610BC4D6692008B61EF58,IMPHASH=00000000000000000000000000000000",
+                "Product": "Microsoft\\xae .NET Framework",
+                "SignatureStatus": "Unavailable",
+                "ImageLoaded": "C:\\Windows\\assembly\\NativeImages_v4.0.30319_32\\System.Core\\9d04ce1d8a3042f50b54c7f9ccdb4068\\System.Core.ni.dll",
+                "Description": ".NET Framework",
+                "OriginalFileName": "System.Core.dll",
+                "EventID": "7",
+                "FileVersion": "4.8.4110.0 built by: NET48REL1LAST_B",
+                "Signed": "false",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\InstallUtil.exe",
+                "Company": "Microsoft Corporation"
+              }
+            },
+            {
+              "values": {
+                "Hashes": "SHA1=AE20EA8404B11638A9A0DC89414F80BF414CF78E,MD5=6CCA7503637C88FE49FF7D2F6FD83037,SHA256=66D11AE249F1CE070C444031223F919168FEC3257DFA9C2982C7BC2CD9A474CB,IMPHASH=00000000000000000000000000000000",
+                "Product": "Microsoft\\xae .NET Framework",
+                "OriginalFileName": "System.Xml.dll",
+                "ImageLoaded": "C:\\Windows\\assembly\\NativeImages_v4.0.30319_32\\System.Xml\\2e14a1befe55e7d9ad2457ceb5267e36\\System.Xml.ni.dll",
+                "Description": ".NET Framework",
+                "SignatureStatus": "Unavailable",
+                "EventID": "7",
+                "FileVersion": "4.8.3761.0 built by: NET48REL1",
+                "Signed": "false",
+                "Image": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\InstallUtil.exe",
+                "Company": "Microsoft Corporation"
+              }
+            }
+          ]
+        }
+      ],
+      "sandbox_verdicts": {
+        "CAPE Sandbox": {
+          "category": "malicious",
+          "malware_classification": ["RAT", "MALWARE"],
+          "sandbox_name": "CAPE Sandbox",
+          "malware_names": ["OrcusRAT", "HiddenVNC"]
+        },
+        "Zenbox": {
+          "category": "malicious",
+          "malware_classification": [
+            "MALWARE",
+            "STEALER",
+            "TROJAN",
+            "EVADER",
+            "RAT"
+          ],
+          "sandbox_name": "Zenbox",
+          "malware_names": ["Discord Token Stealer", "Orcus", "SugarDump"],
+          "confidence": 100
+        }
+      },
+      "downloadable": true,
+      "vhash": "236036755516a0105bffff2d182dff",
+      "popular_threat_classification": {
+        "popular_threat_category": [
+          {
+            "value": "trojan",
+            "count": 21
+          }
+        ],
+        "suggested_threat_label": "trojan.orcusrat/msil",
+        "popular_threat_name": [
+          {
+            "value": "orcusrat",
+            "count": 12
+          },
+          {
+            "value": "msil",
+            "count": 10
+          },
+          {
+            "value": "orcus",
+            "count": 3
+          }
+        ]
+      },
+      "first_submission_date": 1722226969,
+      "signature_info": {
+        "file version": "1.0.0.0"
+      },
+      "times_submitted": 2,
+      "reputation": 0,
+      "available_tools": ["capa"],
+      "dot_net_assembly": {
+        "entry_point_rva": 178924,
+        "metadata_header_rva": 2780024,
+        "assembly_name": "StubOrcus.exe",
+        "resources_va": 2601008,
+        "assembly_flags": 3,
+        "strongname_va": 0,
+        "external_assemblies": {
+          "": {
+            "version": "851.28605.1.9"
+          },
+          "GetWindowText": {
+            "version": "320.813.27266.1"
+          },
+          "CryptGetHashParam": {
+            "version": "256.693.50266.0"
+          },
+          "SetupDiGetDeviceRegistryProperty": {
+            "version": "320.765.26900.1"
+          },
+          "Bitmap": {
+            "version": "731.28754.1.6"
+          },
+          "GetDesktopWindow": {
+            "version": "256.789.28785.1"
+          },
+          "CreateProcess": {
+            "version": "256.741.11440.0"
+          },
+          "DeleteObject": {
+            "version": "256.717.10556.0"
+          },
+          "GetKeyState": {
+            "version": "256.837.27417.1"
+          }
+        },
+        "entry_point_token": 100663315,
+        "tables_rows_map": "137b21908e7089a089281afb39e2fd3f152d1cf1101b6901231b66013140994001002200002ac6b1004",
+        "external_modules": [
+          "ip",
+          "ostura.fluentcommandlineparser.pdb.zip",
+          "tura.fluentcommandlineparser.pdb.zip",
+          "ra.fluentcommandlineparser.pdb.zip",
+          ".fluentcommandlineparser.pdb.zip"
+        ],
+        "streams": {
+          "#GUID": {
+            "chi2": 240,
+            "md5": "54f922912f19d529d99e878da102dd3c",
+            "entropy": 4,
+            "size": 16
+          },
+          "#Blob": {
+            "chi2": 291097.3125,
+            "md5": "e07bc5cb0a9291c5d09ef84fbe09c0ce",
+            "entropy": 5.76499605178833,
+            "size": 35016
+          },
+          "#US": {
+            "chi2": 4142442.75,
+            "md5": "6ad3c3566c17e60ae092616c7cbcab3b",
+            "entropy": 4.043586730957031,
+            "size": 64528
+          },
+          "#~": {
+            "chi2": 4485978.5,
+            "md5": "1c157ca8fa9ffdda74721c0d3a6c03f7",
+            "entropy": 5.55222225189209,
+            "size": 137808
+          },
+          "#Strings": {
+            "chi2": 849254.75,
+            "md5": "94a0e555fbf90b217fa12db0236cf011",
+            "entropy": 5.210209846496582,
+            "size": 99336
+          }
+        },
+        "tables_present": 32,
+        "assembly_flags_txt": "COMIMAGE_FLAGS_ILONLY, COMIMAGE_FLAGS_32BITREQUIRED",
+        "clr_version": "v4.0.30319",
+        "assembly_data": {
+          "majorversion": 2,
+          "minorversion": 320,
+          "hashalgid": 93377,
+          "buildnumber": 689,
+          "flags": 131072,
+          "revisionnumber": 50176
+        },
+        "tables_present_map": "1f093fb7ff57",
+        "manifest_resource": [
+          "AssocQueryString",
+          "BitBlt",
+          "ChangeDisplaySettingsEx",
+          "EnumChildWindows",
+          "GetDisplayConfigBufferSizes",
+          "GetWindowText",
+          "OpenDesktop",
+          "RegisterWindowMessage",
+          "UnhookWinEvent"
+        ],
+        "clr_meta_version": "1.1",
+        "tables_rows_map_log": "4aabbb9caa8457a6789a879954779695",
+        "unmanaged_methods": {
+          "ip": [""]
+        },
+        "type_definition_list": [
+          {
+            "namespace": "System.Windows.Forms",
+            "type_definitions": [
+              "Form",
+              "Button",
+              "Label",
+              "Control",
+              "DialogResult",
+              "ButtonBase",
+              "IButtonControl",
+              "ContainerControl",
+              "AutoScaleMode",
+              "FormBorderStyle",
+              "FormStartPosition",
+              "MethodInvoker",
+              "MessageBox",
+              "Application",
+              "UnhandledExceptionMode",
+              "ApplicationContext",
+              "NotifyIcon",
+              "Timer",
+              "Cursor",
+              "PaintEventArgs",
+              "Screen",
+              "Padding",
+              "IDataObject",
+              "Clipboard",
+              "Message",
+              "KeyEventHandler",
+              "KeyEventArgs",
+              "Keys",
+              "SystemInformation",
+              "ToolTipIcon",
+              "RichTextBox",
+              "TextBox",
+              "AnchorStyles",
+              "TextBoxBase",
+              "MessageBoxButtons",
+              "MessageBoxIcon",
+              "BootMode",
+              "DataFormats",
+              "DataObject"
+            ]
+          },
+          {
+            "namespace": "System.ComponentModel",
+            "type_definitions": [
+              "IContainer",
+              "ComponentResourceManager",
+              "CancelEventHandler",
+              "CancelEventArgs",
+              "AsyncOperation",
+              "AsyncOperationManager",
+              "Component",
+              "EditorBrowsableAttribute",
+              "EditorBrowsableState",
+              "Win32Exception",
+              "AsyncCompletedEventHandler",
+              "ProgressChangedEventArgs",
+              "AsyncCompletedEventArgs"
+            ]
+          },
+          {
+            "namespace": "System",
+            "type_definitions": [
+              "EventArgs",
+              "IDisposable",
+              "Type",
+              "RuntimeTypeHandle",
+              "EventHandler",
+              "Delegate",
+              "Console",
+              "Object",
+              "Exception",
+              "Environment",
+              "TimeSpan",
+              "AppDomain",
+              "UnhandledExceptionEventHandler",
+              "String",
+              "StringComparison",
+              "Random",
+              "STAThreadAttribute",
+              "UnhandledExceptionEventArgs",
+              "BitConverter",
+              "Int32",
+              "Int16",
+              "Byte",
+              "StringSplitOptions",
+              "Convert",
+              "IntPtr",
+              "Buffer",
+              "MulticastDelegate",
+              "IAsyncResult",
+              "AsyncCallback",
+              "ValueType",
+              "ResolveEventArgs",
+              "Guid",
+              "Uri",
+              "UriBuilder",
+              "Func`2",
+              "Math",
+              "DateTime",
+              "UnauthorizedAccessException",
+              "EventHandler`1",
+              "Array",
+              "RuntimeFieldHandle",
+              "Activator",
+              "ArgumentOutOfRangeException",
+              "Nullable`1",
+              "Enum",
+              "FlagsAttribute",
+              "IFormatProvider",
+              "ObsoleteAttribute",
+              "ArgumentException",
+              "PlatformID",
+              "OperatingSystem",
+              "Double",
+              "Func`1",
+              "ObjectDisposedException",
+              "Action",
+              "GC",
+              "Version",
+              "UInt32",
+              "Func`3",
+              "Char",
+              "Boolean",
+              "ICloneable",
+              "RuntimeMethodHandle",
+              "NotSupportedException",
+              "Action`1",
+              "Int64",
+              "UInt16",
+              "InvalidOperationException",
+              "Decimal",
+              "UInt64",
+              "UIntPtr",
+              "NotImplementedException",
+              "PlatformNotSupportedException",
+              "DateTimeKind",
+              "SByte",
+              "IndexOutOfRangeException",
+              "Lazy`1",
+              "ResolveEventHandler"
+            ]
+          },
+          {
+            "namespace": "System.Drawing",
+            "type_definitions": [
+              "Point",
+              "Size",
+              "Font",
+              "FontStyle",
+              "GraphicsUnit",
+              "Color",
+              "SizeF",
+              "Icon",
+              "Brush",
+              "Rectangle",
+              "Brushes",
+              "Graphics",
+              "Bitmap",
+              "Image",
+              "CopyPixelOperation",
+              "SystemIcons",
+              "RotateFlipType"
+            ]
+          },
+          {
+            "namespace": "uncategorized",
+            "type_definitions": [
+              "ControlCollection",
+              "Enumerator",
+              "SpecialFolder",
+              "LockScreenBackground",
+              "ManagementObjectEnumerator",
+              "SHGFI",
+              "CsvRecord",
+              "CsvRecords",
+              "Enumerator",
+              "Overwrite",
+              "ConfirmOverwriteDelegate",
+              "DirectoryTypeEnum",
+              "DtpFunction",
+              "DtpProcedure",
+              "DebuggingModes"
+            ]
+          },
+          {
+            "namespace": "System.Resources",
+            "type_definitions": ["ResourceManager"]
+          },
+          {
+            "namespace": "Orcus.Shared.Settings",
+            "type_definitions": [
+              "InstallBuilderProperty",
+              "RespawnTaskBuilderProperty",
+              "MutexBuilderProperty",
+              "InstallationLocationBuilderProperty",
+              "AutostartBuilderProperty",
+              "DisableInstallationPromptBuilderProperty",
+              "RequireAdministratorPrivilegesInstallerBuilderProperty",
+              "ServiceBuilderProperty",
+              "StartupMethod",
+              "KeyloggerBuilderProperty",
+              "WatchdogBuilderProperty",
+              "ChangeCreationDateBuilderProperty",
+              "SetRunProgramAsAdminFlagBuilderProperty",
+              "HideFileBuilderProperty",
+              "WatchdogLocation",
+              "ConnectionBuilderProperty",
+              "ReconnectDelayProperty",
+              "ProxyBuilderProperty",
+              "ProxyOption",
+              "ClientTagBuilderProperty",
+              "DataFolderBuilderProperty"
+            ]
+          },
+          {
+            "namespace": "System.Runtime.CompilerServices",
+            "type_definitions": [
+              "CompilerGeneratedAttribute",
+              "RuntimeHelpers",
+              "ExtensionAttribute",
+              "IteratorStateMachineAttribute",
+              "CompilationRelaxationsAttribute",
+              "RuntimeCompatibilityAttribute"
+            ]
+          },
+          {
+            "namespace": "System.Threading",
+            "type_definitions": [
+              "Mutex",
+              "Thread",
+              "WaitHandle",
+              "ThreadExceptionEventHandler",
+              "ThreadStart",
+              "ThreadExceptionEventArgs",
+              "Monitor",
+              "Timer",
+              "TimerCallback",
+              "WaitCallback",
+              "ManualResetEvent",
+              "EventWaitHandle",
+              "ThreadPool",
+              "Interlocked",
+              "AutoResetEvent",
+              "ApartmentState",
+              "SendOrPostCallback"
+            ]
+          },
+          {
+            "namespace": "System.Collections.Generic",
+            "type_definitions": [
+              "List`1",
+              "IEnumerable`1",
+              "IEnumerator`1",
+              "Dictionary`2",
+              "KeyValuePair`2",
+              "IDictionary`2",
+              "IList`1",
+              "ICollection`1",
+              "IEqualityComparer`1"
+            ]
+          },
+          {
+            "namespace": "Orcus.Plugins",
+            "type_definitions": [
+              "ClientController",
+              "ILoadable",
+              "IClientStartup",
+              "IFactoryClientCommand",
+              "PluginFactory",
+              "IClientOperator",
+              "IClientInfo",
+              "IServerConnection",
+              "IServicePipe",
+              "Command",
+              "PluginVersion",
+              "IToolBase",
+              "IPathInformation",
+              "IDatabaseConnection",
+              "IConnectionInitializer",
+              "DataMode",
+              "IConnectionInfo",
+              "PackageCompression",
+              "DisallowMultipleThreadsAttribute",
+              "IConnection",
+              "FactoryCommand"
+            ]
+          },
+          {
+            "namespace": "System.IO",
+            "type_definitions": [
+              "FileInfo",
+              "FileStream",
+              "StreamWriter",
+              "Path",
+              "FileSystemInfo",
+              "File",
+              "FileMode",
+              "FileAccess",
+              "Stream",
+              "TextWriter",
+              "FileAttributes",
+              "DirectoryInfo",
+              "FileShare",
+              "MemoryStream",
+              "Directory",
+              "BinaryWriter",
+              "SearchOption",
+              "BinaryReader",
+              "DriveInfo",
+              "StringReader",
+              "TextReader",
+              "StreamReader",
+              "FileNotFoundException",
+              "SeekOrigin",
+              "DriveType",
+              "DirectoryInfoEx",
+              "FileSystemInfoEx",
+              "FileInfoEx"
+            ]
+          },
+          {
+            "namespace": "System.Diagnostics",
+            "type_definitions": [
+              "ProcessStartInfo",
+              "Process",
+              "ProcessModule",
+              "ConditionalAttribute",
+              "ProcessWindowStyle",
+              "ProcessThread",
+              "ProcessThreadCollection",
+              "ThreadState",
+              "ThreadWaitReason",
+              "PerformanceCounter",
+              "DebuggerNonUserCodeAttribute",
+              "DebuggerHiddenAttribute",
+              "ProcessPriorityClass",
+              "FileVersionInfo",
+              "PerformanceCounterCategory",
+              "EventLog",
+              "EventLogEntry",
+              "EventLogEntryCollection",
+              "EventLogEntryType",
+              "DataReceivedEventHandler",
+              "DataReceivedEventArgs",
+              "Stopwatch",
+              "DebuggableAttribute"
+            ]
+          },
+          {
+            "namespace": "System.Linq",
+            "type_definitions": [
+              "Enumerable",
+              "IGrouping`2",
+              "IOrderedEnumerable`1"
+            ]
+          },
+          {
+            "namespace": "System.Globalization",
+            "type_definitions": [
+              "CultureInfo",
+              "RegionInfo",
+              "TextInfo",
+              "NumberStyles"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Client",
+            "type_definitions": [
+              "ClientConfig",
+              "PluginResourceInfo",
+              "PluginSetting",
+              "ResourceType",
+              "ClientSetting"
+            ]
+          },
+          {
+            "namespace": "System.Runtime.InteropServices",
+            "type_definitions": [
+              "RuntimeEnvironment",
+              "Marshal",
+              "HandleRef",
+              "GuidAttribute",
+              "InterfaceTypeAttribute",
+              "ComInterfaceType",
+              "GCHandle",
+              "GCHandleType",
+              "ComVisibleAttribute"
+            ]
+          },
+          {
+            "namespace": "System.Reflection",
+            "type_definitions": [
+              "Assembly",
+              "MethodInfo",
+              "MethodBase",
+              "MemberInfo",
+              "ParameterInfo",
+              "AssemblyName",
+              "ConstructorInfo",
+              "ReflectionTypeLoadException",
+              "PropertyInfo",
+              "BindingFlags",
+              "Binder",
+              "ParameterModifier",
+              "FieldInfo",
+              "DefaultMemberAttribute",
+              "AssemblyNameFlags",
+              "AssemblyTitleAttribute",
+              "AssemblyDescriptionAttribute",
+              "AssemblyConfigurationAttribute",
+              "AssemblyCompanyAttribute",
+              "AssemblyProductAttribute",
+              "AssemblyCopyrightAttribute",
+              "AssemblyTrademarkAttribute",
+              "AssemblyKeyFileAttribute",
+              "AssemblyFileVersionAttribute"
+            ]
+          },
+          {
+            "namespace": "Microsoft.VisualBasic",
+            "type_definitions": ["Strings", "VBCodeProvider"]
+          },
+          {
+            "namespace": "Orcus.Shared.NetSerializer",
+            "type_definitions": ["Serializer"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.ExceptionHandling",
+            "type_definitions": ["ExceptionInfo"]
+          },
+          {
+            "namespace": "System.Net.Sockets",
+            "type_definitions": [
+              "TcpClient",
+              "SocketException",
+              "NetworkStream",
+              "AddressFamily",
+              "Socket",
+              "SocketType",
+              "ProtocolType",
+              "SocketFlags"
+            ]
+          },
+          {
+            "namespace": "Orcus.StaticCommands.System",
+            "type_definitions": [
+              "ChangeWallpaperCommand",
+              "SystemLockCommand",
+              "ChangeComputerStateCommand",
+              "DownloadAndExecuteCommand",
+              "DownloadAndExecuteFromUrlCommand",
+              "OpenWebsiteCommand",
+              "ExecuteProcessCommand"
+            ]
+          },
+          {
+            "namespace": "Orcus.Plugins.StaticCommands",
+            "type_definitions": [
+              "CommandParameter",
+              "StaticCommand",
+              "IFeedbackFactory",
+              "ActiveStaticCommand",
+              "FeedbackFactoryExtensions",
+              "MessageType"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.FunActions",
+            "type_definitions": [
+              "DesktopWallpaperStyle",
+              "FunActionsCommunication",
+              "RotateDegrees"
+            ]
+          },
+          {
+            "namespace": "Orcus.StaticCommands.Client",
+            "type_definitions": [
+              "RequestKeyLogCommand",
+              "PasswordRecoveryCommand",
+              "UninstallCommand",
+              "UpdateCommand",
+              "UpdateFromUrlCommand",
+              "KillCommand",
+              "MakeAdminCommand"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.Password",
+            "type_definitions": [
+              "PasswordData",
+              "RecoveredCookie",
+              "RecoveredPassword",
+              "PasswordType"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Connection",
+            "type_definitions": [
+              "ServerPackageType",
+              "PortableLibrary",
+              "PortableLibraryNameAttribute",
+              "PrimitiveProtocol",
+              "KeyDatabase",
+              "BasicComputerInformation",
+              "OSType",
+              "PluginInfo",
+              "LoadablePlugin",
+              "ServerPackage",
+              "RedirectPackage",
+              "PortableLibraryInfo"
+            ]
+          },
+          {
+            "namespace": "System.Security.Cryptography",
+            "type_definitions": [
+              "SHA256Managed",
+              "HashAlgorithm",
+              "MD5CryptoServiceProvider",
+              "ProtectedData",
+              "DataProtectionScope",
+              "AesCryptoServiceProvider",
+              "ICryptoTransform",
+              "CryptoStream",
+              "SymmetricAlgorithm",
+              "CryptoStreamMode",
+              "RijndaelManaged",
+              "CipherMode",
+              "PaddingMode",
+              "HMACSHA1",
+              "SHA1CryptoServiceProvider",
+              "TripleDESCryptoServiceProvider",
+              "SHA256CryptoServiceProvider",
+              "SHA512CryptoServiceProvider"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Utilities",
+            "type_definitions": [
+              "FileExtensions",
+              "StringExtensions",
+              "AppConfigWriter",
+              "StreamExtensions",
+              "EnumHelper",
+              "NetworkUtilities",
+              "SessionTraversalUtilitiesForNAT",
+              "CoreMemoryApi"
+            ]
+          },
+          {
+            "namespace": "System.Net",
+            "type_definitions": [
+              "WebClient",
+              "IPAddress",
+              "Dns",
+              "IPHostEntry",
+              "IWebProxy",
+              "WebException",
+              "IPEndPoint",
+              "EndPoint",
+              "WebHeaderCollection",
+              "DownloadProgressChangedEventHandler",
+              "DownloadProgressChangedEventArgs"
+            ]
+          },
+          {
+            "namespace": "System.Drawing.Drawing2D",
+            "type_definitions": [
+              "SmoothingMode",
+              "CompositingQuality",
+              "CompositingMode",
+              "InterpolationMode",
+              "PixelOffsetMode",
+              "WrapMode"
+            ]
+          },
+          {
+            "namespace": "System.Drawing.Text",
+            "type_definitions": ["TextRenderingHint"]
+          },
+          {
+            "namespace": "System.ServiceModel",
+            "type_definitions": [
+              "ChannelFactory`1",
+              "NetNamedPipeBinding",
+              "EndpointAddress"
+            ]
+          },
+          {
+            "namespace": "System.ServiceModel.Channels",
+            "type_definitions": ["Binding"]
+          },
+          {
+            "namespace": "System.ServiceProcess",
+            "type_definitions": ["ServiceController", "ServiceControllerStatus"]
+          },
+          {
+            "namespace": "Microsoft.Win32",
+            "type_definitions": [
+              "RegistryKey",
+              "Registry",
+              "RegistryValueKind",
+              "SessionEndingEventHandler",
+              "SystemEvents",
+              "SessionEndingEventArgs",
+              "RegistryKeyPermissionCheck",
+              "RegistryValueOptions",
+              "RegistryHive"
+            ]
+          },
+          {
+            "namespace": "Microsoft.Win32.TaskScheduler",
+            "type_definitions": [
+              "TaskService",
+              "Task",
+              "TaskDefinition",
+              "TaskFolder",
+              "TaskCollection",
+              "TaskPrincipal",
+              "TaskRunLevel",
+              "TriggerCollection",
+              "LogonTrigger",
+              "Trigger",
+              "ActionCollection",
+              "ExecAction",
+              "Action",
+              "TaskActionType",
+              "BootTrigger",
+              "RegistrationTrigger",
+              "RepetitionPattern"
+            ]
+          },
+          {
+            "namespace": "System.Collections",
+            "type_definitions": [
+              "IEnumerator",
+              "ReadOnlyCollectionBase",
+              "IEnumerable",
+              "ArrayList",
+              "IList",
+              "IComparer",
+              "ICollection"
+            ]
+          },
+          {
+            "namespace": "System.Security",
+            "type_definitions": [
+              "SecurityException",
+              "SuppressUnmanagedCodeSecurityAttribute",
+              "UnverifiableCodeAttribute"
+            ]
+          },
+          {
+            "namespace": "Orcus.Plugins.ClientPlugin",
+            "type_definitions": [
+              "ClientControllerProvideEditablePropertyGrid",
+              "ClientControllerBuilderSettings"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Core",
+            "type_definitions": [
+              "IBuilderProperty",
+              "PropertyNameValue",
+              "BuilderPropertyHelper",
+              "FrameworkVersion",
+              "IpAddressInfo"
+            ]
+          },
+          {
+            "namespace": "Orcus.Plugins.PropertyGrid",
+            "type_definitions": ["IProperty", "PropertyGridExtensions"]
+          },
+          {
+            "namespace": "Orcus.Plugins.Builder",
+            "type_definitions": ["IBuilderPropertyEntry"]
+          },
+          {
+            "namespace": "System.IO.Compression",
+            "type_definitions": [
+              "GZipStream",
+              "CompressionMode",
+              "DeflateStream"
+            ]
+          },
+          {
+            "namespace": "System.Text",
+            "type_definitions": ["StringBuilder", "Encoding"]
+          },
+          {
+            "namespace": "System.Drawing.Imaging",
+            "type_definitions": [
+              "ImageAttributes",
+              "BitmapData",
+              "ImageLockMode",
+              "PixelFormat",
+              "ImageFormat"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.Registry",
+            "type_definitions": [
+              "RegistryHive",
+              "RegistrySubKey",
+              "RegistryValue",
+              "RegistryCreateValuePackage",
+              "RegistryCommunication",
+              "RegistryValueBinary",
+              "RegistryValueMultiString",
+              "RegistrySubKeysPackage",
+              "RegistrySubKeyAction",
+              "RegistryValueString",
+              "RegistryValueExpandString",
+              "RegistryValueDWord",
+              "RegistryValueQWord",
+              "RegistryValueUnknown",
+              "RegistryValuesPackage",
+              "RegistryValueKind"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.DynamicCommands",
+            "type_definitions": [
+              "PotentialCommand",
+              "StopEvent",
+              "ActivityType",
+              "ExecutionEvent"
+            ]
+          },
+          {
+            "namespace": "System.DirectoryServices.AccountManagement",
+            "type_definitions": ["UserPrincipal", "AuthenticablePrincipal"]
+          },
+          {
+            "namespace": "System.Management",
+            "type_definitions": [
+              "ManagementObjectSearcher",
+              "ManagementObjectCollection",
+              "ManagementObject",
+              "ManagementBaseObject",
+              "ManagementDateTimeConverter",
+              "ManagementClass",
+              "ObjectGetOptions",
+              "InvokeMethodOptions"
+            ]
+          },
+          {
+            "namespace": "System.Xml.Serialization",
+            "type_definitions": ["XmlSerializer"]
+          },
+          {
+            "namespace": "Orcus.StaticCommands.Interaction",
+            "type_definitions": [
+              "ShowMessageBoxCommand",
+              "ShowBalloonTooltipCommand",
+              "OpenTextInNotepadCommand"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.DynamicCommands.ExecutionEvents",
+            "type_definitions": ["IExecutionEvent"]
+          },
+          {
+            "namespace": "System.Timers",
+            "type_definitions": [
+              "Timer",
+              "ElapsedEventHandler",
+              "ElapsedEventArgs"
+            ]
+          },
+          {
+            "namespace": "System.CodeDom.Compiler",
+            "type_definitions": [
+              "GeneratedCodeAttribute",
+              "CompilerParameters",
+              "CodeDomProvider",
+              "CompilerResults",
+              "CompilerErrorCollection",
+              "CompilerError"
+            ]
+          },
+          {
+            "namespace": "System.Configuration",
+            "type_definitions": ["ApplicationSettingsBase", "SettingsBase"]
+          },
+          {
+            "namespace": "System.Runtime.ConstrainedExecution",
+            "type_definitions": [
+              "ReliabilityContractAttribute",
+              "Consistency",
+              "Cer"
+            ]
+          },
+          {
+            "namespace": "ShellDll",
+            "type_definitions": [
+              "ShellAPI",
+              "KnownFolderIds",
+              "KnownFolder",
+              "KnownFolderDefinition",
+              "KnownFolderCategory"
+            ]
+          },
+          {
+            "namespace": "System.Text.RegularExpressions",
+            "type_definitions": [
+              "Regex",
+              "Match",
+              "GroupCollection",
+              "Group",
+              "Capture",
+              "MatchCollection",
+              "RegexOptions"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Communication",
+            "type_definitions": [
+              "ResponseType",
+              "FromClientPackage",
+              "FromAdministrationPackage"
+            ]
+          },
+          {
+            "namespace": "System.Net.Security",
+            "type_definitions": [
+              "SslStream",
+              "RemoteCertificateValidationCallback",
+              "SslPolicyErrors"
+            ]
+          },
+          {
+            "namespace": "Starksoft.Aspen.Proxy",
+            "type_definitions": [
+              "IProxyClient",
+              "Socks4ProxyClient",
+              "Socks4aProxyClient",
+              "Socks5ProxyClient"
+            ]
+          },
+          {
+            "namespace": "System.Security.Authentication",
+            "type_definitions": ["AuthenticationException"]
+          },
+          {
+            "namespace": "System.Security.Cryptography.X509Certificates",
+            "type_definitions": ["X509Certificate", "X509Chain"]
+          },
+          {
+            "namespace": "System.Net.NetworkInformation",
+            "type_definitions": [
+              "NetworkInterface",
+              "PhysicalAddress",
+              "IPInterfaceProperties",
+              "NetworkInterfaceType",
+              "UnicastIPAddressInformation",
+              "UnicastIPAddressInformationCollection",
+              "IPAddressInformation",
+              "OperationalStatus"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Compression",
+            "type_definitions": ["LZF"]
+          },
+          {
+            "namespace": "Orcus.Shared.Utilities.Compression",
+            "type_definitions": [
+              "JpgCompression",
+              "UnsafeStreamCodec",
+              "UnsafeStreamCodecParameters",
+              "RemoteDesktopDataInfo",
+              "CursorStreamCodec",
+              "IImageCompression",
+              "IStreamCodec",
+              "NoCompression",
+              "ICursorStreamCodec",
+              "CompressionMode",
+              "DecompressionMode",
+              "MovedRegion"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Encryption",
+            "type_definitions": ["AES"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.ClipboardManager",
+            "type_definitions": [
+              "ClipboardFormat",
+              "ClipboardManagerCommunication",
+              "ClipboardData",
+              "StringListClipboardData",
+              "StringClipboardData",
+              "StringListEntry",
+              "ClipboardInfo",
+              "ImageClipboardData"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Csv",
+            "type_definitions": ["CsvFile"]
+          },
+          {
+            "namespace": "System.Security.Principal",
+            "type_definitions": [
+              "WindowsIdentity",
+              "WindowsPrincipal",
+              "WindowsBuiltInRole",
+              "SecurityIdentifier",
+              "NTAccount",
+              "IdentityReference"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.Keylogger",
+            "type_definitions": [
+              "KeyLog",
+              "SpecialKeyType",
+              "KeyLogEntry",
+              "SpecialKey",
+              "StandardKey",
+              "Keys",
+              "NormalText",
+              "WindowChanged"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.RemoteDesktop",
+            "type_definitions": [
+              "RemoteDesktopMouseAction",
+              "RemoteDesktopKeyboardAction",
+              "CaptureType",
+              "ImageCompressionType",
+              "RemoteDesktopInformation",
+              "RemoteDesktopCommunication",
+              "ScreenInfo",
+              "RemoteDesktopAction",
+              "ScreenResponseFlags"
+            ]
+          },
+          {
+            "namespace": "System.Collections.Specialized",
+            "type_definitions": ["StringCollection", "NameValueCollection"]
+          },
+          {
+            "namespace": "System.Linq.Expressions",
+            "type_definitions": [
+              "Expression`1",
+              "LambdaExpression",
+              "Expression",
+              "MemberExpression",
+              "ParameterExpression"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.WindowsCustomizer",
+            "type_definitions": [
+              "WindowsCustomizerCommunication",
+              "CurrentSettings"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.WindowManager",
+            "type_definitions": [
+              "WindowInformation",
+              "WindowManagerCommunication"
+            ]
+          },
+          {
+            "namespace": "AForge.Video.DirectShow",
+            "type_definitions": [
+              "VideoCaptureDevice",
+              "VideoCapabilities",
+              "FilterCategory",
+              "FilterInfoCollection",
+              "FilterInfo"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.Webcam",
+            "type_definitions": [
+              "WebcamSettings",
+              "WebcamCommunication",
+              "WebcamInfo",
+              "WebcamResolution"
+            ]
+          },
+          {
+            "namespace": "AForge.Video",
+            "type_definitions": ["NewFrameEventHandler", "NewFrameEventArgs"]
+          },
+          {
+            "namespace": "Orcus.Shared.Data",
+            "type_definitions": [
+              "IDataInfo",
+              "DataInfoAvailableEventArgs",
+              "WriterCall"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.UserInteraction",
+            "type_definitions": [
+              "TextToSpeechPackage",
+              "UserInteractionWelcomePackage",
+              "UserInteractionCommunication",
+              "SpeechVoice",
+              "SpeechAge",
+              "SpeechGender"
+            ]
+          },
+          {
+            "namespace": "System.Speech.Synthesis",
+            "type_definitions": [
+              "SpeechSynthesizer",
+              "InstalledVoice",
+              "VoiceInfo",
+              "VoiceAge",
+              "VoiceGender"
+            ]
+          },
+          {
+            "namespace": "System.Collections.ObjectModel",
+            "type_definitions": ["ReadOnlyCollection`1"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.UninstallPrograms",
+            "type_definitions": [
+              "UninstallableProgram",
+              "UninstallProgramEntryLocation",
+              "UninstallProgramsCommunication"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.TextChat",
+            "type_definitions": ["ChatSettings", "TextChatCommunication"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.TaskManager",
+            "type_definitions": [
+              "ProcessInfo",
+              "ProcessListChangelog",
+              "TaskManagerCommunication",
+              "ProcessStatus"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.SystemRestore",
+            "type_definitions": [
+              "RestoreType",
+              "EventType",
+              "SystemRestoreCommunication",
+              "SystemRestorePointInfo"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.StartupManager",
+            "type_definitions": [
+              "AutostartProgramInfo",
+              "AutostartLocation",
+              "EntryStatus",
+              "StartupManagerCommunication"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.MessageBox",
+            "type_definitions": [
+              "MessageBoxInformation",
+              "MessageBoxButtons",
+              "SystemIcon"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.LivePerformance",
+            "type_definitions": [
+              "LiveData",
+              "EthernetAdapterData",
+              "StaticPerformanceData",
+              "LivePerformanceCommunication",
+              "EthernetAdapter"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.LiveKeylogger",
+            "type_definitions": ["LiveKeyloggerCommunication"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.HVNC",
+            "type_definitions": ["WindowInformation"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.HiddenApplication",
+            "type_definitions": [
+              "HiddenApplicationCommunication",
+              "WindowPackage",
+              "ApplicationWindow"
+            ]
+          },
+          {
+            "namespace": "Microsoft.CSharp",
+            "type_definitions": ["CSharpCodeProvider"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.EventLog",
+            "type_definitions": [
+              "EventLogEntry",
+              "EventLogType",
+              "EventLogEntryType"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.Console",
+            "type_definitions": ["ConsoleCommunication"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.ComputerInformation",
+            "type_definitions": [
+              "ComputerInformation",
+              "OperatingSystemInformation",
+              "HardwareInformation",
+              "NetworkInformation",
+              "BiosInformation",
+              "SoftwareInformation",
+              "LogicalDrive",
+              "ProcessorInfo",
+              "Screen",
+              "VideoCardInfo",
+              "IpAddress"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.Code",
+            "type_definitions": ["CodeCommunication"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.Audio",
+            "type_definitions": [
+              "SoundOutDevice",
+              "AudioCommunication",
+              "PlayAudioInformation"
+            ]
+          },
+          {
+            "namespace": "CSCore.CoreAudioAPI",
+            "type_definitions": [
+              "MMDeviceEnumerator",
+              "MMDevice",
+              "MMDeviceCollection",
+              "DataFlow",
+              "DeviceState",
+              "Role",
+              "AudioEndpointVolume",
+              "AudioEndpointVolumeChannel"
+            ]
+          },
+          {
+            "namespace": "CSCore.SoundOut",
+            "type_definitions": [
+              "WasapiOut",
+              "DirectSoundOut",
+              "ISoundOut",
+              "PlaybackStoppedEventArgs"
+            ]
+          },
+          {
+            "namespace": "CSCore.DirectSound",
+            "type_definitions": [
+              "DirectSoundDeviceEnumerator",
+              "DirectSoundDevice"
+            ]
+          },
+          {
+            "namespace": "CSCore.Codecs.MP3",
+            "type_definitions": ["DmoMp3Decoder"]
+          },
+          {
+            "namespace": "CSCore",
+            "type_definitions": [
+              "IWaveSource",
+              "WaveFormat",
+              "FluentExtensions",
+              "ISampleSource",
+              "IReadableAudioSource`1"
+            ]
+          },
+          {
+            "namespace": "System.Web.Script.Serialization",
+            "type_definitions": ["JavaScriptSerializer"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.AudioVolumeControl",
+            "type_definitions": [
+              "AudioDevice",
+              "AudioVolumeControlCommunication",
+              "AudioEndpointType",
+              "AudioChannel"
+            ]
+          },
+          {
+            "namespace": "CSCore.Win32",
+            "type_definitions": ["ComObject"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.ActiveConnections",
+            "type_definitions": [
+              "ActiveConnection",
+              "ConnectionState",
+              "ProtocolName"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.WindowsDrivers",
+            "type_definitions": [
+              "WindowsDriversFile",
+              "WindowsDriversCommunication"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.VoiceChat",
+            "type_definitions": [
+              "VoiceChatCommunication",
+              "VoiceChatBeginCaptureInfo",
+              "CaptureDeviceInfo",
+              "VoiceChatDataInfo"
+            ]
+          },
+          {
+            "namespace": "CSCore.Streams",
+            "type_definitions": [
+              "WriteableBufferingSource",
+              "SingleBlockReadEventArgs",
+              "SingleBlockNotificationStream",
+              "SoundInSource"
+            ]
+          },
+          {
+            "namespace": "OpusWrapper",
+            "type_definitions": ["OpusDecoder", "OpusEncoder"]
+          },
+          {
+            "namespace": "CSCore.SoundIn",
+            "type_definitions": [
+              "WasapiCapture",
+              "ISoundIn",
+              "DataAvailableEventArgs"
+            ]
+          },
+          {
+            "namespace": "OpusWrapper.Native",
+            "type_definitions": ["Application"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.ReverseProxy",
+            "type_definitions": [
+              "ReverseProxyConnect",
+              "ReverseProxyCommunication",
+              "ReverseProxyStatusUpdate"
+            ]
+          },
+          {
+            "namespace": "TurboJpegWrapper",
+            "type_definitions": [
+              "TJCompressor",
+              "TJDecompressor",
+              "TJSubsamplingOptions",
+              "TJFlags",
+              "TJPixelFormats"
+            ]
+          },
+          {
+            "namespace": "SharpDX.Direct3D9",
+            "type_definitions": [
+              "Device",
+              "DisplayMode",
+              "Surface",
+              "Direct3D",
+              "PresentParameters",
+              "SwapEffect",
+              "DeviceType",
+              "CreateFlags",
+              "Format",
+              "Pool",
+              "LockFlags"
+            ]
+          },
+          {
+            "namespace": "SharpDX",
+            "type_definitions": [
+              "DisposeBase",
+              "DataRectangle",
+              "SharpDXException",
+              "Result",
+              "ComObject",
+              "ResultDescriptor",
+              "DataBox",
+              "Utilities"
+            ]
+          },
+          {
+            "namespace": "SharpDX.Mathematics.Interop",
+            "type_definitions": ["RawBool", "RawRectangle", "RawPoint"]
+          },
+          {
+            "namespace": "SharpDX.DXGI",
+            "type_definitions": [
+              "OutputDuplication",
+              "OutputDescription",
+              "OutputDuplicateFrameInformation",
+              "Factory1",
+              "Adapter1",
+              "Adapter",
+              "Output",
+              "Output1",
+              "Format",
+              "SampleDescription",
+              "ResultCode",
+              "OutputDuplicateMoveRectangle",
+              "Resource"
+            ]
+          },
+          {
+            "namespace": "SharpDX.Direct3D11",
+            "type_definitions": [
+              "Device",
+              "Texture2DDescription",
+              "Texture2D",
+              "CpuAccessFlags",
+              "BindFlags",
+              "ResourceOptionFlags",
+              "ResourceUsage",
+              "DeviceContext",
+              "Resource",
+              "MapMode",
+              "MapFlags"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.DropAndExecute",
+            "type_definitions": [
+              "WindowUpdate",
+              "DropAndExecuteCommunication",
+              "ExecutionMode",
+              "FileTransferInfo",
+              "ExecuteOptions"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.DeviceManager",
+            "type_definitions": [
+              "DeviceManagerCommunication",
+              "DeviceInfo",
+              "DeviceCategory",
+              "DeviceCategoryGuidAttribute"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.DataTransferProtocol",
+            "type_definitions": [
+              "DtpProcessor",
+              "DataTransferProtocolMethodAttribute",
+              "DtpParameters"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.ConnectionInitializer",
+            "type_definitions": [
+              "RemoteConnectionInformation",
+              "UdpConnectionInformation",
+              "ConnectionProtocol",
+              "UdpHolePunchingFeedback"
+            ]
+          },
+          {
+            "namespace": "Lidgren.Network",
+            "type_definitions": [
+              "NetOutgoingMessage",
+              "NetPeerConfiguration",
+              "NetClient",
+              "NetPeer",
+              "NetBuffer",
+              "NetIncomingMessageType"
+            ]
+          },
+          {
+            "namespace": "Orcus.Shared.Utilities.STUN",
+            "type_definitions": ["STUN_Result", "STUN_NetType"]
+          },
+          {
+            "namespace": "ChromeRecovery",
+            "type_definitions": ["Account", "Chromium", "Cookie"]
+          },
+          {
+            "namespace": "Microsoft.Win32.SafeHandles",
+            "type_definitions": ["SafeHandleZeroOrMinusOneIsInvalid"]
+          },
+          {
+            "namespace": "System.Xml",
+            "type_definitions": [
+              "XmlTextReader",
+              "XmlDocument",
+              "XmlNodeList",
+              "XmlReader",
+              "XmlElement",
+              "XmlNode"
+            ]
+          },
+          {
+            "namespace": "System.Runtime.InteropServices.ComTypes",
+            "type_definitions": ["FILETIME"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.FileExplorer",
+            "type_definitions": [
+              "ProcessingEntry",
+              "ProcessingEntryAction",
+              "CompressionMethod",
+              "EntryInfo",
+              "ArchiveOptions",
+              "PackedDirectoryEntry",
+              "DirectoryEntry",
+              "IFileExplorerEntry",
+              "DriveDirectoryEntry",
+              "DriveDirectoryType",
+              "FileEntry",
+              "RootEntryCollection",
+              "ShellProperty",
+              "ProcessingEntryUpdate",
+              "FileExplorerCommunication",
+              "UploadResult",
+              "DownloadInformation",
+              "DownloadResult",
+              "ShortcutInfo",
+              "DirectoryPropertiesInfo",
+              "DirectoryType",
+              "SpecialFolderType",
+              "PropertiesInfo",
+              "FileAttributes",
+              "FilePropertiesInfo",
+              "FileProperty",
+              "FilePropertyGroup",
+              "HashValueType"
+            ]
+          },
+          {
+            "namespace": "ICSharpCode.SharpZipLib.Tar",
+            "type_definitions": [
+              "TarArchive",
+              "ProgressMessageHandler",
+              "TarEntry",
+              "TarOutputStream"
+            ]
+          },
+          {
+            "namespace": "ICSharpCode.SharpZipLib.Zip",
+            "type_definitions": ["FastZip", "ZipEntry", "ZipOutputStream"]
+          },
+          {
+            "namespace": "ICSharpCode.SharpZipLib.GZip",
+            "type_definitions": ["GZipInputStream", "GZipOutputStream"]
+          },
+          {
+            "namespace": "ICSharpCode.SharpZipLib.Zip.Compression.Streams",
+            "type_definitions": ["InflaterInputStream", "DeflaterOutputStream"]
+          },
+          {
+            "namespace": "ICSharpCode.SharpZipLib.BZip2",
+            "type_definitions": ["BZip2InputStream", "BZip2OutputStream"]
+          },
+          {
+            "namespace": "ICSharpCode.SharpZipLib.LZW",
+            "type_definitions": ["LzwInputStream"]
+          },
+          {
+            "namespace": "ICSharpCode.SharpZipLib.Core",
+            "type_definitions": [
+              "ProgressHandler",
+              "StreamUtils",
+              "ProgressEventArgs"
+            ]
+          },
+          {
+            "namespace": "ShellLibrary",
+            "type_definitions": [
+              "ShellObject",
+              "ShellProperties",
+              "ShellPropertyCollection"
+            ]
+          },
+          {
+            "namespace": "ShellLibrary.Native",
+            "type_definitions": ["IShellProperty", "PropertyKey"]
+          },
+          {
+            "namespace": "Orcus.Shared.Commands.ClientCommands",
+            "type_definitions": ["ClientCommandsCommunication"]
+          },
+          {
+            "namespace": "System.Runtime.Versioning",
+            "type_definitions": ["TargetFrameworkAttribute"]
+          }
+        ],
+        "unmanaged_method_list": [
+          {
+            "name": "ip",
+            "methods": [""]
+          }
+        ]
+      },
+      "type_tag": "peexe",
+      "trid": [
+        {
+          "file_format_legacy": "Generic CIL Executable (.NET, Mono, etc.)",
+          "probability": 30.7
+        },
+        {
+          "file_format_legacy": "Windows Control Panel Item (generic)",
+          "probability": 24.1
+        },
+        {
+          "file_format_legacy": "InstallShield setup",
+          "probability": 18
+        },
+        {
+          "file_format_legacy": "Microsoft Visual C++ compiled executable (generic)",
+          "probability": 6.9
+        },
+        {
+          "file_format_legacy": "Windows screen saver",
+          "probability": 5.5
+        }
+      ],
+      "sigma_analysis_summary": {
+        "Sigma Integrated Rule Set (GitHub)": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 0
+        }
+      },
+      "tags": [
+        "assembly",
+        "peexe",
+        "calls-wmi",
+        "detect-debug-environment",
+        "long-sleeps",
+        "obfuscated"
+      ],
+      "last_analysis_results": {
+        "Bkav": {
+          "method": "blacklist",
+          "engine_name": "Bkav",
+          "engine_version": "2.0.0.1",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "W32.AIDetectMalware.CS"
+        },
+        "Lionic": {
+          "method": "blacklist",
+          "engine_name": "Lionic",
+          "engine_version": "8.16",
+          "engine_update": "20240728",
+          "category": "undetected",
+          "result": null
+        },
+        "AVG": {
+          "method": "blacklist",
+          "engine_name": "AVG",
+          "engine_version": "23.9.8494.0",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Win32:CrypterX-gen [Trj]"
+        },
+        "tehtris": {
+          "method": "blacklist",
+          "engine_name": "tehtris",
+          "engine_version": "v0.1.4",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Generic.Malware"
+        },
+        "MicroWorld-eScan": {
+          "method": "blacklist",
+          "engine_name": "MicroWorld-eScan",
+          "engine_version": "14.0.409.0",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Generic.OrcusRAT.A.2DC79B36"
+        },
+        "CMC": {
+          "method": "blacklist",
+          "engine_name": "CMC",
+          "engine_version": "2.4.2022.1",
+          "engine_update": "20240728",
+          "category": "undetected",
+          "result": null
+        },
+        "CAT-QuickHeal": {
+          "method": "blacklist",
+          "engine_name": "CAT-QuickHeal",
+          "engine_version": "22.00",
+          "engine_update": "20240728",
+          "category": "undetected",
+          "result": null
+        },
+        "Skyhigh": {
+          "method": "blacklist",
+          "engine_name": "Skyhigh",
+          "engine_version": "v2021.2.0+4045",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "BehavesLike.Win32.Generic.vc"
+        },
+        "ALYac": {
+          "method": "blacklist",
+          "engine_name": "ALYac",
+          "engine_version": "2.0.0.10",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Generic.OrcusRAT.A.2DC79B36"
+        },
+        "Cylance": {
+          "method": "blacklist",
+          "engine_name": "Cylance",
+          "engine_version": "3.0.0.0",
+          "engine_update": "20240725",
+          "category": "malicious",
+          "result": "Unsafe"
+        },
+        "Zillya": {
+          "method": "blacklist",
+          "engine_name": "Zillya",
+          "engine_version": "2.0.0.5162",
+          "engine_update": "20240726",
+          "category": "malicious",
+          "result": "Trojan.Orcusrat.Win32.2653"
+        },
+        "Sangfor": {
+          "method": "blacklist",
+          "engine_name": "Sangfor",
+          "engine_version": "2.25.10.0",
+          "engine_update": "20240711",
+          "category": "undetected",
+          "result": null
+        },
+        "K7AntiVirus": {
+          "method": "blacklist",
+          "engine_name": "K7AntiVirus",
+          "engine_version": "12.177.52741",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Trojan ( 005b604e1 )"
+        },
+        "Alibaba": {
+          "method": "blacklist",
+          "engine_name": "Alibaba",
+          "engine_version": "0.3.0.5",
+          "engine_update": "20190527",
+          "category": "undetected",
+          "result": null
+        },
+        "K7GW": {
+          "method": "blacklist",
+          "engine_name": "K7GW",
+          "engine_version": "12.177.52741",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Trojan ( 005b604e1 )"
+        },
+        "CrowdStrike": {
+          "method": "blacklist",
+          "engine_name": "CrowdStrike",
+          "engine_version": "1.0",
+          "engine_update": "20231026",
+          "category": "malicious",
+          "result": "win/malicious_confidence_100% (W)"
+        },
+        "Arcabit": {
+          "method": "blacklist",
+          "engine_name": "Arcabit",
+          "engine_version": "2022.0.0.18",
+          "engine_update": "20240717",
+          "category": "malicious",
+          "result": "Generic.OrcusRAT.A.2DC79B36"
+        },
+        "huorong": {
+          "method": "blacklist",
+          "engine_name": "huorong",
+          "engine_version": "e2b848c:e2b848c:fa3d6e1:fa3d6e1",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "TrojanSpy/MSIL.Orcus.b"
+        },
+        "Baidu": {
+          "method": "blacklist",
+          "engine_name": "Baidu",
+          "engine_version": "1.0.0.2",
+          "engine_update": "20190318",
+          "category": "undetected",
+          "result": null
+        },
+        "VirIT": {
+          "method": "blacklist",
+          "engine_name": "VirIT",
+          "engine_version": "9.5.754",
+          "engine_update": "20240726",
+          "category": "malicious",
+          "result": "Trojan.Win32.MSIL_Heur.B"
+        },
+        "Symantec": {
+          "method": "blacklist",
+          "engine_name": "Symantec",
+          "engine_version": "1.22.0.0",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Trojan.Sorcurat"
+        },
+        "Elastic": {
+          "method": "blacklist",
+          "engine_name": "Elastic",
+          "engine_version": "4.0.157",
+          "engine_update": "20240703",
+          "category": "malicious",
+          "result": "malicious (high confidence)"
+        },
+        "ESET-NOD32": {
+          "method": "blacklist",
+          "engine_name": "ESET-NOD32",
+          "engine_version": "29633",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "a variant of MSIL/Orcusrat.D"
+        },
+        "Cynet": {
+          "method": "blacklist",
+          "engine_name": "Cynet",
+          "engine_version": "4.0.1.1",
+          "engine_update": "20240728",
+          "category": "undetected",
+          "result": null
+        },
+        "APEX": {
+          "method": "blacklist",
+          "engine_name": "APEX",
+          "engine_version": "6.557",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Malicious"
+        },
+        "Paloalto": {
+          "method": "blacklist",
+          "engine_name": "Paloalto",
+          "engine_version": "0.9.0.1003",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "ClamAV": {
+          "method": "blacklist",
+          "engine_name": "ClamAV",
+          "engine_version": "1.3.1.0",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Win.Packed.Generic-9805849-0"
+        },
+        "Kaspersky": {
+          "method": "blacklist",
+          "engine_name": "Kaspersky",
+          "engine_version": "22.0.1.28",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "HEUR:Trojan.Win32.Generic"
+        },
+        "BitDefender": {
+          "method": "blacklist",
+          "engine_name": "BitDefender",
+          "engine_version": "7.2",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Generic.OrcusRAT.A.2DC79B36"
+        },
+        "NANO-Antivirus": {
+          "method": "blacklist",
+          "engine_name": "NANO-Antivirus",
+          "engine_version": "1.0.146.25796",
+          "engine_update": "20240728",
+          "category": "undetected",
+          "result": null
+        },
+        "SUPERAntiSpyware": {
+          "method": "blacklist",
+          "engine_name": "SUPERAntiSpyware",
+          "engine_version": "5.6.0.1032",
+          "engine_update": "20240728",
+          "category": "undetected",
+          "result": null
+        },
+        "Avast": {
+          "method": "blacklist",
+          "engine_name": "Avast",
+          "engine_version": "23.9.8494.0",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Win32:CrypterX-gen [Trj]"
+        },
+        "Tencent": {
+          "method": "blacklist",
+          "engine_name": "Tencent",
+          "engine_version": "1.0.0.1",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Malware.Win32.Gencirc.10bf0f2e"
+        },
+        "TACHYON": {
+          "method": "blacklist",
+          "engine_name": "TACHYON",
+          "engine_version": "2024-07-29.01",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "Emsisoft": {
+          "method": "blacklist",
+          "engine_name": "Emsisoft",
+          "engine_version": "2024.1.0.53752",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Generic.OrcusRAT.A.2DC79B36 (B)"
+        },
+        "F-Secure": {
+          "method": "blacklist",
+          "engine_name": "F-Secure",
+          "engine_version": "18.10.1547.307",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Heuristic.HEUR/AGEN.1365687"
+        },
+        "DrWeb": {
+          "method": "blacklist",
+          "engine_name": "DrWeb",
+          "engine_version": "7.0.65.5230",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Trojan.InjectNET.44"
+        },
+        "VIPRE": {
+          "method": "blacklist",
+          "engine_name": "VIPRE",
+          "engine_version": "6.0.0.35",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Generic.OrcusRAT.A.2DC79B36"
+        },
+        "TrendMicro": {
+          "method": "blacklist",
+          "engine_name": "TrendMicro",
+          "engine_version": "11.0.0.1006",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "BKDR_ORCUSRAT.SM"
+        },
+        "McAfeeD": {
+          "method": "blacklist",
+          "engine_name": "McAfeeD",
+          "engine_version": "1.2.0.7977",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Real Protect-LS!E2A52F78FC1D"
+        },
+        "Trapmine": {
+          "method": "blacklist",
+          "engine_name": "Trapmine",
+          "engine_version": "4.0.16.173",
+          "engine_update": "20240712",
+          "category": "undetected",
+          "result": null
+        },
+        "FireEye": {
+          "method": "blacklist",
+          "engine_name": "FireEye",
+          "engine_version": "35.47.0.0",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Generic.mg.e2a52f78fc1dc2eb"
+        },
+        "Sophos": {
+          "method": "blacklist",
+          "engine_name": "Sophos",
+          "engine_version": "2.5.5.0",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Troj/OrcusRAT-A"
+        },
+        "Ikarus": {
+          "method": "blacklist",
+          "engine_name": "Ikarus",
+          "engine_version": "6.3.12.0",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Trojan.MSIL.Injector"
+        },
+        "Jiangmin": {
+          "method": "blacklist",
+          "engine_name": "Jiangmin",
+          "engine_version": "16.0.100",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Trojan.Generic.hraje"
+        },
+        "Webroot": {
+          "method": "blacklist",
+          "engine_name": "Webroot",
+          "engine_version": "1.0.0.403",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "Varist": {
+          "method": "blacklist",
+          "engine_name": "Varist",
+          "engine_version": "6.5.1.2",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "W32/MSIL_Troj.C.gen!Eldorado"
+        },
+        "Avira": {
+          "method": "blacklist",
+          "engine_name": "Avira",
+          "engine_version": "8.3.3.20",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "HEUR/AGEN.1365687"
+        },
+        "Antiy-AVL": {
+          "method": "blacklist",
+          "engine_name": "Antiy-AVL",
+          "engine_version": "3.0",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Trojan[Spy]/Win32.Agent.foqx"
+        },
+        "Kingsoft": {
+          "method": "blacklist",
+          "engine_name": "Kingsoft",
+          "engine_version": "None",
+          "engine_update": "20240725",
+          "category": "undetected",
+          "result": null
+        },
+        "Gridinsoft": {
+          "method": "blacklist",
+          "engine_name": "Gridinsoft",
+          "engine_version": "1.0.183.174",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "Xcitium": {
+          "method": "blacklist",
+          "engine_name": "Xcitium",
+          "engine_version": "36911",
+          "engine_update": "20240728",
+          "category": "undetected",
+          "result": null
+        },
+        "Microsoft": {
+          "method": "blacklist",
+          "engine_name": "Microsoft",
+          "engine_version": "1.1.24060.5",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Backdoor:MSIL/Orcus.A!bit"
+        },
+        "ViRobot": {
+          "method": "blacklist",
+          "engine_name": "ViRobot",
+          "engine_version": "2014.3.20.0",
+          "engine_update": "20240728",
+          "category": "undetected",
+          "result": null
+        },
+        "ZoneAlarm": {
+          "method": "blacklist",
+          "engine_name": "ZoneAlarm",
+          "engine_version": "1.0",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "HEUR:Trojan.MSIL.Agent.gen"
+        },
+        "GData": {
+          "method": "blacklist",
+          "engine_name": "GData",
+          "engine_version": "A:25.38576B:27.36890",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "MSIL.Backdoor.Quasar.D"
+        },
+        "Google": {
+          "method": "blacklist",
+          "engine_name": "Google",
+          "engine_version": "1722223854",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Detected"
+        },
+        "AhnLab-V3": {
+          "method": "blacklist",
+          "engine_name": "AhnLab-V3",
+          "engine_version": "3.26.0.10499",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Win-Trojan/OrcusRAT.Exp"
+        },
+        "Acronis": {
+          "method": "blacklist",
+          "engine_name": "Acronis",
+          "engine_version": "1.2.0.121",
+          "engine_update": "20240328",
+          "category": "undetected",
+          "result": null
+        },
+        "McAfee": {
+          "method": "blacklist",
+          "engine_name": "McAfee",
+          "engine_version": "6.0.6.653",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "GenericRXWC-TE!E2A52F78FC1D"
+        },
+        "MAX": {
+          "method": "blacklist",
+          "engine_name": "MAX",
+          "engine_version": "2023.1.4.1",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "malware (ai score=85)"
+        },
+        "VBA32": {
+          "method": "blacklist",
+          "engine_name": "VBA32",
+          "engine_version": "5.0.0",
+          "engine_update": "20240726",
+          "category": "malicious",
+          "result": "Trojan.MSIL.InfoStealer.gen"
+        },
+        "Malwarebytes": {
+          "method": "blacklist",
+          "engine_name": "Malwarebytes",
+          "engine_version": "4.5.5.54",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "Generic.Malware.AI.DDS"
+        },
+        "Panda": {
+          "method": "blacklist",
+          "engine_name": "Panda",
+          "engine_version": "4.6.4.2",
+          "engine_update": "20240728",
+          "category": "undetected",
+          "result": null
+        },
+        "TrendMicro-HouseCall": {
+          "method": "blacklist",
+          "engine_name": "TrendMicro-HouseCall",
+          "engine_version": "10.0.0.1040",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "BKDR_ORCUSRAT.SM"
+        },
+        "Rising": {
+          "method": "blacklist",
+          "engine_name": "Rising",
+          "engine_version": "25.0.0.27",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Backdoor.Orcus!1.BABC (CLASSIC)"
+        },
+        "Yandex": {
+          "method": "blacklist",
+          "engine_name": "Yandex",
+          "engine_version": "5.5.2.24",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "Trojan.Agent!1cLtMtRyCf4"
+        },
+        "SentinelOne": {
+          "method": "blacklist",
+          "engine_name": "SentinelOne",
+          "engine_version": "24.2.1.1",
+          "engine_update": "20240417",
+          "category": "malicious",
+          "result": "Static AI - Malicious PE"
+        },
+        "MaxSecure": {
+          "method": "blacklist",
+          "engine_name": "MaxSecure",
+          "engine_version": "1.0.0.1",
+          "engine_update": "20240726",
+          "category": "malicious",
+          "result": "Trojan.Malware.8703358.susgen"
+        },
+        "Fortinet": {
+          "method": "blacklist",
+          "engine_name": "Fortinet",
+          "engine_version": "None",
+          "engine_update": "20240729",
+          "category": "malicious",
+          "result": "MSIL/Agent.ASJ!tr"
+        },
+        "BitDefenderTheta": {
+          "method": "blacklist",
+          "engine_name": "BitDefenderTheta",
+          "engine_version": "7.2.37796.0",
+          "engine_update": "20240719",
+          "category": "malicious",
+          "result": "Gen:NN.ZemsilF.36810.!o0@ayYFNOl"
+        },
+        "Zoner": {
+          "method": "blacklist",
+          "engine_name": "Zoner",
+          "engine_version": "2.2.2.0",
+          "engine_update": "20240729",
+          "category": "undetected",
+          "result": null
+        },
+        "Cybereason": {
+          "method": "blacklist",
+          "engine_name": "Cybereason",
+          "engine_version": "1.2.449",
+          "engine_update": "20240707",
+          "category": "malicious",
+          "result": "malicious.8fc1dc"
+        },
+        "DeepInstinct": {
+          "method": "blacklist",
+          "engine_name": "DeepInstinct",
+          "engine_version": "5.0.0.8",
+          "engine_update": "20240728",
+          "category": "malicious",
+          "result": "MALICIOUS"
+        },
+        "alibabacloud": {
+          "method": "blacklist",
+          "engine_name": "alibabacloud",
+          "engine_version": "2.1.0",
+          "engine_update": "20240722",
+          "category": "undetected",
+          "result": null
+        },
+        "Trustlook": {
+          "method": "blacklist",
+          "engine_name": "Trustlook",
+          "engine_version": "1.0",
+          "engine_update": "20240729",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "SymantecMobileInsight": {
+          "method": "blacklist",
+          "engine_name": "SymantecMobileInsight",
+          "engine_version": "2.0",
+          "engine_update": "20240103",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "BitDefenderFalx": {
+          "method": "blacklist",
+          "engine_name": "BitDefenderFalx",
+          "engine_version": "2.0.936",
+          "engine_update": "20240128",
+          "category": "type-unsupported",
+          "result": null
+        },
+        "Avast-Mobile": {
+          "method": "blacklist",
+          "engine_name": "Avast-Mobile",
+          "engine_version": "240727-00",
+          "engine_update": "20240727",
+          "category": "type-unsupported",
+          "result": null
+        }
+      },
+      "authentihash": "4d1bb13070720272affb89943e7437c6cbeb326a8486641f31a89f698022637f",
+      "threat_severity": {
+        "version": 5,
+        "threat_severity_level": "SEVERITY_MEDIUM",
+        "threat_severity_data": {
+          "popular_threat_category": "trojan",
+          "num_gav_detections": 4
+        },
+        "last_analysis_date": "1722226991",
+        "level_description": "Severity MEDIUM because it was considered trojan."
+      },
+      "packers": {
+        "PEiD": ".NET executable"
+      },
+      "exiftool": {
+        "UninitializedDataSize": "0",
+        "InitializedDataSize": "4608",
+        "ImageVersion": "0.0",
+        "FileVersionNumber": "1.0.0.0",
+        "LanguageCode": "Neutral",
+        "FileFlagsMask": "0x003f",
+        "ImageFileCharacteristics": "Executable, 32-bit",
+        "CharacterSet": "Unicode",
+        "LinkerVersion": "8.0",
+        "EntryPoint": "0x2f8f7e",
+        "MIMEType": "application/octet-stream",
+        "FileVersion": "1.0.0.0",
+        "TimeStamp": "2023:07:07 14:52:02+00:00",
+        "FileType": "Win32 EXE",
+        "PEType": "PE32",
+        "ProductVersion": "1.0.0.0",
+        "SubsystemVersion": "4.0",
+        "OSVersion": "4.0",
+        "FileOS": "Win32",
+        "Subsystem": "Windows GUI",
+        "MachineType": "Intel 386 or later, and compatibles",
+        "CodeSize": "3108864",
+        "FileSubtype": "0",
+        "ProductVersionNumber": "1.0.0.0",
+        "FileTypeExtension": "exe",
+        "ObjectFileType": "Executable application",
+        "AssemblyVersion": "1.0.0.0"
+      },
+      "crowdsourced_yara_results": [
+        {
+          "ruleset_id": "004629696d",
+          "ruleset_name": "rule",
+          "rule_name": "Agenttesla_type2",
+          "match_date": 1722226971,
+          "description": "detect Agenttesla in memory",
+          "author": "JPCERT/CC Incident Response Group",
+          "source": "https://github.com/JPCERTCC/MalConfScan"
+        },
+        {
+          "ruleset_id": "000ec4b68e",
+          "ruleset_name": "gen_susp_net_msil",
+          "rule_name": "SUSP_NET_Msil_Suspicious_Use_StrReverse",
+          "match_date": 1722226971,
+          "description": "Detects mixed use of Microsoft.CSharp and VisualBasic to use StrReverse",
+          "author": "dr4k0nia, modified by Florian Roth",
+          "source": "https://github.com/Neo23x0/signature-base"
+        },
+        {
+          "ruleset_id": "00c291ca7f",
+          "ruleset_name": "indicator_packed",
+          "rule_name": "INDICATOR_EXE_Packed_Fody",
+          "match_date": 1722226971,
+          "description": "Detects executables manipulated with Fody",
+          "author": "ditekSHen",
+          "source": "https://github.com/ditekshen/detection"
+        },
+        {
+          "ruleset_id": "00c3b8eb5d",
+          "ruleset_name": "indicator_suspicious",
+          "rule_name": "INDICATOR_SUSPICIOUS_GENInfoStealer",
+          "match_date": 1722226971,
+          "description": "Detects executables containing common artifacts observed in infostealers",
+          "author": "ditekSHen",
+          "source": "https://github.com/ditekshen/detection"
+        },
+        {
+          "ruleset_id": "00cc803bdc",
+          "ruleset_name": "malware",
+          "rule_name": "MALWARE_Win_DLInjector07",
+          "match_date": 1722226971,
+          "description": "Detects downloader injector",
+          "author": "ditekSHen",
+          "source": "https://github.com/ditekshen/detection"
+        },
+        {
+          "ruleset_id": "00f69a1b91",
+          "ruleset_name": "rat_detection",
+          "rule_name": "Multifamily_RAT_Detection",
+          "match_date": 1722226971,
+          "description": "Generic Detection for multiple RAT families, PUPs, Packers and suspicious executables",
+          "author": "Lucas Acha (http://www.lukeacha.com)",
+          "source": "https://github.com/securitymagic/yara"
+        }
+      ],
+      "unique_sources": 1,
+      "meaningful_name": "C:\\Users\\user\\AppData\\Roaming\\universalwordpress\\flowerdb.exe",
+      "last_analysis_stats": {
+        "malicious": 54,
+        "suspicious": 0,
+        "undetected": 21,
+        "harmless": 0,
+        "timeout": 0,
+        "confirmed-timeout": 0,
+        "failure": 0,
+        "type-unsupported": 4
+      },
+      "size": 3113984,
+      "tlsh": "T110E512013BACBD16D0BE2AB8BA7719C807B5EA029682EF4F0D90519D0D9F742FD15367",
+      "creation_date": 1688741522,
+      "md5": "e2a52f78fc1dc2eb561fd5d77892d642",
+      "last_analysis_date": 1722226969,
+      "names": [
+        "C:\\Users\\user\\AppData\\Roaming\\universalwordpress\\flowerdb.exe",
+        "Nursultan Alpha (prem).exe"
+      ],
+      "sha1": "ffe1dd532e08911537d01f51f21c1ce181f4ac71",
+      "type_description": "Win32 EXE",
+      "type_extension": "exe",
+      "sigma_analysis_stats": {
+        "critical": 0,
+        "high": 0,
+        "medium": 2,
+        "low": 0
+      },
+      "last_submission_date": 1722227208,
+      "last_modification_date": 1722229924,
+      "sha256": "6b60666d6ace3a450d54fe7b915c46632172ca0d4127d87873f0c111560e66cb",
+      "crowdsourced_ids_results": [
+        {
+          "rule_category": "unknown",
+          "alert_severity": "low",
+          "rule_msg": "(http_inspect) invalid status line",
+          "rule_id": "119:279",
+          "rule_source": "Snort registered user ruleset",
+          "rule_url": "https://www.snort.org/downloads/#rule-downloads",
+          "rule_raw": "alert ( gid:119; sid:279; rev:1; msg:\"(http_inspect) invalid status line\"; metadata: rule-type preproc; classtype:unknown;)",
+          "alert_context": [
+            {
+              "dest_ip": "23.32.238.178",
+              "dest_port": 80
+            }
+          ]
+        },
+        {
+          "rule_category": "Potentially Bad Traffic",
+          "alert_severity": "low",
+          "rule_msg": "ET DNS Query to a *.top domain - Likely Hostile",
+          "rule_id": "1:2023883",
+          "rule_source": "Proofpoint Emerging Threats Open",
+          "rule_url": "https://rules.emergingthreats.net/",
+          "rule_raw": "alert dns $HOME_NET any -> any any (msg:\"ET DNS Query to a *.top domain - Likely Hostile\"; threshold:type limit, track by_src, count 1, seconds 30; dns.query; content:\".top\"; nocase; endswith; reference:url,www.symantec.com/connect/blogs/shady-tld-research-gdn-and-our-2016-wrap; reference:url,www.spamhaus.org/statistics/tlds/; classtype:bad-unknown; sid:2023883; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_02_07, deployment Perimeter, signature_severity Major, updated_at 2020_09_15;)",
+          "rule_references": [
+            "https://www.symantec.com/connect/blogs/shady-tld-research-gdn-and-our-2016-wrap",
+            "https://www.spamhaus.org/statistics/tlds/"
+          ],
+          "alert_context": [
+            {
+              "dest_ip": "8.8.8.8",
+              "dest_port": 53
+            }
+          ]
+        },
+        {
+          "rule_category": "misc-activity",
+          "alert_severity": "low",
+          "rule_msg": "INDICATOR-COMPROMISE Suspicious .top dns query",
+          "rule_id": "1:43687",
+          "rule_source": "Snort registered user ruleset",
+          "rule_url": "https://www.snort.org/downloads/#rule-downloads",
+          "rule_raw": "alert udp $HOME_NET any -> any 53 ( msg:\"INDICATOR-COMPROMISE Suspicious .top dns query\"; flow:to_server; byte_test:1,!&,0xF8,2; content:\"|03|top|00|\",fast_pattern,nocase; service:dns; reference:url,en.wikipedia.org/wiki/.top; classtype:misc-activity; gid:1; sid:43687; rev:3; )",
+          "rule_references": ["https://en.wikipedia.org/wiki/.top"],
+          "alert_context": [
+            {
+              "dest_ip": "8.8.8.8",
+              "dest_port": 53
+            }
+          ]
+        },
+        {
+          "alert_severity": "low",
+          "rule_msg": "SSLBL: Malicious SSL certificate detected (OrcusRAT C&C)",
+          "rule_id": "1:902205354",
+          "rule_source": "Abuse.ch SSL Blocklist",
+          "rule_url": "https://sslbl.abuse.ch/blacklist/sslblacklist.rules",
+          "rule_raw": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"SSLBL: Malicious SSL certificate detected (OrcusRAT C&C)\"; tls.fingerprint:\"88:3b:db:d5:33:bd:49:b6:10:c2:50:cf:4c:89:98:a9:3c:7f:8a:e2\"; reference:url, sslbl.abuse.ch/ssl-certificates/sha1/883bdbd533bd49b610c250cf4c8998a93c7f8ae2/; sid:902205354; rev:1;)",
+          "rule_references": [
+            "https://sslbl.abuse.ch/ssl-certificates/sha1/883bdbd533bd49b610c250cf4c8998a93c7f8ae2/"
+          ],
+          "alert_context": [
+            {
+              "src_ip": "185.37.62.158",
+              "src_port": 15288,
+              "ja3": ["54328bd36c14bd82ddaa0c04b25ed9ad"],
+              "ja3s": ["b74704234e6128f33bff9865696e31b3"]
+            }
+          ]
+        }
+      ],
+      "detectiteasy": {
+        "filetype": "PE32",
+        "values": [
+          {
+            "type": "Compiler",
+            "name": "VB.NET"
+          },
+          {
+            "version": "v4.0.30319",
+            "type": "Library",
+            "name": ".NET"
+          },
+          {
+            "version": "8.0",
+            "type": "Linker",
+            "name": "Microsoft Linker"
+          }
+        ]
+      },
+      "type_tags": ["executable", "windows", "win32", "pe", "peexe"],
+      "ssdeep": "49152:Y1HS7p1EZKMnkmWg8LX5prviYDyKS5AypQxbRQAo9JnCmpbu/nRFfjI7L0qb:YUHTPJg8z1mKnypSbRxo9JCm",
+      "dot_net_guids": {
+        "mvid": "edf31e57-6f78-424b-84ff-a00cbbcd1d45"
+      },
+      "crowdsourced_ids_stats": {
+        "high": 0,
+        "medium": 0,
+        "low": 4,
+        "info": 0
+      },
+      "magika": "PEBIN",
+      "total_votes": {
+        "harmless": 0,
+        "malicious": 0
+      },
+      "magic": "PE32 executable (GUI) Intel 80386 Mono/.Net assembly, for MS Windows",
+      "malware_config": {
+        "families": [
+          {
+            "family": "orcusrat",
+            "configs": [
+              {
+                "txt_configs": [
+                  "{\"AutostartBuilderProperty\": {\"AutostartMethod\": \"Disable\", \"TaskSchedulerTaskName\": \"sudik\", \"TaskHighestPrivileges\": \"true\", \"AutoSteal\": \"true\", \"Inject\": \"true\", \"RegistryHiddenStart\": \"true\", \"RegistryKeyName\": \"Sudik\", \"TryAllAutostartMethodsOnFail\": \"true\"}, \"ChangeAssemblyInformationBuilderProperty\": {\"ChangeAssemblyInformation\": \"false\", \"AssemblyTitle\": null, \"AssemblyDescription\": null, \"AssemblyCompanyName\": null, \"AssemblyProductName\": null, \"AssemblyCopyright\": null, \"AssemblyTrademarks\": null, \"AssemblyProductVersion\": \"1.0.0.0\", \"AssemblyFileVersion\": \"1.0.0.0\"}, \"ChangeCreationDateBuilderProperty\": {\"IsEnabled\": \"false\", \"NewCreationDate\": \"2016-11-05T21:17:40\"}, \"ChangeIconBuilderProperty\": {\"ChangeIcon\": \"false\", \"IconPath\": null}, \"ClientTagBuilderProperty\": {\"ClientTag\": \"Nursultan Alfa (prem)\"}, \"ConnectionBuilderProperty\": {\"IpAddresses\": [{\"Ip\": \"15288.client.sudorat.top\", \"Port\": \"15288\"}, {\"Ip\": \"15288.client.sudorat.ru\", \"Port\": \"15288\"}, {\"Ip\": \"31.44.184.52\", \"Port\": \"15288\"}]}, \"DataFolderBuilderProperty\": {\"Path\": \"%appdata%\\\\universalwordpress\\\\\"}, \"DefaultPrivilegesBuilderProperty\": {\"RequireAdministratorRights\": \"true\"}, \"DisableInstallationPromptBuilderProperty\": {\"IsDisabled\": \"true\"}, \"FrameworkVersionBuilderProperty\": {\"FrameworkVersion\": \"NET35\"}, \"HideFileBuilderProperty\": {\"HideFile\": \"true\"}, \"InstallationLocationBuilderProperty\": {\"Path\": \"%appdata%\\\\universalwordpress\\\\flowerdb.exe\"}, \"InstallBuilderProperty\": {\"Install\": \"true\"}, \"KeyloggerBuilderProperty\": {\"IsEnabled\": \"false\"}, \"MutexBuilderProperty\": {\"Mutex\": \"sudo_3kpsys7y85z4fdhjp3rb8mhbg022ckhz\"}, \"ProxyBuilderProperty\": {\"ProxyOption\": \"None\", \"ProxyAddress\": null, \"ProxyPort\": \"1080\", \"ProxyType\": \"2\"}, \"ReconnectDelayProperty\": {\"Delay\": \"10000\"}, \"RequireAdministratorPrivilegesInstallerBuilderProperty\": {\"RequireAdministratorPrivileges\": \"true\"}, \"RespawnTaskBuilderProperty\": {\"IsEnabled\": \"true\", \"TaskName\": \"vmvmexternal\"}, \"ServiceBuilderProperty\": {\"Install\": \"false\"}, \"SetRunProgramAsAdminFlagBuilderProperty\": {\"SetFlag\": \"true\"}, \"WatchdogBuilderProperty\": {\"IsEnabled\": \"false\", \"Name\": \"aga.exe\", \"WatchdogLocation\": \"AppData\", \"PreventFileDeletion\": \"false\"}}"
+                ],
+                "tool": "VIRUSTOTAL_ZENBOX"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

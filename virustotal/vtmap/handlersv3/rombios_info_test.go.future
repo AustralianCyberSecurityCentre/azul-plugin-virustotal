@@ -1,0 +1,41 @@
+package handlersv3
+
+import (
+	"testing"
+
+	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/testdata"
+	"github.com/stretchr/testify/require"
+)
+
+var test_rombiosInfo_response = testdata.GetFileReportGjson("data/handlersV3/.json")
+var test_rombiosInfo_not_present_response = testdata.GetFileReportGjson("data/handlersV3/worddoc.json")
+
+/*Test the description is the appropriate length and sample some descriptions.*/
+func TestDescriptionRombiosInfo(t *testing.T) {
+	description := RombiosInfo.Description
+	require.Equal(t, -1, len(description))
+}
+
+/*Test a file known to have a rombiosInfo features.*/
+func TestGetRombiosInfo(t *testing.T) {
+	result, err := RombiosInfo.GetFeatures(test_rombiosInfo_response)
+	require.Equal(t, -1, len(result))
+	// require.Equal(t, "unknown", result[0].Name)
+	// require.Equal(t, bh.AzFTString, result[0].Type)
+	// require.Equal(t, "rand", result[0].Value)
+	require.Nil(t, err)
+}
+
+/*Test a file known to have no rombiosInfo features.*/
+func TestFailToGetRombiosInfo(t *testing.T) {
+	result, err := RombiosInfo.GetFeatures(test_rombiosInfo_not_present_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}
+
+/*RombiosInfo has no info so it should be none.*/
+func TestGetInfoRombiosInfo(t *testing.T) {
+	result, err := RombiosInfo.GetInfo(test_rombiosInfo_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}

@@ -1,0 +1,44 @@
+package handlersv3
+
+import (
+	bh "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3"
+)
+
+var vtToAzFeatIpaInfo = []bh.VtPathToAzFeature{
+	//bh.NewVtPathToAzFeat("apps", bh.special, "apps", bh.special, "ipaInfo - each item on the list contains metadata information from one of the Mach-O executables inside the app. Check the macho_info reference to get more information about the fields contained in each dictionary of the list."),
+	// bh.NewVtPathToAzFeat("itunes", bh.VtTypeDict, "itunes", bh.dont-map, "ipaInfo - contains the information stored at the iTunesMetadata.plist file. This file is used to provide information to iTunes about an iOS application. Returned fields may change from file to file."),
+	// bh.NewVtPathToAzFeat("plist", bh.VtTypeDict, "plist", bh.dont-map, "ipaInfo - contains the information stored at the Info.plist file. Every app and plug-in uses an Info.plist file to store configuration data in a place where the system can easily access it. OS X and iOS use Info.plist files to determine what icon to display for a bundle, what document types are supported, and many other behaviours that have an impact outside the bundle itself. The returned fields may change, since not all apps have the same Info.plist file, but the most common returned fields are:"),
+	bh.NewVtPathToAzFeat("plist.CBundleIdentifier", bh.VtTypeString, "plist_c_bundle_identifier", bh.AzFTString, "ipaInfo - unique identifier for a bundle. More info."),
+	bh.NewVtPathToAzFeat("plist.CFBundleSupportedPlatforms", bh.VtTypeListOfStrings, "plist_cf_bundle_supported_platforms", bh.AzFTString, "ipaInfo - list of supported platforms."),
+	bh.NewVtPathToAzFeat("plist.CFAppleHelpAnchor", bh.VtTypeString, "plist_cf_apple_help_anchor", bh.AzFTString, "ipaInfo - the name of the bundle's HTML help file. More info."),
+	// bh.NewVtPathToAzFeat("plist.CFBundleIcons", bh.VtTypeDict, "plist_cf_bundle_icons", bh.dont-map, "ipaInfo - information about all the icons used. More info. Every subitem is a dictionary having the icon type as key and a the following subkeys:"),
+	bh.NewVtPathToAzFeat("plist.CFBundleIcons.CFBundleIconFiles", bh.VtTypeListOfStrings, "plist_cf_bundle_icons_cf_bundle_icon_files", bh.AzFTString, "ipaInfo - icon file names. More info."),
+	bh.NewVtPathToAzFeat("plist.CFBundleIcons.CFBundleIconName", bh.VtTypeString, "plist_cf_bundle_icons_cf_bundle_icon_name", bh.AzFTString, "ipaInfo - the name of the asset that represents the app icon. More info."),
+	bh.NewVtPathToAzFeat("plist.CFBundleInfoDictionaryVersion", bh.VtTypeString, "plist_cf_bundle_info_dictionary_version", bh.AzFTString, "ipaInfo - the current version of the Information Property List structure. More info."),
+	bh.NewVtPathToAzFeat("plist.CFBundleShortVersionString", bh.VtTypeString, "plist_cf_bundle_short_version_string", bh.AzFTString, "ipaInfo - release or version number of the bundle. More info."),
+	bh.NewVtPathToAzFeat("plist.CFBundleDisplayName", bh.VtTypeString, "plist_cf_bundle_display_name", bh.AzFTString, "ipaInfo - user-visible name of the bundle. More info."),
+	bh.NewVtPathToAzFeat("plist.CFBundleName", bh.VtTypeString, "plist_cf_bundle_name", bh.AzFTString, "ipaInfo - user-visible short name for the bundle. More info."),
+	bh.NewVtPathToAzFeat("plist.CFBundlePackageType", bh.VtTypeString, "plist_cf_bundle_package_type", bh.AzFTString, "ipaInfo - bundle type. More info."),
+	bh.NewVtPathToAzFeat("plist.CFBundleSignature", bh.VtTypeString, "plist_cf_bundle_signature", bh.AzFTString, "ipaInfo - The Bundle Signature is analogous to the 'Creator Code' found in classic MacOS and exists only for compatibility with classic MacOS apps and documents. Modern apps don't need to worry about assiging a bundle signature. It is initialized as '????' in new Xcode projects."),
+	bh.NewVtPathToAzFeat("plist.CFBundleDevelopmentRegion", bh.VtTypeString, "plist_cf_bundle_development_region", bh.AzFTString, "ipaInfo - the default language and region for the bundle, as a language ID. More info."),
+	bh.NewVtPathToAzFeat("plist.CFBundleExecutable", bh.VtTypeString, "plist_cf_bundle_executable", bh.AzFTString, "ipaInfo - the name of the bundle’s executable file. More info."),
+	bh.NewVtPathToAzFeat("plist.MinimumOSVersion", bh.VtTypeString, "plist_minimum_os_version", bh.AzFTString, "ipaInfo - the miminimum operating system version required for the app to run on iOS, tvOS, and watchOS. More info."),
+	// bh.NewVtPathToAzFeat("provision", bh.VtTypeDict, "provision", bh.dont-map, "ipaInfo - contains information stored at the embedded.mobileprovision file. This file is embedded into the app and is required for the app to be accepted onto the Apple App Store. The provisioning profile is used to sign the app and it's necessary to install and run it on a device. The returned fields may change, since not all apps have the same provision file, but the most common returned fields are:"),
+	bh.NewVtPathToAzFeat("provision.AppIDName", bh.VtTypeString, "provision_app_id_name", bh.AzFTString, "ipaInfo - application ID name."),
+	bh.NewVtPathToAzFeat("provision.ApplicationIdentifierPrefix", bh.VtTypeListOfStrings, "provision_application_identifier_prefix", bh.AzFTString, "ipaInfo - code signing identifier for the running app."),
+	bh.NewVtPathToAzFeat("provision.CreationDate", bh.VtTypeString, "provision_creation_date", bh.AzFTString, "ipaInfo - date of app creation in %Y-%m-%d %H:%M:%S format."),
+	// bh.NewVtPathToAzFeat("provision.Entitlements", bh.VtTypeDict, "provision_entitlements", bh.dont-map, "ipaInfo - allows a specific capability or opts the app into a specific service. More info. Additional subfields may appear, but some common ones are:"),
+	bh.NewVtPathToAzFeat("provision.Entitlements.application-identifier", bh.VtTypeString, "provision_entitlements_application-identifier", bh.AzFTString, "ipaInfo - complete application identifier."),
+	bh.NewVtPathToAzFeat("provision.Entitlements.get-task-allow", bh.VtTypeBool, "provision_entitlements_get-task-allow", bh.AzFTString, "ipaInfo - "),
+	bh.NewVtPathToAzFeat("provision.Entitlements.keychain-access-groups", bh.VtTypeListOfStrings, "provision_entitlements_keychain-access-groups", bh.AzFTString, "ipaInfo - the identifiers for the keychain groups that the app may share items with. More info."),
+	bh.NewVtPathToAzFeat("provision.ExpirationDate", bh.VtTypeString, "provision_expiration_date", bh.AzFTString, "ipaInfo - app expiration date in %Y-%m-%d %H:%M:%S format."),
+	bh.NewVtPathToAzFeat("provision.Name", bh.VtTypeString, "provision_name", bh.AzFTString, "ipaInfo - application name."),
+	bh.NewVtPathToAzFeat("provision.Platform", bh.VtTypeListOfStrings, "provision_platform", bh.AzFTString, "ipaInfo - supported platforms."),
+	bh.NewVtPathToAzFeat("provision.TeamIdentifier", bh.VtTypeListOfStrings, "provision_team_identifier", bh.AzFTString, "ipaInfo - team identifier."),
+	bh.NewVtPathToAzFeat("provision.TeamName", bh.VtTypeString, "provision_team_name", bh.AzFTString, "ipaInfo - team name."),
+	bh.NewVtPathToAzFeat("provision.TimeToLive", bh.VtTypeInteger, "provision_time_to_live", bh.AzFTInteger, "ipaInfo - number of days in which the app is valid."),
+	bh.NewVtPathToAzFeat("provision.UUID", bh.VtTypeString, "provision_uuid", bh.AzFTString, "ipaInfo - unique identifier."),
+	bh.NewVtPathToAzFeat("provision.Version", bh.VtTypeInteger, "provision_version", bh.AzFTInteger, "ipaInfo - app version."),
+}
+
+var IpaInfo = bh.NewHandlerV3(vtToAzFeatIpaInfo, "ipa_info")

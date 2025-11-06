@@ -1,0 +1,5 @@
+- any_av_sofacy:
+    syntax: gjson
+    rule: 'scans|@iany:sofacy,sednit,shunnael,apt28'
+    reference: https://www.symantec.com/blogs/election-security/apt28-espionage-military-government
+    daily_quota: 10

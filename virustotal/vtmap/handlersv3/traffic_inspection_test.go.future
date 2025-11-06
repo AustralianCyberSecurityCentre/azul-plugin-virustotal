@@ -1,0 +1,41 @@
+package handlersv3
+
+import (
+	"testing"
+
+	events "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/testdata"
+	bh "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3"
+	"github.com/stretchr/testify/require"
+)
+
+var test_trafficInspection_response = testdata.GetFileReportGjson("data/handlersV3/wireshark_and_suricata.json")
+var test_trafficInspection_not_present_response = testdata.GetFileReportGjson("data/handlersV3/worddoc.json")
+
+/*Test the description is the appropriate length and sample some descriptions.*/
+func TestDescriptionTrafficInspection(t *testing.T) {
+	description := TrafficInspection.Description
+	require.Equal(t, 10, len(description))
+}
+
+/*Test a file known to have a trafficInspection features.*/
+func TestGetTrafficInspection(t *testing.T) {
+	result, err := TrafficInspection.GetFeatures(test_trafficInspection_response)
+	require.Equal(t, 2238, len(result))
+	require.Contains(t, result, events.BinaryEntityFeature{Name: "binary_hash", Value: "6137f8db2192e638e13610f75e73b9247c05f4706f0afd1fdb132d86de6b4012", Type: bh.AzFTString, Label: "6137f8db2192e638e13610f75e73b9247c05f4706f0afd1fdb132d86de6b4012"})
+	require.Nil(t, err)
+}
+
+/*Test a file known to have no trafficInspection features.*/
+func TestFailToGetTrafficInspection(t *testing.T) {
+	result, err := TrafficInspection.GetFeatures(test_trafficInspection_not_present_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}
+
+/*TrafficInspection has no info so it should be none.*/
+func TestGetInfoTrafficInspection(t *testing.T) {
+	result, err := TrafficInspection.GetInfo(test_trafficInspection_response)
+	require.Equal(t, 0, len(result))
+	require.Nil(t, err)
+}
