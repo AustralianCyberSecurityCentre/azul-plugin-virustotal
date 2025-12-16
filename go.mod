@@ -5,7 +5,7 @@ go 1.25.0
 toolchain go1.25.1
 
 require (
-	github.com/AustralianCyberSecurityCentre/azul-bedrock/v9 v9.0.2
+	github.com/AustralianCyberSecurityCentre/azul-bedrock/v9 v9.0.28
 	github.com/goccy/go-json v0.10.5
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/prometheus/client_golang v1.23.2
@@ -38,7 +38,7 @@ require (
 	github.com/tidwall/match v1.2.0 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
 	go.yaml.in/yaml/v2 v2.4.2 // indirect
-	golang.org/x/sys v0.36.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
 	google.golang.org/protobuf v1.36.9 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
