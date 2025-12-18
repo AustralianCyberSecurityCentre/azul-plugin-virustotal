@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	identify "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/legacy_identify"
+	identify "github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/legacy_identify"
 )
 
 var DispatcherEventsUrl string = "https://dispatcher.internal"

@@ -33,8 +33,8 @@ import (
 	"net/http"
 	"time"
 
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/client"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap"
 
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"

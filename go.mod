@@ -5,7 +5,7 @@ go 1.25.0
 toolchain go1.25.1
 
 require (
-	github.com/AustralianCyberSecurityCentre/azul-bedrock/v9 v9.0.28
+	github.com/AustralianCyberSecurityCentre/azul-bedrock/v10 v10.0.2
 	github.com/goccy/go-json v0.10.5
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/prometheus/client_golang v1.23.2
@@ -43,4 +43,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-// replace github.com/AustralianCyberSecurityCentre/azul-bedrock/v9 v8.0.19 => ../../azul-core/azul-bedrock
+// replace github.com/AustralianCyberSecurityCentre/azul-bedrock/v10 v8.0.19 => ../../azul-core/azul-bedrock

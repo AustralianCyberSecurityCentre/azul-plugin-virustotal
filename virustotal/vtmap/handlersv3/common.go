@@ -1,7 +1,7 @@
 package handlersv3
 
 import (
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/events"
 	bh "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3"
 	"github.com/tidwall/gjson"
 )

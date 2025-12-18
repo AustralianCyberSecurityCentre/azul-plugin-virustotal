@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/events"
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
 )
 

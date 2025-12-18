@@ -3,7 +3,7 @@ package vtmap
 import (
 	"testing"
 
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/testdata"
 	"github.com/stretchr/testify/require"
 	"github.com/tidwall/gjson"
