@@ -16,12 +16,12 @@ type VTSubmissionCommon struct {
 }
 
 type VtMessageCommon struct {
-	Sha256           string
-	LastScanDate     time.Time
-	Submission       VTSubmissionCommon
-	FileFormatLegacy string
-	Size             int
-	DownloadUrl      string
+	Sha256       string
+	LastScanDate time.Time
+	Submission   VTSubmissionCommon
+	FileFormatVt string
+	Size         int
+	DownloadUrl  string
 }
 
 func convertVTMessageV3ToCommon(msg *vtMessageV3) *VtMessageCommon {
@@ -43,9 +43,9 @@ func convertVTMessageV3ToCommon(msg *vtMessageV3) *VtMessageCommon {
 			Interface: msg.ContextAttributes.Submitter.Interface,
 			Filename:  "", // Doesn't map filename because submissions don't include them.
 		},
-		FileFormatLegacy: fileType,
-		Size:             msg.Attributes.Size,
-		DownloadUrl:      msg.ContextAttributes.DownloadUrl,
+		FileFormatVt: fileType,
+		Size:         msg.Attributes.Size,
+		DownloadUrl:  msg.ContextAttributes.DownloadUrl,
 	}
 }
 

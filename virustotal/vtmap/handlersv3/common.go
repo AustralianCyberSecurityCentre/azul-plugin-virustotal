@@ -13,7 +13,8 @@ var vtToAzFeatCommon = []bh.VtPathToAzFeature{
 	bh.NewVtPathToAzFeat("tlsh", bh.VtTypeString, "tlsh", bh.AzFTString, "The TLSH hash of the file.", bh.AddSpecialFeatureHandlerFn(commonTlshHandler)),
 	bh.NewVtPathToAzFeat("magic", bh.VtTypeString, "magic", bh.AzFTString, "The magic of the file"),
 	bh.NewVtPathToAzFeat("ssdeep", bh.VtTypeString, "ssdeep", bh.AzFTString, "The SSDEEP hash of the file."),
-	bh.NewVtPathToAzFeat("type_tag", bh.VtTypeString, "file_type_vt", bh.AzFTString, "The filetype from virustotal."),
+	bh.NewVtPathToAzFeat("magika", bh.VtTypeString, "file_type_vt", bh.AzFTString, "The filetype from virustotal.", bh.AddSpecialFeatureHandlerFn(commonVtFileTypeHandler)),
+	// bh.NewVtPathToAzFeat("type_tag", bh.VtTypeString, "file_type_vt", bh.AzFTString, "The filetype from virustotal."),
 	bh.NewVtPathToAzFeat("tags", bh.VtTypeListOfStrings, "tags", bh.AzFTString, "Virustotal tags for the files characteristics."),
 }
 
@@ -30,6 +31,14 @@ func commonTlshHandler(result gjson.Result, featMapping bh.VtPathToAzFeature) ([
 			return []events.BinaryEntityFeature{}, nil
 		}
 	}
-
 	return mappedFeats, nil
+}
+
+func commonVtFileTypeHandler(result gjson.Result, featMapping bh.VtPathToAzFeature) ([]events.BinaryEntityFeature, error) {
+	originalType := result.Get(featMapping.VtPath).String()
+	if originalType == "" {
+		featMapping.VtPath = "type_tag"
+		return bh.StandardFeatureHandler(result, featMapping)
+	}
+	return bh.StandardFeatureHandler(result, featMapping)
 }

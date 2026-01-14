@@ -103,13 +103,14 @@ func MapV3(handlers []basehandlerv3.HandlerV3, filescan gjson.Result) ([]events.
 	b.Ssdeep = getStrValOrDefault(coreMap, "ssdeep")
 	b.Tlsh = getStrValOrDefault(coreMap, "tlsh")
 	b.Magic = getStrValOrDefault(coreMap, "magic")
-	b.FileFormatLegacy = getStrValOrDefault(coreMap, "magika")
-	// Take the second closest type.
-	if b.FileFormatLegacy == "" {
-		b.FileFormatLegacy = getStrValOrDefault(coreMap, "type_tag")
-	}
 	b.FileExtension = getStrValOrDefault(coreMap, "type_extension")
-	b.FileFormat = settings.IdentifyMapper.FindFileType("", b.FileFormatLegacy)
+
+	fileFormatVt := getStrValOrDefault(coreMap, "magika")
+	// Take the second closest type.
+	if fileFormatVt == "" {
+		fileFormatVt = getStrValOrDefault(coreMap, "type_tag")
+	}
+	b.FileFormat = settings.IdentifyMapper.FindFileType("", fileFormatVt)
 
 	size, ok := coreMap["size"]
 	if ok && size.Type == gjson.Number {

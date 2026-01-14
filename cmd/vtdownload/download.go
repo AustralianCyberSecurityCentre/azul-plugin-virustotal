@@ -21,7 +21,7 @@ var author = events.PluginEntity{
 	Category:    "plugin",
 	Description: "Handles requests for downloading binaries from VirusTotal.",
 	Features: []events.PluginEntityFeature{
-		{Name: "file_format_legacy", Type: "string", Description: "System normalised file type format"},
+		{Name: "file_format", Type: "string", Description: "System normalised file type format"},
 		{Name: "magic", Type: "string", Description: "File magic description string"},
 		{Name: "mime", Type: "string", Description: "File magic mime-type label"},
 	},
@@ -53,7 +53,7 @@ func download(source, url string, fetchPCAP bool) (*events.BinaryEntity, error) 
 	if err != nil {
 		panic(err)
 	}
-	log.Printf("Successfully download sample: %s (%s) and uploaded to store", bin.Sha256, bin.FileFormatLegacy)
+	log.Printf("Successfully download sample: %s (%s) and uploaded to store", bin.Sha256, bin.FileFormat)
 	// best effort to download corresponding pcap
 	if fetchPCAP {
 		p, err := downloadPcapV2(source, bin.Sha256)
@@ -139,13 +139,12 @@ func publish(event *events.DownloadEvent, bin *events.BinaryEntity) {
 	}
 
 	ob.Source.Path = []events.EventSourcePathNode{{
-		Author:           author.Summary(),
-		Action:           events.ActionSourced,
-		Sha256:           bin.Sha256,
-		FileFormatLegacy: bin.FileFormatLegacy,
-		FileFormat:       bin.FileFormat,
-		Size:             bin.Size,
-		Timestamp:        now,
+		Author:     author.Summary(),
+		Action:     events.ActionSourced,
+		Sha256:     bin.Sha256,
+		FileFormat: bin.FileFormat,
+		Size:       bin.Size,
+		Timestamp:  now,
 	}}
 	bulk := events.BulkBinaryEvent{Events: []*events.BinaryEvent{&ob}}
 	resp, err := dpclient.PostEvents(&bulk, &bedclient.PublishEventsOptions{Sync: true})

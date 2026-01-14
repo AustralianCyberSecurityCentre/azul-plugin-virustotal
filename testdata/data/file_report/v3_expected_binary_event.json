@@ -18,7 +18,6 @@
         "action": "sourced",
         "sha256": "0848437c2a0842ea269586b5d26f18ac3df24cf48970ccdc1a49bdb23b78dd85",
         "timestamp": "2022-09-12T23:36:47Z",
-        "file_format_legacy": "HTML",
         "file_format": "code/html/component",
         "size": 16512
       },
@@ -31,7 +30,6 @@
         "action": "mapped",
         "sha256": "c99dba3ba7a50f2c04b182ba871c3f7c6ca4061542990d6e191e506404393908",
         "timestamp": "2022-09-12T23:36:47Z",
-        "file_format_legacy": "HTML",
         "file_format": "code/html/component",
         "size": 16512
       }
@@ -47,7 +45,6 @@
     "size": 47254681,
     "mime": "application/zip",
     "magic": "Zip archive data, at least v0.0 to extract, compression method=deflate",
-    "file_format_legacy": "APK",
     "file_format": "unknown",
     "file_extension": "apk",
     "features": [
@@ -66,7 +63,7 @@
         "value": "786432:zk8VYyo0tf9mS1ZKKgOPPPgQkPLhuw92KvVdo3Z+/poHN/ozpCvS3HwwoQWq:I8VYaGSPKuPgJPLhu90VS3RHN/o8vS3t",
         "type": "string"
       },
-      { "name": "file_type_vt", "value": "android", "type": "string" },
+      { "name": "file_type_vt", "value": "APK", "type": "string" },
       { "name": "tags", "value": "checks-gps", "type": "string" },
       { "name": "tags", "value": "reflection", "type": "string" },
       { "name": "tags", "value": "telephony", "type": "string" },
