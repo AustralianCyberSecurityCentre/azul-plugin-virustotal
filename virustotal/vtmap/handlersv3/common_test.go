@@ -27,7 +27,7 @@ func TestGetCommon(t *testing.T) {
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "tlsh", Value: "T109545A00F6E504B2FA697F3410BA3B325639BE554B75CB9F9754EC1C4D32A82C92632B", Type: bh.AzFTString})
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "magic", Value: "PE32 executable (DLL) (GUI) Intel 80386, for MS Windows", Type: bh.AzFTString})
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "ssdeep", Value: "3072:qERzjWYWMVVc3RawscaNtIqCnyZio9iT4RXOSL9WnrvAuJ2oBvMpLCtdk6+gQrPW:dRPWNMVy0wsRTJ9LOSZWrvpM1", Type: bh.AzFTString})
-	require.Contains(t, result, events.BinaryEntityFeature{Name: "file_type_vt", Value: "pedll", Type: bh.AzFTString})
+	require.Contains(t, result, events.BinaryEntityFeature{Name: "file_type_vt", Value: "PEBIN", Type: bh.AzFTString})
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "tags", Value: "pedll", Type: bh.AzFTString})
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "tags", Value: "armadillo", Type: bh.AzFTString})
 	require.Nil(t, err)
@@ -39,7 +39,7 @@ func TestGetCommonNoTlsh(t *testing.T) {
 	t.Logf("%v", result)
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "magic", Value: "Microsoft Windows Autorun file", Type: bh.AzFTString})
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "ssdeep", Value: "3:0Vdh4JYh49:Sb4JG49", Type: bh.AzFTString})
-	require.Contains(t, result, events.BinaryEntityFeature{Name: "file_type_vt", Value: "ini", Type: bh.AzFTString})
+	require.Contains(t, result, events.BinaryEntityFeature{Name: "file_type_vt", Value: "BATCH", Type: bh.AzFTString})
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "tags", Value: "ini", Type: bh.AzFTString})
 
 	for _, foundFeat := range result {

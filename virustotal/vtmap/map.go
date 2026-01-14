@@ -78,10 +78,6 @@ func TransformFileReportSingleV3(raw []byte, author *events.EventAuthor, source 
 			if binaries[idx].Size > 0 {
 				nodeMappedChild.Size = binaries[idx].Size
 			}
-			if len(binaries[idx].FileFormatLegacy) > 0 {
-				nodeMappedChild.FileFormatLegacy = binaries[idx].FileFormatLegacy
-			}
-			binaries[idx].FileFormat = st.IdentifyMapper.FindFileType(binaries[idx].FileFormat, binaries[idx].FileFormatLegacy)
 			name := filename(binaries[idx].Features)
 			if len(name) > 0 {
 				nodeMappedChild.Filename = name
@@ -151,10 +147,6 @@ func TransformFileFeedSingleV3(raw []byte, author *events.EventAuthor) ([]*event
 			if binaries[idx].Size > 0 {
 				nodeMappedChild.Size = binaries[idx].Size
 			}
-			if len(binaries[idx].FileFormatLegacy) > 0 {
-				nodeMappedChild.FileFormatLegacy = binaries[idx].FileFormatLegacy
-			}
-			binaries[idx].FileFormat = st.IdentifyMapper.FindFileType(binaries[idx].FileFormat, binaries[idx].FileFormatLegacy)
 			name := filename(binaries[idx].Features)
 			if len(name) > 0 {
 				nodeMappedChild.Filename = name

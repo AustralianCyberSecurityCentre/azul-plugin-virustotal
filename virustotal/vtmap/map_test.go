@@ -83,7 +83,7 @@ func TestProcessFileReportSingleV3(t *testing.T) {
 						Security: ""},
 					Action: events.ActionMapped,
 					Sha256: "bebdfd8216bce5c81ebfdcdf496e69d00e3a922faa70110fed80d2e4287a07f8",
-					Size:   2.5317852e+07, FileFormatLegacy: "android", FileFormat: "android/apk",
+					Size:   2.5317852e+07, FileFormat: "android/apk",
 					Relationship: nil,
 					Timestamp:    now,
 				},
@@ -94,7 +94,7 @@ func TestProcessFileReportSingleV3(t *testing.T) {
 		Retries:  0,
 		Dequeued: "",
 		Entity: events.BinaryEntity{
-			Size: 0x18251dc, Sha512: "", Sha256: "bebdfd8216bce5c81ebfdcdf496e69d00e3a922faa70110fed80d2e4287a07f8", Sha1: "7bf012b3042f4065a0071c08fc45e1af0addeafa", Md5: "56daa605606d14f73f59590db0fb5ad9", Ssdeep: "393216:2qPC+mDx0A5YXA3r8ucDNWhxoKe517BwByloVbZUJ17BPrHudq80kBRjpG5NdNo:xE3rgNIDe517BnlYZ817BidqFkBT", Tlsh: "T197473353FB69941FE47AA53A086901B4D5264F09C243B31B74AC3738777BA880F86BF5", Mime: "application/zip", Magic: "Zip archive data, at least v0.0 to extract, compression method=store", FileFormatLegacy: "android", FileFormat: "android/apk", FileExtension: "apk",
+			Size: 0x18251dc, Sha512: "", Sha256: "bebdfd8216bce5c81ebfdcdf496e69d00e3a922faa70110fed80d2e4287a07f8", Sha1: "7bf012b3042f4065a0071c08fc45e1af0addeafa", Md5: "56daa605606d14f73f59590db0fb5ad9", Ssdeep: "393216:2qPC+mDx0A5YXA3r8ucDNWhxoKe517BwByloVbZUJ17BPrHudq80kBRjpG5NdNo:xE3rgNIDe517BnlYZ817BidqFkBT", Tlsh: "T197473353FB69941FE47AA53A086901B4D5264F09C243B31B74AC3738777BA880F86BF5", Mime: "application/zip", Magic: "Zip archive data, at least v0.0 to extract, compression method=store", FileFormat: "android/apk", FileExtension: "apk",
 			Features: []events.BinaryEntityFeature{
 				{Name: "av_verdict", Value: "failure", Type: "string", Label: "1", Size: 0x0, Offset: 0x0},
 				{Name: "av_verdict", Value: "timeout", Type: "string", Label: "15", Size: 0x0, Offset: 0x0},
@@ -156,7 +156,7 @@ func TestProcessFileFeedSingleV3(t *testing.T) {
 		Author:       events.EventAuthor{Name: "TestAuthor", Version: "2.0.0", Category: "plugin", Security: ""},
 		ModelVersion: 3,
 		Timestamp:    time.Date(2006, time.January, 1, 1, 0, 0, 0, time.UTC),
-		Source:       events.EventSource{Name: "virustotal", References: map[string]string{"interface": "api", "submitter_country": "US", "submitter_id": "a96f7a0a"}, Security: "", Path: []events.EventSourcePathNode{{Author: events.EventAuthor{Name: "TestAuthor", Version: "2.0.0", Category: "plugin", Security: ""}, Action: "mapped", Sha256: "bebdfd8216bce5c81ebfdcdf496e69d00e3a922faa70110fed80d2e4287a07f8", Size: 2.5317852e+07, FileFormatLegacy: "android", FileFormat: "android/apk", Relationship: nil, Timestamp: time.Date(2006, time.January, 1, 1, 0, 0, 0, time.UTC)}}, Timestamp: time.Date(2024, time.July, 1, 3, 19, 22, 0, time.UTC)},
+		Source:       events.EventSource{Name: "virustotal", References: map[string]string{"interface": "api", "submitter_country": "US", "submitter_id": "a96f7a0a"}, Security: "", Path: []events.EventSourcePathNode{{Author: events.EventAuthor{Name: "TestAuthor", Version: "2.0.0", Category: "plugin", Security: ""}, Action: "mapped", Sha256: "bebdfd8216bce5c81ebfdcdf496e69d00e3a922faa70110fed80d2e4287a07f8", Size: 2.5317852e+07, FileFormat: "android/apk", Relationship: nil, Timestamp: time.Date(2006, time.January, 1, 1, 0, 0, 0, time.UTC)}}, Timestamp: time.Date(2024, time.July, 1, 3, 19, 22, 0, time.UTC)},
 		Action:       "mapped",
 		Flags:        events.BinaryFlags{},
 		Retries:      0,
@@ -169,7 +169,7 @@ func TestProcessFileFeedSingleV3(t *testing.T) {
 			Ssdeep: "393216:2qPC+mDx0A5YXA3r8ucDNWhxoKe517BwByloVbZUJ17BPrHudq80kBRjpG5NdNo:xE3rgNIDe517BnlYZ817BidqFkBT",
 			Tlsh:   "T197473353FB69941FE47AA53A086901B4D5264F09C243B31B74AC3738777BA880F86BF5",
 			Mime:   "application/zip", Magic: "Zip archive data, at least v0.0 to extract, compression method=store",
-			FileFormatLegacy: "android", FileFormat: "android/apk", FileExtension: "apk", Features: []events.BinaryEntityFeature{
+			FileFormat: "android/apk", FileExtension: "apk", Features: []events.BinaryEntityFeature{
 				{Name: "av_verdict", Value: "failure", Type: "string", Label: "1", Size: 0x0, Offset: 0x0},
 				{Name: "av_verdict", Value: "timeout", Type: "string", Label: "15", Size: 0x0, Offset: 0x0},
 				{Name: "av_verdict", Value: "type-unsupported", Type: "string", Label: "10", Size: 0x0, Offset: 0x0},
@@ -245,7 +245,7 @@ func TestConvertMessageV3(t *testing.T) {
 	cleaned = sortRawBinaryEvent(cleaned)
 	cleaned, err = sjson.DeleteBytes(cleaned, "flags")
 	require.Nil(t, err)
-	require.JSONEq(t, string(cleaned), string(testdata.GetFileBytes("data/load/testConvertMessageV3.expected.json")))
+	require.JSONEq(t, string(testdata.GetFileBytes("data/load/testConvertMessageV3.expected.json")), string(cleaned))
 }
 
 func TestConvertMessagesV3(t *testing.T) {

@@ -84,7 +84,7 @@ func TestMakeDownloadEventsV3(t *testing.T) {
 						Security: "",
 					},
 					Sha256: "f03e48789fe941fdace93275f5e8b9ad3ced7b948b70dc33973f90c4027f7310",
-					Size:   1048458, FileFormatLegacy: "android", FileFormat: "android/apk",
+					Size:   1048458, FileFormat: "android/apk",
 					Relationship: map[string]string(nil),
 					Timestamp:    time.Date(2024, time.July, 1, 3, 19, 25, 0, time.Local),
 				},

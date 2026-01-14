@@ -24,7 +24,6 @@
         "action": "mapped",
         "sha256": "bebdfd8216bce5c81ebfdcdf496e69d00e3a922faa70110fed80d2e4287a07f8",
         "size": 25317852,
-        "file_format_legacy": "android",
         "file_format": "android/apk",
         "timestamp": "2024-07-01T03:19:22Z"
       }
@@ -40,7 +39,6 @@
     "tlsh": "T197473353FB69941FE47AA53A086901B4D5264F09C243B31B74AC3738777BA880F86BF5",
     "mime": "application/zip",
     "magic": "Zip archive data, at least v0.0 to extract, compression method=store",
-    "file_format_legacy": "android",
     "file_format": "android/apk",
     "file_extension": "apk",
     "info": {},
