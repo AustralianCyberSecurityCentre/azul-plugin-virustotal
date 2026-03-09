@@ -132,7 +132,7 @@ func certIssuerAndSubjectHandler(result gjson.Result, featMapping bh.VtPathToAzF
 	sort.Strings(keys)
 
 	for _, k := range keys {
-		sb.WriteString(fmt.Sprintf("%s=%s,", k, certKeyMap[k].String()))
+		fmt.Fprintf(&sb, "%s=%s,", k, certKeyMap[k].String())
 	}
 	stringResult := sb.String()
 	mappedFeats = append(mappedFeats, events.BinaryEntityFeature{
