@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/testdata"
 	"github.com/stretchr/testify/require"
