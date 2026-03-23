@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
 
 var rules []Rule
