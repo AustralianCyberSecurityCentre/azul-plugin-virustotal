@@ -1,5 +1,5 @@
-github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.28 h1:PYmgDbsm55DCpBpHswvYavMuNv8HgdnmmmvmkXETJQo=
-github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.28/go.mod h1:kNyiAHQkYb/qI/188g/nQRFcgQu91CupAsHFMEppFOs=
+github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.30 h1:og7raW/j8VgyZLlbsqb7RHDCjn9sMVPiBlz1gTc0KVA=
+github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.30/go.mod h1:kNyiAHQkYb/qI/188g/nQRFcgQu91CupAsHFMEppFOs=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
