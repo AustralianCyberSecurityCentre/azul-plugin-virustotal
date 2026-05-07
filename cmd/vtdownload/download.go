@@ -129,12 +129,17 @@ func publish(event *events.DownloadEvent, bin *events.BinaryEntity) {
 	if err != nil {
 		panic(err)
 	}
+	// Copy source to ensure the download event doesn't have an invalid path added.
+	sourceCopy, err := event.Source.DeepCopy()
+	if err != nil {
+		panic(err)
+	}
 	ob := events.BinaryEvent{
 		ModelVersion: 3,
 		Author:       author.Summary(),
 		Timestamp:    now,
 		Action:       events.ActionSourced,
-		Source:       event.Source,
+		Source:       sourceCopy,
 		Entity:       *bin,
 	}
 
