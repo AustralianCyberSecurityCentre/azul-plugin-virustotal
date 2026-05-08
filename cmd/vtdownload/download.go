@@ -259,7 +259,7 @@ func Entrypoint() {
 			url := fmt.Sprintf("%s/api/v3/files/%s/download", st.VirustotalApiServer, ev.Entity.Hash)
 			bin, err := download(ev.Source.Name, url, ev.Entity.PCAP)
 			if err != nil {
-				notify(ev, ev.Entity.Hash, events.DownloadActionFailed)
+				notify(ev, ev.Entity.Hash, events.DownloadActionFailedNotFound)
 			} else {
 				publish(ev, bin)
 				notify(ev, ev.Entity.Hash, events.DownloadActionSuccess)
