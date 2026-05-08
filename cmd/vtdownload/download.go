@@ -10,6 +10,7 @@ import (
 
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/client"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/plugin"
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
 )
 
@@ -25,6 +26,7 @@ var author = events.PluginEntity{
 		{Name: "magic", Type: "string", Description: "File magic description string"},
 		{Name: "mime", Type: "string", Description: "File magic mime-type label"},
 	},
+	Config: plugin.NewDefaultPluginSettings().WithIsProcessingDownloadEvents(true).ConvertToMap(),
 }
 
 var dpclient *bedclient.Client
