@@ -84,11 +84,6 @@ func download(hash string, source events.EventSource) {
 			CategoryQuota: resultLimit,
 		},
 	}
-	de.Source.Path = append(source.Path, events.EventSourcePathNode{
-		Author:    author.Summary(),
-		Sha256:    hash,
-		Timestamp: now,
-	})
 	bulk := events.BulkDownloadEvent{Events: []*events.DownloadEvent{&de}}
 	resp, err := dpclient.PostEvents(&bulk, &bedclient.PublishEventsOptions{Sync: true})
 	if err != nil {
