@@ -58,4 +58,4 @@ require (
 	google.golang.org/protobuf v1.36.11 // indirect
 )
 
-replace github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.92 => ../../azul-core/azul-bedrock
+// replace github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.92 => ../../azul-core/azul-bedrock
