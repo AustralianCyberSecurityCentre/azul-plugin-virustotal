@@ -73,7 +73,7 @@ func download(hash string, source events.EventSource) {
 	now := time.Now()
 	// send download request
 	de := events.DownloadEvent{
-		ModelVersion: 3,
+		ModelVersion: events.CurrentModelVersion,
 		Author:       author.Summary(),
 		Timestamp:    now,
 		Action:       events.DownloadActionRequested,

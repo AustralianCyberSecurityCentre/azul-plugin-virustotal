@@ -57,7 +57,7 @@ func makeDownloadEventsV3(rawScan []byte, hits []Rule, author *events.EventAutho
 
 	// we send a separate download event per hit.. this allows different rules to have different quotas
 	ev := events.DownloadEvent{
-		ModelVersion: 3,
+		ModelVersion: events.CurrentModelVersion,
 		Author:       *author,
 		Timestamp:    st.Now(),
 		Source:       *source,

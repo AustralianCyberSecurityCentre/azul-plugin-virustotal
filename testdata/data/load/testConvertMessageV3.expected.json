@@ -5,7 +5,7 @@
     "category": "plugin"
   },
   "action": "mapped",
-  "model_version": 3,
+  "model_version": 6,
   "timestamp": "2024-01-01T01:00:00Z",
   "source": {
     "name": "virustotal",

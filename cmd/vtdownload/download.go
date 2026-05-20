@@ -137,7 +137,7 @@ func publish(event *events.DownloadEvent, bin *events.BinaryEntity) {
 		panic(err)
 	}
 	ob := events.BinaryEvent{
-		ModelVersion: 3,
+		ModelVersion: events.CurrentModelVersion,
 		Author:       author.Summary(),
 		Timestamp:    now,
 		Action:       events.ActionSourced,
@@ -163,28 +163,6 @@ func publish(event *events.DownloadEvent, bin *events.BinaryEntity) {
 	}
 }
 
-// monitor will find successful download messages to track quotas for categories
-func monitor(scoreboard *Scoreboard) {
-	for {
-		bulk, _, err := dpclient.GetDownloadEvents(&bedclient.FetchEventsStruct{
-			Count:       batchSize,
-			Deadline:    30,
-			RequireLive: true,
-			IsTask:      true,
-		})
-		if err != nil {
-			panic(err)
-		}
-		if len(bulk.Events) == 0 {
-			time.Sleep(2000 * time.Millisecond)
-			continue
-		}
-		for _, d := range bulk.Events {
-			scoreboard.Feed(&d.Entity, d.Timestamp)
-		}
-	}
-}
-
 func Entrypoint() {
 	var err error
 	dpclient = bedclient.NewClient(st.DispatcherEventsUrl, st.DispatcherDataUrl, author, st.DeploymentKey)
@@ -193,7 +171,6 @@ func Entrypoint() {
 		log.Fatal(err)
 	}
 	scoreboard := NewScoreboard()
-	go monitor(scoreboard)
 
 	log.Println("vtdownload plugin starting")
 
@@ -209,6 +186,9 @@ func Entrypoint() {
 		}
 		log.Printf("Processing %d downloaded message data.", len(bulk.Events))
 		for _, ev := range bulk.Events {
+			// Add metrics to scoreboard
+			scoreboard.Feed(&ev.Entity, ev.Timestamp)
+
 			if ev.Action != events.DownloadActionRequested {
 				// skip non-request events
 				continue

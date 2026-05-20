@@ -64,7 +64,7 @@ func TestProcessFileReportSingleV3(t *testing.T) {
 			Category: "plugin",
 			Security: "",
 		},
-		ModelVersion: 3,
+		ModelVersion: events.CurrentModelVersion,
 		Timestamp:    now,
 		Source: events.EventSource{
 			Name: "virustotal",
@@ -154,7 +154,7 @@ func TestProcessFileFeedSingleV3(t *testing.T) {
 	require.EqualExportedValues(t, ev, &events.BinaryEvent{
 		KafkaKey:     "",
 		Author:       events.EventAuthor{Name: "TestAuthor", Version: "2.0.0", Category: "plugin", Security: ""},
-		ModelVersion: 3,
+		ModelVersion: events.CurrentModelVersion,
 		Timestamp:    time.Date(2006, time.January, 1, 1, 0, 0, 0, time.UTC),
 		Source:       events.EventSource{Name: "virustotal", References: map[string]string{"interface": "api", "submitter_country": "US", "submitter_id": "a96f7a0a"}, Security: "", Path: []events.EventSourcePathNode{{Author: events.EventAuthor{Name: "TestAuthor", Version: "2.0.0", Category: "plugin", Security: ""}, Action: "mapped", Sha256: "bebdfd8216bce5c81ebfdcdf496e69d00e3a922faa70110fed80d2e4287a07f8", Size: 2.5317852e+07, FileFormat: "android/apk", Relationship: nil, Timestamp: time.Date(2006, time.January, 1, 1, 0, 0, 0, time.UTC)}}, Timestamp: time.Date(2024, time.July, 1, 3, 19, 22, 0, time.UTC)},
 		Action:       "mapped",
