@@ -65,7 +65,7 @@ func TestMakeDownloadEventsV3(t *testing.T) {
 			Category: "plugin",
 			Security: "",
 		},
-		ModelVersion: 3,
+		ModelVersion: events.CurrentModelVersion,
 		Timestamp:    time.Date(2024, time.January, 1, 1, 0, 0, 0, time.UTC),
 		Source: events.EventSource{
 			Name: "virustotal",
@@ -74,21 +74,8 @@ func TestMakeDownloadEventsV3(t *testing.T) {
 				"submitter_country": "US",
 				"submitter_id":      "a96f7a0a",
 			},
-			Security: "",
-			Path: []events.EventSourcePathNode{
-				{
-					Author: events.EventAuthor{
-						Name:     "TestAuthor",
-						Version:  "2.0.0",
-						Category: "plugin",
-						Security: "",
-					},
-					Sha256: "f03e48789fe941fdace93275f5e8b9ad3ced7b948b70dc33973f90c4027f7310",
-					Size:   1048458, FileFormat: "android/apk",
-					Relationship: map[string]string(nil),
-					Timestamp:    time.Date(2024, time.July, 1, 3, 19, 25, 0, time.Local),
-				},
-			},
+			Security:  "",
+			Path:      []events.EventSourcePathNode{},
 			Timestamp: time.Date(2024, time.July, 1, 3, 19, 25, 0, time.Local),
 		},
 		Action: events.DownloadActionRequested,

@@ -142,7 +142,7 @@ func queryVT3FileReport(sha256 string) ([][]byte, error) {
 func makeCompletionEventV3(scans [][]byte, evIn *events.BinaryEvent, startAt time.Time) (int, *events.StatusEvent, error) {
 	// The status event with the filescan results (if any)
 	ev := events.StatusEvent{
-		ModelVersion: 3,
+		ModelVersion: events.CurrentModelVersion,
 		Author:       author.Summary(),
 		// Timestamp:    st.Now(),
 		Entity: events.StatusEntity{

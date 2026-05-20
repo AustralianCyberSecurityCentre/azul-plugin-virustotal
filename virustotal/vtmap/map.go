@@ -49,7 +49,7 @@ func TransformFileReportSingleV3(raw []byte, author *events.EventAuthor, source 
 		}
 
 		ob := events.BinaryEvent{
-			ModelVersion: 3,
+			ModelVersion: events.CurrentModelVersion,
 			Author:       *author,
 			Timestamp:    st.Now(),
 			Action:       events.ActionMapped,
@@ -126,7 +126,7 @@ func TransformFileFeedSingleV3(raw []byte, author *events.EventAuthor) ([]*event
 		}
 
 		ob := events.BinaryEvent{
-			ModelVersion: 3,
+			ModelVersion: events.CurrentModelVersion,
 			Author:       *author,
 			Timestamp:    st.Now(),
 			Action:       events.ActionMapped,

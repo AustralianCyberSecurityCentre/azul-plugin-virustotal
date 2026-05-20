@@ -38,8 +38,8 @@ func makeDownloadEventsV3(rawScan []byte, hits []Rule, author *events.EventAutho
 		// record was too old
 		return nil, nil
 	}
-	// remove action info
-	source.Path[0].Action = ""
+	// remove path info as download events don't use paths
+	source.Path = []events.EventSourcePathNode{}
 
 	// Validate the Vtmsg
 	if len(vtmsg.Sha256) != 64 {
@@ -57,7 +57,7 @@ func makeDownloadEventsV3(rawScan []byte, hits []Rule, author *events.EventAutho
 
 	// we send a separate download event per hit.. this allows different rules to have different quotas
 	ev := events.DownloadEvent{
-		ModelVersion: 3,
+		ModelVersion: events.CurrentModelVersion,
 		Author:       *author,
 		Timestamp:    st.Now(),
 		Source:       *source,

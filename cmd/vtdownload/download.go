@@ -10,6 +10,7 @@ import (
 
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/client"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/plugin"
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
 )
 
@@ -25,6 +26,7 @@ var author = events.PluginEntity{
 		{Name: "magic", Type: "string", Description: "File magic description string"},
 		{Name: "mime", Type: "string", Description: "File magic mime-type label"},
 	},
+	Config: plugin.NewDefaultPluginSettings().WithIsProcessingDownloadEvents(true).ConvertToMap(),
 }
 
 var dpclient *bedclient.Client
@@ -129,12 +131,17 @@ func publish(event *events.DownloadEvent, bin *events.BinaryEntity) {
 	if err != nil {
 		panic(err)
 	}
+	// Copy source to ensure the download event doesn't have an invalid path added.
+	sourceCopy, err := event.Source.DeepCopy()
+	if err != nil {
+		panic(err)
+	}
 	ob := events.BinaryEvent{
-		ModelVersion: 3,
+		ModelVersion: events.CurrentModelVersion,
 		Author:       author.Summary(),
 		Timestamp:    now,
 		Action:       events.ActionSourced,
-		Source:       event.Source,
+		Source:       sourceCopy,
 		Entity:       *bin,
 	}
 
@@ -156,28 +163,6 @@ func publish(event *events.DownloadEvent, bin *events.BinaryEntity) {
 	}
 }
 
-// monitor will find successful download messages to track quotas for categories
-func monitor(scoreboard *Scoreboard) {
-	for {
-		bulk, _, err := dpclient.GetDownloadEvents(&bedclient.FetchEventsStruct{
-			Count:       batchSize,
-			Deadline:    30,
-			RequireLive: true,
-			IsTask:      true,
-		})
-		if err != nil {
-			panic(err)
-		}
-		if len(bulk.Events) == 0 {
-			time.Sleep(2000 * time.Millisecond)
-			continue
-		}
-		for _, d := range bulk.Events {
-			scoreboard.Feed(&d.Entity, d.Timestamp)
-		}
-	}
-}
-
 func Entrypoint() {
 	var err error
 	dpclient = bedclient.NewClient(st.DispatcherEventsUrl, st.DispatcherDataUrl, author, st.DeploymentKey)
@@ -186,7 +171,6 @@ func Entrypoint() {
 		log.Fatal(err)
 	}
 	scoreboard := NewScoreboard()
-	go monitor(scoreboard)
 
 	log.Println("vtdownload plugin starting")
 
@@ -202,6 +186,9 @@ func Entrypoint() {
 		}
 		log.Printf("Processing %d downloaded message data.", len(bulk.Events))
 		for _, ev := range bulk.Events {
+			// Add metrics to scoreboard
+			scoreboard.Feed(&ev.Entity, ev.Timestamp)
+
 			if ev.Action != events.DownloadActionRequested {
 				// skip non-request events
 				continue
@@ -222,6 +209,7 @@ func Entrypoint() {
 				panic(err)
 			}
 			if exists {
+				notify(ev, ev.Entity.Hash, events.DownloadActionSkippedAlreadyPresent)
 				log.Printf("Already have hash %s in store, skipping download request", ev.Entity.Hash)
 				continue
 			}
@@ -252,7 +240,7 @@ func Entrypoint() {
 			url := fmt.Sprintf("%s/api/v3/files/%s/download", st.VirustotalApiServer, ev.Entity.Hash)
 			bin, err := download(ev.Source.Name, url, ev.Entity.PCAP)
 			if err != nil {
-				notify(ev, ev.Entity.Hash, events.DownloadActionFailed)
+				notify(ev, ev.Entity.Hash, events.DownloadActionFailedNotFound)
 			} else {
 				publish(ev, bin)
 				notify(ev, ev.Entity.Hash, events.DownloadActionSuccess)

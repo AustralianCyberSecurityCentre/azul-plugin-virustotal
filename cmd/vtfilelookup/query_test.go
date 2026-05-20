@@ -117,7 +117,7 @@ func TestMakeCompletionEventV3(t *testing.T) {
 			Category: "plugin",
 			Security: "",
 		},
-		ModelVersion: 3,
+		ModelVersion: events.CurrentModelVersion,
 		Timestamp:    time.Date(2024, time.January, 1, 1, 0, 0, 0, time.UTC),
 		Entity: events.StatusEntity{
 			Status: "completed",
