@@ -209,6 +209,7 @@ func Entrypoint() {
 				panic(err)
 			}
 			if exists {
+				notify(ev, ev.Entity.Hash, events.DownloadActionSkippedAlreadyPresent)
 				log.Printf("Already have hash %s in store, skipping download request", ev.Entity.Hash)
 				continue
 			}
