@@ -5,7 +5,7 @@ go 1.26.0
 toolchain go1.26.1
 
 require (
-	github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.104
+	github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.106
 	github.com/goccy/go-json v0.10.6
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/prometheus/client_golang v1.23.2
