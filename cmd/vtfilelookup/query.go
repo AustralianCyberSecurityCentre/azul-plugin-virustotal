@@ -35,6 +35,7 @@ import (
 
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/client"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/plugin"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap"
 
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
@@ -54,6 +55,8 @@ var author = events.PluginEntity{
 var authorSummary = author.Summary()
 var dpclient *bedclient.Client
 
+var lookupConfig *plugin.PluginSettings
+
 // getEventsFromDP sends dispatcher events to channel
 func getEventsFromDP(ch chan *events.BinaryEvent) {
 	defer close(ch)
@@ -68,6 +71,7 @@ func getEventsFromDP(ch chan *events.BinaryEvent) {
 			IsTask:         true,
 			RequireActions: []events.BinaryAction{events.ActionExtracted, events.ActionSourced},
 			RequireSources: strings.Split(st.LookupSources, ","),
+			MaxSecurity:    lookupConfig.MaxSecurity,
 		})
 		if err != nil {
 			panic(err)
@@ -199,6 +203,7 @@ func processEvent(ev *events.BinaryEvent) {
 
 // Entrypoint for running the plugin event loop from the command-line.
 func Entrypoint() {
+	lookupConfig = plugin.NewDefaultPluginSettings()
 	const workers = 10
 	// disable vt records being too old (doesn't make sense here)
 	st.MaxAgeHours = -1

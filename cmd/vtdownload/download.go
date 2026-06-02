@@ -164,6 +164,7 @@ func publish(event *events.DownloadEvent, bin *events.BinaryEntity) {
 }
 
 func Entrypoint() {
+	cfg := plugin.NewDefaultPluginSettings()
 	var err error
 	dpclient = bedclient.NewClient(st.DispatcherEventsUrl, st.DispatcherDataUrl, author, st.DeploymentKey)
 	err = dpclient.PublishPlugin()
@@ -180,6 +181,7 @@ func Entrypoint() {
 			Deadline:    30,
 			RequireLive: true,
 			IsTask:      true,
+			MaxSecurity: cfg.MaxSecurity,
 		})
 		if err != nil {
 			panic(err)
