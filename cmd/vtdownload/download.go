@@ -11,7 +11,9 @@ import (
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/client"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/plugin"
+	bedset "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/settings"
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
+	"github.com/go-viper/mapstructure/v2"
 )
 
 var client = &http.Client{}
@@ -164,7 +166,7 @@ func publish(event *events.DownloadEvent, bin *events.BinaryEntity) {
 }
 
 func Entrypoint() {
-	cfg := plugin.NewDefaultPluginSettings()
+	cfg := bedset.ParseSettings(*plugin.NewDefaultPluginSettings(), "", []mapstructure.DecodeHookFunc{bedset.HumanReadableBytesHookFunc()})
 	var err error
 	dpclient = bedclient.NewClient(st.DispatcherEventsUrl, st.DispatcherDataUrl, author, st.DeploymentKey)
 	err = dpclient.PublishPlugin()

@@ -36,7 +36,9 @@ import (
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/client"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/plugin"
+	bedset "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/settings"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap"
+	"github.com/go-viper/mapstructure/v2"
 
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
 )
@@ -203,7 +205,7 @@ func processEvent(ev *events.BinaryEvent) {
 
 // Entrypoint for running the plugin event loop from the command-line.
 func Entrypoint() {
-	lookupConfig = plugin.NewDefaultPluginSettings()
+	lookupConfig = bedset.ParseSettings(*plugin.NewDefaultPluginSettings(), "", []mapstructure.DecodeHookFunc{bedset.HumanReadableBytesHookFunc()})
 	const workers = 10
 	// disable vt records being too old (doesn't make sense here)
 	st.MaxAgeHours = -1
