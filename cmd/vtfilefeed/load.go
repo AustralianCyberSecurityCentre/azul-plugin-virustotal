@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/client"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/batch"
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/download"

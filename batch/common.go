@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/client"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
 )
 
 type Batcher struct {
