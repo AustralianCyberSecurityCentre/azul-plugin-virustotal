@@ -8,10 +8,10 @@ import (
 	"net/http"
 	"time"
 
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/client"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/plugin"
-	bedset "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/settings"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/plugin"
+	bedset "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
 	"github.com/go-viper/mapstructure/v2"
 )

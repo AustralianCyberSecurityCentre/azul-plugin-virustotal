@@ -6,7 +6,7 @@ import (
 
 	"log"
 
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
 	basehandlerv3 "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/handlersv3"
