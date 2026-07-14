@@ -22,6 +22,9 @@ var LookupSources string = ""
 var DeploymentKey string = "plugin-virustotal"
 var IdentifyMapper *identify.VirusTotalAndLegacyMapper
 
+// Minimum number of AV hits required to keep a BinaryEvent from VT.
+var MinimumAVHits int = 0
+
 // Metric related settings.
 var PushGateway string = ""
 
@@ -123,6 +126,15 @@ func Setup() {
 	IdentifyMapper, err = identify.NewLegacyMapper()
 	if err != nil {
 		panic(err)
+	}
+
+	tmp = os.Getenv("PLUGIN_MINIMUM_AV_HITS")
+	if len(tmp) > 0 {
+		var err error
+		MinimumAVHits, err = strconv.Atoi(tmp)
+		if err != nil {
+			panic(err)
+		}
 	}
 }
 

@@ -281,7 +281,7 @@ func TestDropOldDataV3(t *testing.T) {
 		newDate.Unix())
 	datas, err := TransformFileFeedSingleV3([]byte(json), &testAuthorSummary)
 	require.Nil(t, err)
-	require.GreaterOrEqual(t, len(datas), 0)
+	require.Equal(t, len(datas), 0)
 }
 
 func TestKeepNewDataV3(t *testing.T) {
@@ -292,6 +292,27 @@ func TestKeepNewDataV3(t *testing.T) {
 	json := fmt.Sprintf(
 		`{"attributes": {"sha256": "random_id", "last_analysis_date": %d, "type_tag": "file-type", "size": 123}}`,
 		newDate.Unix())
+	datas, err := TransformFileFeedSingleV3([]byte(json), &testAuthorSummary)
+	require.Nil(t, err)
+	require.GreaterOrEqual(t, len(datas), 1)
+	require.NotNil(t, datas[0])
+}
+
+func TestDropNonMaliciousDataV3(t *testing.T) {
+	st.MinimumAVHits = 4
+	json := fmt.Sprintf(
+		`{"attributes": {"sha256": "random_id", "last_analysis_date": %d, "type_tag": "file-type", "size": 123, "last_analysis_stats": {"malicious": 0}}}`,
+		time.Now().UTC().Unix())
+	datas, err := TransformFileFeedSingleV3([]byte(json), &testAuthorSummary)
+	require.Nil(t, err)
+	require.Equal(t, len(datas), 0)
+}
+
+func TestKeepMaliciousDataV3(t *testing.T) {
+	st.MinimumAVHits = 4
+	json := fmt.Sprintf(
+		`{"attributes": {"sha256": "random_id", "last_analysis_date": %d, "type_tag": "file-type", "size": 123, "last_analysis_stats": {"malicious": 2, "suspicious": 2}}}`,
+		time.Now().UTC().Unix())
 	datas, err := TransformFileFeedSingleV3([]byte(json), &testAuthorSummary)
 	require.Nil(t, err)
 	require.GreaterOrEqual(t, len(datas), 1)

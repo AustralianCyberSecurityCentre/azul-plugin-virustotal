@@ -27,6 +27,11 @@ func BuildSourceV3(vtmsg *VtMessageCommon, author *events.EventAuthor) (*events.
 			return nil, nil
 		}
 	}
+	if st.MinimumAVHits > 0 {
+		if vtmsg.MaliciousCount < st.MinimumAVHits {
+			return nil, nil
+		}
+	}
 	source := events.EventSource{
 		Name:       "virustotal",
 		References: make(map[string]string),

@@ -16,12 +16,13 @@ type VTSubmissionCommon struct {
 }
 
 type VtMessageCommon struct {
-	Sha256       string
-	LastScanDate time.Time
-	Submission   VTSubmissionCommon
-	FileFormatVt string
-	Size         int
-	DownloadUrl  string
+	Sha256         string
+	LastScanDate   time.Time
+	Submission     VTSubmissionCommon
+	FileFormatVt   string
+	Size           int
+	DownloadUrl    string
+	MaliciousCount int
 }
 
 func convertVTMessageV3ToCommon(msg *vtMessageV3) *VtMessageCommon {
@@ -43,9 +44,10 @@ func convertVTMessageV3ToCommon(msg *vtMessageV3) *VtMessageCommon {
 			Interface: msg.ContextAttributes.Submitter.Interface,
 			Filename:  "", // Doesn't map filename because submissions don't include them.
 		},
-		FileFormatVt: fileType,
-		Size:         msg.Attributes.Size,
-		DownloadUrl:  msg.ContextAttributes.DownloadUrl,
+		FileFormatVt:   fileType,
+		Size:           msg.Attributes.Size,
+		DownloadUrl:    msg.ContextAttributes.DownloadUrl,
+		MaliciousCount: msg.Attributes.LastAnalysisStats.Malicious + msg.Attributes.LastAnalysisStats.Suspicious,
 	}
 }
 
@@ -63,12 +65,24 @@ type vtContextAttributesV3 struct {
 	DownloadUrl string         `json:"download_url"`
 }
 
+type vtAnalysisStatsV3 struct {
+	ConfirmedTimeout int `json:"confirmed-timeout"`
+	Failure          int `json:"failure"`
+	Harmless         int `json:"harmless"`
+	Malicious        int `json:"malicious"`
+	Suspicious       int `json:"suspicious"`
+	Timeout          int `json:"timeout"`
+	TypeUnsupported  int `json:"type-unsupported"`
+	Undetected       int `json:"undetected"`
+}
+
 type vtMessageV3Attributes struct {
-	Sha256           string `json:"sha256"`
-	LastAnalysisDate int64  `json:"last_analysis_date"`
-	Type             string `json:"type_tag"`
-	TypeAlternate    string `json:"magika"` // Secondary type if first one isn't found
-	Size             int    `json:"size"`
+	Sha256            string            `json:"sha256"`
+	LastAnalysisDate  int64             `json:"last_analysis_date"`
+	LastAnalysisStats vtAnalysisStatsV3 `json:"last_analysis_stats"`
+	Type              string            `json:"type_tag"`
+	TypeAlternate     string            `json:"magika"` // Secondary type if first one isn't found
+	Size              int               `json:"size"`
 }
 
 type vtMessageV3 struct {
