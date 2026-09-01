@@ -153,6 +153,7 @@ func processToDispatcher(chFromVT chan []byte) *processOutput {
 	return ret
 }
 
+/*
 func startPrometheusPusher(ctx context.Context, pushgateway string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	pusher := push.New(pushgateway, "plugin-virustotal-load").Collector(virustotalTimestamp)
@@ -174,7 +175,7 @@ func startPrometheusPusher(ctx context.Context, pushgateway string, wg *sync.Wai
 		}
 	}
 }
-
+*/
 func Entrypoint() {
 	_, err := vtselect.LoadRules()
 	if err != nil {
