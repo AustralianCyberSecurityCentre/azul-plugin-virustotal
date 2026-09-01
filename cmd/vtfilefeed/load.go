@@ -2,7 +2,6 @@
 package vtfilefeed
 
 import (
-	"context"
 	"log"
 	"os"
 	"sync"
@@ -17,7 +16,6 @@ import (
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtselect"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
-	"github.com/prometheus/client_golang/prometheus/push"
 )
 
 var newestVTTimestamp float64

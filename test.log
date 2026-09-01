@@ -2,7 +2,7 @@
 ?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/batch	[no test files]
 ?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd	[no test files]
 ?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vtdownload	[no test files]
-ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vtfilefeed	0.047s
+ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vtfilefeed	0.042s
 ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vtfilelookup	(cached)
 ?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vthuntfeed	[no test files]
 ?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings	[no test files]
