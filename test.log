@@ -1,0 +1,16 @@
+?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git	[no test files]
+?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/batch	[no test files]
+?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd	[no test files]
+?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vtdownload	[no test files]
+ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vtfilefeed	0.047s
+ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vtfilelookup	(cached)
+?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vthuntfeed	[no test files]
+?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings	[no test files]
+ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal	(cached)
+ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/download	(cached)
+ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/receiver	(cached)
+ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap	(cached)
+?   	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/basehandlerv3	[no test files]
+ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap/handlersv3	(cached)
+ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtselect	(cached)
+ok  	github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtselect/query	(cached)

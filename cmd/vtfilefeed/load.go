@@ -5,7 +5,6 @@ import (
 	"context"
 	"log"
 	"os"
-	"path/filepath"
 	"sync"
 	"time"
 
@@ -13,7 +12,6 @@ import (
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/batch"
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
-	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/download"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/receiver"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtselect"
@@ -183,34 +181,34 @@ func Entrypoint() {
 		panic(err)
 	}
 	chFromVT := make(chan []byte, 10)
-	ctx, cancelFunc := context.WithCancel(context.Background())
+	//ctx, cancelFunc := context.WithCancel(context.Background())
 	var wg sync.WaitGroup
 	// read from VT vs read from stdin
-	if st.VirustotalApiKey != "" {
-		log.Printf("Downloading from VirusTotal")
-		d, err := download.NewDownloader(
-			filepath.Join(st.StateDir, "v3_files"),
-			st.VirustotalApiServer,
-			st.VirustotalApiKey,
-		)
-		if err != nil {
-			panic(err)
-		}
-		log.Println("Fetching with downloader")
-		if len(st.PushGateway) > 0 {
-			log.Printf("Setting up worker to push to Prometheus push gateway %s", st.PushGateway)
-			wg.Add(1)
-			go startPrometheusPusher(ctx, st.PushGateway, &wg)
-		}
-		go d.Fetch(chFromVT, st.PkgLimit)
-	} else {
-		log.Println("Running server to allow VT file uploads via POST request.")
-		go receiver.RunServer(chFromVT)
-	}
+	//if st.VirustotalApiKey != "" {
+	//	log.Printf("Downloading from VirusTotal")
+	//	d, err := download.NewDownloader(
+	//		filepath.Join(st.StateDir, "v3_files"),
+	//		st.VirustotalApiServer,
+	//		st.VirustotalApiKey,
+	//	)
+	//	if err != nil {
+	//		panic(err)
+	//	}
+	//	log.Println("Fetching with downloader")
+	//	if len(st.PushGateway) > 0 {
+	//		log.Printf("Setting up worker to push to Prometheus push gateway %s", st.PushGateway)
+	//		wg.Add(1)
+	//		go startPrometheusPusher(ctx, st.PushGateway, &wg)
+	//	}
+	//	go d.Fetch(chFromVT, st.PkgLimit)
+	//} else {
+	log.Println("Running server to allow VT file uploads via POST request.")
+	go receiver.RunServer(chFromVT)
+	//}
 
 	details := processToDispatcher(chFromVT)
 	printState(details)
-	cancelFunc()
+	//cancelFunc()
 	wg.Wait()
 	if details.filtered > 0 {
 		log.Printf("%v invalid vt-records", details.filtered)
