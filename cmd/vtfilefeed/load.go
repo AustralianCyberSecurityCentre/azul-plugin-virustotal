@@ -152,27 +152,27 @@ func processToDispatcher(chFromVT chan []byte) *processOutput {
 }
 
 /*
-func startPrometheusPusher(ctx context.Context, pushgateway string, wg *sync.WaitGroup) {
-	defer wg.Done()
-	pusher := push.New(pushgateway, "plugin-virustotal-load").Collector(virustotalTimestamp)
-	minutely := time.NewTicker(1 * time.Minute)
-	var err error
-	for {
-		select {
-		case <-minutely.C:
-			err = pusher.Push()
-			if err != nil {
-				log.Printf("Failed to push metrics with error: %v\n", err)
+	func startPrometheusPusher(ctx context.Context, pushgateway string, wg *sync.WaitGroup) {
+		defer wg.Done()
+		pusher := push.New(pushgateway, "plugin-virustotal-load").Collector(virustotalTimestamp)
+		minutely := time.NewTicker(1 * time.Minute)
+		var err error
+		for {
+			select {
+			case <-minutely.C:
+				err = pusher.Push()
+				if err != nil {
+					log.Printf("Failed to push metrics with error: %v\n", err)
+				}
+			case <-ctx.Done():
+				err = pusher.Push()
+				if err != nil {
+					log.Printf("Failed to push metrics with error: %v\n", err)
+				}
+				return
 			}
-		case <-ctx.Done():
-			err = pusher.Push()
-			if err != nil {
-				log.Printf("Failed to push metrics with error: %v\n", err)
-			}
-			return
 		}
 	}
-}
 */
 func Entrypoint() {
 	_, err := vtselect.LoadRules()
