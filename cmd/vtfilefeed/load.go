@@ -177,46 +177,67 @@ func startPrometheusPusher(ctx context.Context, pushgateway string, wg *sync.Wai
 	}
 }
 
-func Entrypoint() {
+func Entrypoint(downloadFromVT bool) {
 	_, err := vtselect.LoadRules()
 	if err != nil {
 		panic(err)
 	}
+
 	chFromVT := make(chan []byte, 10)
 	ctx, cancelFunc := context.WithCancel(context.Background())
 	var wg sync.WaitGroup
-	// read from VT vs read from stdin
-	if st.VirustotalApiKey != "" {
-		log.Printf("Downloading from VirusTotal")
-		d, err := download.NewDownloader(
-			filepath.Join(st.StateDir, "v3_files"),
-			st.VirustotalApiServer,
-			st.VirustotalApiKey,
-		)
-		if err != nil {
-			panic(err)
-		}
-		log.Println("Fetching with downloader")
-		if len(st.PushGateway) > 0 {
-			log.Printf("Setting up worker to push to Prometheus push gateway %s", st.PushGateway)
-			wg.Add(1)
-			go startPrometheusPusher(ctx, st.PushGateway, &wg)
-		}
-		go d.Fetch(chFromVT, st.PkgLimit)
-	} else {
-		log.Println("Running server to allow VT file uploads via POST request.")
-		go receiver.RunServer(chFromVT)
+
+	if st.VirustotalApiKey == "" {
+		log.Fatal("VirustotalApiKey is required")
 	}
 
+	log.Printf("Downloading from VirusTotal")
+
+	d, err := download.NewDownloader(
+		filepath.Join(st.StateDir, "v3_files"),
+		st.VirustotalApiServer,
+		st.VirustotalApiKey,
+	)
+	if err != nil {
+		panic(err)
+	}
+
+	log.Println("Fetching with downloader")
+
+	if len(st.PushGateway) > 0 {
+		log.Printf("Setting up worker to push to Prometheus push gateway %s", st.PushGateway)
+		wg.Add(1)
+		go startPrometheusPusher(ctx, st.PushGateway, &wg)
+	}
+
+	go d.Fetch(chFromVT, st.PkgLimit)
+
 	details := processToDispatcher(chFromVT)
+
 	printState(details)
 	cancelFunc()
 	wg.Wait()
+
 	if details.filtered > 0 {
 		log.Printf("%v invalid vt-records", details.filtered)
 	}
+
 	if details.failed > 0 {
 		log.Printf("%v failed vt-records", details.failed)
 		os.Exit(1)
 	}
+}
+
+func StartServer() {
+	_, err := vtselect.LoadRules()
+	if err != nil {
+		panic(err)
+	}
+
+	chFromVT := make(chan []byte, 10)
+
+	go processToDispatcher(chFromVT)
+
+	log.Println("Running server to allow VT file uploads via POST request.")
+	receiver.RunServer(chFromVT)
 }
