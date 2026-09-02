@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	rootCmd.AddCommand(&cobra.Command{
+	cmd := cobra.Command{
 		Use:     "filefeed",
 		Short:   "Load vt metadata feed into Azul.",
 		Long:    ``,
@@ -16,5 +16,7 @@ func init() {
 		Run: func(cmd *cobra.Command, args []string) {
 			vtfilefeed.Entrypoint()
 		},
-	})
+	}
+	cmd.Flags().String()
+	rootCmd.AddCommand(&)
 }
