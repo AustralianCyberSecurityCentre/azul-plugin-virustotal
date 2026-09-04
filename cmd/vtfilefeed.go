@@ -6,7 +6,7 @@ import (
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vtfilefeed"
 )
 
-var downloadFromVT bool
+var downloadFromBlob bool
 
 func init() {
 	cmd := &cobra.Command{
@@ -14,15 +14,15 @@ func init() {
 		Short: "Load VT metadata feed into Azul",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			vtfilefeed.Entrypoint(downloadFromVT)
+			vtfilefeed.Entrypoint(downloadFromBlob)
 		},
 	}
 
 	cmd.Flags().BoolVar(
-		&downloadFromVT,
-		"download-from-vt",
+		&downloadFromBlob,
+		"download-from-blob",
 		false,
-		"Download from VirusTotal instead of Blob Storage",
+		"Download from Blob instead of Virustotal",
 	)
 
 	rootCmd.AddCommand(cmd)

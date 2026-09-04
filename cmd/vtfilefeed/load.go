@@ -187,7 +187,7 @@ func startPrometheusPusher(ctx context.Context, pushgateway string, wg *sync.Wai
 	}
 }
 
-func Entrypoint(downloadFromVT bool) {
+func Entrypoint(downloadFromBlob bool) {
 	_, err := vtselect.LoadRules()
 	if err != nil {
 		panic(err)
@@ -203,10 +203,10 @@ func Entrypoint(downloadFromVT bool) {
 		go startPrometheusPusher(ctx, st.PushGateway, &wg)
 	}
 
-	if downloadFromVT {
-		startVTDownload(chFromVT)
-	} else {
+	if downloadFromBlob {
 		startBlobDownload(chFromVT)
+	} else {
+		startVTDownload(chFromVT)
 	}
 
 	details := processToDispatcher(chFromVT)
