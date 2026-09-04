@@ -34,8 +34,13 @@ func (s State) After(ts uint64) bool {
 	return s.last > ts
 }
 
+// Return last processed timestamp
+func (s State) Last() uint64 {
+	return s.last
+}
+
 // Update sets and persists the timestamp state.
-func (s State) Update(ts uint64) error {
+func (s *State) Update(ts uint64) error {
 	t := strconv.FormatUint(ts, 10)
 	err := os.WriteFile(s.path, []byte(t), 0644)
 	return err

@@ -10,7 +10,7 @@ var downloadFromVT bool
 
 func init() {
 	cmd := &cobra.Command{
-		Use:   "filefeed-download",
+		Use:   "filefeed",
 		Short: "Load VT metadata feed into Azul",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
