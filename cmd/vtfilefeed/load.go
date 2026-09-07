@@ -305,12 +305,13 @@ func startBlobDownload(chFromVT chan []byte) {
 
 		var blobs []blobInfo
 
-		currentYear := time.Now().UTC().Year()
+		now := time.Now().UTC()
 
 		rootPrefix := fmt.Sprintf(
-			"%s/%d/",
+			"%s/%d/%d",
 			strings.Split(st.BlobFullPathFormat, "/")[0],
-			currentYear,
+			now.Year(),
+			int(now.Month()),
 		)
 
 		log.Printf("Listing blobs under prefix %s", rootPrefix)
