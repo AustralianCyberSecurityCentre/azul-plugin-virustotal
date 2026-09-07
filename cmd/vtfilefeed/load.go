@@ -2,21 +2,32 @@
 package vtfilefeed
 
 import (
+	"archive/tar"
+	"bufio"
+	"compress/bzip2"
 	"context"
+	"fmt"
+	"io"
 	"log"
 	"os"
+	"path"
 	"path/filepath"
+	"sort"
+	"strings"
 	"sync"
 	"time"
 
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/client"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/batch"
+	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vthuntfeed"
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/download"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/receiver"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtselect"
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore/to"
+	"github.com/Azure/azure-sdk-for-go/sdk/storage/azblob"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/push"
@@ -177,46 +188,281 @@ func startPrometheusPusher(ctx context.Context, pushgateway string, wg *sync.Wai
 	}
 }
 
-func Entrypoint() {
+func Entrypoint(downloadFromBlob bool) {
 	_, err := vtselect.LoadRules()
 	if err != nil {
 		panic(err)
 	}
+
 	chFromVT := make(chan []byte, 10)
 	ctx, cancelFunc := context.WithCancel(context.Background())
 	var wg sync.WaitGroup
-	// read from VT vs read from stdin
-	if st.VirustotalApiKey != "" {
-		log.Printf("Downloading from VirusTotal")
-		d, err := download.NewDownloader(
-			filepath.Join(st.StateDir, "v3_files"),
-			st.VirustotalApiServer,
-			st.VirustotalApiKey,
-		)
-		if err != nil {
-			panic(err)
-		}
-		log.Println("Fetching with downloader")
-		if len(st.PushGateway) > 0 {
-			log.Printf("Setting up worker to push to Prometheus push gateway %s", st.PushGateway)
-			wg.Add(1)
-			go startPrometheusPusher(ctx, st.PushGateway, &wg)
-		}
-		go d.Fetch(chFromVT, st.PkgLimit)
+
+	if len(st.PushGateway) > 0 {
+		log.Printf("Setting up worker to push to Prometheus push gateway %s", st.PushGateway)
+		wg.Add(1)
+		go startPrometheusPusher(ctx, st.PushGateway, &wg)
+	}
+
+	if downloadFromBlob {
+		startBlobDownload(chFromVT)
 	} else {
-		log.Println("Running server to allow VT file uploads via POST request.")
-		go receiver.RunServer(chFromVT)
+		startVTDownload(chFromVT)
 	}
 
 	details := processToDispatcher(chFromVT)
+
 	printState(details)
 	cancelFunc()
 	wg.Wait()
+
 	if details.filtered > 0 {
 		log.Printf("%v invalid vt-records", details.filtered)
 	}
+
 	if details.failed > 0 {
 		log.Printf("%v failed vt-records", details.failed)
 		os.Exit(1)
 	}
+}
+
+func StartServer() {
+	_, err := vtselect.LoadRules()
+	if err != nil {
+		panic(err)
+	}
+
+	chFromVT := make(chan []byte, 10)
+
+	go processToDispatcher(chFromVT)
+
+	log.Println("Running server to allow VT file uploads via POST request.")
+	receiver.RunServer(chFromVT)
+}
+
+func startVTDownload(chFromVT chan []byte) {
+	if st.VirustotalApiKey == "" {
+		log.Fatal("VirustotalApiKey is required")
+	}
+
+	log.Printf("Downloading from VirusTotal")
+
+	d, err := download.NewDownloader(
+		filepath.Join(st.StateDir, "v3_files"),
+		st.VirustotalApiServer,
+		st.VirustotalApiKey,
+	)
+	if err != nil {
+		panic(err)
+	}
+
+	log.Println("Fetching with downloader")
+
+	go d.Fetch(chFromVT, st.PkgLimit)
+}
+
+func startBlobDownload(chFromVT chan []byte) {
+	log.Printf("Downloading from Blob Storage")
+
+	if st.AzureConnectionString == "" {
+		log.Fatal("AzureConnectionString is required")
+	}
+
+	go func() {
+		defer close(chFromVT)
+
+		log.Printf("Creating Azure Blob client")
+
+		client, err := azblob.NewClientFromConnectionString(
+			st.AzureConnectionString,
+			nil,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		stateDir := filepath.Join(st.StateDir, "blob_files")
+		log.Printf("Using blob state directory %s", stateDir)
+
+		if err := os.MkdirAll(stateDir, 0755); err != nil {
+			log.Fatal(err)
+		}
+
+		statePath := filepath.Join(stateDir, "state.txt")
+		log.Printf("Loading state from %s", statePath)
+
+		state, err := vthuntfeed.NewState(statePath)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		log.Printf("Last processed timestamp: %d", state.Last())
+
+		type blobInfo struct {
+			Name      string
+			Timestamp uint64
+		}
+
+		var blobs []blobInfo
+
+		now := time.Now().UTC()
+
+		rootPrefix := fmt.Sprintf(
+			"%s/%d/%d",
+			strings.Split(st.BlobFullPathFormat, "/")[0],
+			now.Year(),
+			int(now.Month()),
+		)
+
+		log.Printf("Listing blobs under prefix %s", rootPrefix)
+
+		pager := client.NewListBlobsFlatPager(
+			st.BlobContainer,
+			&azblob.ListBlobsFlatOptions{
+				Prefix: to.Ptr(rootPrefix),
+			},
+		)
+
+		for pager.More() {
+			page, err := pager.NextPage(context.Background())
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			for _, blob := range page.Segment.BlobItems {
+				name := *blob.Name
+
+				base := path.Base(name)
+
+				var tsStr string
+
+				switch {
+				case strings.HasSuffix(base, ".tar.bz2"):
+					tsStr = strings.TrimSuffix(base, ".tar.bz2")
+
+				case strings.HasSuffix(base, ".bz2"):
+					tsStr = strings.TrimSuffix(base, ".bz2")
+
+				default:
+					continue
+				}
+
+				t, err := time.Parse(st.BlobFileNameFormat, tsStr)
+				if err != nil {
+					log.Printf("Skipping unexpected blob name %s", name)
+					continue
+				}
+
+				blobs = append(blobs, blobInfo{
+					Name:      name,
+					Timestamp: uint64(t.Unix()),
+				})
+			}
+		}
+
+		log.Printf("Found %d candidate blobs", len(blobs))
+
+		sort.Slice(blobs, func(i, j int) bool {
+			return blobs[i].Timestamp < blobs[j].Timestamp
+		})
+
+		for _, blob := range blobs {
+			if state.Last() != 0 && blob.Timestamp <= state.Last() {
+				log.Printf(
+					"Skipping already processed blob %s (timestamp=%d)",
+					blob.Name,
+					blob.Timestamp,
+				)
+				continue
+			}
+
+			log.Printf(
+				"Processing blob %s (timestamp=%d)",
+				blob.Name,
+				blob.Timestamp,
+			)
+
+			resp, err := client.DownloadStream(
+				context.Background(),
+				st.BlobContainer,
+				blob.Name,
+				nil,
+			)
+			if err != nil {
+				log.Printf("Failed to download blob %s: %v", blob.Name, err)
+				continue
+			}
+
+			success := true
+			recordCount := 0
+
+			func() {
+				defer resp.Body.Close()
+
+				bz2Reader := bzip2.NewReader(resp.Body)
+				tarReader := tar.NewReader(bz2Reader)
+
+				for {
+					hdr, err := tarReader.Next()
+
+					if err == io.EOF {
+						break
+					}
+
+					if err != nil {
+						log.Printf("Failed reading tar in %s: %v", blob.Name, err)
+						success = false
+						return
+					}
+
+					log.Printf(
+						"Reading tar entry %s from blob %s",
+						hdr.Name,
+						blob.Name,
+					)
+
+					scanner := bufio.NewScanner(tarReader)
+
+					buf := make([]byte, 0, 1024*1024)
+					scanner.Buffer(buf, 2*1024*1024)
+
+					for scanner.Scan() {
+						line := append([]byte(nil), scanner.Bytes()...)
+						chFromVT <- line
+						recordCount++
+					}
+
+					if err := scanner.Err(); err != nil {
+						log.Printf(
+							"Failed reading content from %s: %v",
+							blob.Name,
+							err,
+						)
+						success = false
+						return
+					}
+				}
+			}()
+
+			log.Printf(
+				"Finished blob %s, records sent=%d, success=%t",
+				blob.Name,
+				recordCount,
+				success,
+			)
+
+			if success {
+				log.Printf(
+					"Updating state file to timestamp %d",
+					blob.Timestamp,
+				)
+
+				if err := state.Update(blob.Timestamp); err != nil {
+					log.Printf("Failed updating state: %v", err)
+				}
+			}
+		}
+
+		log.Printf("Blob download run complete")
+	}()
 }
