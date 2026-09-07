@@ -25,7 +25,6 @@ var IdentifyMapper *identify.VirusTotalAndLegacyMapper
 var BlobContainer string = ""
 var BlobFullPathFormat string = ""
 var BlobFileNameFormat string = ""
-var PullFromAzure string = ""
 
 // Minimum number of AV hits required to keep a BinaryEvent from VT.
 var MinimumAVHits int = 0
@@ -93,11 +92,6 @@ func Setup() {
 	tmp = os.Getenv("BLOB_FILE_NAME_FORMAT")
 	if len(tmp) > 0 {
 		BlobFileNameFormat = tmp
-	}
-
-	tmp = os.Getenv("PULL_FROM_AZURE")
-	if len(tmp) > 0 {
-		PullFromAzure = tmp
 	}
 
 	tmp = os.Getenv("STATEDIR")

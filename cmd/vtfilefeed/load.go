@@ -6,6 +6,7 @@ import (
 	"bufio"
 	"compress/bzip2"
 	"context"
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -304,7 +305,13 @@ func startBlobDownload(chFromVT chan []byte) {
 
 		var blobs []blobInfo
 
-		rootPrefix := strings.Split(st.BlobFullPathFormat, "/")[0] + "/"
+		currentYear := time.Now().UTC().Year()
+
+		rootPrefix := fmt.Sprintf(
+			"%s/%d/",
+			strings.Split(st.BlobFullPathFormat, "/")[0],
+			currentYear,
+		)
 
 		log.Printf("Listing blobs under prefix %s", rootPrefix)
 
