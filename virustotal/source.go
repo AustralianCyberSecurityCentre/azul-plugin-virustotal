@@ -21,7 +21,7 @@ func BuildSourceV3(vtmsg *VtMessageCommon, author *events.EventAuthor) (*events.
 		return nil, errors.New("vtmsg has no ScanDate")
 	}
 
-	if st.MaxAgeHours > 0 {
+	if st.MaxAgeHours > 0 && st.PullFromAzure != "true" {
 		oldest := st.Now().UTC().Add(time.Hour * -time.Duration(st.MaxAgeHours))
 		if vtmsg.LastScanDate.Before(oldest) {
 			return nil, nil
