@@ -15,9 +15,9 @@ import (
 	"sync"
 	"time"
 
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
-	bedset "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/events"
+	bedset "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/settings"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/batch"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vthuntfeed"
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
