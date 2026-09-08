@@ -17,6 +17,7 @@ import (
 
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
+	bedset "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/batch"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vthuntfeed"
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
@@ -196,7 +197,7 @@ func Entrypoint(downloadFromBlob bool) {
 	var wg sync.WaitGroup
 
 	if len(st.PushGateway) > 0 {
-		log.Printf("Setting up worker to push to Prometheus push gateway %s", st.PushGateway)
+		bedset.Logger.Info().Str("Gateway", st.PushGateway).Msg("Setting up worker to push to Prometheus push gateway")
 		wg.Add(1)
 		go startPrometheusPusher(ctx, st.PushGateway, &wg)
 	}
@@ -242,7 +243,7 @@ func startVTDownload(chFromVT chan []byte) {
 		log.Fatal("VirustotalApiKey is required")
 	}
 
-	log.Printf("Downloading from VirusTotal")
+	bedset.Logger.Info().Msg("Downloading from VirusTotal")
 
 	d, err := download.NewDownloader(
 		filepath.Join(st.StateDir, "v3_files"),
@@ -253,16 +254,16 @@ func startVTDownload(chFromVT chan []byte) {
 		panic(err)
 	}
 
-	log.Println("Fetching with downloader")
+	bedset.Logger.Info().Msg("Fetching with downloader")
 
 	go d.Fetch(chFromVT, st.PkgLimit)
 }
 
 func startBlobDownload(chFromVT chan []byte) {
-	log.Printf("Downloading from Blob Storage")
+	bedset.Logger.Info().Msg("Downloading from Blob Storage")
 
 	if st.AzureConnectionString == "" {
-		log.Fatal("AzureConnectionString is required")
+		bedset.Logger.Fatal().Msg("AzureConnectionString is required")
 	}
 
 	go runBlobDownload(chFromVT)
@@ -276,19 +277,19 @@ func runBlobDownload(chFromVT chan []byte) {
 		nil,
 	)
 	if err != nil {
-		log.Fatal(err)
+		bedset.Logger.Fatal().Err(err)
 	}
 
 	stateDir := filepath.Join(st.StateDir, "blob_files")
 	if err := os.MkdirAll(stateDir, 0755); err != nil {
-		log.Fatal(err)
+		bedset.Logger.Fatal().Err(err)
 	}
 
 	statePath := filepath.Join(stateDir, "state.txt")
 
 	state, err := vthuntfeed.NewState(statePath)
 	if err != nil {
-		log.Fatal(err)
+		bedset.Logger.Fatal().Err(err)
 	}
 
 	now := time.Now().UTC().Truncate(time.Hour)
@@ -304,7 +305,7 @@ func runBlobDownload(chFromVT chan []byte) {
 			cur.Format(st.BlobFileNameFormat),
 		)
 
-		log.Printf("Checking blob %s", blobName)
+		bedset.Logger.Info().Str("blob", blobName).Msg("Checking blob")
 
 		resp, err := client.DownloadStream(
 			context.Background(),
@@ -313,10 +314,7 @@ func runBlobDownload(chFromVT chan []byte) {
 			nil,
 		)
 		if err != nil {
-			log.Printf(
-				"Blob %s not available yet. Stopping catch-up.",
-				blobName,
-			)
+			bedset.Logger.Info().Str("Blob", blobName).Msg("not available yet. Stopping catch-up.")
 			break
 		}
 
@@ -329,11 +327,7 @@ func runBlobDownload(chFromVT chan []byte) {
 		success := err == nil
 
 		if err != nil {
-			log.Printf(
-				"Failed processing blob %s: %v",
-				blobName,
-				err,
-			)
+			bedset.Logger.Error().Err(err).Str("blob", blobName).Msg("Failed processing blob")
 		}
 
 		log.Printf(
@@ -345,15 +339,12 @@ func runBlobDownload(chFromVT chan []byte) {
 
 		if success {
 			if err := state.Update(uint64(cur.Unix())); err != nil {
-				log.Printf(
-					"Failed updating state: %v",
-					err,
-				)
+				bedset.Logger.Error().Err(err).Msg("Failed updating state")
 			}
 		}
 	}
 
-	log.Printf("Blob download run complete")
+	bedset.Logger.Info().Msg("Blob download run complete")
 }
 
 func getBlobStartTime(
@@ -365,11 +356,10 @@ func getBlobStartTime(
 			-time.Duration(st.MaxAgeHours) * time.Hour,
 		)
 
-		log.Printf(
-			"No state file found. Starting from %d hours ago (%s)",
-			st.MaxAgeHours,
-			startTime.Format(time.RFC3339),
-		)
+		bedset.Logger.Info().
+			Int("max_age_hours", st.MaxAgeHours).
+			Str("start_time", startTime.Format(time.RFC3339)).
+			Msg("No state file found")
 
 		return startTime
 	}
@@ -379,10 +369,9 @@ func getBlobStartTime(
 		0,
 	).UTC().Add(time.Hour)
 
-	log.Printf(
-		"Resuming from %s",
-		startTime.Format(time.RFC3339),
-	)
+	bedset.Logger.Info().
+		Str("start_time", startTime.Format(time.RFC3339)).
+		Msg("Resuming from previous state")
 
 	return startTime
 }
@@ -416,18 +405,16 @@ func processBlob(
 			)
 		}
 
-		log.Printf(
-			"Reading tar entry %s from blob %s",
-			hdr.Name,
-			blobName,
-		)
+		bedset.Logger.Info().
+			Str("entry", hdr.Name).
+			Str("blob", blobName).
+			Msg("Reading tar entry")
 
 		scanner := bufio.NewScanner(tarReader)
 		scanner.Buffer(buf, 10*1024*1024)
 
 		for scanner.Scan() {
-			line := append([]byte(nil), scanner.Bytes()...)
-			chFromVT <- line
+			chFromVT <- scanner.Bytes()
 			recordCount++
 		}
 
