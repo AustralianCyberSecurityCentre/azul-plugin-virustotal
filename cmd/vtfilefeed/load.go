@@ -11,6 +11,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strconv"
 	"sync"
 	"time"
 
@@ -298,8 +299,8 @@ func runBlobDownload(chFromVT chan []byte) {
 
 		blobName := fmt.Sprintf(
 			st.BlobFullPathFormat,
-			cur.Year(),
-			int(cur.Month()),
+			strconv.Itoa(cur.Year()),
+			strconv.Itoa(int(cur.Month())),
 			cur.Format(st.BlobFileNameFormat),
 		)
 
