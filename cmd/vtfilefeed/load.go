@@ -10,10 +10,7 @@ import (
 	"io"
 	"log"
 	"os"
-	"path"
 	"path/filepath"
-	"sort"
-	"strings"
 	"sync"
 	"time"
 
@@ -26,7 +23,6 @@ import (
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/receiver"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtmap"
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/virustotal/vtselect"
-	"github.com/Azure/azure-sdk-for-go/sdk/azcore/to"
 	"github.com/Azure/azure-sdk-for-go/sdk/storage/azblob"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
@@ -268,201 +264,180 @@ func startBlobDownload(chFromVT chan []byte) {
 		log.Fatal("AzureConnectionString is required")
 	}
 
-	go func() {
-		defer close(chFromVT)
+	go runBlobDownload(chFromVT)
+}
 
-		log.Printf("Creating Azure Blob client")
+func runBlobDownload(chFromVT chan []byte) {
+	defer close(chFromVT)
 
-		client, err := azblob.NewClientFromConnectionString(
-			st.AzureConnectionString,
+	client, err := azblob.NewClientFromConnectionString(
+		st.AzureConnectionString,
+		nil,
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	stateDir := filepath.Join(st.StateDir, "blob_files")
+	if err := os.MkdirAll(stateDir, 0755); err != nil {
+		log.Fatal(err)
+	}
+
+	statePath := filepath.Join(stateDir, "state.txt")
+
+	state, err := vthuntfeed.NewState(statePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	now := time.Now().UTC().Truncate(time.Hour)
+
+	startTime := getBlobStartTime(state, now)
+
+	for cur := startTime; !cur.After(now); cur = cur.Add(time.Hour) {
+
+		blobName := fmt.Sprintf(
+			st.BlobFullPathFormat,
+			cur.Year(),
+			int(cur.Month()),
+			cur.Format(st.BlobFileNameFormat),
+		)
+
+		log.Printf("Checking blob %s", blobName)
+
+		resp, err := client.DownloadStream(
+			context.Background(),
+			st.BlobContainer,
+			blobName,
 			nil,
 		)
 		if err != nil {
-			log.Fatal(err)
+			log.Printf(
+				"Blob %s not available yet. Stopping catch-up.",
+				blobName,
+			)
+			break
 		}
 
-		stateDir := filepath.Join(st.StateDir, "blob_files")
-		log.Printf("Using blob state directory %s", stateDir)
+		recordCount, err := processBlob(
+			resp.Body,
+			blobName,
+			chFromVT,
+		)
 
-		if err := os.MkdirAll(stateDir, 0755); err != nil {
-			log.Fatal(err)
-		}
+		success := err == nil
 
-		statePath := filepath.Join(stateDir, "state.txt")
-		log.Printf("Loading state from %s", statePath)
-
-		state, err := vthuntfeed.NewState(statePath)
 		if err != nil {
-			log.Fatal(err)
+			log.Printf(
+				"Failed processing blob %s: %v",
+				blobName,
+				err,
+			)
 		}
 
-		log.Printf("Last processed timestamp: %d", state.Last())
-
-		type blobInfo struct {
-			Name      string
-			Timestamp uint64
-		}
-
-		var blobs []blobInfo
-
-		now := time.Now().UTC()
-
-		rootPrefix := fmt.Sprintf(
-			"%s/%d/%d",
-			strings.Split(st.BlobFullPathFormat, "/")[0],
-			now.Year(),
-			int(now.Month()),
+		log.Printf(
+			"Finished blob %s, records=%d success=%t",
+			blobName,
+			recordCount,
+			success,
 		)
 
-		log.Printf("Listing blobs under prefix %s", rootPrefix)
+		if success {
+			if err := state.Update(uint64(cur.Unix())); err != nil {
+				log.Printf(
+					"Failed updating state: %v",
+					err,
+				)
+			}
+		}
+	}
 
-		pager := client.NewListBlobsFlatPager(
-			st.BlobContainer,
-			&azblob.ListBlobsFlatOptions{
-				Prefix: to.Ptr(rootPrefix),
-			},
+	log.Printf("Blob download run complete")
+}
+
+func getBlobStartTime(
+	state vthuntfeed.State,
+	now time.Time,
+) time.Time {
+	if state.Last() == 0 {
+		startTime := now.Add(
+			-time.Duration(st.MaxAgeHours) * time.Hour,
 		)
 
-		for pager.More() {
-			page, err := pager.NextPage(context.Background())
-			if err != nil {
-				log.Fatal(err)
-			}
+		log.Printf(
+			"No state file found. Starting from %d hours ago (%s)",
+			st.MaxAgeHours,
+			startTime.Format(time.RFC3339),
+		)
 
-			for _, blob := range page.Segment.BlobItems {
-				name := *blob.Name
+		return startTime
+	}
 
-				base := path.Base(name)
+	startTime := time.Unix(
+		int64(state.Last()),
+		0,
+	).UTC().Add(time.Hour)
 
-				var tsStr string
+	log.Printf(
+		"Resuming from %s",
+		startTime.Format(time.RFC3339),
+	)
 
-				switch {
-				case strings.HasSuffix(base, ".tar.bz2"):
-					tsStr = strings.TrimSuffix(base, ".tar.bz2")
+	return startTime
+}
 
-				case strings.HasSuffix(base, ".bz2"):
-					tsStr = strings.TrimSuffix(base, ".bz2")
+func processBlob(
+	body io.ReadCloser,
+	blobName string,
+	chFromVT chan<- []byte,
+) (int, error) {
+	defer body.Close()
 
-				default:
-					continue
-				}
+	recordCount := 0
 
-				t, err := time.Parse(st.BlobFileNameFormat, tsStr)
-				if err != nil {
-					log.Printf("Skipping unexpected blob name %s", name)
-					continue
-				}
+	bz2Reader := bzip2.NewReader(body)
+	tarReader := tar.NewReader(bz2Reader)
 
-				blobs = append(blobs, blobInfo{
-					Name:      name,
-					Timestamp: uint64(t.Unix()),
-				})
-			}
+	buf := make([]byte, 0, 1024*1024)
+
+	for {
+		hdr, err := tarReader.Next()
+
+		if err == io.EOF {
+			break
 		}
 
-		log.Printf("Found %d candidate blobs", len(blobs))
-
-		sort.Slice(blobs, func(i, j int) bool {
-			return blobs[i].Timestamp < blobs[j].Timestamp
-		})
-
-		for _, blob := range blobs {
-			if state.Last() != 0 && blob.Timestamp <= state.Last() {
-				log.Printf(
-					"Skipping already processed blob %s (timestamp=%d)",
-					blob.Name,
-					blob.Timestamp,
-				)
-				continue
-			}
-
-			log.Printf(
-				"Processing blob %s (timestamp=%d)",
-				blob.Name,
-				blob.Timestamp,
+		if err != nil {
+			return recordCount, fmt.Errorf(
+				"failed reading tar in %s: %w",
+				blobName,
+				err,
 			)
-
-			resp, err := client.DownloadStream(
-				context.Background(),
-				st.BlobContainer,
-				blob.Name,
-				nil,
-			)
-			if err != nil {
-				log.Printf("Failed to download blob %s: %v", blob.Name, err)
-				continue
-			}
-
-			success := true
-			recordCount := 0
-
-			func() {
-				defer resp.Body.Close()
-
-				bz2Reader := bzip2.NewReader(resp.Body)
-				tarReader := tar.NewReader(bz2Reader)
-
-				for {
-					hdr, err := tarReader.Next()
-
-					if err == io.EOF {
-						break
-					}
-
-					if err != nil {
-						log.Printf("Failed reading tar in %s: %v", blob.Name, err)
-						success = false
-						return
-					}
-
-					log.Printf(
-						"Reading tar entry %s from blob %s",
-						hdr.Name,
-						blob.Name,
-					)
-
-					scanner := bufio.NewScanner(tarReader)
-
-					buf := make([]byte, 0, 1024*1024)
-					scanner.Buffer(buf, 2*1024*1024)
-
-					for scanner.Scan() {
-						line := append([]byte(nil), scanner.Bytes()...)
-						chFromVT <- line
-						recordCount++
-					}
-
-					if err := scanner.Err(); err != nil {
-						log.Printf(
-							"Failed reading content from %s: %v",
-							blob.Name,
-							err,
-						)
-						success = false
-						return
-					}
-				}
-			}()
-
-			log.Printf(
-				"Finished blob %s, records sent=%d, success=%t",
-				blob.Name,
-				recordCount,
-				success,
-			)
-
-			if success {
-				log.Printf(
-					"Updating state file to timestamp %d",
-					blob.Timestamp,
-				)
-
-				if err := state.Update(blob.Timestamp); err != nil {
-					log.Printf("Failed updating state: %v", err)
-				}
-			}
 		}
 
-		log.Printf("Blob download run complete")
-	}()
+		log.Printf(
+			"Reading tar entry %s from blob %s",
+			hdr.Name,
+			blobName,
+		)
+
+		scanner := bufio.NewScanner(tarReader)
+		scanner.Buffer(buf, 10*1024*1024)
+
+		for scanner.Scan() {
+			line := append([]byte(nil), scanner.Bytes()...)
+			chFromVT <- line
+			recordCount++
+		}
+
+		if err := scanner.Err(); err != nil {
+			return recordCount, fmt.Errorf(
+				"failed reading content from %s: %w",
+				blobName,
+				err,
+			)
+		}
+	}
+
+	return recordCount, nil
 }
