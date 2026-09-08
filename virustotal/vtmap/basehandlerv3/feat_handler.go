@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/events"
 	"github.com/tidwall/gjson"
 )
 

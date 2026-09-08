@@ -13,8 +13,8 @@ import (
 
 	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
 
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/events"
 	"github.com/tidwall/gjson"
 )
 
