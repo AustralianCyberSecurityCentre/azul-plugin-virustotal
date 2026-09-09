@@ -414,8 +414,12 @@ func processBlob(
 		scanner.Buffer(buf, 10*1024*1024)
 
 		for scanner.Scan() {
-			line := append([]byte(nil), scanner.Bytes()...)
-			chFromVT <- line
+			line := scanner.Bytes()
+
+			buf := make([]byte, len(line))
+			copy(buf, line)
+
+			chFromVT <- buf
 			recordCount++
 		}
 
