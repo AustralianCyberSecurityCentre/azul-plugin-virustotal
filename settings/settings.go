@@ -25,6 +25,9 @@ var IdentifyMapper *identify.VirusTotalAndLegacyMapper
 var BlobContainer string = ""
 var BlobFullPathFormat string = ""
 var BlobFileNameFormat string = ""
+var BlobHourGracePeriod int
+var BlobStabilityPeriod int
+var BlobMaxRetryAttempts int
 
 // Minimum number of AV hits required to keep a BinaryEvent from VT.
 var MinimumAVHits int = 0
@@ -92,6 +95,30 @@ func Setup() {
 	tmp = os.Getenv("BLOB_FILE_NAME_FORMAT")
 	if len(tmp) > 0 {
 		BlobFileNameFormat = tmp
+	}
+
+	tmp = os.Getenv("BLOB_HOUR_GRACE_PERIOD")
+	if len(tmp) > 0 {
+		BlobHourGracePeriod, err = strconv.Atoi(tmp)
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	tmp = os.Getenv("BLOB_STABILITY_PERIOD")
+	if len(tmp) > 0 {
+		BlobStabilityPeriod, err = strconv.Atoi(tmp)
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	tmp = os.Getenv("BLOB_MAX_RETRY_ATTEMPTS")
+	if len(tmp) > 0 {
+		BlobMaxRetryAttempts, err = strconv.Atoi(tmp)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	tmp = os.Getenv("STATEDIR")
