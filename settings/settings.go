@@ -22,12 +22,12 @@ var DownloadSizeLimit int
 var LookupSources string = ""
 var DeploymentKey string = "plugin-virustotal"
 var IdentifyMapper *identify.VirusTotalAndLegacyMapper
-var BlobContainer string = ""
-var BlobFullPathFormat string = ""
-var BlobFileNameFormat string = ""
-var BlobHourGracePeriod int
-var BlobStabilityPeriod int
-var BlobMaxRetryAttempts int
+var BlobContainer string = "files"
+var BlobFullPathFormat string = "v3/%s/%s/%s.tar.bz2"
+var BlobFileNameFormat string = "2006010215"
+var BlobHourGracePeriod int = 2
+var BlobStabilityPeriod int = 15
+var BlobMaxRetryAttempts int = 3
 
 // Minimum number of AV hits required to keep a BinaryEvent from VT.
 var MinimumAVHits int = 0
