@@ -12,6 +12,7 @@ import (
 var DispatcherEventsUrl string = "https://dispatcher.internal"
 var DispatcherDataUrl string = "https://dispatcher.internal"
 var VirustotalApiKey string
+var AzureConnectionString string
 var VirustotalApiServer = "https://www.virustotal.com"
 var StateDir string = "/tmp/vtloadstate"
 var PkgLimit int = -1 // default download all remaining
@@ -21,6 +22,12 @@ var DownloadSizeLimit int
 var LookupSources string = ""
 var DeploymentKey string = "plugin-virustotal"
 var IdentifyMapper *identify.VirusTotalAndLegacyMapper
+var BlobContainer string = "files"
+var BlobFullPathFormat string = "v3/%s/%s/%s.tar.bz2"
+var BlobFileNameFormat string = "2006010215"
+var BlobHourGracePeriod int = 2
+var BlobStabilityPeriod int = 15
+var BlobMaxRetryAttempts int = 3
 
 // Minimum number of AV hits required to keep a BinaryEvent from VT.
 var MinimumAVHits int = 0
@@ -68,6 +75,50 @@ func Setup() {
 	tmp = os.Getenv("VIRUSTOTAL_APIKEY")
 	if len(tmp) > 0 {
 		VirustotalApiKey = tmp
+	}
+
+	tmp = os.Getenv("AZURE_STORAGE_CONNECTION_STRING")
+	if len(tmp) > 0 {
+		AzureConnectionString = tmp
+	}
+
+	tmp = os.Getenv("BLOB_CONTAINER")
+	if len(tmp) > 0 {
+		BlobContainer = tmp
+	}
+
+	tmp = os.Getenv("BLOB_FULL_PATH_FORMAT")
+	if len(tmp) > 0 {
+		BlobFullPathFormat = tmp
+	}
+
+	tmp = os.Getenv("BLOB_FILE_NAME_FORMAT")
+	if len(tmp) > 0 {
+		BlobFileNameFormat = tmp
+	}
+
+	tmp = os.Getenv("BLOB_HOUR_GRACE_PERIOD")
+	if len(tmp) > 0 {
+		BlobHourGracePeriod, err = strconv.Atoi(tmp)
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	tmp = os.Getenv("BLOB_STABILITY_PERIOD")
+	if len(tmp) > 0 {
+		BlobStabilityPeriod, err = strconv.Atoi(tmp)
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	tmp = os.Getenv("BLOB_MAX_RETRY_ATTEMPTS")
+	if len(tmp) > 0 {
+		BlobMaxRetryAttempts, err = strconv.Atoi(tmp)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	tmp = os.Getenv("STATEDIR")
