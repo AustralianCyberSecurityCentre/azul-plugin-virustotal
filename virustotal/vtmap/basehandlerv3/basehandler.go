@@ -13,9 +13,11 @@ const MaxFeaturesPerFeature = 1000
 const MaxTotalFeatures = 10 * MaxFeaturesPerFeature
 
 const (
-	AzFTInteger  events.FeatureType = events.FeatureInteger  // Int, Int64, Int32
-	AzFTFloat    events.FeatureType = events.FeatureFloat    // Float32, Float64
-	AzFTString   events.FeatureType = events.FeatureString   // string
+	AzFTInteger  events.FeatureType = events.FeatureInteger // Int, Int64, Int32
+	AzFTFloat    events.FeatureType = events.FeatureFloat   // Float32, Float64
+	AzFTString   events.FeatureType = events.FeatureString  // string
+	AzFTFilepath events.FeatureType = events.FeatureFilepath
+	AzFTUri      events.FeatureType = events.FeatureUri
 	AzFTDatetime events.FeatureType = events.FeatureDatetime // time.Time
 )
 

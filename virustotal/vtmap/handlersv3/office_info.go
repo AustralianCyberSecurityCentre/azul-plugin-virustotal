@@ -28,7 +28,7 @@ var vtToAzFeatOfficeInfo = []bh.VtPathToAzFeature{
 	bh.NewVtPathToAzFeat("ole.macros.length", bh.VtTypeInteger, "ole_macros_length", bh.AzFTInteger, "officeInfo - macro length.", bh.AddListOfDictHandling("ole.macros", "vba_filename")),
 	bh.NewVtPathToAzFeat("ole.macros.patterns", bh.VtTypeListOfStrings, "ole_macros_patterns", bh.AzFTString, "officeInfo - interesting patterns found ('exe-pattern', 'url-pattern', etc.).", bh.AddListOfDictHandling("ole.macros", "vba_filename")),
 	bh.NewVtPathToAzFeat("ole.macros.properties", bh.VtTypeListOfStrings, "ole_macros_properties", bh.AzFTString, "officeInfo - interesting properties ('obfuscated', 'run-file', etc.).", bh.AddListOfDictHandling("ole.macros", "vba_filename")),
-	bh.NewVtPathToAzFeat("ole.macros.stream_path", bh.VtTypeString, "ole_macros_stream_path", bh.AzFTString, "officeInfo - path in the OLE strorage tree.", bh.AddListOfDictHandling("ole.macros", "vba_filename")),
+	bh.NewVtPathToAzFeat("ole.macros.stream_path", bh.VtTypeString, "ole_macros_stream_path", bh.AzFTFilepath, "officeInfo - path in the OLE strorage tree.", bh.AddListOfDictHandling("ole.macros", "vba_filename")),
 	bh.NewVtPathToAzFeat("ole.macros.vba_code", bh.VtTypeString, "ole_macros_vba_code", bh.AzFTString, "officeInfo - macro code.", bh.AddListOfDictHandling("ole.macros", "vba_filename")),
 	bh.NewVtPathToAzFeat("ole.macros.vba_filename", bh.VtTypeString, "ole_macros_vba_filename", bh.AzFTString, "officeInfo - name of the macro.", bh.AddListOfDictHandling("ole.macros", "vba_filename")),
 	bh.NewVtPathToAzFeat("ole.num_macros", bh.VtTypeInteger, "ole_num_macros", bh.AzFTInteger, "officeInfo - number of found macros.", bh.AddListOfDictHandling("ole.macros", "vba_filename")),

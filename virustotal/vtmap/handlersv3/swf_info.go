@@ -15,7 +15,7 @@ var vtToAzFeatSwfInfo = []bh.VtPathToAzFeature{
 	bh.NewVtPathToAzFeat("num_swf_tags", bh.VtTypeString, "num_swf_tags", bh.AzFTString, "swfInfo - number of SWF tags."),
 	bh.NewVtPathToAzFeat("num_unrecognized_tags", bh.VtTypeInteger, "num_unrecognized_tags", bh.AzFTInteger, "swfInfo - number of unrecognized tags."),
 	bh.NewVtPathToAzFeat("suspicious_strings", bh.VtTypeListOfStrings, "suspicious_strings", bh.AzFTString, "swfInfo - list of found suspicious strings."),
-	bh.NewVtPathToAzFeat("suspicious_urls", bh.VtTypeListOfStrings, "suspicious_urls", bh.AzFTString, "swfInfo - list of found suspicious URLs."),
+	bh.NewVtPathToAzFeat("suspicious_urls", bh.VtTypeListOfStrings, "suspicious_urls", bh.AzFTUri, "swfInfo - list of found suspicious URLs."),
 	bh.NewVtPathToAzFeat("version", bh.VtTypeInteger, "version", bh.AzFTInteger, "swfInfo - SWF version."),
 }
 
