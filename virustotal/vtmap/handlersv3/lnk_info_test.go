@@ -24,7 +24,7 @@ func TestGetLnkInfo(t *testing.T) {
 	require.Equal(t, 26, len(result))
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "header_hot_key", Value: "(0+0)", Type: bh.AzFTString})
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "extra_data_dlt_properties_droid_file_id", Value: "d429bedc-4eef-11ef-ba1e-c46516e80701", Type: bh.AzFTString})
-	require.Contains(t, result, events.BinaryEntityFeature{Name: "local_path", Value: "C:\\Users\\george\\AppData\\Local\\Programs\\Opera\\opera.exe", Type: bh.AzFTString})
+	require.Contains(t, result, events.BinaryEntityFeature{Name: "local_path", Value: "C:\\Users\\george\\AppData\\Local\\Programs\\Opera\\opera.exe", Type: bh.AzFTFilepath})
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "link_target_id_list_clsid", Value: "59031a47-3f72-44a7-89c5-5595fe6b30ee", Type: bh.AzFTString, Label: "CLSID_ShellDesktop"})
 	require.Contains(t, result, events.BinaryEntityFeature{Name: "link_target_id_list_item_type_str", Value: "CLSID_ShellDesktop", Type: bh.AzFTString, Label: "CLSID_ShellDesktop"})
 	require.Nil(t, err)

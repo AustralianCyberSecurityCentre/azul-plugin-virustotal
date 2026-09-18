@@ -21,7 +21,7 @@
 //     bh.NewVtPathToAzFeat("trackers.name", bh.VtTypeString, "trackers_name", bh.AzFTString, "htmlInfo - tracker name."),
 //     bh.NewVtPathToAzFeat("trackers.trackers", bh.VtTypeListOfDict, "trackers_trackers", bh.dont-map, "htmlInfo - found trackers. Every item contains:"),
 //     bh.NewVtPathToAzFeat("trackers.trackers.tracker_id", bh.VtTypeString, "trackers_trackers_tracker_id", bh.AzFTString, "htmlInfo - tracker campaign/client ID."),
-//     bh.NewVtPathToAzFeat("trackers.trackers.url", bh.VtTypeString, "trackers_trackers_url", bh.AzFTString, "htmlInfo - script URL."),
+//     bh.NewVtPathToAzFeat("trackers.trackers.url", bh.VtTypeString, "trackers_trackers_url", bh.AzFTUri, "htmlInfo - script URL."),
 // }
 
 // var htmlInfo = bh.NewHandlerV3(vtToAzFeatHtmlInfo)

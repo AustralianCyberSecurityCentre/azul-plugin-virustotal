@@ -14,7 +14,7 @@ var vtToAzFeatTrafficInspection = []bh.VtPathToAzFeature{
 	bh.NewVtPathToAzFeat("http.remote_host", bh.VtTypeString, "remote_host", bh.AzFTString, "trafficInspection - request destination, including IP and port.", bh.AddListOfDictHandling("http", "binary_hash")),
 	bh.NewVtPathToAzFeat("http.response_code", bh.VtTypeString, "response_code", bh.AzFTString, "trafficInspection - HTTP response code.", bh.AddListOfDictHandling("http", "binary_hash")),
 	bh.NewVtPathToAzFeat("http.response_size", bh.VtTypeInteger, "response_size", bh.AzFTInteger, "trafficInspection - in bytes.", bh.AddListOfDictHandling("http", "binary_hash")),
-	bh.NewVtPathToAzFeat("http.url", bh.VtTypeString, "url", bh.AzFTString, "trafficInspection - request URL.", bh.AddListOfDictHandling("http", "binary_hash")),
+	bh.NewVtPathToAzFeat("http.url", bh.VtTypeString, "url", bh.AzFTUri, "trafficInspection - request URL.", bh.AddListOfDictHandling("http", "binary_hash")),
 	bh.NewVtPathToAzFeat("http.user-agent", bh.VtTypeString, "user-agent", bh.AzFTString, "trafficInspection - client user agent.", bh.AddListOfDictHandling("http", "binary_hash")),
 }
 
