@@ -32,7 +32,7 @@ func TransformFileReportSingleV3(raw []byte, author *events.EventAuthor, source 
 	var err error
 	sha256 := gjson.GetBytes(raw, "data.attributes.sha256").String()
 	if len(sha256) != 64 {
-		return nil, fmt.Errorf("no sha256")
+		return nil, fmt.Errorf("no sha256 given %s instead", sha256)
 	}
 
 	binaries, err := MapV3(V3Handlers, gjson.ParseBytes(raw))
