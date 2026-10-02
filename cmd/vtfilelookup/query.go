@@ -193,7 +193,6 @@ func processEvent(ev *events.BinaryEvent) {
 	if err != nil {
 		panic(fmt.Sprintf("failed to generate lookup event %s", ev.Entity.Sha256))
 	}
-	// TODO here is firs log
 	log.Printf("lookup author:%s source:%s '%s' publishing %d binary events out of %d scan results", ev.Author.Name, ev.Source.Name, ev.Entity.Sha256, numResults, len(scans))
 	bulk := events.BulkStatusEvent{Events: []*events.StatusEvent{completion}}
 	resp, err := dpclient.PostEvents(&bulk, &bedclient.PublishEventsOptions{Sync: true})
