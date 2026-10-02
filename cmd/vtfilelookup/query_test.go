@@ -97,6 +97,7 @@ func TestMakeCompletionEventV3(t *testing.T) {
 				Timestamp:    time.Date(2022, time.September, 12, 23, 36, 47, 0, time.UTC),
 			}},
 			Timestamp: time.Date(2022, time.September, 12, 23, 36, 47, 0, time.UTC),
+			Security:  "OFFICIAL",
 		},
 		Dequeued: "123",
 	}
@@ -135,7 +136,7 @@ func TestMakeCompletionEventV3(t *testing.T) {
 				Source: events.EventSource{
 					Name:       "mysource",
 					References: map[string]string(nil),
-					Security:   "",
+					Security:   "OFFICIAL",
 					Path: []events.EventSourcePathNode{
 						{
 							Author: events.EventAuthor{

@@ -40,7 +40,7 @@ func TestParseVTAndBuildSourceV3(t *testing.T) {
 	require.Equal(t, &events.EventSource{
 		Name:       "virustotal",
 		References: map[string]string{"interface": "api", "submitter_country": "US", "submitter_id": "a96f7a0a"},
-		Security:   "",
+		Security:   "OFFICIAL",
 		Path: []events.EventSourcePathNode{{
 			Author: events.EventAuthor{Name: "TestAuthor", Version: "2.0.0", Category: "plugin", Security: ""},
 			Action: "mapped",

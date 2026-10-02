@@ -29,6 +29,9 @@ var BlobHourGracePeriod int = 2
 var BlobStabilityPeriod int = 15
 var BlobMaxRetryAttempts int = 3
 
+// Security applied to source events created by the virustotal plugin.
+var PluginSecurityOverride string = "OFFICIAL"
+
 // Minimum number of AV hits required to keep a BinaryEvent from VT.
 var MinimumAVHits int = 0
 
@@ -186,6 +189,11 @@ func Setup() {
 		if err != nil {
 			panic(err)
 		}
+	}
+
+	tmp = os.Getenv("PLUGIN_SECURITY_OVERRIDE")
+	if len(tmp) > 0 {
+		PluginSecurityOverride = tmp
 	}
 }
 

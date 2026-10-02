@@ -46,6 +46,7 @@ func BuildSourceV3(vtmsg *VtMessageCommon, author *events.EventAuthor) (*events.
 			},
 		},
 		Timestamp: vtmsg.LastScanDate,
+		Security:  st.PluginSecurityOverride,
 	}
 
 	// add filename to entity summary, if available on this submission

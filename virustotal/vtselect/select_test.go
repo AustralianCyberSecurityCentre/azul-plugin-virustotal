@@ -74,7 +74,7 @@ func TestMakeDownloadEventsV3(t *testing.T) {
 				"submitter_country": "US",
 				"submitter_id":      "a96f7a0a",
 			},
-			Security:  "",
+			Security:  "OFFICIAL",
 			Path:      []events.EventSourcePathNode{},
 			Timestamp: time.Date(2024, time.July, 1, 3, 19, 25, 0, time.Local),
 		},

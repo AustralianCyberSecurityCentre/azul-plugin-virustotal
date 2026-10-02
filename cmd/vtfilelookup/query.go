@@ -163,7 +163,8 @@ func makeCompletionEventV3(scans [][]byte, evIn *events.BinaryEvent, startAt tim
 		var err error
 		msgs, err = vtmap.TransformFileReportSingleV3(scan, &authorSummary, &evIn.Source)
 		if err != nil {
-			panic(err)
+			bedset.Logger.Warn().Msgf("Skipping scan because of error %v", err)
+			continue
 		}
 
 		ev.Entity.Results = append(ev.Entity.Results, msgs...)
