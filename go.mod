@@ -5,7 +5,7 @@ go 1.27.0
 toolchain go1.27.1
 
 require (
-	github.com/AustralianCyberSecurityCentre/azul-bedrock/v13 v13.0.33
+	github.com/AustralianCyberSecurityCentre/azul-bedrock/v13 v13.0.35
 	github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v1.8.1
 	github.com/go-viper/mapstructure/v2 v2.5.0
 	github.com/goccy/go-json v0.10.6
