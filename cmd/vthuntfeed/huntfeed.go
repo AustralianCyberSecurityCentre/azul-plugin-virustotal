@@ -148,6 +148,7 @@ func fetch() {
 			},
 			Path:      []events.EventSourcePathNode{},
 			Timestamp: time.Unix(int64(date), 0),
+			Security:  st.PluginSecurityOverride,
 		}
 		log.Printf("Live Hit Found: %s %s %d - Requesting Download", subject, hash, date)
 		download(hash, source)

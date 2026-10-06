@@ -55,6 +55,10 @@ func makeDownloadEventsV3(rawScan []byte, hits []Rule, author *events.EventAutho
 		return nil, nil
 	}
 
+	if source.Security == "" {
+		source.Security = st.PluginSecurityOverride
+	}
+
 	// we send a separate download event per hit.. this allows different rules to have different quotas
 	ev := events.DownloadEvent{
 		ModelVersion: events.CurrentModelVersion,

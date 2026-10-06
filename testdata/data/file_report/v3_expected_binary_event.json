@@ -34,7 +34,8 @@
         "size": 16512
       }
     ],
-    "timestamp": "2022-09-12T23:36:47Z"
+    "timestamp": "2022-09-12T23:36:47Z",
+    "security": "OFFICIAL"
   },
   "entity": {
     "sha256": "c99dba3ba7a50f2c04b182ba871c3f7c6ca4061542990d6e191e506404393908",
