@@ -1,8 +1,10 @@
 package vtfilefeed
 
 import (
+	"bytes"
 	"encoding/base64"
 	"fmt"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -361,6 +363,40 @@ func TestBlobDownloadProcessingFailureDoesNotAdvanceState(t *testing.T) {
 	require.Equal(t, 1, retryState.attempts)
 }
 
+// TestProcessBlobMultipleTarEntries is a regression test for processing tar.bz2
+// archives containing more than one tar entry. The scanner must be recreated
+// for each entry after tarReader.Next(). Reusing the same scanner across
+// entries previously resulted in a "Buffer called after Scan" panic. This test
+// verifies that records from all entries are processed successfully.
+func TestProcessBlobMultipleTarEntries(t *testing.T) {
+	body := testMultiEntryTarBZ2(t)
+
+	chFromVT := make(chan []byte, 30)
+
+	recordCount, err := processBlob(
+		io.NopCloser(bytes.NewReader(body)),
+		"test-blob",
+		chFromVT,
+	)
+
+	require.NoError(t, err)
+	require.Equal(t, 4, recordCount)
+
+	close(chFromVT)
+
+	var got []string
+	for line := range chFromVT {
+		got = append(got, string(line))
+	}
+
+	require.ElementsMatch(t, []string{
+		`{"first":1}`,
+		`{"second":2}`,
+		`{"third":3}`,
+		`{"fourth":4}`,
+	}, got)
+}
+
 // TestBlobDownloadRetrySucceedsBeforeLimit verifies that a blob-specific failure
 // is retried on the next run and that a later successful attempt clears the
 // retry state and advances the normal watermark.
@@ -636,5 +672,23 @@ func testTarBZ2(t *testing.T) []byte {
 
 	data, err := base64.StdEncoding.DecodeString(encoded)
 	require.NoError(t, err)
+	return data
+}
+
+func testMultiEntryTarBZ2(t *testing.T) []byte {
+	t.Helper()
+
+	// tar.bz2 containing multiple entries
+	//{"first":1}
+	//{"second":2}
+
+	//{"third":3}
+	//{"fourth":4}
+
+	const encoded = "QlpoOTFBWSZTWaUGejMAAHh7hcqQAIBQAf+QBAFvc54KAAEEAAAIMADYBhoZMgZGIMTJoaYMNDJkDIxBiZNDTAkiJkmap6h5T1DR6NT1NMzVK6r8KY4EVYXMJJpiAWMsUnHy9my82vVovVMJA63B1Bdk679TbcM61ppoqGAg6muCCAmTCmHuYQzTFxJOLWyZCQRzcXQsHI8rB6Q+AkrXExAvmXjhZBSFHUGFmtBdtebnDHc2ORaaR+SAr1+rhXHifhblaVPSCtB40FMV1VtwNx9ffPJCD/F3JFOFCQpQZ6Mw"
+
+	data, err := base64.StdEncoding.DecodeString(encoded)
+	require.NoError(t, err)
+
 	return data
 }
