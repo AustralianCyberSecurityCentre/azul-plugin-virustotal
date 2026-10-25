@@ -22,7 +22,7 @@ COPY . /src
 RUN cd /src && go build -v -a -tags netgo -ldflags '-w -extldflags "-static"' -o /go/bin/vt main.go
 
 # now copy artifacts to a lightweight image
-FROM $REGISTRY/alpine:latest@sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6
+FROM $REGISTRY/alpine:latest@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
 COPY --from=builder /go/bin /bin
 COPY --from=builder /etc/ssl/certs /etc/ssl/certs
 ENTRYPOINT ["/bin/vt"]
