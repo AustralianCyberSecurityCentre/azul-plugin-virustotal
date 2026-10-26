@@ -639,6 +639,7 @@ func processBlob(
 
 	bz2Reader := bzip2.NewReader(body)
 	tarReader := tar.NewReader(bz2Reader)
+	scannerBuffer := make([]byte, 0, 64*1024)
 
 	for {
 		hdr, err := tarReader.Next()
@@ -661,7 +662,7 @@ func processBlob(
 			Msg("Reading tar entry")
 
 		scanner := bufio.NewScanner(tarReader)
-		scanner.Buffer(make([]byte, 0, 64*1024), 10*1024*1024)
+		scanner.Buffer(scannerBuffer, 10*1024*1024)
 
 		for scanner.Scan() {
 			line := scanner.Bytes()
