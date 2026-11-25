@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/cmd/vthuntfeed"
+	st "github.com/AustralianCyberSecurityCentre/azul-plugin-virustotal.git/settings"
 	"github.com/stretchr/testify/require"
 )
 
@@ -138,4 +139,54 @@ func TestInvalidDeferredLedgerDoesNotReset(t *testing.T) {
 	require.NoError(t, os.WriteFile(path, []byte("bad"), 0600))
 	_, err := loadDeferredBlobLedger(path)
 	require.Error(t, err)
+}
+
+func TestBlobStartTimeHardLimitedTo72Hours(t *testing.T) {
+	dir := configureBlobTest(t)
+	now := time.Date(2026, 11, 26, 12, 35, 0, 0, time.UTC)
+	oldestAllowed := now.Truncate(time.Hour).Add(-72 * time.Hour)
+	statePath := filepath.Join(dir, "blob_files", "state.txt")
+	require.NoError(t, os.MkdirAll(filepath.Dir(statePath), 0755))
+	state, err := vthuntfeed.NewState(statePath)
+	require.NoError(t, err)
+	require.Equal(t, oldestAllowed, getBlobStartTime(state, now), "no checkpoint must start at 72-hour cutoff")
+
+	require.NoError(t, state.Update(uint64(now.Add(-30*24*time.Hour).Unix())))
+	require.Equal(t, oldestAllowed, getBlobStartTime(state, now), "stale checkpoint must not cause historical replay")
+
+	require.NoError(t, state.Update(uint64(oldestAllowed.Add(4*time.Hour).Unix())))
+	require.Equal(t, oldestAllowed.Add(5*time.Hour), getBlobStartTime(state, now), "recent checkpoint must resume normally")
+}
+
+func TestStaleCheckpointAndDeferredHourNeverDownloaded(t *testing.T) {
+	dir := configureBlobTest(t)
+	now := time.Date(2026, 11, 26, 12, 30, 0, 0, time.UTC)
+	oldestAllowed := now.Truncate(time.Hour).Add(-72 * time.Hour)
+	staleHour := oldestAllowed.Add(-time.Hour)
+	seedBlobState(t, dir, now.Add(-30*24*time.Hour).Truncate(time.Hour))
+
+	ledger, err := loadDeferredBlobLedger(filepath.Join(dir, "blob_files", "deferred_hours.json"))
+	require.NoError(t, err)
+	require.NoError(t, ledger.deferHour(staleHour, "missing", nil, now))
+
+	// Even a 7-day configured recovery window must obey the 72-hour hard cap.
+	oldRecovery, oldGrace := st.BlobRecoveryHours, st.BlobHourGracePeriod
+	st.BlobRecoveryHours, st.BlobHourGracePeriod = 168, 71
+	t.Cleanup(func() { st.BlobRecoveryHours, st.BlobHourGracePeriod = oldRecovery, oldGrace })
+
+	var checked []string
+	client := newTestAzureClient(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		checked = append(checked, r.URL.Path)
+		writeAzureError(w, http.StatusNotFound, "BlobNotFound")
+	}))
+	require.NoError(t, runBlobDownloadWithPublisher(client, now, func(io.ReadCloser, string) (int, error) {
+		t.Fatal("missing blob should not be published")
+		return 0, nil
+	}))
+	require.NotEmpty(t, checked)
+	for _, request := range checked {
+		require.NotContains(t, request, blobRequestPath(staleHour), "hour outside 72-hour window must never be requested")
+	}
+	require.Equal(t, uint64(oldestAllowed.Add(time.Hour).Unix()), readBlobState(t, dir))
+	require.Contains(t, readDeferredLedger(t, dir).entries, staleHour.Unix(), "expired ledger entry is preserved for manual inspection")
 }

@@ -330,11 +330,16 @@ func startVTDownload(chFromVT chan []byte) {
 	go d.Fetch(chFromVT, st.PkgLimit)
 }
 
+// blobMaximumLookback is a hard safety limit for Azure Blob ingestion.
+// Do not use the Dispatcher age filter here: it can be configured independently.
+const blobMaximumLookback = 72 * time.Hour
+
 // runBlobDownloadWithPublisher serially commits only fully published hours.
 // Missing/bad hours enter a durable deferred ledger before the high-watermark
 // moves on; a bounded look-back retries these hours on subsequent runs.
 func runBlobDownloadWithPublisher(client azblob.Client, now time.Time, publish blobPublishFn) error {
 	now = now.UTC()
+	runStart := time.Now()
 	if st.BlobHourGracePeriod < 0 || st.BlobStabilityPeriod < 0 || st.BlobMaxRetryAttempts < 1 || st.BlobRecoveryHours < 1 || st.BlobOperationTimeoutMinutes < 1 {
 		return errors.New("invalid blob grace/stability/retry/recovery/timeout settings")
 	}
@@ -411,11 +416,25 @@ func runBlobDownloadWithPublisher(client azblob.Client, now time.Time, publish b
 		return true, false, nil
 	}
 
+	// A recovery window larger than 72 hours must never replay older blobs.
 	recoveryWindow := time.Duration(st.BlobRecoveryHours) * time.Hour
+	if recoveryWindow > blobMaximumLookback {
+		recoveryWindow = blobMaximumLookback
+	}
 	for _, entry := range ledger.unresolvedOutsideWindow(now, recoveryWindow) {
-		log.Printf("ALERT: unresolved blob hour %s outside recovery window (reason=%s attempts=%d); manual replay required", time.Unix(entry.Hour, 0).UTC().Format(time.RFC3339), entry.Reason, entry.Attempts)
+		log.Printf(
+			"ALERT: deferred blob hour %s is outside the recovery window (reason=%s attempts=%d); manual replay required",
+			time.Unix(entry.Hour, 0).UTC().Format(time.RFC3339),
+			entry.Reason,
+			entry.Attempts,
+		)
 	}
 	for _, hour := range ledger.eligible(latestEligible, recoveryWindow) {
+		cutoff := now.Add(time.Since(runStart)).Truncate(time.Hour).Add(-blobMaximumLookback)
+		if hour.Before(cutoff) {
+			log.Printf("Skipping deferred blob hour %s: outside 72-hour ingestion limit", hour.Format(time.RFC3339))
+			continue
+		}
 		done, missing, failure := processHour(hour)
 		if done {
 			if err := ledger.resolve(hour); err != nil {
@@ -440,6 +459,12 @@ func runBlobDownloadWithPublisher(client azblob.Client, now time.Time, publish b
 		return nil
 	}
 	for hour := startTime; !hour.After(latestEligible); hour = hour.Add(time.Hour) {
+		// Advance the cutoff as wall-clock time passes during long jobs.
+		cutoff := now.Add(time.Since(runStart)).UTC().Truncate(time.Hour).Add(-blobMaximumLookback)
+		if hour.Before(cutoff) {
+			log.Printf("Skipping blob hour %s: outside 72-hour ingestion limit", hour.Format(time.RFC3339))
+			continue
+		}
 		done, missing, failure := processHour(hour)
 		if done {
 			if err := state.Update(uint64(hour.Unix())); err != nil {
@@ -553,33 +578,30 @@ func clearBlobRetryState(path string, state *blobRetryState) error {
 	return nil
 }
 
-func getBlobStartTime(
-	state vthuntfeed.State,
-	now time.Time,
-) time.Time {
+func getBlobStartTime(state vthuntfeed.State, now time.Time) time.Time {
+	// Never request an archive older than 72 hours, even when a previous
+	// checkpoint is weeks or months behind the current time.
+	oldestAllowed := now.UTC().Truncate(time.Hour).Add(-blobMaximumLookback)
 	if state.Last() == 0 {
-		startTime := now.
-			Add(-time.Duration(st.MaxAgeHours) * time.Hour).
-			Truncate(time.Hour)
-
 		bedset.Logger.Info().
-			Int("max_age_hours", st.MaxAgeHours).
-			Str("start_time", startTime.Format(time.RFC3339)).
-			Msg("No state file found")
-
-		return startTime
+			Str("start_time", oldestAllowed.Format(time.RFC3339)).
+			Msg("No state file found; applying 72-hour blob lookback")
+		return oldestAllowed
 	}
 
-	startTime := time.Unix(
-		int64(state.Last()),
-		0,
-	).UTC().Add(time.Hour)
+	checkpointNext := time.Unix(int64(state.Last()), 0).UTC().Add(time.Hour)
+	if checkpointNext.Before(oldestAllowed) {
+		bedset.Logger.Warn().
+			Str("checkpoint_next", checkpointNext.Format(time.RFC3339)).
+			Str("start_time", oldestAllowed.Format(time.RFC3339)).
+			Msg("Checkpoint is older than 72 hours; skipping historical blob metadata")
+		return oldestAllowed
+	}
 
 	bedset.Logger.Info().
-		Str("start_time", startTime.Format(time.RFC3339)).
+		Str("start_time", checkpointNext.Format(time.RFC3339)).
 		Msg("Resuming from previous state")
-
-	return startTime
+	return checkpointNext
 }
 
 func processBlob(
