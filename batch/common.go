@@ -40,8 +40,8 @@ func (batcher *Batcher) postBatch(evs []*events.BinaryEvent) int {
 			}
 		}
 		// total failure when submitting
-		log.Printf("unrecoverable error publishing %v batch events: %v", len(evs), err)
-		panic(err)
+		log.Printf("failed publishing %v batch events: %v", len(evs), err)
+		return len(evs)
 	}
 	return resp.TotalFailures
 }

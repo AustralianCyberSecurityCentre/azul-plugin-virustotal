@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -22,6 +23,19 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/storage/azblob"
 	"github.com/stretchr/testify/require"
 )
+
+// runBlobDownloadAt adapts the legacy channel-based blob tests to the
+// checkpoint-safe publisher pipeline. It is intentionally test-only: the
+// production entry point uses ingestBlobRun with Dispatcher acknowledgements.
+func runBlobDownloadAt(chFromVT chan []byte, client azblob.Client, now time.Time) {
+	defer close(chFromVT)
+	err := runBlobDownloadWithPublisher(client, now, func(body io.ReadCloser, name string) (int, error) {
+		return processBlob(body, name, chFromVT)
+	})
+	if err != nil {
+		log.Printf("blob download failed: %v", err)
+	}
+}
 
 func TestAuthorGetsFeatures(t *testing.T) {
 	require.Greater(t, len(author.Features), 30)
