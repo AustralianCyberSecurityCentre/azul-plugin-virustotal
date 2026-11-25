@@ -138,6 +138,10 @@ func process(dpclient *bedclient.Client, chFromVT chan []byte, chToDP chan *even
 			requireAck := len(synchronousDownload) > 0 && synchronousDownload[0]
 			_, err := dpclient.PostEvents(&bulk, &bedclient.PublishBytesOptions{Sync: requireAck})
 			if err != nil {
+				if batch.IsAgedOffRejection(err) {
+					log.Printf("Dispatcher intentionally aged off %d download events (outside source retention); continuing", len(bulk_download))
+					continue
+				}
 				ret.failed += len(bulk_download)
 				log.Printf("failed to post download messages: %v", err)
 				continue
@@ -422,12 +426,7 @@ func runBlobDownloadWithPublisher(client azblob.Client, now time.Time, publish b
 		recoveryWindow = blobMaximumLookback
 	}
 	for _, entry := range ledger.unresolvedOutsideWindow(now, recoveryWindow) {
-		log.Printf(
-			"ALERT: deferred blob hour %s is outside the recovery window (reason=%s attempts=%d); manual replay required",
-			time.Unix(entry.Hour, 0).UTC().Format(time.RFC3339),
-			entry.Reason,
-			entry.Attempts,
-		)
+		log.Printf("ALERT: unresolved blob hour %s outside recovery window (reason=%s attempts=%d); manual replay required", time.Unix(entry.Hour, 0).UTC().Format(time.RFC3339), entry.Reason, entry.Attempts)
 	}
 	for _, hour := range ledger.eligible(latestEligible, recoveryWindow) {
 		cutoff := now.Add(time.Since(runStart)).Truncate(time.Hour).Add(-blobMaximumLookback)

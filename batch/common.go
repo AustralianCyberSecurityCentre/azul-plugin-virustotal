@@ -1,6 +1,7 @@
 package batch
 
 import (
+	"encoding/json"
 	"errors"
 	"log"
 	"sync"
@@ -26,21 +27,38 @@ func NewBatcher(dpclient *bedclient.Client) *Batcher {
 	}
 }
 
+// IsAgedOffRejection identifies the specific Dispatcher response indicating that
+// every submitted event is outside the source retention window. It must not
+// suppress other HTTP 425 responses or transient publishing failures.
+func IsAgedOffRejection(err error) bool {
+	var statusError *bedclient.HttpError
+	if !errors.As(err, &statusError) {
+		return false
+	}
+	return isAgedOffResponse(statusError.StatusCode, []byte(statusError.Body))
+}
+
+func isAgedOffResponse(statusCode int, body []byte) bool {
+	if statusCode != 425 {
+		return false
+	}
+	var payload struct {
+		ErrorEnum string `json:"error_enum"`
+	}
+	return json.Unmarshal(body, &payload) == nil &&
+		payload.ErrorEnum == "ErrorStringEnumAllEventsAgedOffImmediately"
+}
+
 // post a list of events to dispatcher
 func (batcher *Batcher) postBatch(evs []*events.BinaryEvent) int {
 	bulk := events.BulkBinaryEvent{Events: evs}
 	resp, err := batcher.dpclient.PostEvents(&bulk, &bedclient.PublishBytesOptions{Sync: true})
 	if err != nil {
-		var statusError *bedclient.HttpError
-		if errors.As(err, &statusError) {
-			// Status error if all the submission is filtered or another 425 error
-			if statusError.StatusCode == 425 {
-				log.Printf("Warning skipping publish of events because %s.", statusError.Body)
-				return len(bulk.Events)
-			}
+		if IsAgedOffRejection(err) {
+			log.Printf("Dispatcher intentionally aged off %d binary events (outside source retention); continuing", len(evs))
+			return 0
 		}
-		// total failure when submitting
-		log.Printf("failed publishing %v batch events: %v", len(evs), err)
+		log.Printf("failed publishing %d batch events: %v", len(evs), err)
 		return len(evs)
 	}
 	return resp.TotalFailures
