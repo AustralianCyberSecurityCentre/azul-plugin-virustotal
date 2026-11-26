@@ -21,11 +21,15 @@ type DeferredBlob struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
+// deferredBlobLedger tracks hours skipped by the main checkpoint so late
+// arrivals can be retried without rewinding that checkpoint.
 type deferredBlobLedger struct {
 	path    string
 	entries map[int64]DeferredBlob
 }
 
+// loadDeferredBlobLedger validates persisted entries rather than discarding
+// corrupt recovery state and losing pending hours.
 func loadDeferredBlobLedger(path string) (*deferredBlobLedger, error) {
 	l := &deferredBlobLedger{path: path, entries: make(map[int64]DeferredBlob)}
 	b, err := os.ReadFile(path)
@@ -57,6 +61,7 @@ func (l *deferredBlobLedger) save() error {
 	return vthuntfeed.AtomicWriteFile(l.path, append(b, '\n'), 0644)
 }
 
+// deferHour persists an unresolved hour and its latest retry information.
 func (l *deferredBlobLedger) deferHour(hour time.Time, reason string, failure error, now time.Time) error {
 	key := hour.Unix()
 	old := l.entries[key]
@@ -68,6 +73,7 @@ func (l *deferredBlobLedger) deferHour(hour time.Time, reason string, failure er
 	return l.save()
 }
 
+// resolve removes a recovered hour only after the updated ledger is saved.
 func (l *deferredBlobLedger) resolve(hour time.Time) error {
 	key := hour.Unix()
 	prior, ok := l.entries[key]
@@ -82,6 +88,7 @@ func (l *deferredBlobLedger) resolve(hour time.Time) error {
 	return nil
 }
 
+// eligible returns pending hours within the recovery window, oldest first.
 func (l *deferredBlobLedger) eligible(now time.Time, recovery time.Duration) []time.Time {
 	var hours []time.Time
 	for h := range l.entries {
@@ -94,6 +101,7 @@ func (l *deferredBlobLedger) eligible(now time.Time, recovery time.Duration) []t
 	return hours
 }
 
+// unresolvedOutsideWindow exposes hours too old for automatic recovery.
 func (l *deferredBlobLedger) unresolvedOutsideWindow(now time.Time, recovery time.Duration) []DeferredBlob {
 	var skipped []DeferredBlob
 	for _, entry := range l.entries {

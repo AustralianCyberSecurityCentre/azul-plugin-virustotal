@@ -14,6 +14,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestDeferredBlobLedgerRoundtrip verifies pending hours survive restarts
+// and disappear after successful recovery.
 func TestDeferredBlobLedgerRoundtrip(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "deferred_hours.json")
 	ledger, err := loadDeferredBlobLedger(path)
@@ -33,6 +35,8 @@ func TestDeferredBlobLedgerRoundtrip(t *testing.T) {
 	require.Empty(t, restored.entries)
 }
 
+// TestBlobDoesNotCheckpointBeforePublisherAcknowledges guards against
+// losing a failed hour when Dispatcher does not accept its events.
 func TestBlobDoesNotCheckpointBeforePublisherAcknowledges(t *testing.T) {
 	stateDir := configureBlobTest(t)
 	now := time.Date(2026, 9, 9, 5, 30, 0, 0, time.UTC)
@@ -72,6 +76,8 @@ func readDeferredLedger(t *testing.T, dir string) *deferredBlobLedger {
 	return ledger
 }
 
+// TestFutureCheckpointIsRejectedWithoutAzureRequest prevents silently
+// rewinding invalid state or contacting Azure with an invalid checkpoint.
 func TestFutureCheckpointIsRejectedWithoutAzureRequest(t *testing.T) {
 	stateDir := configureBlobTest(t)
 	now := time.Date(2026, 9, 9, 5, 30, 0, 0, time.UTC)
@@ -88,6 +94,8 @@ func TestFutureCheckpointIsRejectedWithoutAzureRequest(t *testing.T) {
 	require.Zero(t, requests)
 }
 
+// TestDeferredMissingHourRecoveredNextRun verifies a late upload can
+// be recovered after the main checkpoint moves past its hour.
 func TestDeferredMissingHourRecoveredNextRun(t *testing.T) {
 	stateDir := configureBlobTest(t)
 	now := time.Date(2026, 9, 9, 5, 30, 0, 0, time.UTC)
@@ -124,6 +132,7 @@ func TestDeferredMissingHourRecoveredNextRun(t *testing.T) {
 	require.Equal(t, uint64(available.Unix()), readBlobState(t, stateDir))
 }
 
+// TestBlobStateLockIsExclusive prevents overlapping ingestion runs.
 func TestBlobStateLockIsExclusive(t *testing.T) {
 	dir := t.TempDir()
 	release, err := lockBlobState(dir)
@@ -133,6 +142,8 @@ func TestBlobStateLockIsExclusive(t *testing.T) {
 	require.Error(t, err)
 }
 
+// TestInvalidDeferredLedgerDoesNotReset ensures corrupt recovery state
+// stops processing instead of silently losing deferred work.
 func TestInvalidDeferredLedgerDoesNotReset(t *testing.T) {
 	dir := t.TempDir()
 	path := filepath.Join(dir, "deferred_hours.json")
@@ -141,6 +152,8 @@ func TestInvalidDeferredLedgerDoesNotReset(t *testing.T) {
 	require.Error(t, err)
 }
 
+// TestBlobStartTimeHardLimitedTo72Hours covers fresh, stale and recent
+// checkpoints against the fixed ingestion age limit.
 func TestBlobStartTimeHardLimitedTo72Hours(t *testing.T) {
 	dir := configureBlobTest(t)
 	now := time.Date(2026, 11, 26, 12, 35, 0, 0, time.UTC)
@@ -158,6 +171,8 @@ func TestBlobStartTimeHardLimitedTo72Hours(t *testing.T) {
 	require.Equal(t, oldestAllowed.Add(5*time.Hour), getBlobStartTime(state, now), "recent checkpoint must resume normally")
 }
 
+// TestStaleCheckpointAndDeferredHourNeverDownloaded verifies that neither
+// stale state nor deferred work bypasses the hard 72-hour limit.
 func TestStaleCheckpointAndDeferredHourNeverDownloaded(t *testing.T) {
 	dir := configureBlobTest(t)
 	now := time.Date(2026, 11, 26, 12, 30, 0, 0, time.UTC)

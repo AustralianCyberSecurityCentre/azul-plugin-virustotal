@@ -34,6 +34,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/push"
 )
 
+// blobRetryState persists consecutive failures for the current archive hour.
 type blobRetryState struct {
 	hour     int64
 	attempts int
@@ -58,6 +59,7 @@ var author = events.PluginEntity{
 
 var authorSummary = author.Summary()
 
+// processOutput summarises conversion, filtering and publishing outcomes.
 type processOutput struct {
 	recordsIn         int
 	recordBytesIn     int
@@ -138,6 +140,8 @@ func process(dpclient *bedclient.Client, chFromVT chan []byte, chToDP chan *even
 			requireAck := len(synchronousDownload) > 0 && synchronousDownload[0]
 			_, err := dpclient.PostEvents(&bulk, &bedclient.PublishBytesOptions{Sync: requireAck})
 			if err != nil {
+				// Retention rejections are expected during catch-up; other errors
+				// still count as failed publications.
 				if batch.IsAgedOffRejection(err) {
 					log.Printf("Dispatcher intentionally aged off %d download events (outside source retention); continuing", len(bulk_download))
 					continue
@@ -186,6 +190,8 @@ var errBlobUnstable = errors.New("blob has not reached stability period")
 var errDispatcherIngest = errors.New("dispatcher ingest failed")
 var errBlobInfrastructure = errors.New("azure blob storage operation failed")
 
+// newBlobPublisher streams an archive into Dispatcher and reports success
+// only after its records have been read and publishes have finished.
 func newBlobPublisher() (blobPublishFn, error) {
 	client := bedclient.NewClient(st.DispatcherEventsUrl, st.DispatcherDataUrl, author, st.DeploymentKey)
 	if err := client.PublishPlugin(); err != nil {
@@ -218,6 +224,7 @@ func newBlobPublisher() (blobPublishFn, error) {
 	}, nil
 }
 
+// ingestBlobRun creates the Azure client and starts a checkpointed ingestion.
 func ingestBlobRun(now time.Time) error {
 	if st.AzureConnectionString == "" {
 		return errors.New("AzureConnectionString is required")
@@ -529,6 +536,7 @@ func runBlobDownloadWithPublisher(client azblob.Client, now time.Time, publish b
 	return nil
 }
 
+// loadBlobRetryState restores the failure count across scheduled runs.
 func loadBlobRetryState(path string) (blobRetryState, error) {
 	data, err := os.ReadFile(path)
 	if os.IsNotExist(err) {
@@ -549,6 +557,8 @@ func loadBlobRetryState(path string) (blobRetryState, error) {
 	return state, nil
 }
 
+// recordBlobRetryFailure increments the count for this hour, resetting it
+// when the downloader moves to a different hour.
 func recordBlobRetryFailure(path string, state *blobRetryState, hour time.Time) (int, error) {
 	hourUnix := hour.UTC().Truncate(time.Hour).Unix()
 	if state.hour != hourUnix {
@@ -564,11 +574,13 @@ func recordBlobRetryFailure(path string, state *blobRetryState, hour time.Time) 
 	return state.attempts, nil
 }
 
+// saveBlobRetryState atomically persists the hour and its failure count.
 func saveBlobRetryState(path string, state blobRetryState) error {
 	data := fmt.Appendf(nil, "%d %d\n", state.hour, state.attempts)
 	return vthuntfeed.AtomicWriteFile(path, data, 0644)
 }
 
+// clearBlobRetryState removes retry history after an hour is resolved.
 func clearBlobRetryState(path string, state *blobRetryState) error {
 	*state = blobRetryState{}
 	if err := os.Remove(path); err != nil && !os.IsNotExist(err) {
@@ -577,6 +589,8 @@ func clearBlobRetryState(path string, state *blobRetryState) error {
 	return nil
 }
 
+// getBlobStartTime resumes after the checkpoint but never beyond the
+// 72-hour historical lookback, even when the saved state is much older.
 func getBlobStartTime(state vthuntfeed.State, now time.Time) time.Time {
 	// Never request an archive older than 72 hours, even when a previous
 	// checkpoint is weeks or months behind the current time.
@@ -603,6 +617,8 @@ func getBlobStartTime(state vthuntfeed.State, now time.Time) time.Time {
 	return checkpointNext
 }
 
+// processBlob reads every newline-delimited record from a tar.bz2 archive.
+// Each tar entry gets its own scanner, including archives with many entries.
 func processBlob(
 	body io.ReadCloser,
 	blobName string,

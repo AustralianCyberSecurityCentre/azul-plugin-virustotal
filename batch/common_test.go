@@ -8,6 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestIsAgedOffResponse ensures only the exact retention rejection is ignored.
 func TestIsAgedOffResponse(t *testing.T) {
 	tests := []struct {
 		name   string

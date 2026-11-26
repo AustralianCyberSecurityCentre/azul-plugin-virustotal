@@ -7,6 +7,8 @@ import (
 	"syscall"
 )
 
+// lockStateFile prevents concurrent Linux jobs from updating shared state.
+// It returns an unlock function to release the lock at the end of the run.
 func lockStateFile(path string) (func(), error) {
 	f, err := os.OpenFile(path, os.O_CREATE|os.O_RDWR, 0600)
 	if err != nil {

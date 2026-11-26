@@ -38,6 +38,8 @@ func IsAgedOffRejection(err error) bool {
 	return isAgedOffResponse(statusError.StatusCode, []byte(statusError.Body))
 }
 
+// isAgedOffResponse checks both the HTTP status and Dispatcher error code so
+// unrelated failures are not silently ignored.
 func isAgedOffResponse(statusCode int, body []byte) bool {
 	if statusCode != 425 {
 		return false
@@ -54,6 +56,7 @@ func (batcher *Batcher) postBatch(evs []*events.BinaryEvent) int {
 	bulk := events.BulkBinaryEvent{Events: evs}
 	resp, err := batcher.dpclient.PostEvents(&bulk, &bedclient.PublishBytesOptions{Sync: true})
 	if err != nil {
+		// An explicit age-off is a valid retention decision, not a retryable failure.
 		if IsAgedOffRejection(err) {
 			log.Printf("Dispatcher intentionally aged off %d binary events (outside source retention); continuing", len(evs))
 			return 0
