@@ -28,6 +28,8 @@ var BlobFileNameFormat string = "2006010215"
 var BlobHourGracePeriod int = 2
 var BlobStabilityPeriod int = 15
 var BlobMaxRetryAttempts int = 3
+var BlobRecoveryHours int = 48
+var BlobOperationTimeoutMinutes int = 45
 
 // Security applied to source events created by the virustotal plugin.
 var PluginSecurityOverride string = "OFFICIAL"
@@ -124,6 +126,23 @@ func Setup() {
 		}
 	}
 
+	tmp = os.Getenv("BLOB_RECOVERY_HOURS")
+	if len(tmp) > 0 {
+		BlobRecoveryHours, err = strconv.Atoi(tmp)
+		if err != nil {
+			panic(err)
+		}
+	}
+	tmp = os.Getenv("BLOB_OPERATION_TIMEOUT_MINUTES")
+	if len(tmp) > 0 {
+		BlobOperationTimeoutMinutes, err = strconv.Atoi(tmp)
+		if err != nil {
+			panic(err)
+		}
+	}
+	if BlobHourGracePeriod < 0 || BlobStabilityPeriod < 0 || BlobMaxRetryAttempts < 1 || BlobRecoveryHours < 1 || BlobOperationTimeoutMinutes < 1 || MaxAgeHours < 0 {
+		panic("invalid blob ingestion configuration: grace/stability/age must be non-negative and retry/recovery/timeout must be positive")
+	}
 	tmp = os.Getenv("STATEDIR")
 	if len(tmp) > 0 {
 		StateDir = tmp
@@ -157,6 +176,9 @@ func Setup() {
 		if err != nil {
 			panic(err)
 		}
+	}
+	if MaxAgeHours < 0 {
+		panic("DISPATCHER_MAX_AGE_HOURS must not be negative")
 	}
 	DownloadSizeLimit = maxSize * 1048576
 

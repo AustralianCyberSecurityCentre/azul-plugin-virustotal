@@ -6,6 +6,7 @@ import (
 	"bufio"
 	"compress/bzip2"
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -33,6 +34,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/push"
 )
 
+// blobRetryState persists consecutive failures for the current archive hour.
 type blobRetryState struct {
 	hour     int64
 	attempts int
@@ -46,8 +48,6 @@ var virustotalTimestamp = promauto.NewGauge(prometheus.GaugeOpts{
 
 var start = time.Now()
 
-var dpclient *bedclient.Client
-
 var author = events.PluginEntity{
 	Name:        "VirustotalFileFeed",
 	Version:     "2.2.0",
@@ -59,6 +59,7 @@ var author = events.PluginEntity{
 
 var authorSummary = author.Summary()
 
+// processOutput summarises conversion, filtering and publishing outcomes.
 type processOutput struct {
 	recordsIn         int
 	recordBytesIn     int
@@ -90,7 +91,7 @@ func printState(po *processOutput) {
 }
 
 // process transforms vt records to various azul events
-func process(dpclient *bedclient.Client, chFromVT chan []byte, chToDP chan *events.BinaryEvent) *processOutput {
+func process(dpclient *bedclient.Client, chFromVT chan []byte, chToDP chan *events.BinaryEvent, synchronousDownload ...bool) *processOutput {
 	var ret = processOutput{}
 	for s := range chFromVT {
 		// print state every 1k records
@@ -136,8 +137,16 @@ func process(dpclient *bedclient.Client, chFromVT chan []byte, chToDP chan *even
 		// FUTURE this could be configured as a separate channel but that's a premature optimisation
 		if len(bulk_download) > 0 && dpclient != nil {
 			bulk := events.BulkDownloadEvent{Events: bulk_download}
-			_, err := dpclient.PostEvents(&bulk, &bedclient.PublishBytesOptions{Sync: false})
+			requireAck := len(synchronousDownload) > 0 && synchronousDownload[0]
+			_, err := dpclient.PostEvents(&bulk, &bedclient.PublishBytesOptions{Sync: requireAck})
 			if err != nil {
+				// Retention rejections are expected during catch-up; other errors
+				// still count as failed publications.
+				if batch.IsAgedOffRejection(err) {
+					log.Printf("Dispatcher intentionally aged off %d download events (outside source retention); continuing", len(bulk_download))
+					continue
+				}
+				ret.failed += len(bulk_download)
 				log.Printf("failed to post download messages: %v", err)
 				continue
 			}
@@ -147,28 +156,88 @@ func process(dpclient *bedclient.Client, chFromVT chan []byte, chToDP chan *even
 	return &ret
 }
 
-// processToDispatcher sends vt records to kafka after transformation
-func processToDispatcher(chFromVT chan []byte) *processOutput {
+// processWithClient does not return until every queued binary event has been
+// synchronously acknowledged by Dispatcher (or counted as a failure).
+func processWithClient(client *bedclient.Client, chFromVT chan []byte, requireAck bool) *processOutput {
 	chToDP := make(chan *events.BinaryEvent, 10)
-	dpclient = bedclient.NewClient(st.DispatcherEventsUrl, st.DispatcherDataUrl, author, st.DeploymentKey)
-	err := dpclient.PublishPlugin()
-	if err != nil {
-		log.Fatal(err)
-	}
-	batcher := batch.NewBatcher(dpclient)
-	// buffer responses as we only read them after workers are finished
+	batcher := batch.NewBatcher(client)
 	sendErrors := make(chan int, batcher.SendWorkerCount)
 	wg := batcher.SendBulkBinaryEvents(chToDP, sendErrors)
-	ret := process(dpclient, chFromVT, chToDP)
-
+	ret := process(client, chFromVT, chToDP, requireAck)
 	close(chToDP)
 	wg.Wait()
-	// multiple senders so can't close in a sender
 	close(sendErrors)
 	for curErr := range sendErrors {
 		ret.failed += curErr
 	}
 	return ret
+}
+
+// processToDispatcher sends vt records to Kafka after transformation.
+func processToDispatcher(chFromVT chan []byte) *processOutput {
+	client := bedclient.NewClient(st.DispatcherEventsUrl, st.DispatcherDataUrl, author, st.DeploymentKey)
+	if err := client.PublishPlugin(); err != nil {
+		log.Fatal(err)
+	}
+	return processWithClient(client, chFromVT, false)
+}
+
+// blobPublishFn processes one entire blob and only returns nil after all
+// downstream Dispatcher publishes have been acknowledged.
+type blobPublishFn func(io.ReadCloser, string) (int, error)
+
+var errBlobUnstable = errors.New("blob has not reached stability period")
+var errDispatcherIngest = errors.New("dispatcher ingest failed")
+var errBlobInfrastructure = errors.New("azure blob storage operation failed")
+
+// newBlobPublisher streams an archive into Dispatcher and reports success
+// only after its records have been read and publishes have finished.
+func newBlobPublisher() (blobPublishFn, error) {
+	client := bedclient.NewClient(st.DispatcherEventsUrl, st.DispatcherDataUrl, author, st.DeploymentKey)
+	if err := client.PublishPlugin(); err != nil {
+		return nil, fmt.Errorf("register VirusTotal plugin: %w", err)
+	}
+	return func(body io.ReadCloser, blobName string) (int, error) {
+		records := make(chan []byte, 10)
+		type blobReadResult struct {
+			count int
+			err   error
+		}
+		readDone := make(chan blobReadResult, 1)
+		go func() {
+			count, err := processBlob(body, blobName, records)
+			close(records)
+			readDone <- blobReadResult{count, err}
+		}()
+		result := processWithClient(client, records, true)
+		read := <-readDone
+		if read.err != nil {
+			return read.count, read.err
+		}
+		if read.count == 0 {
+			return 0, errors.New("blob archive contains no records")
+		}
+		if result.failed != 0 {
+			return read.count, fmt.Errorf("%w: %d failed records/events", errDispatcherIngest, result.failed)
+		}
+		return read.count, nil
+	}, nil
+}
+
+// ingestBlobRun creates the Azure client and starts a checkpointed ingestion.
+func ingestBlobRun(now time.Time) error {
+	if st.AzureConnectionString == "" {
+		return errors.New("AzureConnectionString is required")
+	}
+	client, err := azblob.NewClientFromConnectionString(st.AzureConnectionString, nil)
+	if err != nil {
+		return err
+	}
+	publisher, err := newBlobPublisher()
+	if err != nil {
+		return err
+	}
+	return runBlobDownloadWithPublisher(*client, now, publisher)
 }
 
 func startPrometheusPusher(ctx context.Context, pushgateway string, wg *sync.WaitGroup) {
@@ -210,10 +279,16 @@ func Entrypoint(downloadFromBlob bool) {
 	}
 
 	if downloadFromBlob {
-		startBlobDownload(chFromVT)
-	} else {
-		startVTDownload(chFromVT)
+		ingestErr := ingestBlobRun(time.Now().UTC())
+		cancelFunc()
+		wg.Wait()
+		if ingestErr != nil {
+			log.Printf("VirusTotal blob ingestion failed: %v", ingestErr)
+			os.Exit(1)
+		}
+		return
 	}
+	startVTDownload(chFromVT)
 
 	details := processToDispatcher(chFromVT)
 
@@ -266,283 +341,202 @@ func startVTDownload(chFromVT chan []byte) {
 	go d.Fetch(chFromVT, st.PkgLimit)
 }
 
-func startBlobDownload(chFromVT chan []byte) {
-	bedset.Logger.Info().Msg("Downloading from Blob Storage")
+// blobMaximumLookback is a hard safety limit for Azure Blob ingestion.
+// Do not use the Dispatcher age filter here: it can be configured independently.
+const blobMaximumLookback = 72 * time.Hour
 
-	if st.AzureConnectionString == "" {
-		bedset.Logger.Fatal().Msg("AzureConnectionString is required")
-	}
-
-	client, err := azblob.NewClientFromConnectionString(
-		st.AzureConnectionString,
-		nil,
-	)
-	if err != nil {
-		bedset.Logger.Fatal().Err(err)
-	}
-
-	go runBlobDownload(chFromVT, *client)
-}
-
-func runBlobDownload(chFromVT chan []byte, client azblob.Client) {
-	runBlobDownloadAt(chFromVT, client, time.Now().UTC())
-}
-
-// runBlobDownloadAt contains the blob catch-up logic using an explicit current
-// time. Production passes time.Now(), while tests can supply a fixed time so
-// grace-period and stability behaviour is deterministic.
-func runBlobDownloadAt(chFromVT chan []byte, client azblob.Client, now time.Time) {
-	defer close(chFromVT)
-
+// runBlobDownloadWithPublisher serially commits only fully published hours.
+// Missing/bad hours enter a durable deferred ledger before the high-watermark
+// moves on; a bounded look-back retries these hours on subsequent runs.
+func runBlobDownloadWithPublisher(client azblob.Client, now time.Time, publish blobPublishFn) error {
 	now = now.UTC()
-
-	var blobHourGracePeriod = time.Duration(st.BlobHourGracePeriod) * time.Hour
-	var blobStabilityPeriod = time.Duration(st.BlobStabilityPeriod) * time.Minute
-	var blobMaxRetryAttempts = st.BlobMaxRetryAttempts
-
+	runStart := time.Now()
+	if st.BlobHourGracePeriod < 0 || st.BlobStabilityPeriod < 0 || st.BlobMaxRetryAttempts < 1 || st.BlobRecoveryHours < 1 || st.BlobOperationTimeoutMinutes < 1 {
+		return errors.New("invalid blob grace/stability/retry/recovery/timeout settings")
+	}
 	stateDir := filepath.Join(st.StateDir, "blob_files")
 	if err := os.MkdirAll(stateDir, 0755); err != nil {
-		bedset.Logger.Fatal().Err(err)
+		return err
 	}
-
-	statePath := filepath.Join(stateDir, "state.txt")
-
-	state, err := vthuntfeed.NewState(statePath)
+	unlock, err := lockBlobState(stateDir)
 	if err != nil {
-		bedset.Logger.Fatal().Err(err)
+		return fmt.Errorf("another blob ingestion instance may be running: %w", err)
 	}
-
+	defer unlock()
+	state, err := vthuntfeed.NewState(filepath.Join(stateDir, "state.txt"))
+	if err != nil {
+		return err
+	}
+	currentHour := now.Truncate(time.Hour)
+	latestEligible := currentHour.Add(-time.Duration(st.BlobHourGracePeriod) * time.Hour)
+	if state.Last() != 0 && time.Unix(int64(state.Last()), 0).UTC().After(latestEligible) {
+		return fmt.Errorf("blob checkpoint %s exceeds latest eligible hour %s; inspect persisted state (will not silently rewind)", time.Unix(int64(state.Last()), 0).UTC().Format(time.RFC3339), latestEligible.Format(time.RFC3339))
+	}
+	ledger, err := loadDeferredBlobLedger(filepath.Join(stateDir, "deferred_hours.json"))
+	if err != nil {
+		return err
+	}
 	retryPath := filepath.Join(stateDir, "retry_state.txt")
 	retryState, err := loadBlobRetryState(retryPath)
 	if err != nil {
-		bedset.Logger.Fatal().Err(err)
+		return err
 	}
+	containerClient := client.ServiceClient().NewContainerClient(st.BlobContainer)
+	operationTimeout := time.Duration(st.BlobOperationTimeoutMinutes) * time.Minute
 
-	// Deliberately stay behind the current UTC hour. For example, with a two-hour
-	// grace period, a run during hour 05 will only consider hours up to and
-	// including 03. Hours 04 and 05 are never touched by this run.
-	currentHour := now.Truncate(time.Hour)
-	latestEligibleHour := currentHour.Add(-blobHourGracePeriod)
-
-	startTime := getBlobStartTime(state, currentHour)
-
-	if startTime.After(latestEligibleHour) {
-		bedset.Logger.Info().
-			Str("start_time", startTime.Format(time.RFC3339)).
-			Str("latest_eligible_hour", latestEligibleHour.Format(time.RFC3339)).
-			Dur("grace_period", blobHourGracePeriod).
-			Msg("No blob hours are old enough to process yet")
-		bedset.Logger.Info().Msg("Blob download run complete")
-		return
-	}
-
-	containerClient := client.ServiceClient().
-		NewContainerClient(st.BlobContainer)
-
-	for cur := startTime; !cur.After(latestEligibleHour); cur = cur.Add(time.Hour) {
-		blobName := fmt.Sprintf(
-			st.BlobFullPathFormat,
-			strconv.Itoa(cur.Year()),
-			strconv.Itoa(int(cur.Month())),
-			cur.Format(st.BlobFileNameFormat),
-		)
-
-		bedset.Logger.Info().
-			Str("blob", blobName).
-			Str("hour", cur.Format(time.RFC3339)).
-			Msg("Checking eligible blob")
-
-		// Blob-specific failures are retried across runs. After the configured
-		// number of failures, explicitly skip the hour and continue catch-up so
-		// one permanently bad blob cannot block every later eligible hour.
-		handleRetryableFailure := func(failure error, reason string) bool {
-			attempts, retryErr := recordBlobRetryFailure(retryPath, &retryState, cur)
-			if retryErr != nil {
-				bedset.Logger.Error().
-					Err(retryErr).
-					Str("blob", blobName).
-					Msg("Failed updating blob retry state. Stopping catch-up without advancing state.")
-				return false
-			}
-
-			if attempts < blobMaxRetryAttempts {
-				bedset.Logger.Error().
-					Err(failure).
-					Str("blob", blobName).
-					Str("hour", cur.Format(time.RFC3339)).
-					Int("attempt", attempts).
-					Int("max_attempts", blobMaxRetryAttempts).
-					Msg(reason + ". Stopping catch-up so this hour is retried on the next run.")
-				return false
-			}
-
-			bedset.Logger.Error().
-				Err(failure).
-				Str("blob", blobName).
-				Str("hour", cur.Format(time.RFC3339)).
-				Int("attempts", attempts).
-				Int("max_attempts", blobMaxRetryAttempts).
-				Msg(reason + ". Retry limit reached; marking hour as skipped and continuing catch-up.")
-
-			if updateErr := state.Update(uint64(cur.Unix())); updateErr != nil {
-				bedset.Logger.Error().
-					Err(updateErr).
-					Str("blob", blobName).
-					Msg("Failed advancing state after retry limit was reached")
-				return false
-			}
-
-			if clearErr := clearBlobRetryState(retryPath, &retryState); clearErr != nil {
-				// The primary state has already advanced. A stale retry file cannot
-				// cause reprocessing because retry entries are tied to a specific hour.
-				bedset.Logger.Warn().Err(clearErr).Msg("Failed clearing blob retry state after skipped hour")
-			}
-
-			return true
-		}
-
-		// Check the blob metadata before opening the download stream. This lets us
-		// avoid consuming a blob that has only just appeared or was modified very
-		// recently, even if its hourly filename is old.
-		blobClient := containerClient.NewBlobClient(blobName)
-
-		props, err := blobClient.GetProperties(context.Background(), nil)
+	// processHour returns (done, missing, error). Transient failures stop
+	// ordinary catch-up, but a recovery attempt won't block newer hours.
+	processHour := func(cur time.Time) (bool, bool, error) {
+		name := fmt.Sprintf(st.BlobFullPathFormat, strconv.Itoa(cur.Year()), strconv.Itoa(int(cur.Month())), cur.Format(st.BlobFileNameFormat))
+		ctx, cancel := context.WithTimeout(context.Background(), operationTimeout)
+		defer cancel()
+		bc := containerClient.NewBlobClient(name)
+		props, err := bc.GetProperties(ctx, nil)
 		if err != nil {
 			if bloberror.HasCode(err, bloberror.BlobNotFound) {
-				// Every hour reaching this loop is already older than the grace window.
-				// If it still does not exist, treat that hour as intentionally skipped
-				// and advance the contiguous state watermark.
-				bedset.Logger.Warn().
-					Str("blob", blobName).
-					Str("hour", cur.Format(time.RFC3339)).
-					Dur("grace_period", blobHourGracePeriod).
-					Msg("Eligible blob is still missing after the grace period. Marking hour as skipped and continuing catch-up.")
-
-				if err := state.Update(uint64(cur.Unix())); err != nil {
-					bedset.Logger.Error().Err(err).Msg("Failed updating state for skipped blob")
-					break
-				}
-				if err := clearBlobRetryState(retryPath, &retryState); err != nil {
-					bedset.Logger.Warn().Err(err).Msg("Failed clearing blob retry state after missing hour was skipped")
-				}
-
-				continue
+				return false, true, nil
 			}
-
-			// Authentication, network, throttling, or other Azure errors are never
-			// interpreted as a missing hour. Leave state unchanged and retry this
-			// exact hour on the next run.
-			bedset.Logger.Error().
-				Err(err).
-				Str("blob", blobName).
-				Msg("Failed checking blob properties. Stopping catch-up without advancing state.")
-			break
+			return false, false, fmt.Errorf("%w: checking properties for %s: %w", errBlobInfrastructure, name, err)
 		}
-
-		if props.LastModified == nil {
-			failure := fmt.Errorf("blob properties did not include LastModified")
-			if handleRetryableFailure(failure, "Blob is missing required LastModified metadata") {
-				continue
-			}
-			break
+		if props.LastModified == nil || props.ETag == nil {
+			return false, false, fmt.Errorf("blob %s lacks LastModified or ETag", name)
 		}
-
-		modifiedAge := now.Sub(props.LastModified.UTC())
-		if modifiedAge < blobStabilityPeriod {
-			bedset.Logger.Info().
-				Str("blob", blobName).
-				Time("last_modified", props.LastModified.UTC()).
-				Dur("modified_age", modifiedAge).
-				Dur("stability_period", blobStabilityPeriod).
-				Msg("Blob was modified too recently. Stopping catch-up so it can settle before processing.")
-			break
+		if now.Sub(props.LastModified.UTC()) < time.Duration(st.BlobStabilityPeriod)*time.Minute {
+			return false, false, fmt.Errorf("%w: %s", errBlobUnstable, name)
 		}
-
-		if props.ETag == nil {
-			failure := fmt.Errorf("blob properties did not include an ETag")
-			if handleRetryableFailure(failure, "Blob is missing required ETag metadata") {
-				continue
-			}
-			break
-		}
-
-		bedset.Logger.Info().
-			Str("blob", blobName).
-			Time("last_modified", props.LastModified.UTC()).
-			Dur("modified_age", modifiedAge).
-			Msg("Blob is outside the hour grace window and has been stable long enough. Starting download.")
-
-		// Pin the GET to the exact ETag observed above. If the producer modifies or
-		// replaces the blob after our stability check but before the GET starts,
-		// Azure rejects this request instead of allowing us to process a different
-		// version than the one we judged stable.
-		resp, err := client.DownloadStream(
-			context.Background(),
-			st.BlobContainer,
-			blobName,
-			&azblob.DownloadStreamOptions{
-				AccessConditions: &blob.AccessConditions{
-					ModifiedAccessConditions: &blob.ModifiedAccessConditions{
-						IfMatch: props.ETag,
-					},
-				},
-			},
-		)
+		response, err := client.DownloadStream(ctx, st.BlobContainer, name, &azblob.DownloadStreamOptions{
+			AccessConditions: &blob.AccessConditions{ModifiedAccessConditions: &blob.ModifiedAccessConditions{IfMatch: props.ETag}},
+		})
 		if err != nil {
-			// A failed ETag condition is specific to this blob/version, so it uses
-			// the bounded retry budget. Other download failures may be service-wide
-			// (network, auth, throttling, Azure outage), so they never consume retries
-			// and never cause an hour to be skipped.
 			if bloberror.HasCode(err, bloberror.ConditionNotMet) {
-				if handleRetryableFailure(err, "Blob changed after the stability check") {
-					continue
-				}
-				break
+				return false, false, fmt.Errorf("blob %s changed after stability check: %w", name, err)
 			}
-
-			bedset.Logger.Error().
-				Err(err).
-				Str("blob", blobName).
-				Msg("Failed downloading stable blob due to an Azure/service error. Stopping catch-up without consuming the blob retry budget.")
-			break
+			return false, false, fmt.Errorf("%w: downloading %s: %w", errBlobInfrastructure, name, err)
 		}
-
-		recordCount, err := processBlob(
-			resp.Body,
-			blobName,
-			chFromVT,
-		)
-
+		count, err := publish(response.Body, name)
 		if err != nil {
-			log.Printf(
-				"Finished blob %s, records=%d success=false",
-				blobName,
-				recordCount,
-			)
-			if handleRetryableFailure(err, "Failed processing blob") {
-				continue
+			if ctx.Err() != nil {
+				return false, false, fmt.Errorf("%w: stream timed out for %s: %w", errBlobInfrastructure, name, ctx.Err())
 			}
-			break
+			return false, false, fmt.Errorf("processing %s (%d records): %w", name, count, err)
 		}
-
-		log.Printf(
-			"Finished blob %s, records=%d success=true",
-			blobName,
-			recordCount,
-		)
-
-		if err := state.Update(uint64(cur.Unix())); err != nil {
-			bedset.Logger.Error().Err(err).Msg("Failed updating state")
-			break
+		if count == 0 {
+			return false, false, fmt.Errorf("empty archive %s", name)
 		}
-		if err := clearBlobRetryState(retryPath, &retryState); err != nil {
-			bedset.Logger.Warn().Err(err).Msg("Failed clearing blob retry state after successful blob")
+		log.Printf("Finished and published blob %s, records=%d success=true", name, count)
+		return true, false, nil
+	}
+
+	// A recovery window larger than 72 hours must never replay older blobs.
+	recoveryWindow := time.Duration(st.BlobRecoveryHours) * time.Hour
+	if recoveryWindow > blobMaximumLookback {
+		recoveryWindow = blobMaximumLookback
+	}
+	for _, entry := range ledger.unresolvedOutsideWindow(now, recoveryWindow) {
+		log.Printf("ALERT: unresolved blob hour %s outside recovery window (reason=%s attempts=%d); manual replay required", time.Unix(entry.Hour, 0).UTC().Format(time.RFC3339), entry.Reason, entry.Attempts)
+	}
+	for _, hour := range ledger.eligible(latestEligible, recoveryWindow) {
+		cutoff := now.Add(time.Since(runStart)).Truncate(time.Hour).Add(-blobMaximumLookback)
+		if hour.Before(cutoff) {
+			log.Printf("Skipping deferred blob hour %s: outside 72-hour ingestion limit", hour.Format(time.RFC3339))
+			continue
+		}
+		done, missing, failure := processHour(hour)
+		if done {
+			if err := ledger.resolve(hour); err != nil {
+				return err
+			}
+			log.Printf("Recovered previously deferred blob hour %s", hour.Format(time.RFC3339))
+		} else {
+			reason := "recovery_failure"
+			if missing {
+				reason = "still_missing"
+			}
+			if err := ledger.deferHour(hour, reason, failure, now); err != nil {
+				return err
+			}
+			log.Printf("Deferred blob %s still unavailable: %v", hour.Format(time.RFC3339), failure)
 		}
 	}
 
-	bedset.Logger.Info().Msg("Blob download run complete")
+	startTime := getBlobStartTime(state, currentHour)
+	if startTime.After(latestEligible) {
+		log.Printf("No new eligible blob hours; checkpoint %s", startTime.Format(time.RFC3339))
+		return nil
+	}
+	for hour := startTime; !hour.After(latestEligible); hour = hour.Add(time.Hour) {
+		// Advance the cutoff as wall-clock time passes during long jobs.
+		cutoff := now.Add(time.Since(runStart)).UTC().Truncate(time.Hour).Add(-blobMaximumLookback)
+		if hour.Before(cutoff) {
+			log.Printf("Skipping blob hour %s: outside 72-hour ingestion limit", hour.Format(time.RFC3339))
+			continue
+		}
+		done, missing, failure := processHour(hour)
+		if done {
+			if err := state.Update(uint64(hour.Unix())); err != nil {
+				return err
+			}
+			if err := clearBlobRetryState(retryPath, &retryState); err != nil {
+				return err
+			}
+			continue
+		}
+		if missing {
+			// Persist the missing hour *before* advancing, so late arrivals
+			// remain discoverable even after the normal checkpoint moves on.
+			if err := ledger.deferHour(hour, "missing", nil, now); err != nil {
+				return err
+			}
+			if err := state.Update(uint64(hour.Unix())); err != nil {
+				return err
+			}
+			if err := clearBlobRetryState(retryPath, &retryState); err != nil {
+				return err
+			}
+			log.Printf("Missing eligible blob %s; recorded for later recovery", hour.Format(time.RFC3339))
+			continue
+		}
+		// Network/auth/throttle problems should stop rather than skip. For a
+		// demonstrably bad blob, retry up to N runs, then move it to the ledger.
+		if errors.Is(failure, errDispatcherIngest) {
+			// Do not skip an hour when Dispatcher is unavailable or rejects
+			// events. Retry the whole hour on the next invocation.
+			return failure
+		}
+		if errors.Is(failure, errBlobUnstable) {
+			// A file being actively written is not a bad file; it must not
+			// consume retries or be deferred after three routine polls.
+			log.Printf("Blob %s not yet stable; retry on next scheduled run", hour.Format(time.RFC3339))
+			return nil
+		}
+		if errors.Is(failure, errBlobInfrastructure) {
+			// These are infrastructure/permission failures rather than proof
+			// that a particular blob is corrupt.
+			return failure
+		}
+		attempts, err := recordBlobRetryFailure(retryPath, &retryState, hour)
+		if err != nil {
+			return err
+		}
+		if attempts < st.BlobMaxRetryAttempts {
+			return fmt.Errorf("blob hour %s failed attempt %d/%d: %w", hour.Format(time.RFC3339), attempts, st.BlobMaxRetryAttempts, failure)
+		}
+		if err := ledger.deferHour(hour, "retry_exhausted", failure, now); err != nil {
+			return err
+		}
+		if err := state.Update(uint64(hour.Unix())); err != nil {
+			return err
+		}
+		if err := clearBlobRetryState(retryPath, &retryState); err != nil {
+			return err
+		}
+		log.Printf("Blob %s hit retry limit; deferred for automatic recovery: %v", hour.Format(time.RFC3339), failure)
+	}
+	log.Printf("Blob download run complete, checkpoint %s", time.Unix(int64(state.Last()), 0).UTC().Format(time.RFC3339))
+	return nil
 }
 
+// loadBlobRetryState restores the failure count across scheduled runs.
 func loadBlobRetryState(path string) (blobRetryState, error) {
 	data, err := os.ReadFile(path)
 	if os.IsNotExist(err) {
@@ -563,6 +557,8 @@ func loadBlobRetryState(path string) (blobRetryState, error) {
 	return state, nil
 }
 
+// recordBlobRetryFailure increments the count for this hour, resetting it
+// when the downloader moves to a different hour.
 func recordBlobRetryFailure(path string, state *blobRetryState, hour time.Time) (int, error) {
 	hourUnix := hour.UTC().Truncate(time.Hour).Unix()
 	if state.hour != hourUnix {
@@ -578,19 +574,13 @@ func recordBlobRetryFailure(path string, state *blobRetryState, hour time.Time) 
 	return state.attempts, nil
 }
 
+// saveBlobRetryState atomically persists the hour and its failure count.
 func saveBlobRetryState(path string, state blobRetryState) error {
-	tmpPath := path + ".tmp"
 	data := fmt.Appendf(nil, "%d %d\n", state.hour, state.attempts)
-	if err := os.WriteFile(tmpPath, data, 0644); err != nil {
-		return fmt.Errorf("failed writing temporary blob retry state: %w", err)
-	}
-	if err := os.Rename(tmpPath, path); err != nil {
-		_ = os.Remove(tmpPath)
-		return fmt.Errorf("failed replacing blob retry state: %w", err)
-	}
-	return nil
+	return vthuntfeed.AtomicWriteFile(path, data, 0644)
 }
 
+// clearBlobRetryState removes retry history after an hour is resolved.
 func clearBlobRetryState(path string, state *blobRetryState) error {
 	*state = blobRetryState{}
 	if err := os.Remove(path); err != nil && !os.IsNotExist(err) {
@@ -599,35 +589,36 @@ func clearBlobRetryState(path string, state *blobRetryState) error {
 	return nil
 }
 
-func getBlobStartTime(
-	state vthuntfeed.State,
-	now time.Time,
-) time.Time {
+// getBlobStartTime resumes after the checkpoint but never beyond the
+// 72-hour historical lookback, even when the saved state is much older.
+func getBlobStartTime(state vthuntfeed.State, now time.Time) time.Time {
+	// Never request an archive older than 72 hours, even when a previous
+	// checkpoint is weeks or months behind the current time.
+	oldestAllowed := now.UTC().Truncate(time.Hour).Add(-blobMaximumLookback)
 	if state.Last() == 0 {
-		startTime := now.
-			Add(-time.Duration(st.MaxAgeHours) * time.Hour).
-			Truncate(time.Hour)
-
 		bedset.Logger.Info().
-			Int("max_age_hours", st.MaxAgeHours).
-			Str("start_time", startTime.Format(time.RFC3339)).
-			Msg("No state file found")
-
-		return startTime
+			Str("start_time", oldestAllowed.Format(time.RFC3339)).
+			Msg("No state file found; applying 72-hour blob lookback")
+		return oldestAllowed
 	}
 
-	startTime := time.Unix(
-		int64(state.Last()),
-		0,
-	).UTC().Add(time.Hour)
+	checkpointNext := time.Unix(int64(state.Last()), 0).UTC().Add(time.Hour)
+	if checkpointNext.Before(oldestAllowed) {
+		bedset.Logger.Warn().
+			Str("checkpoint_next", checkpointNext.Format(time.RFC3339)).
+			Str("start_time", oldestAllowed.Format(time.RFC3339)).
+			Msg("Checkpoint is older than 72 hours; skipping historical blob metadata")
+		return oldestAllowed
+	}
 
 	bedset.Logger.Info().
-		Str("start_time", startTime.Format(time.RFC3339)).
+		Str("start_time", checkpointNext.Format(time.RFC3339)).
 		Msg("Resuming from previous state")
-
-	return startTime
+	return checkpointNext
 }
 
+// processBlob reads every newline-delimited record from a tar.bz2 archive.
+// Each tar entry gets its own scanner, including archives with many entries.
 func processBlob(
 	body io.ReadCloser,
 	blobName string,
